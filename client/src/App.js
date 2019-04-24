@@ -1,10 +1,12 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.scss";
 
 function App() {
   return (
     <div className="App">
-      <p>Front-end up</p>
+      <section>
+        <p>Front-end up</p>
+      </section>
     </div>
   );
 }
