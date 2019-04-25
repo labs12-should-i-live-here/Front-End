@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../../scss/Navbar.scss";
 import axios from "axios";
 
@@ -18,10 +19,15 @@ function Navbar() {
   }, []);
   return (
     // this is a test for E2E sake
+    // links for dev ease
 
     <div className="Navbar">
       <p>Navbar</p>
-      <p>{test}</p>
+      <Link to="/">home</Link>
+      <Link to="/register">register</Link>
+      <Link to="/login">login</Link>
+      <Link to="/compare">compare</Link>
+      {/* <p>{test}</p> */}
     </div>
   );
 }
