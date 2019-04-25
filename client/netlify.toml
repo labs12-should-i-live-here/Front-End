@@ -1,0 +1,11 @@
+[build]
+base = "client/"
+publish = "client/build/"
+command = "yarn build"
+
+# The following redirect is intended for use with most SPAs that handle
+# routing internally.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
