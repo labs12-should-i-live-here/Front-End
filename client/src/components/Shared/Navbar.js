@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../../scss/Navbar.scss";
 import axios from "axios";
+// import Auth from '../../src/views/App/Auth/Auth';
 
 function Navbar() {
   const [test, setTest] = useState("");
