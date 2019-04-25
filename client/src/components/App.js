@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../scss/App.scss";
 import axios from "axios";
+// import Auth from '../../src/views/App/Auth/Auth';
 
 function App() {
   const [test, setTest] = useState("");
