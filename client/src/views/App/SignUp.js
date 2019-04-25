@@ -9,6 +9,7 @@ function SignUp() {
         <input className='input' placeholder="Username"></input>
         <input className='input' placeholder="Password"></input>
         <input className='input' placeholder="Zipcode"></input>
+        <button>Sign Up</button>
       </form>
     </div>
   );
