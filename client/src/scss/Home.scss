@@ -1,0 +1,22 @@
+// borders are for dev purposes
+.main-content {
+  width: 98%;
+  height: 90vh;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  .left-panel {
+    width: 59%;
+    height: 88vh;
+    border: 1px solid red;
+  }
+  .right-panel {
+    width: 40%;
+    height: 88vh;
+    .top-panel,
+    .bottom-panel {
+      height: 43.9vh;
+      border: 1px solid red;
+    }
+  }
+}
