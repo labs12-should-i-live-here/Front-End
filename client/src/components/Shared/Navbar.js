@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import "../scss/App.scss";
+import "../../scss/Navbar.scss";
 import axios from "axios";
 
-function App() {
+function Navbar() {
   const [test, setTest] = useState("");
 
   useEffect(() => {
@@ -19,10 +19,11 @@ function App() {
   return (
     // this is a test for E2E sake
 
-    <div className="App">
+    <div className="Navbar">
+      <p>Navbar</p>
       <p>{test}</p>
     </div>
   );
 }
 
-export default App;
+export default Navbar;
