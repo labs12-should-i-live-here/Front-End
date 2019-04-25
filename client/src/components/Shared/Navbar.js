@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "../scss/App.scss";
+import { Link } from "react-router-dom";
+import "../../scss/Navbar.scss";
 import axios from "axios";
 
-function App() {
+function Navbar() {
   const [test, setTest] = useState("");
 
   useEffect(() => {
@@ -18,11 +19,17 @@ function App() {
   }, []);
   return (
     // this is a test for E2E sake
+    // links for dev ease
 
-    <div className="App">
-      <p>{test}</p>
+    <div className="Navbar">
+      <p>Navbar</p>
+      <Link to="/">home</Link>
+      <Link to="/register">register</Link>
+      <Link to="/login">login</Link>
+      <Link to="/compare">compare</Link>
+      {/* <p>{test}</p> */}
     </div>
   );
 }
 
-export default App;
+export default Navbar;
