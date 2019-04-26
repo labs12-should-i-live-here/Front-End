@@ -44,6 +44,11 @@ class App extends Component {
 							<Button bsStyle="primary" className="btn-margin" onClick={this.logout.bind(this)}>
 								Log Out
 							</Button>}
+						{isAuthenticated() && userHasScopes(['write:messages']) && (
+						<Button bsStyle="primary" className="btn-margin" onClick={this.goTo.bind(this, 'admin')}>
+							Admin
+						</Button>
+						)};
 					</Navbar.Header>
 				</Navbar>
 			</div>

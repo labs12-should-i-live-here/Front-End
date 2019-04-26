@@ -6,17 +6,20 @@ export default class Auth {
 	accessToken;
 	idToken;
 	expiresAt;
-	userProfile
+	userProfile;
+	scopes;
+	requestedScopes = 'openid profile read:messages write:messages'
 
 	auth0 = new auth0.WebAuth({
 		domain: AUTH_CONFIG.domain,
 		clientID: AUTH_CONFIG.clientId,
 		redirectUri: AUTH_CONFIG.callbackUrl,
 		responseType: 'token id_token',
-		// scope: 'openid',
-		// scope: 'openid profile'
+		scope: 'openid',
+		scope: 'openid profile',
 		audience: 'http://shouldilivehere.auth).com/api/v2',
-  		scope: 'openid profile read:messages'
+		scope: 'openid profile read:messages',
+		scope: this.requestedScopes
 	});
 
 	constructor() {
@@ -63,6 +66,7 @@ export default class Auth {
 		this.accessToken = authResult.accessToken;
 		this.idToken = authResult.idToken;
 		this.expiresAt = expiresAt;
+		this.scopes = authResult.scope || this.requestedScopes || '';
 
 		// navigate to the home route
 		history.replace('/home');
@@ -112,5 +116,10 @@ export default class Auth {
 		// access token's expiry time
 		let expiresAt = this.expiresAt;
 		return new Date().getTime() < expiresAt;
+	}
+
+	userHasScopes(scopes) {
+		const grantedScopes = this.scopes.split(' ');
+		return scopes.every(scope => grantedScopes.includes(scope));
 	}
 }
