@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Panel, ControlLabel, Glyphicon } from 'react-bootstrap';
 import './Profile.css';
 
-class Profile extends Component {
+class Profile extends Component {  // user profile, no styling done but left classNames for CSS
   componentWillMount() {
     this.setState({ profile: {} });
     const { userProfile, getProfile } = this.props.auth;
@@ -17,7 +17,7 @@ class Profile extends Component {
   render() {
     const { profile } = this.state;
     return (
-      <div className="container">
+      <div className="container">  
         <div className="profile-area">
           <h1>{profile.name}</h1>
           <Panel header="Profile">

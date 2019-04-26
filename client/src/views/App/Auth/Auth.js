@@ -18,7 +18,7 @@ export default class Auth {
 		responseType: 'token id_token',
 		scope: 'openid',
 		scope: 'openid profile',
-		audience: 'http://shouldilivehere.auth).com/api/v2',
+		audience: 'http://shouldilivehere.auth0.com/api/v2',  // test link
 		scope: 'openid profile read:messages',
 		scope: this.requestedScopes
 	});

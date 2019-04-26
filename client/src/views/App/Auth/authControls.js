@@ -26,7 +26,7 @@ class App extends Component {
 	render() {
 		const { isAuthenticated } = this.props.auth;
 
-		return (
+		return ( // buttons that may not be necessary or can be changed - did not add styling yet, but left classes for that
 			<div>
 				<Navbar fluid>
 					<Navbar.Header>
@@ -44,11 +44,11 @@ class App extends Component {
 							<Button bsStyle="primary" className="btn-margin" onClick={this.logout.bind(this)}>
 								Log Out
 							</Button>}
-						{isAuthenticated() && userHasScopes(['write:messages']) && (
-						<Button bsStyle="primary" className="btn-margin" onClick={this.goTo.bind(this, 'admin')}>
-							Admin
-						</Button>
-						)};
+						{isAuthenticated() &&
+							userHasScopes(['write:messages']) &&
+							<Button bsStyle="primary" className="btn-margin" onClick={this.goTo.bind(this, 'admin')}>
+								Admin
+							</Button>};
 					</Navbar.Header>
 				</Navbar>
 			</div>
