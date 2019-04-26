@@ -1,11 +1,30 @@
-import React from "react";
+import React, { Component } from "react";
 import "../../../scss/Map.scss";
-function Map() {
-  return (
-    <div className="Map">
-      <p>Map</p>
-    </div>
-  );
+import ReactMapGL from "react-map-gl";
+
+class Map extends Component {
+  state = {
+    // init state of map
+    viewport: {
+      width: "100%",
+      height: "100%",
+      // San Francisco, CA
+      latitude: 37.7749,
+      longitude: -122.4194,
+      zoom: 3
+    }
+  };
+
+  render() {
+    return (
+      <ReactMapGL
+        {...this.state.viewport}
+        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN} // Token must be set on .env
+        mapStyle={"mapbox://styles/brilles/cjuxa750e671g1fml154ev74e"}
+        onViewportChange={viewport => this.setState({ viewport })}
+      />
+    );
+  }
 }
 
 export default Map;
