@@ -8,7 +8,8 @@ export default class Auth {
 	expiresAt;
 	userProfile;
 	scopes;
-	requestedScopes = 'openid profile read:messages write:messages'
+	requestedScopes = 'openid profile read:messages write:messages';
+	tokenRenewalTimeout;
 
 	auth0 = new auth0.WebAuth({
 		domain: AUTH_CONFIG.domain,
@@ -31,6 +32,7 @@ export default class Auth {
 		this.getIdToken = this.getIdToken.bind(this);
 		this.renewSession = this.renewSession.bind(this);
 		this.getProfile = this.getProfile.bind(this);
+		this.scheduleRenewal(); // token renewal
 	}
 
 	login() {
@@ -41,6 +43,7 @@ export default class Auth {
 		this.auth0.parseHash((errir, authResult) => {
 			if (authResult && authResult.accessToken && authResult.idToken) {
 				this.setSession(authResult);
+				this.scheduleRenewal(); // schedule token
 			} else if (err) {
 				history.replace('/home');
 				console.log(err);
@@ -72,7 +75,8 @@ export default class Auth {
 		history.replace('/home');
 	}
 
-	renewSession() {
+	// token renewal
+	renewSession() {  
 		this.auth0.checkSession({}, (err, authResult) => {
 			if (authResult && authResult.accessToken && authResult.idToken) {
 				this.setSession(authResult);
@@ -86,12 +90,12 @@ export default class Auth {
 
 	getProfile(cb) {
 		this.auth0.client.userInfo(this.accessToken, (err, profile) => {
-		  if (profile) {
-			this.userProfile = profile;
-		  }
-		  cb(err, profile);
+			if (profile) {
+				this.userProfile = profile;
+			}
+			cb(err, profile);
 		});
-	  }
+	}
 
 	logout() {
 		// Remove tokens and expiry time
@@ -109,6 +113,8 @@ export default class Auth {
 
 		// navigate to the home route
 		history.replace('/home');
+
+		clearTimeout(this.tokenRenewalTimeout); // cancel token renewal after logout
 	}
 
 	isAuthenticated() {
@@ -122,4 +128,19 @@ export default class Auth {
 		const grantedScopes = this.scopes.split(' ');
 		return scopes.every(scope => grantedScopes.includes(scope));
 	}
-}
+
+	// token renewal
+	scheduleRenewal() {
+		let expiresAt = this.expiresAt;
+		const timeout = expiresAt - Date.now();
+		if (timeout > 0) {
+		  this.tokenRenewalTimeout = setTimeout(() => {
+			this.renewSession();
+		  }, timeout);
+		}
+	  }
+	
+	  getExpiryDate() {
+		return JSON.stringify(new Date(this.expiresAt));
+	  }
+	}
