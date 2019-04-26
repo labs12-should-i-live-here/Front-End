@@ -6,13 +6,21 @@ export default class Auth {
 	accessToken;
 	idToken;
 	expiresAt;
+	userProfile;
+	scopes;
+	requestedScopes = 'openid profile read:messages write:messages';
+	tokenRenewalTimeout;
 
 	auth0 = new auth0.WebAuth({
 		domain: AUTH_CONFIG.domain,
 		clientID: AUTH_CONFIG.clientId,
 		redirectUri: AUTH_CONFIG.callbackUrl,
 		responseType: 'token id_token',
-		scope: 'openid'
+		scope: 'openid',
+		scope: 'openid profile',
+		audience: 'http://shouldilivehere.auth0.com/api/v2',  // test link
+		scope: 'openid profile read:messages',
+		scope: this.requestedScopes
 	});
 
 	constructor() {
@@ -23,6 +31,8 @@ export default class Auth {
 		this.getAccessToken = this.getAccessToken.bind(this);
 		this.getIdToken = this.getIdToken.bind(this);
 		this.renewSession = this.renewSession.bind(this);
+		this.getProfile = this.getProfile.bind(this);
+		this.scheduleRenewal(); // token renewal
 	}
 
 	login() {
@@ -30,9 +40,10 @@ export default class Auth {
 	}
 
 	handleAuthentication() {
-		this.auth0.parseHash((err, authResult) => {
+		this.auth0.parseHash((errir, authResult) => {
 			if (authResult && authResult.accessToken && authResult.idToken) {
 				this.setSession(authResult);
+				this.scheduleRenewal(); // schedule token
 			} else if (err) {
 				history.replace('/home');
 				console.log(err);
@@ -58,12 +69,14 @@ export default class Auth {
 		this.accessToken = authResult.accessToken;
 		this.idToken = authResult.idToken;
 		this.expiresAt = expiresAt;
+		this.scopes = authResult.scope || this.requestedScopes || '';
 
 		// navigate to the home route
 		history.replace('/home');
 	}
 
-	renewSession() {
+	// token renewal
+	renewSession() {  
 		this.auth0.checkSession({}, (err, authResult) => {
 			if (authResult && authResult.accessToken && authResult.idToken) {
 				this.setSession(authResult);
@@ -75,11 +88,21 @@ export default class Auth {
 		});
 	}
 
+	getProfile(cb) {
+		this.auth0.client.userInfo(this.accessToken, (err, profile) => {
+			if (profile) {
+				this.userProfile = profile;
+			}
+			cb(err, profile);
+		});
+	}
+
 	logout() {
 		// Remove tokens and expiry time
 		this.accessToken = null;
 		this.idToken = null;
 		this.expiresAt = 0;
+		this.profile = null;
 
 		// Remove isLoggedIn flag from localStorage
 		localStorage.removeItem('isLoggedIn');
@@ -90,6 +113,8 @@ export default class Auth {
 
 		// navigate to the home route
 		history.replace('/home');
+
+		clearTimeout(this.tokenRenewalTimeout); // cancel token renewal after logout
 	}
 
 	isAuthenticated() {
@@ -98,4 +123,24 @@ export default class Auth {
 		let expiresAt = this.expiresAt;
 		return new Date().getTime() < expiresAt;
 	}
-}
+
+	userHasScopes(scopes) {
+		const grantedScopes = this.scopes.split(' ');
+		return scopes.every(scope => grantedScopes.includes(scope));
+	}
+
+	// token renewal
+	scheduleRenewal() {
+		let expiresAt = this.expiresAt;
+		const timeout = expiresAt - Date.now();
+		if (timeout > 0) {
+		  this.tokenRenewalTimeout = setTimeout(() => {
+			this.renewSession();
+		  }, timeout);
+		}
+	  }
+	
+	  getExpiryDate() {
+		return JSON.stringify(new Date(this.expiresAt));
+	  }
+	}
