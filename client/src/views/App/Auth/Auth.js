@@ -13,8 +13,10 @@ export default class Auth {
 		clientID: AUTH_CONFIG.clientId,
 		redirectUri: AUTH_CONFIG.callbackUrl,
 		responseType: 'token id_token',
-		scope: 'openid',
-		scope: 'openid profile'
+		// scope: 'openid',
+		// scope: 'openid profile'
+		audience: 'http://shouldilivehere.auth).com/api/v2',
+  		scope: 'openid profile read:messages'
 	});
 
 	constructor() {
