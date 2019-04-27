@@ -30,7 +30,8 @@ class Map extends Component {
     map.addControl(
       new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
-        mapboxgl: mapboxgl
+        mapboxgl: mapboxgl,
+        countries: "us"
       })
     );
     map.addControl(new mapboxgl.NavigationControl());
