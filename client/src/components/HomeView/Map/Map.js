@@ -1,20 +1,22 @@
 import React, { Component } from "react";
 import "../../../scss/Map.scss";
 import mapboxgl from "mapbox-gl";
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 class Map extends Component {
   state = {
     height: "100vh",
-    longitude: -74.006,
-    latitude: 40.7128,
-    zoom: 5
+    longitude: -98.5795, //center of US
+    latitude: 39.8283,
+    zoom: 3.1
   };
 
   render() {
     return <div id="map" />;
   }
+
   componentDidMount() {
     const { longitude, latitude, zoom } = this.state;
 
@@ -24,6 +26,14 @@ class Map extends Component {
       center: [longitude, latitude],
       zoom
     });
+
+    map.addControl(
+      new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl
+      })
+    );
+    map.addControl(new mapboxgl.NavigationControl());
   }
 }
 
