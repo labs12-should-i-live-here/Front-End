@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import "../../../scss/Map.scss";
-import ReactMapGL, { NavigationControl } from "react-map-gl";
+import ReactMapGL, {
+  NavigationControl,
+  LinearInterpolator,
+  FlyToInterpolator
+} from "react-map-gl";
 
 class Map extends Component {
   state = {
-    // init state of map
     viewport: {
       width: "100%",
       height: "100%",
-      // San Francisco, CA
       latitude: 37.7749,
       longitude: -122.4194,
       zoom: 3
@@ -19,18 +21,32 @@ class Map extends Component {
     return (
       <ReactMapGL
         {...this.state.viewport}
-        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN} // Token must be set on .env
+        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         mapStyle={"mapbox://styles/brilles/cjuxa750e671g1fml154ev74e"}
-        onViewportChange={viewport => this.setState({ viewport })}
+        onViewportChange={this._onViewPortChange}
       >
         <div className="controller">
-          <NavigationControl
-            onViewportChange={viewport => this.setState({ viewport })}
-          />
+          <NavigationControl onViewportChange={this._onViewPortChange} />
         </div>
+        <button onClick={this._goToAddress}>Go to Static address</button>
       </ReactMapGL>
     );
   }
+  _onViewPortChange = viewport => {
+    this.setState({ viewport });
+  };
+
+  _goToAddress = () => {
+    const viewport = {
+      ...this.state.viewport,
+      longitude: -118.353996,
+      latitude: 33.919434,
+      zoom: 10,
+      transitionDuration: 5000,
+      transitionInterpolator: new FlyToInterpolator()
+    };
+    this.setState({ viewport });
+  };
 }
 
 export default Map;
