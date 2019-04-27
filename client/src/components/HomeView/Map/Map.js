@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../../../scss/Map.scss";
-import ReactMapGL from "react-map-gl";
+import ReactMapGL, { NavigationControl } from "react-map-gl";
 
 class Map extends Component {
   state = {
@@ -22,7 +22,13 @@ class Map extends Component {
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN} // Token must be set on .env
         mapStyle={"mapbox://styles/brilles/cjuxa750e671g1fml154ev74e"}
         onViewportChange={viewport => this.setState({ viewport })}
-      />
+      >
+        <div className="controller">
+          <NavigationControl
+            onViewportChange={viewport => this.setState({ viewport })}
+          />
+        </div>
+      </ReactMapGL>
     );
   }
 }
