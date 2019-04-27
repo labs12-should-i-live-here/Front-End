@@ -24,10 +24,9 @@ function Navbar() {
 
     <div className="Navbar">
       <p>Navbar</p>
-      <Link to="/">home</Link>
-      <Link to="/register">register</Link>
-      <Link to="/login">login</Link>
-      <Link to="/compare">compare</Link>
+      <Link to="/">Home</Link>
+      <Link to="/register">Sign Up</Link>
+      <Link to="/login">Sign In</Link>
       {/* <p>{test}</p> */}
     </div>
   );

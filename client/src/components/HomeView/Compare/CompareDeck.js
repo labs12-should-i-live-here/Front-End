@@ -1,10 +1,11 @@
 import React from "react";
 import "../../../scss/CompareDeck.scss";
+import { NavLink } from "react-router-dom";
 
 function CompareDeck() {
   return (
     <div className="compare-deck">
-      <p>CompareDeck</p>
+      <NavLink to="/compare">Compare</NavLink>
     </div>
   );
 }
