@@ -14,7 +14,11 @@ class Map extends Component {
   };
 
   render() {
-    return <div id="map"></div>;
+    return (
+      <>
+        <div id="map" />
+      </>
+    );
   }
 
   componentDidMount() {
@@ -29,13 +33,20 @@ class Map extends Component {
       zoom
     });
 
-    const popup = new mapboxgl.Popup({ offset: 20 }).setText('USER marker 1') // chang to dynamic
+    const popup = new mapboxgl.Popup({ offset: 20 }).setText("USER marker 1"); // chang to dynamic
 
-    const el = document.createElement('div')
-    el.id = 'marker';
+    const marker = new mapboxgl.Marker({ draggable: true, fill: "green" })
+      .setLngLat(userSavedLngLat)
+      .setPopup(popup)
+      .addTo(map);
 
-    new mapboxgl.Marker({ draggable: true}).setLngLat(userSavedLngLat).setPopup(popup).addTo(map)
-    
+    function onDragEnd() {
+      const lngLat = marker.getLngLat();
+      console.log(`LONGITUDE: ${lngLat.lng}, LATITUDE: ${lngLat.lat}`);
+    }
+
+    marker.on("dragend", onDragEnd);
+
     map.addControl(
       new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
