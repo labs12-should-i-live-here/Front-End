@@ -14,23 +14,26 @@ class Map extends Component {
   };
 
   render() {
-    return <div id="map" />;
+    return <div id="map"></div>;
   }
 
   componentDidMount() {
     const { longitude, latitude, zoom } = this.state;
-
     const map = new mapboxgl.Map({
       container: "map",
       style: "mapbox://styles/brilles/cjuxa750e671g1fml154ev74e",
       center: [longitude, latitude],
       zoom
     });
+    const marker = new mapboxgl.Marker({
+      draggable: true
+    }).setLngLat([-98.5795, 39.8283]).addTo(map)
+
 
     map.addControl(
       new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
-        mapboxgl: mapboxgl,
+        mapboxgl,
         countries: "us"
       })
     );
