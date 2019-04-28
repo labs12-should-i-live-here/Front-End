@@ -19,17 +19,23 @@ class Map extends Component {
 
   componentDidMount() {
     const { longitude, latitude, zoom } = this.state;
+
+    const userSavedLngLat = [-98.5795, 39.8283]; // @TODO: GET from redux store (an array of markers)
+
     const map = new mapboxgl.Map({
       container: "map",
       style: "mapbox://styles/brilles/cjuxa750e671g1fml154ev74e",
       center: [longitude, latitude],
       zoom
     });
-    const marker = new mapboxgl.Marker({
-      draggable: true
-    }).setLngLat([-98.5795, 39.8283]).addTo(map)
 
+    const popup = new mapboxgl.Popup({ offset: 20 }).setText('USER marker 1') // chang to dynamic
 
+    const el = document.createElement('div')
+    el.id = 'marker';
+
+    new mapboxgl.Marker({ draggable: true}).setLngLat(userSavedLngLat).setPopup(popup).addTo(map)
+    
     map.addControl(
       new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
