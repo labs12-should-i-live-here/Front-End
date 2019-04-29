@@ -8,33 +8,93 @@ import Compare from './views/App/Compare.js';
 import React, { Component } from 'react';
 
 // auth0
-import Callback from './containers/auth-zero/Callback/Callback.js';
-import Auth from './containers/auth-zero/Auth/Auth.js';
+import Auth from './Auth';
+import React, { Component } from 'react';
+import { Navbar, Button } from 'react-bootstrap';
+import './App.css';
 
 const auth = new Auth();
-const handleAuthentication = ({ location }) => {
-	if (/access_token|id_token|error/.test(location.hash)) {
-		auth.handleAuthentication();
-	}
-};
+auth.login();
 
-class App extends Component {
-	render() {
+
+function App() {
 		return (
-			<div>
-				<Route exact path="/" component={Home} />
-				<Route path="/register" component={SignUp} />
-				<Route path="/login" component={Login} />
-				<Route path="/compare" component={Compare} />
-
-				<Route path="/callback" render={props => {
-						handleAuthentication(props);
-						return <Callback {...props} />;
-					}}
-				/>
-			</div>
+		  <>
+			<Route exact path="/" component={Home} />
+			<Route path="/register" component={SignUp} />
+			<Route path="/login" component={Login} />
+			<Route path="/compare" component={Compare} />
+		  </>
 		);
-	}
-}
+	  }
+
+
+// class App extends Component {
+
+// 	goTo(route) {
+// 		this.props.history.replace(`/${route}`)
+// 	  }
+	
+// 	  login() {
+// 		this.props.auth.login();
+// 	  }
+	
+// 	  logout() {
+// 		this.props.auth.logout();
+// 	  }
+	
+// 	  componentDidMount() {
+// 		const { renewSession } = this.props.auth;
+	
+// 		if (localStorage.getItem('isLoggedIn') === 'true') {
+// 		  renewSession();
+// 		}
+// 	  }
+	
+// 	  render() {
+// 		const { isAuthenticated } = this.props.auth;
+	
+// 		return (
+// 		  <div>
+// 			<Navbar fluid>
+// 			  <Navbar.Header>
+// 				<Navbar.Brand>
+// 				  <a href="#">Auth0 - React</a>
+// 				</Navbar.Brand>
+// 				<Button
+// 				  bsStyle="primary"
+// 				  className="btn-margin"
+// 				  onClick={this.goTo.bind(this, 'home')}
+// 				>
+// 				  Home
+// 				</Button>
+// 				{
+// 				  !isAuthenticated() && (
+// 					  <Button
+// 						bsStyle="primary"
+// 						className="btn-margin"
+// 						onClick={this.login.bind(this)}
+// 					  >
+// 						Log In
+// 					  </Button>
+// 					)
+// 				}
+// 				{
+// 				  isAuthenticated() && (
+// 					  <Button
+// 						bsStyle="primary"
+// 						className="btn-margin"
+// 						onClick={this.logout.bind(this)}
+// 					  >
+// 						Log Out
+// 					  </Button>
+// 					)
+// 				}
+// 			  </Navbar.Header>
+// 			</Navbar>
+// 		  </div>
+// 		);
+// 	  }
+// 	}
 
 export default App;
