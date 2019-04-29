@@ -6,9 +6,9 @@ import SignUp from "./views/App/SignUp.js";
 import Login from "./views/App/Login.js";
 import Compare from "./views/App/Compare.js";
 
-// Auth 0
-import Callback from "./containers/auth-zero/Callback/Callback.js";
-import Auth from "./containers/auth-zero/Auth/Auth.js";
+// // Auth 0
+// import Callback from "./containers/auth-zero/Callback/Callback.js";
+// import Auth from "./containers/auth-zero/Auth/Auth.js";
 
 function App() {
   return (
@@ -21,53 +21,53 @@ function App() {
   );
 }
 
-// Auth0
-const auth = new Auth();
-const handleAuthentication = ({ location }) => {
-  if (/access_token|id_token|error/.test(location.hash)) {
-    auth.handleAuthentication();
-  }
-};
+// // Auth0
+// const auth = new Auth();
+// const handleAuthentication = ({ location }) => {
+//   if (/access_token|id_token|error/.test(location.hash)) {
+//     auth.handleAuthentication();
+//   }
+// };
 
-class App extends Component {
-  render() {
-    return (
-      <MuiThemeProvider theme={theme}>
-        <div className="App">
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={props => (
-                <Suspense fallback={<Callback />}>
-                  <LazyLandingPage auth={auth} {...props} />
-                </Suspense>
-              )}
-            />
+// class App extends Component {
+//   render() {
+//     return (
+//       <MuiThemeProvider theme={theme}>
+//         <div className="App">
+//           <Switch>
+//             <Route
+//               exact
+//               path="/"
+//               render={props => (
+//                 <Suspense fallback={<Callback />}>
+//                   <LazyLandingPage auth={auth} {...props} />
+//                 </Suspense>
+//               )}
+//             />
 
-            <Route
-              path="/callback"
-              render={props => {
-                handleAuthentication(props);
-                return <Callback {...props} />;
-              }}
-            />
+//             <Route
+//               path="/callback"
+//               render={props => {
+//                 handleAuthentication(props);
+//                 return <Callback {...props} />;
+//               }}
+//             />
 
-            <Route
-              path="/dashboard"
-              render={props => (
-                <Suspense fallback={<Callback />}>
-                  <Dashboard {...props} auth={auth} />
-                </Suspense>
-              )}
-            />
-            <Route path="/dashboard" component={Dashboard} />
-            <Route path="/stripe-callback" component={StripeCallback} />
-            <Route path="*" component={NotFound} />
-          </Switch>
-        </div>
-      </MuiThemeProvider>
-    );
-  }
-}
+//             <Route
+//               path="/dashboard"
+//               render={props => (
+//                 <Suspense fallback={<Callback />}>
+//                   <Dashboard {...props} auth={auth} />
+//                 </Suspense>
+//               )}
+//             />
+//             <Route path="/dashboard" component={Dashboard} />
+//             <Route path="/stripe-callback" component={StripeCallback} />
+//             <Route path="*" component={NotFound} />
+//           </Switch>
+//         </div>
+//       </MuiThemeProvider>
+//     );
+//   }
+// }
 export default App;
