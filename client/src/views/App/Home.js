@@ -10,7 +10,6 @@ class Home extends Component {
   render() {
     return (
       <div>
-        Home view
         <Navbar />
         <div className="main-content">
           <div className="left-panel">
