@@ -10,14 +10,30 @@ class Navbar extends Component {
     this.props.fetchDate();
   }
 
+
+  useEffect(() => {
+    const url = "https://labs12.herokuapp.com/";
+    axios
+      .get(url)
+      .then(res => {
+        setTest(res.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
   render() {
     return (
-      <div className="Navbar">
-        <p>Navbar</p>
-        <Link to="/">Home</Link>
-        <Link to="/register">Sign Up</Link>
-        <Link to="/login">Sign In</Link>
-      </div>
+     <div className="Navbar">
+    <nav className="nav-left">
+      <Link to="/">home</Link>
+      <Link to="/compare">compare</Link>
+      </nav><nav className="nav-right">
+      <Link to="/register">register</Link>
+      <Link to="/login">login</Link>
+      </nav>
+      {/* <p>{test}</p> */}
+    </div>
     );
   }
 }
