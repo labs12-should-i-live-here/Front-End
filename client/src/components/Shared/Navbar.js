@@ -9,22 +9,9 @@ class Navbar extends Component {
   componentDidMount() {
     this.props.fetchDate();
   }
-
-
-  useEffect(() => {
-    const url = "https://labs12.herokuapp.com/";
-    axios
-      .get(url)
-      .then(res => {
-        setTest(res.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
   render() {
     return (
-     <div className="Navbar">
+      <div className="Navbar">
     <nav className="nav-left">
       <Link to="/">home</Link>
       <Link to="/compare">compare</Link>
