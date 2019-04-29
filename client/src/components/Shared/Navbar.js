@@ -23,11 +23,13 @@ function Navbar() {
     // links for dev ease
 
     <div className="Navbar">
-      <p>Navbar</p>
+    <nav className="nav-left">
       <Link to="/">home</Link>
+      <Link to="/compare">compare</Link>
+      </nav><nav className="nav-right">
       <Link to="/register">register</Link>
       <Link to="/login">login</Link>
-      <Link to="/compare">compare</Link>
+      </nav>
       {/* <p>{test}</p> */}
     </div>
   );

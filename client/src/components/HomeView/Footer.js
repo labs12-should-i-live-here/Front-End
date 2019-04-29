@@ -10,7 +10,8 @@ font-size:30px;
 `
 var B = styled.a`
 margin: 0 2%;
-font-size: 75%;`
+font-size: 75%;
+color:blueviolet;`
 
 var Div = styled.div`
 background-image:url('https://66.media.tumblr.com/81c6db27363b0c87990f58711f4c315c/tumblr_pb467re9mh1tu03dbo7_r1_250.gif');`
