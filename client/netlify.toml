@@ -6,6 +6,6 @@ command = "yarn build"
 # The following redirect is intended for use with most SPAs that handle
 # routing internally.
 [[redirects]]
-  from = "/*"
+  from = "null"
   to = "/index.html"
   status = 200
