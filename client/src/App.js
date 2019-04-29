@@ -5,16 +5,14 @@ import Home from './views/App/Home.js';
 import SignUp from './views/App/SignUp.js';
 import Login from './views/App/Login.js';
 import Compare from './views/App/Compare.js';
-import React, { Component } from 'react';
 
 // auth0
-import Auth from './Auth';
-import React, { Component } from 'react';
-import { Navbar, Button } from 'react-bootstrap';
-import './App.css';
+// import Auth from './Auth';
+// import { Navbar, Button } from 'react-bootstrap';
+// import './App.css';
 
-const auth = new Auth();
-auth.login();
+// const auth = new Auth();
+// auth.login();
 
 
 function App() {
