@@ -1,36 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "../../scss/Navbar.scss";
-import axios from "axios";
+import { fetchDate } from "../../actions/";
+import { connect } from "react-redux";
 // import Auth from '../../src/views/App/Auth/Auth';
 
-function Navbar() {
-  const [test, setTest] = useState("");
-
-  useEffect(() => {
-    const url = "https://labs12.herokuapp.com/";
-    axios
-      .get(url)
-      .then(res => {
-        setTest(res.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
-  return (
-    // this is a test for E2E sake
-    // links for dev ease
-
-    <div className="Navbar">
-      <p>Navbar</p>
+class Navbar extends Component {
+  componentDidMount() {
+    this.props.fetchDate();
+  }
+  render() {
+    return (
+      <div className="Navbar">
+    <nav className="nav-left">
       <Link to="/">home</Link>
+      <Link to="/compare">compare</Link>
+      </nav><nav className="nav-right">
       <Link to="/register">register</Link>
       <Link to="/login">login</Link>
-      <Link to="/compare">compare</Link>
+      </nav>
       {/* <p>{test}</p> */}
     </div>
-  );
+    );
+  }
 }
 
-export default Navbar;
+const mapStateToProps = state => ({
+  date: state.firstReducer.date
+});
+
+export default connect(
+  mapStateToProps,
+  { fetchDate }
+)(Navbar);
