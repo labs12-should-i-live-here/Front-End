@@ -1,52 +1,61 @@
 import React, { Component } from "react";
 import "../../../scss/Map.scss";
-import ReactMapGL, {
-  NavigationControl,
-  LinearInterpolator,
-  FlyToInterpolator
-} from "react-map-gl";
+import mapboxgl from "mapbox-gl";
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
+
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 class Map extends Component {
   state = {
-    viewport: {
-      width: "100%",
-      height: "100%",
-      latitude: 37.7749,
-      longitude: -122.4194,
-      zoom: 3
-    }
+    height: "100vh",
+    longitude: -98.5795, //center of US
+    latitude: 39.8283,
+    zoom: 3.1
   };
 
   render() {
     return (
-      <ReactMapGL
-        {...this.state.viewport}
-        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        mapStyle={"mapbox://styles/brilles/cjuxa750e671g1fml154ev74e"}
-        onViewportChange={this._onViewPortChange}
-      >
-        <div className="controller">
-          <NavigationControl onViewportChange={this._onViewPortChange} />
-        </div>
-        <button onClick={this._goToAddress}>Go to Static address</button>
-      </ReactMapGL>
+      <>
+        <div id="map" />
+      </>
     );
   }
-  _onViewPortChange = viewport => {
-    this.setState({ viewport });
-  };
 
-  _goToAddress = () => {
-    const viewport = {
-      ...this.state.viewport,
-      longitude: -118.353996,
-      latitude: 33.919434,
-      zoom: 10,
-      transitionDuration: 5000,
-      transitionInterpolator: new FlyToInterpolator()
-    };
-    this.setState({ viewport });
-  };
+  componentDidMount() {
+    const { longitude, latitude, zoom } = this.state;
+
+    const userSavedLngLat = [-98.5795, 39.8283]; // @TODO: GET from redux store (an array of markers)
+
+    const map = new mapboxgl.Map({
+      container: "map",
+      style: "mapbox://styles/brilles/cjuxa750e671g1fml154ev74e",
+      center: [longitude, latitude],
+      zoom
+    });
+
+    const popup = new mapboxgl.Popup({ offset: 20 }).setText("USER marker 1"); // chang to dynamic
+
+    const marker = new mapboxgl.Marker({ draggable: true, fill: "green" })
+      .setLngLat(userSavedLngLat)
+      .setPopup(popup)
+      .addTo(map);
+
+    function onDragEnd() {
+      const lngLat = marker.getLngLat();
+      console.log(`LONGITUDE: ${lngLat.lng}, LATITUDE: ${lngLat.lat}`);
+    }
+
+    marker.on("dragend", onDragEnd);
+
+    map.addControl(
+      new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl,
+        countries: "us"
+      })
+    );
+    map.addControl(new mapboxgl.NavigationControl());
+  }
 }
 
 export default Map;
