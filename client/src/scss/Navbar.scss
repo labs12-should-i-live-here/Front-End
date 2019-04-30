@@ -1,4 +1,24 @@
 .Navbar {
+  display: flexbox;
+  flex-flow: row;
+  padding-left: 3%;
+  padding: 10px 0;
+  .nav-right{
+    display: inherit;
+    text-align: right;
+    margin-top: -18px;
+    a {
+      margin: 0 2%;
+    }
+  }
+  .nav-left{
+    display: inherit;
+    // may become unaligned
+    text-align: left;
+    a {
+      margin: 0 2%;
+    }
+  }
   // for development/skeleton purposes
   border: 1px solid red;
   margin-bottom: 2.5vh;

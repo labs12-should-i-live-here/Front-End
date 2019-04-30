@@ -3,6 +3,7 @@ import Navbar from "../../components/Shared/Navbar.js";
 import Map from "../../components/HomeView/Map/Map.js";
 import Stats from "../../components/HomeView/Stats/Stats.js";
 import CompareDeck from "../../components/HomeView/Compare/CompareDeck.js";
+import Footer from '../../components/HomeView/Footer'
 import "../../scss/Home.scss";
 
 class Home extends Component {
@@ -24,6 +25,9 @@ class Home extends Component {
             </div>
           </div>
         </div>
+        <footer>
+          <Footer />
+        </footer>
       </div>
     );
   }
