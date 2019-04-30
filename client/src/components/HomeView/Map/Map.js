@@ -44,8 +44,8 @@ class Map extends Component {
           data: counties
         },
         paint: {
-          "fill-color": "rgba(145, 145, 145, 0.171)",
-          "fill-outline-color": "rgba(10, 153, 41, 1)"
+          "fill-color": "rgba(145, 145, 145, 0.175)",
+          "fill-outline-color": "rgba(10, 153, 41, .75)"
         }
       });
 
@@ -57,7 +57,7 @@ class Map extends Component {
           data: counties
         },
         paint: {
-          "fill-outline-color": "red",
+          "fill-outline-color": "green",
           "fill-color": "rgba(145, 145, 145, 0.7)",
           "fill-opacity": 0.75
         },
