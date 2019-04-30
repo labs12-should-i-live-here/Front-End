@@ -2,8 +2,8 @@ import React from "react";
 import Navbar from "../../components/Shared/Navbar.js";
 import '../../scss/UserForm.scss'
 import { Link } from "react-router-dom";
-import styled from 'styled-components';
 
+import styled from 'styled-components';
 var Red = styled.p`text-align:center;`
 
 class Login extends React.Component {
@@ -33,13 +33,15 @@ class Login extends React.Component {
 
   render(){
   return (
-    <>
+  <>
     <div>
     <Navbar/>
       <form className='modal' onSubmit={this.onSubmit}>
+      {/* email */}
         <input className='input' placeholder="Email" 
           type="text" onChange={this.onChange} 
           value={this.state.credentials.email}></input>
+      {/* password */}
         <input className='input' placeholder="Password"
         type="password" onChange={this.onChange}></input>
         <button type="submit" className="options btn">Log in</button>
@@ -48,7 +50,7 @@ class Login extends React.Component {
       Not a Member? <Link to="/register">Join Now</Link>
       </Red>
     </div>
-    </>
+  </>
   );}
 }
 
