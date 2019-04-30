@@ -22,7 +22,7 @@ export default class Footer extends Component {
         <Div>
             <Foot>
             <nav>
-                <a href="https:/github.com/labs12-should-i-live-here/Front-End"><IoLogoGithub/></a>
+                <a href="https://github.com/labs12-should-i-live-here/Front-End"><IoLogoGithub/></a>
                 <B>sitemap</B>
             </nav>
             </Foot>
