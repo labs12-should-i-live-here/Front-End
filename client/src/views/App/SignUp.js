@@ -1,17 +1,16 @@
 import React from "react";
-import '../../scss/UserForm.scss'
 import Navbar from "../../components/Shared/Navbar.js";
+import '../../scss/UserForm.scss'
 
 function SignUp() {
   return (
-    <div >
+    <div>
     <Navbar/>
-      <form className='main form'>
-      <p>SignUp</p>
+      <form className='modal'>
+        <input className='input' placeholder="Email"></input>
         <input className='input' placeholder="Username"></input>
         <input className='input' placeholder="Password"></input>
-        <input className='input' placeholder="County"></input>
-        <button>Sign Up</button>
+        <button className="options btn">Sign Up</button>
       </form>
     </div>
   );
