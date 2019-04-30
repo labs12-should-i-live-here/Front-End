@@ -17,7 +17,7 @@ class Map extends Component {
   render() {
     return (
       <>
-        <nav id="menu" />
+        <div id="menu" />
         <div id="map" />
       </>
     );
@@ -72,6 +72,34 @@ class Map extends Component {
 
         const filter = ["in", "FIPS", e.features[0].properties.FIPS];
         map.setFilter("counties-layer-highlighted", filter);
+      });
+
+      const toggleableLayers = ["counties-layer", "counties-layer-highlighted"];
+
+      toggleableLayers.map(layer => {
+        const link = document.createElement("a");
+        link.href = "#";
+        link.className = "active";
+        link.textContent = layer;
+
+        link.onclick = (e, textContent) => {
+          // toggle layer
+          const clickedLayer = link.textContent;
+          console.log(clickedLayer);
+          e.preventDefault();
+          const visibility = map.getLayoutProperty(clickedLayer, "visibility");
+          console.log(visibility);
+          if (visibility === "visible") {
+            map.setLayoutProperty(clickedLayer, "visibility", "none");
+            this.className = "";
+          } else {
+            this.className = "active";
+            map.setLayoutProperty(clickedLayer, "visibility", "visible");
+          }
+        };
+
+        const layers = document.getElementById("menu");
+        layers.appendChild(link);
       });
     });
 
