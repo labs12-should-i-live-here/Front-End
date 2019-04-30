@@ -18,7 +18,7 @@ class Map extends Component {
       <>
         <nav id="menu" />
         <div id="map" />
-        <div id="map-overlay" class="map-overlay" />
+        <div id="map-overlay" className="map-overlay" />
       </>
     );
   }
@@ -36,16 +36,6 @@ class Map extends Component {
     });
 
     const overlay = document.getElementById("map-overlay");
-
-    // map.on('load', () => {
-    //   map.addSource('counties3', {
-    //     "type": "vector",
-    //     "url": "mapbox://brilles.cjv3zsv665lqp32mtmn41buu2-7ir8n"
-    //   })
-    //   map.addLayer({
-    //     ""
-    //   })
-    // })
 
     // const popup = new mapboxgl.Popup({ offset: 20 }).setText("USER marker 1");
 
