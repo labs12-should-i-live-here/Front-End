@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
 const stripeBtn = () => {
@@ -10,7 +10,8 @@ const stripeBtn = () => {
       token: token
   };
   axios
-      .post("http://localhost:8000/payment", body)
+  //http://localhost:4200/payment for local testing
+      .post("https://labs12.herokuapp.com/payment", body)
       .then(response => {
         console.log(response);
         alert("Payment Success");
