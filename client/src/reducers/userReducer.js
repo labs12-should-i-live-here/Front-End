@@ -22,7 +22,7 @@ import {
     }
   };
   
-  const reducer = (state = initialState, action) => {
+  export const userReducer = (state = initialState, action) => {
     switch (action.type) {
       case LOGIN_START:
         return {
@@ -41,5 +41,4 @@ import {
     }
   };
   
-  export default reducer;
   
