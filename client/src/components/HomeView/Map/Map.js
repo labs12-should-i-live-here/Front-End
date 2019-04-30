@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "../../../scss/Map.scss";
 import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
+import counties from "./data/counties.json";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
@@ -18,7 +19,6 @@ class Map extends Component {
       <>
         <nav id="menu" />
         <div id="map" />
-        <div id="map-overlay" className="map-overlay" />
       </>
     );
   }
@@ -34,8 +34,26 @@ class Map extends Component {
       center: [longitude, latitude],
       zoom
     });
+    map.on("load", function() {
+      map.addLayer({
+        id: "counties-layer",
+        type: "fill",
+        source: {
+          type: "geojson",
+          data: counties
+        },
+        paint: {
+          "fill-color": "rgba(10, 153, 41, 0.2.75)",
+          "fill-outline-color": "rgba(10, 153, 41, 1)"
+        }
+      });
+    });
 
-    const overlay = document.getElementById("map-overlay");
+    //  counties.features.map(county => {
+    //    console.log(county)
+    //  })
+
+    // const overlay = document.getElementById("map-overlay");
 
     // const popup = new mapboxgl.Popup({ offset: 20 }).setText("USER marker 1");
 
