@@ -32,7 +32,8 @@ class Map extends Component {
       container: "map",
       style: "mapbox://styles/brilles/cjv3zbk1u2uw11fqx8i0zgfkj",
       center: [longitude, latitude],
-      zoom
+      zoom,
+      minZoom: 2
     });
     map.on("load", function() {
       map.addLayer({
