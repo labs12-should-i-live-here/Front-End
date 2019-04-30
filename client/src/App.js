@@ -1,75 +1,99 @@
-import React from "react";
-import { Route } from "react-router-dom";
-import "./scss/App.scss";
-import Home from "./views/App/Home.js";
-import SignUp from "./views/App/SignUp.js";
-import Login from "./views/App/Login.js";
-import Compare from "./views/App/Compare.js";
-import StripePayment from "./views/App/StripePayment";
+import React from 'react';
+import { Route } from 'react-router-dom';
+import './scss/App.scss';
+import Home from './views/App/Home.js';
+import SignUp from './views/App/SignUp.js';
+import Login from './views/App/Login.js';
+import Compare from './views/App/Compare.js';
+import StripePayment from './views/App/StripePayment';
 
-// // Auth 0
-// import Callback from "./containers/auth-zero/Callback/Callback.js";
-// import Auth from "./containers/auth-zero/Auth/Auth.js";
+// auth0
+// import Auth from './Auth';
+// import { Navbar, Button } from 'react-bootstrap';
+// import './App.css';
+
+// const auth = new Auth();
+// auth.login();
+
 
 function App() {
-  return (
-    <>
-      <Route exact path="/" component={Home} />
-      <Route path="/register" component={SignUp} />
-      <Route path="/login" component={Login} />
-      <Route path="/compare" component={Compare} />
+		return (
+		  <>
+			<Route exact path="/" component={Home} />
+			<Route path="/register" component={SignUp} />
+			<Route path="/login" component={Login} />
+			<Route path="/compare" component={Compare} />
       <Route path="/payment" component={StripePayment} />
-    </>
-  );
-}
+		  </>
+		);
+	  }
 
-// // Auth0
-// const auth = new Auth();
-// const handleAuthentication = ({ location }) => {
-//   if (/access_token|id_token|error/.test(location.hash)) {
-//     auth.handleAuthentication();
-//   }
-// };
 
 // class App extends Component {
-//   render() {
-//     return (
-//       <MuiThemeProvider theme={theme}>
-//         <div className="App">
-//           <Switch>
-//             <Route
-//               exact
-//               path="/"
-//               render={props => (
-//                 <Suspense fallback={<Callback />}>
-//                   <LazyLandingPage auth={auth} {...props} />
-//                 </Suspense>
-//               )}
-//             />
 
-//             <Route
-//               path="/callback"
-//               render={props => {
-//                 handleAuthentication(props);
-//                 return <Callback {...props} />;
-//               }}
-//             />
-
-//             <Route
-//               path="/dashboard"
-//               render={props => (
-//                 <Suspense fallback={<Callback />}>
-//                   <Dashboard {...props} auth={auth} />
-//                 </Suspense>
-//               )}
-//             />
-//             <Route path="/dashboard" component={Dashboard} />
-//             <Route path="/stripe-callback" component={StripeCallback} />
-//             <Route path="*" component={NotFound} />
-//           </Switch>
-//         </div>
-//       </MuiThemeProvider>
-//     );
-//   }
-// }
+// 	goTo(route) {
+// 		this.props.history.replace(`/${route}`)
+// 	  }
+	
+// 	  login() {
+// 		this.props.auth.login();
+// 	  }
+	
+// 	  logout() {
+// 		this.props.auth.logout();
+// 	  }
+	
+// 	  componentDidMount() {
+// 		const { renewSession } = this.props.auth;
+	
+// 		if (localStorage.getItem('isLoggedIn') === 'true') {
+// 		  renewSession();
+// 		}
+// 	  }
+	
+// 	  render() {
+// 		const { isAuthenticated } = this.props.auth;
+	
+// 		return (
+// 		  <div>
+// 			<Navbar fluid>
+// 			  <Navbar.Header>
+// 				<Navbar.Brand>
+// 				  <a href="#">Auth0 - React</a>
+// 				</Navbar.Brand>
+// 				<Button
+// 				  bsStyle="primary"
+// 				  className="btn-margin"
+// 				  onClick={this.goTo.bind(this, 'home')}
+// 				>
+// 				  Home
+// 				</Button>
+// 				{
+// 				  !isAuthenticated() && (
+// 					  <Button
+// 						bsStyle="primary"
+// 						className="btn-margin"
+// 						onClick={this.login.bind(this)}
+// 					  >
+// 						Log In
+// 					  </Button>
+// 					)
+// 				}
+// 				{
+// 				  isAuthenticated() && (
+// 					  <Button
+// 						bsStyle="primary"
+// 						className="btn-margin"
+// 						onClick={this.logout.bind(this)}
+// 					  >
+// 						Log Out
+// 					  </Button>
+// 					)
+// 				}
+// 			  </Navbar.Header>
+// 			</Navbar>
+// 		  </div>
+// 		);
+// 	  }
+// 	}
 export default App;
