@@ -5,6 +5,7 @@ import Home from "./views/App/Home.js";
 import SignUp from "./views/App/SignUp.js";
 import Login from "./views/App/Login.js";
 import Compare from "./views/App/Compare.js";
+import StripePayment from "./views/App/StripePayment";
 
 // // Auth 0
 // import Callback from "./containers/auth-zero/Callback/Callback.js";
@@ -17,6 +18,7 @@ function App() {
       <Route path="/register" component={SignUp} />
       <Route path="/login" component={Login} />
       <Route path="/compare" component={Compare} />
+      <Route path="/payment" component={StripePayment} />
     </>
   );
 }
