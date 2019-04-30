@@ -17,7 +17,7 @@ class Map extends Component {
   render() {
     return (
       <>
-        <nav id="menu" />
+        <div id="menu" />
         <div id="map" />
       </>
     );
@@ -32,9 +32,10 @@ class Map extends Component {
       container: "map",
       style: "mapbox://styles/brilles/cjv3zbk1u2uw11fqx8i0zgfkj",
       center: [longitude, latitude],
-      zoom
+      zoom,
+      minZoom: 2
     });
-    map.on("load", function() {
+    map.on("load", () => {
       map.addLayer({
         id: "counties-layer",
         type: "fill",
@@ -43,9 +44,62 @@ class Map extends Component {
           data: counties
         },
         paint: {
-          "fill-color": "rgba(10, 153, 41, 0.2.75)",
+          "fill-color": "rgba(145, 145, 145, 0.171)",
           "fill-outline-color": "rgba(10, 153, 41, 1)"
         }
+      });
+
+      map.addLayer({
+        id: "counties-layer-highlighted",
+        type: "fill",
+        source: {
+          type: "geojson",
+          data: counties
+        },
+        paint: {
+          "fill-outline-color": "red",
+          "fill-color": "rgba(145, 145, 145, 0.7)",
+          "fill-opacity": 0.75
+        },
+        filter: ["in", "FIPS", ""]
+      });
+
+      map.on("click", "counties-layer", e => {
+        new mapboxgl.Popup()
+          .setLngLat(e.lngLat)
+          .setHTML(`${e.features[0].properties.NAME} County`)
+          .addTo(map);
+
+        const filter = ["in", "FIPS", e.features[0].properties.FIPS];
+        map.setFilter("counties-layer-highlighted", filter);
+      });
+
+      const toggleableLayers = ["counties-layer", "counties-layer-highlighted"];
+
+      toggleableLayers.map(layer => {
+        const link = document.createElement("a");
+        link.href = "#";
+        link.className = "active";
+        link.textContent = layer;
+
+        link.onclick = (e, textContent) => {
+          // toggle layer
+          const clickedLayer = link.textContent;
+          console.log(clickedLayer);
+          e.preventDefault();
+          const visibility = map.getLayoutProperty(clickedLayer, "visibility");
+          console.log(visibility);
+          if (visibility === "visible") {
+            map.setLayoutProperty(clickedLayer, "visibility", "none");
+            this.className = "";
+          } else {
+            this.className = "active";
+            map.setLayoutProperty(clickedLayer, "visibility", "visible");
+          }
+        };
+
+        const layers = document.getElementById("menu");
+        layers.appendChild(link);
       });
     });
 

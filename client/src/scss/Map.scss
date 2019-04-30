@@ -3,13 +3,21 @@
   width: 100%;
 }
 
-// #menu {
-//   background: #fff;
-//   position: absolute;
-//   z-index: 1;
-//   top: 10px;
-//   left: 10px;
-//   border-radius: 3px;
-//   width: 120px;
-//   border: 1px solid #000;
-// }
+#menu {
+  background: #fff;
+  position: absolute;
+  z-index: 1;
+  top: 65px;
+  left: 25px;
+  width: 120px;
+  height: 100px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+  a {
+    color: rgba(0, 0, 0, 0.75);
+    display: block;
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+  }
+}
