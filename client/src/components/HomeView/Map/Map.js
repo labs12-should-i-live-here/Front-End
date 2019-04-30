@@ -35,7 +35,7 @@ class Map extends Component {
       zoom,
       minZoom: 2
     });
-    map.on("load", function() {
+    map.on("load", () => {
       map.addLayer({
         id: "counties-layer",
         type: "fill",
@@ -47,6 +47,12 @@ class Map extends Component {
           "fill-color": "rgba(10, 153, 41, 0.2.75)",
           "fill-outline-color": "rgba(10, 153, 41, 1)"
         }
+      });
+      map.on("click", "counties-layer", e => {
+        new mapboxgl.Popup()
+          .setLngLat(e.lngLat)
+          .setHTML(`${e.features[0].properties.NAME} County`)
+          .addTo(map);
       });
     });
 
