@@ -8,10 +8,10 @@ mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 class Map extends Component {
   state = {
-    height: "100vh",
-    longitude: -98.5795, //center of US
-    latitude: 39.8283,
-    zoom: 3.1
+    lng: -98.5795, // center of US
+    lat: 39.8283,
+    zoom: 3.1,
+    minZoom: 2
   };
 
   render() {
@@ -24,17 +24,16 @@ class Map extends Component {
   }
 
   componentDidMount() {
-    const { longitude, latitude, zoom } = this.state;
-
-    const userSavedLngLat = [-98.5795, 39.8283]; // @TODO: GET from redux store (an array of markers)
+    const { lng, lat, zoom, minZoom } = this.state;
 
     const map = new mapboxgl.Map({
       container: "map",
       style: "mapbox://styles/brilles/cjv3zbk1u2uw11fqx8i0zgfkj",
-      center: [longitude, latitude],
+      center: [lng, lat],
       zoom,
-      minZoom: 2
+      minZoom
     });
+
     map.on("load", () => {
       map.addLayer({
         id: "counties-layer",
