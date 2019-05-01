@@ -9,27 +9,28 @@ const stripeBtn = () => {
       amount: 999,
       token: token
   };
+  //Use this URL for local test
+  //   https://labs12.herokuapp.com/payment
   axios
-      .post("https://labs12.herokuapp.com/payment", body)
+      .post("http://localhost:4200/payment", body)
       .then(response => {
         console.log(response);
         alert("Payment Success");
       })
       .catch(error => {
-        console.log("Payment Error: ", error);
-        alert("Payment Error");
+        console.log("Error in Transmission", error);
+        alert("Payment Pending");
       });
   };
   return (
     <StripeCheckout
       label="Go Premium" //Component button text
-      name="Business LLC" //Modal Header
+      name="Geo Ranger" //Modal Header
       description="Upgrade to a premium account today."
       panelLabel="Go Premium" //Submit button in modal
       amount={999} //Amount in cents $9.99
       token={onToken}
       stripeKey={publishableKey}
-      image="https://www.vidhub.co" //Pop-in header image
       billingAddress={false}
     />
   );
