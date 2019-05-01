@@ -7,12 +7,19 @@ export default class Auth {
     idToken;
     expiresAt;
   auth0 = new auth0.WebAuth({
-    domain: AUTH_CONFIG.domain,
-    clientID: AUTH_CONFIG.clientId,
-    redirectUri: AUTH_CONFIG.callbackUrl,
+    domain: 'dev-sz7on0tz.auth0.com',
+    clientID: 'tNlC3QYcN3D0WbM0d3SKvxKHXXQJxUZv',
+    redirectUri: 'https://should-i-live-here.netlify.com/callback',
     responseType: 'token id_token',
     scope: 'openid'
   });
+  // auth0 = new auth0.WebAuth({
+  //   domain: AUTH_CONFIG.domain,
+  //   clientID: AUTH_CONFIG.clientId,
+  //   redirectUri: AUTH_CONFIG.callbackUrl,
+  //   responseType: 'token id_token',
+  //   scope: 'openid'
+  // });
 
 
   constructor() {
