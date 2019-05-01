@@ -1,14 +1,15 @@
 import auth0 from 'auth0-js';
 import history from './History';
+import { AUTH_CONFIG } from './auth0-variables';
 
 export default class Auth {
     accessToken;
     idToken;
     expiresAt;
   auth0 = new auth0.WebAuth({
-    domain: 'https://should-i-live-here.netlify.com/',
-    clientID: 'YOUR_CLIENT_ID',
-    redirectUri: 'https://should-i-live-here.netlify.com/',
+    domain: AUTH_CONFIG.domain,
+    clientID: AUTH_CONFIG.clientId,
+    redirectUri: AUTH_CONFIG.callbackUrl,
     responseType: 'token id_token',
     scope: 'openid'
   });
@@ -29,7 +30,7 @@ export default class Auth {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
       } else if (err) {
-        history.replace('/home');
+        history.replace('/');
         console.log(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
       }
@@ -87,8 +88,8 @@ export default class Auth {
       returnTo: window.location.origin
     });
 
-    // navigate to the home route
-    history.replace('/home');
+    // navigate to the home page
+    history.replace('/');
   }
 
   isAuthenticated() {

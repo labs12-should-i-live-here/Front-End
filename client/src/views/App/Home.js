@@ -5,12 +5,16 @@ import Stats from "../../components/HomeView/Stats/Stats.js";
 import CompareDeck from "../../components/HomeView/Compare/CompareDeck.js";
 import Footer from '../../components/HomeView/Footer'
 import "../../scss/Home.scss";
+import Auth from '../../Auth0/Auth.js';
+
+const auth = new Auth();
 
 class Home extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        Home view
+        <Navbar auth={auth} />
         <div className="main-content">
           <div className="left-panel">
             <Map />
