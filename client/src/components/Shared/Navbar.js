@@ -15,6 +15,7 @@ class Navbar extends Component {
     <nav className="nav-left">
       <Link to="/">home</Link>
       <Link to="/compare">compare</Link>
+      <Link to="/payment">payment</Link>
       </nav><nav className="nav-right">
       <Link to="/register">register</Link>
       <Link to="/login">login</Link>
