@@ -5,7 +5,7 @@ const auth = new Auth();
 function Login() {
 
   auth.login();
-  
+
 }
 
 export default Login;
