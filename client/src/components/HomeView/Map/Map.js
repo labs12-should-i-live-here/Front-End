@@ -17,8 +17,9 @@ class Map extends Component {
   render() {
     return (
       <>
-        <div id="menu" />
-        <div id="map" />
+        <div id="map">
+          <div id="menu" />
+        </div>
       </>
     );
   }
@@ -36,7 +37,7 @@ class Map extends Component {
 
     map.on("load", () => {
       map.addLayer({
-        id: "counties-layer",
+        id: "Counties",
         type: "fill",
         source: {
           type: "geojson",
@@ -49,7 +50,7 @@ class Map extends Component {
       });
 
       map.addLayer({
-        id: "counties-layer-highlighted",
+        id: "Counties Highlighted",
         type: "fill",
         source: {
           type: "geojson",
@@ -57,28 +58,28 @@ class Map extends Component {
         },
         paint: {
           "fill-outline-color": "green",
-          "fill-color": "rgba(145, 145, 145, 0.7)",
+          "fill-color": "rgba(145, 145, 145, 0.4)",
           "fill-opacity": 0.75
         },
         filter: ["in", "FIPS", ""]
       });
 
-      map.on("click", "counties-layer", e => {
+      map.on("click", "Counties", e => {
         new mapboxgl.Popup()
           .setLngLat(e.lngLat)
           .setHTML(`${e.features[0].properties.NAME} County`)
           .addTo(map);
 
         const filter = ["in", "FIPS", e.features[0].properties.FIPS];
-        map.setFilter("counties-layer-highlighted", filter);
+        map.setFilter("Counties Highlighted", filter);
       });
 
-      const toggleableLayers = ["counties-layer", "counties-layer-highlighted"];
+      const toggleableLayers = ["Counties"];
 
       toggleableLayers.map(layer => {
         const link = document.createElement("a");
         link.href = "#";
-        link.className = "active";
+        link.className = "";
         link.textContent = layer;
 
         link.onclick = (e, textContent) => {
