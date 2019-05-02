@@ -26,72 +26,72 @@ class Map extends Component {
       minZoom
     });
 
-    map.on("load", () => {
-      map.addLayer({
-        id: "Counties",
-        type: "fill",
-        source: {
-          type: "geojson",
-          data: counties
-        },
-        paint: {
-          "fill-color": "rgba(145, 145, 145, 0.175)",
-          "fill-outline-color": "rgba(10, 153, 41, .75)"
-        }
-      });
+    // map.on("load", () => {
+    //   map.addLayer({
+    //     id: "Counties",
+    //     type: "fill",
+    //     source: {
+    //       type: "geojson",
+    //       data: counties
+    //     },
+    //     paint: {
+    //       "fill-color": "rgba(145, 145, 145, 0.175)",
+    //       "fill-outline-color": "rgba(10, 153, 41, .75)"
+    //     }
+    //   });
 
-      map.addLayer({
-        id: "Counties Highlighted",
-        type: "fill",
-        source: {
-          type: "geojson",
-          data: counties
-        },
-        paint: {
-          "fill-outline-color": "green",
-          "fill-color": "rgba(145, 145, 145, 0.4)",
-          "fill-opacity": 0.75
-        },
-        filter: ["in", "FIPS", ""]
-      });
+    //   map.addLayer({
+    //     id: "Counties Highlighted",
+    //     type: "fill",
+    //     source: {
+    //       type: "geojson",
+    //       data: counties
+    //     },
+    //     paint: {
+    //       "fill-outline-color": "green",
+    //       "fill-color": "rgba(145, 145, 145, 0.4)",
+    //       "fill-opacity": 0.75
+    //     },
+    //     filter: ["in", "FIPS", ""]
+    //   });
 
-      map.on("click", "Counties", e => {
-        new mapboxgl.Popup()
-          .setLngLat(e.lngLat)
-          .setHTML(`${e.features[0].properties.NAME} County`)
-          .addTo(map);
+    //   map.on("click", "Counties", e => {
+    //     new mapboxgl.Popup()
+    //       .setLngLat(e.lngLat)
+    //       .setHTML(`${e.features[0].properties.NAME} County`)
+    //       .addTo(map);
 
-        const filter = ["in", "FIPS", e.features[0].properties.FIPS];
-        map.setFilter("Counties Highlighted", filter);
-      });
+    //     const filter = ["in", "FIPS", e.features[0].properties.FIPS];
+    //     map.setFilter("Counties Highlighted", filter);
+    //   });
 
-      const toggleableLayers = ["Counties", "Counties Highlighted"];
+    // const toggleableLayers = ["Counties", "Counties Highlighted"];
 
-      toggleableLayers.map(layer => {
-        const link = document.createElement("a");
-        link.href = "#";
-        link.className = "active";
-        link.textContent = layer;
+    // toggleableLayers.map(layer => {
+    //   const link = document.createElement("a");
+    //   link.href = "#";
+    //   link.className = "active";
+    //   link.textContent = layer;
 
-        link.onclick = e => {
-          // toggle layer
-          const clickedLayer = link.textContent;
-          e.preventDefault();
-          e.stopPropagation();
-          const visibility = map.getLayoutProperty(clickedLayer, "visibility");
-          if (visibility === "visible") {
-            map.setLayoutProperty(clickedLayer, "visibility", "none");
-            this.className = "";
-          } else {
-            this.className = "active";
-            map.setLayoutProperty(clickedLayer, "visibility", "visible");
-          }
-        };
+    //   link.onclick = e => {
+    //     // toggle layer
+    //     const clickedLayer = link.textContent;
+    //     e.preventDefault();
+    //     e.stopPropagation();
+    //     const visibility = map.getLayoutProperty(clickedLayer, "visibility");
+    //     if (visibility === "visible") {
+    //       map.setLayoutProperty(clickedLayer, "visibility", "none");
+    //       this.className = "";
+    //     } else {
+    //       this.className = "active";
+    //       map.setLayoutProperty(clickedLayer, "visibility", "visible");
+    //     }
+    //   };
 
-        const layers = document.getElementById("menu");
-        layers.appendChild(link);
-      });
-    });
+    //   const layers = document.getElementById("menu");
+    //   layers.appendChild(link);
+    // });
+    // });
 
     // const overlay = document.getElementById("map-overlay");
 
@@ -116,6 +116,11 @@ class Map extends Component {
     // }
 
     // marker.on("dragend", onDragEnd);
+    axios
+      .get(
+        "https://api.mapbox.com/datasets/v1/brilles/cjv5mw37j104b2xmx6vf16b6m/features?access_token=pk.eyJ1IjoiYnJpbGxlcyIsImEiOiJjanJkdjRlOWwwbTNsNDlwbzU0ZDhreWoyIn0.yxDY7UlW1i-3IrB9aQW7bQ"
+      )
+      .then(res => console.log(res));
 
     map.addControl(
       new MapboxGeocoder({
@@ -138,11 +143,9 @@ class Map extends Component {
 
   render() {
     return (
-      <>
-        <div id="map">
-          <div id="menu" />
-        </div>
-      </>
+      <div id="map">
+        <div id="menu" />
+      </div>
     );
   }
 }
