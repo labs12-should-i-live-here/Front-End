@@ -10,7 +10,7 @@ const stripeBtn = () => {
       token: token
   };
   axios
-      .post("https://labs12.herokuapp.com/payment", body)
+      .post("https://livesafe.netlify.com/payment", body)
       .then(response => {
         console.log(response);
       })
