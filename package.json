@@ -1,9 +1,0 @@
-{
-  "name": "Frontend",
-  "version": "0.4.6",
-  "description": "User Interface for Project",
-  "author": "Team FireWatch",
-  "dependencies": {
-    "auth0-js": "^9.10.2"
-  }
-}
