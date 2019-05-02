@@ -3,78 +3,79 @@ import "../../../scss/Map.scss";
 import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import counties from "./data/counties.json";
+import axios from "axios";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 class Map extends Component {
   state = {
-    height: "100vh",
-    longitude: -98.5795, //center of US
-    latitude: 39.8283,
-    zoom: 3.1
+    lng: -98.5795, // center of US
+    lat: 39.8283,
+    zoom: 3.1,
+    minZoom: 2
   };
 
   render() {
     return (
       <>
-        <div id="menu" />
-        <div id="map" />
+        <div id="map">
+          <div id="menu" />
+        </div>
       </>
     );
   }
 
   componentDidMount() {
-    const { longitude, latitude, zoom } = this.state;
-
-    const userSavedLngLat = [-98.5795, 39.8283]; // @TODO: GET from redux store (an array of markers)
-
+    const { lng, lat, zoom, minZoom } = this.state;
+    const userSavedLngLat = [lng, lat];
     const map = new mapboxgl.Map({
       container: "map",
       style: "mapbox://styles/brilles/cjv3zbk1u2uw11fqx8i0zgfkj",
-      center: [longitude, latitude],
+      center: [lng, lat],
       zoom,
-      minZoom: 2
+      minZoom
     });
+
     map.on("load", () => {
       map.addLayer({
-        id: "counties-layer",
+        id: "Counties",
         type: "fill",
         source: {
           type: "geojson",
           data: counties
         },
         paint: {
-          "fill-color": "rgba(145, 145, 145, 0.171)",
-          "fill-outline-color": "rgba(10, 153, 41, 1)"
+          "fill-color": "rgba(145, 145, 145, 0.175)",
+          "fill-outline-color": "rgba(10, 153, 41, .75)"
         }
       });
 
       map.addLayer({
-        id: "counties-layer-highlighted",
+        id: "Counties Highlighted",
         type: "fill",
         source: {
           type: "geojson",
           data: counties
         },
         paint: {
-          "fill-outline-color": "red",
-          "fill-color": "rgba(145, 145, 145, 0.7)",
+          "fill-outline-color": "green",
+          "fill-color": "rgba(145, 145, 145, 0.4)",
           "fill-opacity": 0.75
         },
         filter: ["in", "FIPS", ""]
       });
 
-      map.on("click", "counties-layer", e => {
+      map.on("click", "Counties", e => {
         new mapboxgl.Popup()
           .setLngLat(e.lngLat)
           .setHTML(`${e.features[0].properties.NAME} County`)
           .addTo(map);
 
         const filter = ["in", "FIPS", e.features[0].properties.FIPS];
-        map.setFilter("counties-layer-highlighted", filter);
+        map.setFilter("Counties Highlighted", filter);
       });
 
-      const toggleableLayers = ["counties-layer", "counties-layer-highlighted"];
+      const toggleableLayers = ["Counties", "Counties Highlighted"];
 
       toggleableLayers.map(layer => {
         const link = document.createElement("a");
@@ -82,13 +83,12 @@ class Map extends Component {
         link.className = "active";
         link.textContent = layer;
 
-        link.onclick = (e, textContent) => {
+        link.onclick = e => {
           // toggle layer
           const clickedLayer = link.textContent;
-          console.log(clickedLayer);
           e.preventDefault();
+          e.stopPropagation();
           const visibility = map.getLayoutProperty(clickedLayer, "visibility");
-          console.log(visibility);
           if (visibility === "visible") {
             map.setLayoutProperty(clickedLayer, "visibility", "none");
             this.className = "";
@@ -103,25 +103,29 @@ class Map extends Component {
       });
     });
 
-    //  counties.features.map(county => {
-    //    console.log(county)
-    //  })
-
     // const overlay = document.getElementById("map-overlay");
 
-    // const popup = new mapboxgl.Popup({ offset: 20 }).setText("USER marker 1");
+    const popup = new mapboxgl.Popup({ offset: 20 }).setText("USER marker 1");
 
-    // const marker = new mapboxgl.Marker({ draggable: true, fill: "green" })
-    //   .setLngLat(userSavedLngLat)
-    //   .setPopup(popup)
-    //   .addTo(map);
+    const marker = new mapboxgl.Marker({ draggable: true, fill: "green" })
+      .setLngLat(userSavedLngLat)
+      .setPopup(popup)
+      .addTo(map);
 
-    // function onDragEnd() {
-    //   const lngLat = marker.getLngLat();
-    //   console.log(`LONGITUDE: ${lngLat.lng}, LATITUDE: ${lngLat.lat}`);
-    // }
+    function onDragEnd() {
+      const lngLat = marker.getLngLat();
+      console.log(`LONGITUDE: ${lngLat.lng}, LATITUDE: ${lngLat.lat}`);
+      axios
+        .post(
+          "http://flask-env.ye8czngppq.us-east-2.elasticbeanstalk.com/prediction",
+          { latitude: lngLat.lat, longitude: lngLat.lng }
+        )
 
-    // marker.on("dragend", onDragEnd);
+        .then(res => console.log(res))
+        .catch(error => console.log(error));
+    }
+
+    marker.on("dragend", onDragEnd);
 
     map.addControl(
       new MapboxGeocoder({
