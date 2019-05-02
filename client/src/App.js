@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Router } from 'react-router-dom';
 import './scss/App.scss';
 import Home from './views/App/Home.js';
+import Profile from './views/App/Profile';
 import SignUp from './views/App/SignUp.js';
 import Login from './views/App/Login.js';
 import Compare from './views/App/Compare.js';
@@ -29,6 +30,7 @@ function App() {
 			<Route exact path="/home" component={Home} />
 			<Route path="/register" component={SignUp} />
 			<Route path="/login" component={Login} />
+			<Route path="/profile" component={Profile}/> {/* NEW! */}
 			<Route path="/compare" component={Compare} />
 			<Route path="/callback" render={(props) => {
 				handleAuthentication(props);
