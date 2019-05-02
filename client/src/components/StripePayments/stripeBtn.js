@@ -1,7 +1,7 @@
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
-const stripeBtn = () => {
+const StripeBtn = () => {
   const publishableKey = "pk_test_ZfyG33epFTMVYfrxae9mKHSt00mvxhcKAo";
    
   const onToken = token => {
@@ -11,6 +11,7 @@ const stripeBtn = () => {
   };
   axios
       .post("https://livesafe.netlify.com/payment", body)
+      // .post("http://localhost:4200/payment", body)
       .then(response => {
         console.log(response);
       })
@@ -27,9 +28,8 @@ const stripeBtn = () => {
       amount={999} //Amount in cents $9.99
       token={onToken}
       stripeKey={publishableKey}
-      image="https://www.vidhub.co" //Pop-in header image
       billingAddress={false}
     />
   );
 };
-export default stripeBtn;
+export default StripeBtn;
