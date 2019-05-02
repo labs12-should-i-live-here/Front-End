@@ -2,6 +2,8 @@
 # yarn lockfile v1
 
 
+<<<<<<< HEAD
+=======
 asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
@@ -211,3 +213,4 @@ winchan@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/winchan/-/winchan-0.2.1.tgz#19b334e49f7c07c0849f921f405fad87dfc8a1da"
   integrity sha512-QrG9q+ObfmZBxScv0HSCqFm/owcgyR5Sgpiy1NlCZPpFXhbsmNHhTiLWoogItdBUi0fnU7Io/5ABEqRta5/6Dw==
+>>>>>>> bdb2411741439199110a49fb81548c00ecd185d2
