@@ -10,14 +10,12 @@ const stripeBtn = () => {
       token: token
   };
   axios
-      .post("https://labs12.herokuapp.com/payment", body)
+      .post("https://livesafe.netlify.com/payment", body)
       .then(response => {
         console.log(response);
-        alert("Payment Success");
       })
       .catch(error => {
-        console.log("Payment Error: ", error);
-        alert("Payment Error");
+        console.log("Payment Pending", error);
       });
   };
   return (

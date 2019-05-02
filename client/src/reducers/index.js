@@ -1,9 +1,8 @@
 import { combineReducers } from "redux";
-import { firstReducer } from "./firstReducer.js";
-import { userReducer } from './userReducer.js';
+import { userReducer } from "./userReducer.js";
+import { layersReducer } from "./layersReducer.js";
 
 export default combineReducers({
   userReducer,
-  firstReducer
+  layersReducer
 });
-

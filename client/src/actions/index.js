@@ -1,22 +1,5 @@
 import axios from "axios";
 
-export const FETCH_DATE = "FETCH_DATE";
-
-export const fetchDate = () => dispatch => {
-  dispatch({ type: FETCH_DATE });
-
-  const url = "https://labs12.herokuapp.com/";
-  return axios
-    .get(url)
-    .then(res => {
-      console.log(res.data);
-      dispatch({ type: FETCH_DATE, payload: res.data });
-    })
-    .catch(error => {
-      console.log(error);
-    });
-};
-
 //login actions
 export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -49,4 +32,25 @@ export const signUp = creds => dispatch => {
       // dispatch({ type: SIGN_UP_SUCCESS, payload: res.data.payload });
     })
     .catch(err => console.log(err.response));
+};
+
+// define mapbox access tokens
+const ACCESS_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
+const COUNTIES_LAYER = "cjv6xucugir5w2wqup4mf7u0c";
+
+//get layers from mapbox
+export const FETCH_DATA_START = "FETCH_DATA_START";
+export const FETCH_DATA_SUCCESS = "FETCH_DATA_SUCCESS";
+export const FETCH_DATA_FAILURE = "FETCH_DATA_FAILURE";
+
+export const getData = () => dispatch => {
+  dispatch({ type: FETCH_DATA_START });
+  axios
+    .get(
+      `https://api.mapbox.com/datasets/v1/brilles/${COUNTIES_LAYER}/features?access_token=${ACCESS_TOKEN}` //TODO: replace with team account later
+    )
+    .then(res => dispatch({ type: FETCH_DATA_SUCCESS, payload: res.data }))
+    .catch(error =>
+      dispatch({ type: FETCH_DATA_FAILURE, payload: error.response })
+    );
 };
