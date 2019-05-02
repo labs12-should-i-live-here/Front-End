@@ -1,9 +1,8 @@
-import React, { Component } from "react";
-import "../../../scss/Map.scss";
-import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
+import mapboxgl from "mapbox-gl";
+import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getData } from "../../../actions";
+import "../../../scss/Map.scss";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
@@ -28,21 +27,6 @@ class Map extends Component {
   }
 
   initMap = () => {
-    /* 
-      !Time Options: Historical(county based), !Projection([lng,lat] based)
-      *VISIBLE on load
-      L1 Earthquakes heatmap (time travel allowed)
-      *Make Available in background
-      L2 
-      L3
-      L4
-      L5
-      L6
-    */
-
-    // GET above data, first layer, then rest
-    this.props.getData();
-
     // create map with state values
     const { lng, lat, zoom, minZoom } = this.state;
     const map = new mapboxgl.Map({
@@ -51,6 +35,107 @@ class Map extends Component {
       center: [lng, lat],
       zoom,
       minZoom
+    });
+
+    // load layers
+    map.on("load", () => {
+      map.addLayer({
+        id: "Counties",
+        type: "line",
+        source: {
+          type: "vector",
+          url: "mapbox://brilles.8m1jc8xq"
+        },
+        "source-layer": "2__quake_county-6aj5at",
+        layout: {
+          "line-join": "round",
+          "line-cap": "round"
+        },
+        paint: {
+          "line-color": "rgba(0, 132, 255, 1)",
+          "line-width": 1
+        }
+      });
+
+      map.addLayer({
+        id: "County",
+        type: "fill",
+        source: {
+          type: "vector",
+          url: "mapbox://brilles.8m1jc8xq"
+        },
+        "source-layer": "2__quake_county-6aj5at",
+        paint: {
+          "fill-color": "rgba(0, 132, 255, 0.247)"
+        },
+        filter: ["in", "FIPS", ""]
+      });
+
+      map.addLayer({
+        id: "Quake Risk",
+        type: "line",
+        source: {
+          type: "vector",
+          url: "mapbox://brilles.2qq6qnqp"
+        },
+        "source-layer": "1__quake_contour-5vbtwp",
+        layout: {
+          "line-join": "round",
+          "line-cap": "round"
+        },
+        paint: {
+          "line-color": "green",
+          "line-width": 1
+        }
+      });
+
+      map.on("click", "Counties", e => {
+        new mapboxgl.Popup()
+          .setLngLat(e.lngLat)
+          .setHTML(`${e.features[0].properties.NAME} County`)
+          .addTo(map);
+
+        const filter = ["in", "FIPS", e.features[0].properties.FIPS];
+        map.setFilter("County", filter);
+      });
+
+      const toggleableLayers = ["Quake Risk", "Counties"];
+
+      toggleableLayers.map((layer, index) => {
+        const id = toggleableLayers[index];
+        const link = document.createElement("a");
+        link.href = "#";
+        link.className = "active";
+        link.textContent = id;
+        map.setLayoutProperty("Quake Risk", "visibility", "none");
+        map.setLayoutProperty("Counties", "visibility", "none");
+        map.setLayoutProperty("County", "visibility", "none");
+
+        link.onclick = function(e) {
+          // toggle layer
+          const clickedLayer = this.textContent;
+          console.log(clickedLayer);
+
+          e.preventDefault();
+          e.stopPropagation();
+
+          var visibility = map.getLayoutProperty(clickedLayer, "visibility");
+          console.log(visibility);
+          if (visibility === undefined) {
+            map.setLayoutProperty(clickedLayer, "visibility", "none");
+            this.className = "";
+          } else if (visibility === "visible") {
+            map.setLayoutProperty(clickedLayer, "visibility", "none");
+            this.className = "";
+          } else {
+            this.className = "active";
+            map.setLayoutProperty(clickedLayer, "visibility", "visible");
+          }
+        };
+
+        const layers = document.getElementById("menu");
+        layers.appendChild(link);
+      });
     });
 
     // add map controls
@@ -62,8 +147,9 @@ class Map extends Component {
           countries: "us"
         })
       )
-      .addControl(new mapboxgl.FullscreenControl())
+
       .addControl(new mapboxgl.NavigationControl())
+      .addControl(new mapboxgl.FullscreenControl())
       .addControl(
         new mapboxgl.GeolocateControl({
           positionOptions: {
@@ -75,9 +161,4 @@ class Map extends Component {
   };
 }
 
-const mapStateToProps = ({ layers }) => ({ layers });
-
-export default connect(
-  mapStateToProps,
-  { getData }
-)(Map);
+export default Map;
