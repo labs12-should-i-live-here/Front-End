@@ -15,16 +15,6 @@ class Map extends Component {
     minZoom: 2
   };
 
-  render() {
-    return (
-      <>
-        <div id="map">
-          <div id="menu" />
-        </div>
-      </>
-    );
-  }
-
   componentDidMount() {
     const { lng, lat, zoom, minZoom } = this.state;
     const userSavedLngLat = [lng, lat];
@@ -105,27 +95,27 @@ class Map extends Component {
 
     // const overlay = document.getElementById("map-overlay");
 
-    const popup = new mapboxgl.Popup({ offset: 20 }).setText("USER marker 1");
+    // const popup = new mapboxgl.Popup({ offset: 20 }).setText("USER marker 1");
 
-    const marker = new mapboxgl.Marker({ draggable: true, fill: "green" })
-      .setLngLat(userSavedLngLat)
-      .setPopup(popup)
-      .addTo(map);
+    // const marker = new mapboxgl.Marker({ draggable: true, fill: "green" })
+    //   .setLngLat(userSavedLngLat)
+    //   .setPopup(popup)
+    //   .addTo(map);
 
-    function onDragEnd() {
-      const lngLat = marker.getLngLat();
-      console.log(`LONGITUDE: ${lngLat.lng}, LATITUDE: ${lngLat.lat}`);
-      axios
-        .post(
-          "http://flask-env.ye8czngppq.us-east-2.elasticbeanstalk.com/prediction",
-          { latitude: lngLat.lat, longitude: lngLat.lng }
-        )
+    // function onDragEnd() {
+    //   const lngLat = marker.getLngLat();
+    //   console.log(`LONGITUDE: ${lngLat.lng}, LATITUDE: ${lngLat.lat}`);
+    //   axios
+    //     .post(
+    //       "http://flask-env.ye8czngppq.us-east-2.elasticbeanstalk.com/prediction",
+    //       { latitude: lngLat.lat, longitude: lngLat.lng }
+    //     )
 
-        .then(res => console.log(res))
-        .catch(error => console.log(error));
-    }
+    //     .then(res => console.log(res))
+    //     .catch(error => console.log(error));
+    // }
 
-    marker.on("dragend", onDragEnd);
+    // marker.on("dragend", onDragEnd);
 
     map.addControl(
       new MapboxGeocoder({
@@ -134,6 +124,7 @@ class Map extends Component {
         countries: "us"
       })
     );
+    map.addControl(new mapboxgl.FullscreenControl());
     map.addControl(new mapboxgl.NavigationControl());
     map.addControl(
       new mapboxgl.GeolocateControl({
@@ -142,6 +133,16 @@ class Map extends Component {
         },
         trackUserLocation: true
       })
+    );
+  }
+
+  render() {
+    return (
+      <>
+        <div id="map">
+          <div id="menu" />
+        </div>
+      </>
     );
   }
 }
