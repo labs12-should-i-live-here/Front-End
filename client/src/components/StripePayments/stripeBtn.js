@@ -10,8 +10,8 @@ const StripeBtn = () => {
       token: token
   };
   axios
-      .post("https://livesafe.netlify.com/payment", body)
-      // .post("http://localhost:4200/payment", body)
+      // .post("https://livesafe.netlify.com/payment", body)
+      .post("http://localhost:4200/payment", body)
       .then(response => {
         console.log(response);
       })
