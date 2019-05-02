@@ -5,8 +5,9 @@ import {
 } from "../actions/index";
 
 const initialState = {
-  countiesLayer: [],
+  countiesLayer: {},
   error: null,
+  errorCode: null,
   fetchingCountiesLayer: false
 };
 
@@ -27,7 +28,8 @@ export const layersReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingCountiesLayer: false,
-        error: action.payload.status
+        error: action.payload.data.message,
+        errorCode: action.payload.status
       };
     default:
       return state;
