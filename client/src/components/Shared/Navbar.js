@@ -1,23 +1,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Navbar as Nav /*, Button*/ } from 'react-bootstrap';
-import { connect } from "react-redux";
+import { Navbar as Nav /*, Button*/ } from "react-bootstrap";
 
 import "../../scss/Navbar.scss";
-import { fetchDate } from "../../actions/";
 
 class Navbar extends Component {
-
-  
-  componentDidMount() {
-    fetchDate();
-  }
-
-
   render() {
-
     // const { isAuthenticated } = this.props.auth;
-    
+
     return (
       // <div>
       //   <Nav fluid>
@@ -48,37 +38,25 @@ class Navbar extends Component {
       //             >
       //               Log Out
       //             </Button>
-                
-            
+
       //     </Nav.Header>
       //   </Nav>
       // </div>
-    <Nav fluid>
-      
-      <div className="Navbar">
-        <nav className="nav-left">
-          <Link to="/payment">Log Out</Link>
-          <Link to="/compare">compare</Link>
-          <Link to="/payment">payment</Link>
-        </nav>
-        <nav className="nav-right">
-          <Link to="/register">register</Link>
-          <Link to="/login">login</Link>
-        </nav>
-          {/* <p>{test}</p> */}
-      </div>
-      
-    </Nav>
+      <Nav fluid>
+        <div className="Navbar">
+          <nav className="nav-left">
+            <Link to="/payment">Log Out</Link>
+            <Link to="/compare">compare</Link>
+            <Link to="/payment">payment</Link>
+          </nav>
+          <nav className="nav-right">
+            <Link to="/register">register</Link>
+            <Link to="/login">login</Link>
+          </nav>
+        </div>
+      </Nav>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  date: state.firstReducer.date
-});
-
-export default connect(
-  mapStateToProps,
-  { fetchDate }
-)(Navbar);
-
+export default Navbar;
