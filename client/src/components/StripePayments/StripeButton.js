@@ -1,7 +1,7 @@
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
-const StripeBtn = () => {
+const StripeButton = () => {
   const publishableKey = "pk_test_ZfyG33epFTMVYfrxae9mKHSt00mvxhcKAo";
    
   const onToken = token => {
@@ -32,4 +32,4 @@ const StripeBtn = () => {
     />
   );
 };
-export default StripeBtn;
+export default StripeButton;
