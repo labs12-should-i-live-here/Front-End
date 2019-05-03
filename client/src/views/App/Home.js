@@ -3,9 +3,9 @@ import Navbar from "../../components/Shared/Navbar.js";
 import Map from "../../components/HomeView/Map/Map.js";
 import Stats from "../../components/HomeView/Stats/Stats.js";
 import CompareDeck from "../../components/HomeView/Compare/CompareDeck.js";
-import Footer from '../../components/HomeView/Footer'
+import Footer from "../../components/HomeView/Footer";
 import "../../scss/Home.scss";
-import Auth from '../../Auth0/Auth.js';
+import Auth from "../../Auth0/Auth.js";
 
 const auth = new Auth();
 
@@ -25,9 +25,9 @@ class Home extends Component {
         Home view
         <Navbar auth={auth} />
         <div className="main-content">
-          {/* <div className="left-panel">
+          <div className="left-panel">
             <Map />
-          </div> */}
+          </div>
           <div className="right-panel">
             <div className="top-panel">
               <Stats />
