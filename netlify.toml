@@ -9,3 +9,8 @@ command = "yarn build"
   from = "null"
   to = "/index.html"
   status = 200
+
+  # A basic redirect rule
+[[redirects]]
+  from = "/callback*"
+  to = "/callback"

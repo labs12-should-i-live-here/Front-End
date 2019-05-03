@@ -1,17 +1,41 @@
-import auth0 from "auth0-js";
-import history from "./History";
-// import { AUTH_CONFIG } from './auth0-variables';
+import auth0 from 'auth0-js';
+import history from './History';
+import { AUTH_CONFIG } from './auth0-variables';
+import axios from 'axios';
+
+// // ...
+// class Ping extends Component {
+// 	// ...
+// 	securedPing() {
+// 		const { getAccessToken } = this.props.auth;
+// 		const API_URL = 'https://should-i-live-here.netlify.com/';  
+// 		const headers = { Authorization: `Bearer ${getAccessToken()}` };
+// 		axios
+// 			.get(`${API_URL}/private`, { headers })
+// 			.then(response => this.setState({ message: response.data.message }))
+// 			.catch(error => this.setState({ message: error.message }));
+// 	}
+// 	securedScopedPing() {
+// 		const { getAccessToken } = this.props.auth;
+// 		const headers = { Authorization: `Bearer ${getAccessToken()}` };
+// 		axios
+// 			.get(`${API_URL}/private-scoped`, { headers })
+// 			.then(response => this.setState({ message: response.data.message }))
+// 			.catch(error => this.setState({ message: error.message }));
+// 	}
+// }
 
 export default class Auth {
-  accessToken;
-  idToken;
-  expiresAt;
+    accessToken;
+    idToken;
+    expiresAt;
+    name;
   auth0 = new auth0.WebAuth({
-    domain: "dev-sz7on0tz.auth0.com",
-    clientID: "tNlC3QYcN3D0WbM0d3SKvxKHXXQJxUZv",
-    redirectUri: "https://livesafe.netlify.com/callback",
-    responseType: "token id_token",
-    scope: "openid"
+    domain: 'dev-sz7on0tz.auth0.com',
+    clientID: 'tNlC3QYcN3D0WbM0d3SKvxKHXXQJxUZv',
+    redirectUri: 'https://livesafe.netlify.com/callback',//'https://livesafe.netlify.com/callback', //'http://localhost:3000/callback',  //'https://livesafe.netlify.com/callback',
+    responseType: 'token id_token',
+    scope: 'openid profile'
   });
   // auth0 = new auth0.WebAuth({
   //   domain: AUTH_CONFIG.domain,
@@ -34,6 +58,31 @@ export default class Auth {
   handleAuthentication() {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
+        console.log(authResult)
+      //   this.auth0.client.getUserCountry(authResult.accessToken, function(err, country) {
+      //     // This method will make a request to the /userinfo endpoint
+      //     // and return the user object, which contains the user's information,
+      //     // similar to the response below.
+      //     console.log(country)
+      // });
+        this.auth0.client.userInfo(authResult.accessToken, function(err, user) {
+          // This method will make a request to the /userinfo endpoint
+          // and return the user object, which contains the user's information,
+          // similar to the response below.
+          if (err)
+            console.log('error', err)
+          console.log('trying to get userinfo',JSON.stringify(user));
+          localStorage.setItem( 'username', user.given_name);
+          const API_URL = 'http://localhost:6100';  //https://labs12.herokuapp.com/
+          const userid = user.sub;
+          axios
+              .post(`${API_URL}/register`, { userid: userid })
+              .then(response => console.log(response))
+              .catch(error => console.log(error));
+          });
+          //console.log(this.name);
+      
+       
         this.setSession(authResult);
       } else if (err) {
         history.replace("/");
@@ -64,6 +113,7 @@ export default class Auth {
     this.accessToken = authResult.accessToken;
     this.idToken = authResult.idToken;
     this.expiresAt = expiresAt;
+    console.log('session set, ', this.accessToken, this.idToken, this.expiresAt)
 
     // navigate to the home route
     history.replace("/home");
@@ -71,6 +121,16 @@ export default class Auth {
 
   renewSession() {
     this.auth0.checkSession({}, (err, authResult) => {
+<<<<<<< HEAD
+       console.log('in renewSession(), authResult = ', authResult)
+       if (authResult && authResult.accessToken && authResult.idToken) {
+         this.setSession(authResult);
+       } else if (err) {
+         this.logout();
+         console.log(err);
+         alert(`Could not get a new token (${err.error}: ${err.error_description}).`);
+       }
+=======
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
       } else if (err) {
@@ -80,6 +140,7 @@ export default class Auth {
           `Could not get a new token (${err.error}: ${err.error_description}).`
         );
       }
+>>>>>>> 3293e777a9925cbf6974a7b160d20368400f35c1
     });
   }
 
@@ -90,8 +151,14 @@ export default class Auth {
     this.expiresAt = 0;
 
     // Remove isLoggedIn flag from localStorage
+<<<<<<< HEAD
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('username');
+=======
     localStorage.removeItem("isLoggedIn");
+>>>>>>> 3293e777a9925cbf6974a7b160d20368400f35c1
 
+    console.log(window.location.origin)
     this.auth0.logout({
       returnTo: window.location.origin
     });
