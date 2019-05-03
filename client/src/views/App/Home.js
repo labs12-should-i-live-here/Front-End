@@ -10,15 +10,24 @@ import Auth from '../../Auth0/Auth.js';
 const auth = new Auth();
 
 class Home extends Component {
+
+  componentDidMount() {
+    const { renewSession } = auth;
+
+    if (localStorage.getItem('isLoggedIn') === 'true') {
+      renewSession();
+    }
+  }
+
   render() {
     return (
       <div>
         Home view
         <Navbar auth={auth} />
         <div className="main-content">
-          <div className="left-panel">
+          {/* <div className="left-panel">
             <Map />
-          </div>
+          </div> */}
           <div className="right-panel">
             <div className="top-panel">
               <Stats />
