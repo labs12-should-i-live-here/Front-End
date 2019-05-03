@@ -25,9 +25,9 @@ class Home extends Component {
         Home view
         <Navbar auth={auth} />
         <div className="main-content">
-          {/* <div className="left-panel">
+          <div className="left-panel">
             <Map />
-          </div> */}
+          </div>
           <div className="right-panel">
             <div className="top-panel">
               <Stats />
