@@ -73,7 +73,7 @@ export default class Auth {
             console.log('error', err)
           console.log('trying to get userinfo',JSON.stringify(user));
           localStorage.setItem( 'username', user.given_name);
-          const API_URL = 'http://localhost:6100';  //https://labs12.herokuapp.com/
+          const API_URL = 'https://labs12.herokuapp.com';  //http://localhost:3000
           const userid = user.sub;
           axios
               .post(`${API_URL}/register`, { userid: userid })
@@ -121,7 +121,6 @@ export default class Auth {
 
   renewSession() {
     this.auth0.checkSession({}, (err, authResult) => {
-<<<<<<< HEAD
        console.log('in renewSession(), authResult = ', authResult)
        if (authResult && authResult.accessToken && authResult.idToken) {
          this.setSession(authResult);
@@ -130,17 +129,6 @@ export default class Auth {
          console.log(err);
          alert(`Could not get a new token (${err.error}: ${err.error_description}).`);
        }
-=======
-      if (authResult && authResult.accessToken && authResult.idToken) {
-        this.setSession(authResult);
-      } else if (err) {
-        this.logout();
-        console.log(err);
-        alert(
-          `Could not get a new token (${err.error}: ${err.error_description}).`
-        );
-      }
->>>>>>> 3293e777a9925cbf6974a7b160d20368400f35c1
     });
   }
 
@@ -151,12 +139,8 @@ export default class Auth {
     this.expiresAt = 0;
 
     // Remove isLoggedIn flag from localStorage
-<<<<<<< HEAD
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('username');
-=======
-    localStorage.removeItem("isLoggedIn");
->>>>>>> 3293e777a9925cbf6974a7b160d20368400f35c1
 
     console.log(window.location.origin)
     this.auth0.logout({
