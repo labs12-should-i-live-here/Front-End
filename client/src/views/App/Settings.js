@@ -1,74 +1,36 @@
-// initializing our Auth0Lock
+import React, { Component } from "react";
+import { LinkContainer } from "react-router-bootstrap";
+import LoaderButton from "../components/LoaderButton";
+import "./Settings.css";
 
-var lock = new Auth0Lock(
-    '9G6M72JKGY4qDd1mb67tcxu29Fs1oc99',
-    'georanger.auth0.com'
-);
+export default class Settings extends Component {
+  constructor(props) {
+    super(props);
 
-// paswordless option
-var lockPasswordless = new Auth0LockPasswordless(
-    'GWrrQ3bUxX5cnw6EhUHtCazs986nM-wk',
-    'georanger.auth0.com'
-);
+    this.state = {
+    };
+  }
 
-// mobile login
-var passwordlessOptions = {
-    allowedConnections: ['sms']
+  render() {
+    return (
+      <div className="Settings">
+        <LinkContainer to="/settings/email">
+          <LoaderButton
+            block
+            bsSize="large"
+            text="Change Email"
+          />
+        </LinkContainer>
+        <LinkContainer to="/settings/password">
+          <LoaderButton
+            block
+            bsSize="large"
+            text="Change Password"
+          />
+        </LinkContainer>
+      </div>
+    );
+  }
 }
 
-// email code or 'magic link'
-var passwordlessOptions = {
-    allowedConnections: ['email'],
-    passwordlessMethod: 'code'
-}
-
-
-var Auth = (function () {
-
-    var wm = new WeakMap();
-    var privateStore = {};
-    var lock;
-
-    function Auth() {
-        this.lock = new Auth0Lock(
-            '9G6M72JKGY4qDd1mb67tcxu29Fs1oc99',
-            'georanger.auth0.com'
-        );
-        wm.set(privateStore, {
-            appName: "example"
-        });
-    }
-
-    Auth.prototype.getProfile = function () {
-        return wm.get(privateStore).profile;
-    };
-
-    Auth.prototype.authn = function () {
-        // Listening for the authenticated event
-        this.lock.on("authenticated", function (authResult) {
-            // Use the token in authResult to getUserInfo() and save it if necessary
-            this.getUserInfo(authResult.accessToken, function (error, profile) {
-                if (error) {
-                    // Handle error
-                    return;
-                }
-
-                //we recommend not storing access tokens unless absolutely necessary
-                wm.set(privateStore, {
-                    accessToken: authResult.accessToken
-                });
-
-                wm.set(privateStore, {
-                    profile: profile
-                });
-
-            });
-        });
-    };
-    return Auth;
-}());
-
-
-document.getElementById('btn-login').addEventListener('click', function () {
-    lock.show();
-});
+export default Settings;
