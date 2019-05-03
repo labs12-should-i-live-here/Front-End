@@ -1,17 +1,17 @@
-import auth0 from 'auth0-js';
-import history from './History';
+import auth0 from "auth0-js";
+import history from "./History";
 // import { AUTH_CONFIG } from './auth0-variables';
 
 export default class Auth {
-    accessToken;
-    idToken;
-    expiresAt;
+  accessToken;
+  idToken;
+  expiresAt;
   auth0 = new auth0.WebAuth({
-    domain: 'dev-sz7on0tz.auth0.com',
-    clientID: 'tNlC3QYcN3D0WbM0d3SKvxKHXXQJxUZv',
-    redirectUri: 'https://should-i-live-here.netlify.com/callback',
-    responseType: 'token id_token',
-    scope: 'openid'
+    domain: "dev-sz7on0tz.auth0.com",
+    clientID: "tNlC3QYcN3D0WbM0d3SKvxKHXXQJxUZv",
+    redirectUri: "https://livesafe.netlify.com/callback",
+    responseType: "token id_token",
+    scope: "openid"
   });
   // auth0 = new auth0.WebAuth({
   //   domain: AUTH_CONFIG.domain,
@@ -20,7 +20,6 @@ export default class Auth {
   //   responseType: 'token id_token',
   //   scope: 'openid'
   // });
-
 
   constructor() {
     this.login = this.login.bind(this);
@@ -37,7 +36,7 @@ export default class Auth {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
       } else if (err) {
-        history.replace('/');
+        history.replace("/");
         console.log(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
       }
@@ -58,27 +57,29 @@ export default class Auth {
 
   setSession(authResult) {
     // Set isLoggedIn flag in localStorage
-    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem("isLoggedIn", "true");
 
     // Set the time that the Access Token will expire at
-    let expiresAt = (authResult.expiresIn * 1000) + new Date().getTime();
+    let expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
     this.accessToken = authResult.accessToken;
     this.idToken = authResult.idToken;
     this.expiresAt = expiresAt;
 
     // navigate to the home route
-    history.replace('/home');
+    history.replace("/home");
   }
 
   renewSession() {
     this.auth0.checkSession({}, (err, authResult) => {
-       if (authResult && authResult.accessToken && authResult.idToken) {
-         this.setSession(authResult);
-       } else if (err) {
-         this.logout();
-         console.log(err);
-         alert(`Could not get a new token (${err.error}: ${err.error_description}).`);
-       }
+      if (authResult && authResult.accessToken && authResult.idToken) {
+        this.setSession(authResult);
+      } else if (err) {
+        this.logout();
+        console.log(err);
+        alert(
+          `Could not get a new token (${err.error}: ${err.error_description}).`
+        );
+      }
     });
   }
 
@@ -89,14 +90,14 @@ export default class Auth {
     this.expiresAt = 0;
 
     // Remove isLoggedIn flag from localStorage
-    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem("isLoggedIn");
 
     this.auth0.logout({
       returnTo: window.location.origin
     });
 
     // navigate to the home page
-    history.replace('/');
+    history.replace("/");
   }
 
   isAuthenticated() {
