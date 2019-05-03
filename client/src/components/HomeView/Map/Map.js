@@ -1,8 +1,8 @@
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import mapboxgl from "mapbox-gl";
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import "../../../scss/Map.scss";
+import axios from "axios";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
@@ -58,7 +58,7 @@ class Map extends Component {
       });
 
       map.addLayer({
-        id: "County",
+        id: "Counties Highlighted",
         type: "fill",
         source: {
           type: "vector",
@@ -96,7 +96,7 @@ class Map extends Component {
           .addTo(map);
 
         const filter = ["in", "FIPS", e.features[0].properties.FIPS];
-        map.setFilter("County", filter);
+        map.setFilter("Counties Highlighted", filter);
       });
 
       const toggleableLayers = ["Quake Risk", "Counties"];
@@ -105,22 +105,21 @@ class Map extends Component {
         const id = toggleableLayers[index];
         const link = document.createElement("a");
         link.href = "#";
-        link.className = "active";
+        // link.className = "active";
         link.textContent = id;
         map.setLayoutProperty("Quake Risk", "visibility", "none");
         map.setLayoutProperty("Counties", "visibility", "none");
-        map.setLayoutProperty("County", "visibility", "none");
+        map.setLayoutProperty("Counties Highlighted", "visibility", "none");
 
         link.onclick = function(e) {
           // toggle layer
           const clickedLayer = this.textContent;
-          console.log(clickedLayer);
 
           e.preventDefault();
           e.stopPropagation();
 
           var visibility = map.getLayoutProperty(clickedLayer, "visibility");
-          console.log(visibility);
+
           if (visibility === undefined) {
             map.setLayoutProperty(clickedLayer, "visibility", "none");
             this.className = "";
@@ -158,6 +157,45 @@ class Map extends Component {
           trackUserLocation: true
         })
       );
+
+    const popup = new mapboxgl.Popup({ offset: 20 }).setText("USER marker 1");
+
+    const marker = new mapboxgl.Marker({
+      draggable: true
+    })
+      .setLngLat([lng, lat])
+      .setPopup(popup)
+      .addTo(map);
+
+    function onDragEnd() {
+      const lngLat = marker.getLngLat();
+      console.log(
+        `LONGITUDE: ${lngLat.lng.toPrecision(
+          8
+        )}, LATITUDE: ${lngLat.lat.toPrecision(8)}`
+      );
+      axios
+        .post(
+          "http://flask-env.ye8czngppq.us-east-2.elasticbeanstalk.com/prediction",
+          {
+            latitude: lngLat.lat.toPrecision(8),
+            longitude: lngLat.lng.toPrecision(8)
+          }
+        )
+
+        .then(res => console.log(res))
+        .catch(error => console.log(error));
+    }
+
+    marker.on("dragend", onDragEnd);
+    axios
+      .get(
+        "https://api.mapbox.com/datasets/v1/brilles/cjv5mw37j104b2xmx6vf16b6m/features?access_token=pk.eyJ1IjoiYnJpbGxlcyIsImEiOiJjanJkdjRlOWwwbTNsNDlwbzU0ZDhreWoyIn0.yxDY7UlW1i-3IrB9aQW7bQ"
+      )
+      .then(res => {
+        const counties = res.data.features;
+        console.log(counties);
+      });
   };
 }
 
