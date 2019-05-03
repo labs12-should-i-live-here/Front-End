@@ -26,7 +26,7 @@ class Home extends Component {
         <Navbar auth={auth} />
         <div className="main-content">
           <div className="left-panel">
-            {/* <Map /> */}
+            <Map />
           </div>
           <div className="right-panel">
             <div className="top-panel">
