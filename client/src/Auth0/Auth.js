@@ -73,7 +73,7 @@ export default class Auth {
             console.log('error', err)
           console.log('trying to get userinfo',JSON.stringify(user));
           localStorage.setItem( 'username', user.given_name);
-          const API_URL = 'http://localhost:6100';  //https://labs12.herokuapp.com/
+          const API_URL = 'https://labs12.herokuapp.com';  //http://localhost:3000
           const userid = user.sub;
           axios
               .post(`${API_URL}/register`, { userid: userid })
