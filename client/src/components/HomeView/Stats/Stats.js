@@ -2,15 +2,6 @@ import React, { Component } from "react";
 import "../../../scss/Stats.scss";
 // import Plot from "react-plotly.js";
 
-<<<<<<< HEAD
-function Stats() {
-  return (
-    <div className="stats">
-      <p>Stats</p>
-      <button>save pin</button>
-    </div>
-  );
-=======
 class Stats extends Component {
   state = {
     trace1: {
@@ -34,7 +25,6 @@ class Stats extends Component {
       </>
     );
   }
->>>>>>> 11adac4beb901b5bade83a0b7cefd11c89d89942
 }
 
 export default Stats;
