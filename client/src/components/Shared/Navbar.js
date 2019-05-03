@@ -31,7 +31,7 @@ class Navbar extends Component {
 
   }
   componentDidMount() {
-    fetchDate();
+    //fetchDate();
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     const user = localStorage.getItem('username');
     let welcome = `Welcome ${user}`;
