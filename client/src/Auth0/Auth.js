@@ -45,7 +45,6 @@ export default class Auth {
   //   scope: 'openid'
   // });
 
-
   constructor() {
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
@@ -86,7 +85,7 @@ export default class Auth {
        
         this.setSession(authResult);
       } else if (err) {
-        history.replace('/');
+        history.replace("/");
         console.log(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
       }
@@ -107,21 +106,22 @@ export default class Auth {
 
   setSession(authResult) {
     // Set isLoggedIn flag in localStorage
-    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem("isLoggedIn", "true");
 
     // Set the time that the Access Token will expire at
-    let expiresAt = (authResult.expiresIn * 1000) + new Date().getTime();
+    let expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
     this.accessToken = authResult.accessToken;
     this.idToken = authResult.idToken;
     this.expiresAt = expiresAt;
     console.log('session set, ', this.accessToken, this.idToken, this.expiresAt)
 
     // navigate to the home route
-    history.replace('/home');
+    history.replace("/home");
   }
 
   renewSession() {
     this.auth0.checkSession({}, (err, authResult) => {
+<<<<<<< HEAD
        console.log('in renewSession(), authResult = ', authResult)
        if (authResult && authResult.accessToken && authResult.idToken) {
          this.setSession(authResult);
@@ -130,6 +130,17 @@ export default class Auth {
          console.log(err);
          alert(`Could not get a new token (${err.error}: ${err.error_description}).`);
        }
+=======
+      if (authResult && authResult.accessToken && authResult.idToken) {
+        this.setSession(authResult);
+      } else if (err) {
+        this.logout();
+        console.log(err);
+        alert(
+          `Could not get a new token (${err.error}: ${err.error_description}).`
+        );
+      }
+>>>>>>> 3293e777a9925cbf6974a7b160d20368400f35c1
     });
   }
 
@@ -140,8 +151,12 @@ export default class Auth {
     this.expiresAt = 0;
 
     // Remove isLoggedIn flag from localStorage
+<<<<<<< HEAD
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('username');
+=======
+    localStorage.removeItem("isLoggedIn");
+>>>>>>> 3293e777a9925cbf6974a7b160d20368400f35c1
 
     console.log(window.location.origin)
     this.auth0.logout({
@@ -149,7 +164,7 @@ export default class Auth {
     });
 
     // navigate to the home page
-    history.replace('/');
+    history.replace("/");
   }
 
   isAuthenticated() {
