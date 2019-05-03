@@ -21,7 +21,6 @@ function Greeting(props) {
 }
 
 class Navbar extends Component {
-<<<<<<< HEAD
 
   constructor(props){
     super(props);
@@ -70,11 +69,6 @@ class Navbar extends Component {
     //     <Greeting isLoggedIn={isLoggedIn} />
     //     {button}
     //   </div>
-=======
-  render() {
-    // const { isAuthenticated } = this.props.auth;
-
->>>>>>> ee29fa3a0c0b88ed30e7f8ac9e7b4f2b955773fe
     return (
       // <div>
       //   <Nav fluid>
@@ -109,7 +103,6 @@ class Navbar extends Component {
       //     </Nav.Header>
       //   </Nav>
       // </div>
-<<<<<<< HEAD
     <Nav fluid = "true">
       
       <div className="Navbar">
@@ -129,21 +122,6 @@ class Navbar extends Component {
       </div>
       
     </Nav>
-=======
-      <Nav fluid>
-        <div className="Navbar">
-          <nav className="nav-left">
-            <Link to="/payment">Log Out</Link>
-            <Link to="/compare">compare</Link>
-            <Link to="/payment">payment</Link>
-          </nav>
-          <nav className="nav-right">
-            <Link to="/register">register</Link>
-            <Link to="/login">login</Link>
-          </nav>
-        </div>
-      </Nav>
->>>>>>> ee29fa3a0c0b88ed30e7f8ac9e7b4f2b955773fe
     );
   }
 }

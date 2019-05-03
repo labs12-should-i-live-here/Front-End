@@ -1,6 +1,5 @@
 import auth0 from 'auth0-js';
 import history from './History';
-<<<<<<< HEAD
 import { AUTH_CONFIG } from './auth0-variables';
 import axios from 'axios';
 
@@ -25,9 +24,6 @@ import axios from 'axios';
 // 			.catch(error => this.setState({ message: error.message }));
 // 	}
 // }
-=======
-// import { AUTH_CONFIG } from './auth0-variables';
->>>>>>> ee29fa3a0c0b88ed30e7f8ac9e7b4f2b955773fe
 
 export default class Auth {
     accessToken;
