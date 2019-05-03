@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../../../scss/Stats.scss";
-import Plot from "react-plotly.js";
+// import Plot from "react-plotly.js";
 
 class Stats extends Component {
   state = {
@@ -16,11 +16,12 @@ class Stats extends Component {
 
     return (
       <>
-        <Plot
+        {/* <Plot
           data={data}
           layout={{ title: "Projection" }}
           config={{ displayModeBar: false }}
-        />
+        /> */}
+        plot
       </>
     );
   }
