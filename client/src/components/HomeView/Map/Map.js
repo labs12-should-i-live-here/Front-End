@@ -185,17 +185,18 @@ class Map extends Component {
 
         .then(res => console.log(res))
         .catch(error => console.log(error));
+
+      // axios
+      //   .get(
+      //     "https://api.mapbox.com/datasets/v1/brilles/cjv5mw37j104b2xmx6vf16b6m/features?access_token=pk.eyJ1IjoiYnJpbGxlcyIsImEiOiJjanJkdjRlOWwwbTNsNDlwbzU0ZDhreWoyIn0.yxDY7UlW1i-3IrB9aQW7bQ"
+      //   )
+      //   .then(res => {
+      //     const counties = res.data.features;
+      //     console.log(counties);
+      //   });
     }
 
     marker.on("dragend", onDragEnd);
-    axios
-      .get(
-        "https://api.mapbox.com/datasets/v1/brilles/cjv5mw37j104b2xmx6vf16b6m/features?access_token=pk.eyJ1IjoiYnJpbGxlcyIsImEiOiJjanJkdjRlOWwwbTNsNDlwbzU0ZDhreWoyIn0.yxDY7UlW1i-3IrB9aQW7bQ"
-      )
-      .then(res => {
-        const counties = res.data.features;
-        console.log(counties);
-      });
   };
 }
 
