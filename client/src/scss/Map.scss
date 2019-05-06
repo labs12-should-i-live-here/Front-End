@@ -4,6 +4,10 @@
   :focus {
     outline: none;
   }
+  border-radius: 20px;
+  .mapboxgl-ctrl-attrib {
+    padding-right: 8px;
+  }
 }
 
 #menu {
