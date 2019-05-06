@@ -189,9 +189,6 @@ class Map extends Component {
     this.props.fetchPredictionData(this.state.coordinates);
     marker.on("dragend", onDragEnd);
   };
-  componentDidUpdate() {
-    console.log(this.state.coordinates);
-  }
 }
 
 const mapStateToProps = ({

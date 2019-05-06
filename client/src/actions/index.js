@@ -15,7 +15,11 @@ export const fetchPredictionData = coordinates => dispatch => {
     .then(res =>
       dispatch({ type: FETCH_PREDICTION_DATA_SUCCESS, payload: res.data })
     )
-    .catch(error =>
-      dispatch({ type: FETCH_PREDICTION_DATA_FAILURE, payload: error.response })
-    );
+    .catch(error => {
+      console.log(error);
+      dispatch({
+        type: FETCH_PREDICTION_DATA_FAILURE,
+        payload: error.response
+      });
+    });
 };
