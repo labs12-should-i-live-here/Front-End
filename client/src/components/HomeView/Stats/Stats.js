@@ -3,7 +3,7 @@ import "../../../scss/Stats.scss";
 
 class Stats extends Component {
   render() {
-    return <p>hello from plot</p>;
+    return <p>plot</p>;
   }
 }
 
