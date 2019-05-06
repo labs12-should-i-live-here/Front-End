@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Router } from 'react-router-dom';
 import './scss/App.scss';
 import Home from './views/App/Home.js';
+import Profile from './views/App/Profile';
 import SignUp from './views/App/SignUp.js';
 import Login from './views/App/Login.js';
 import Logout from './views/App/Logout.js';
@@ -24,20 +25,21 @@ const handleAuthentication = (nextState, replace) => {
 function App() {
 		return (
 			<Router history={history} component={Login}>
-		  <>
-		    <Route exact path="/" component={Home} />
+		<>
+		<Route exact path="/" component={Home} />
 			<Route exact path="/home" component={Home} />
 			<Route path="/register" component={SignUp} />
 			<Route path="/login" component={Login} />
+			<Route path="/profile" component={Profile}/> {/* NEW! */}
 			<Route path="/logout" component={Logout} />
 			<Route path="/compare" component={Compare} />
 			<Route path="/callback" render={(props) => {
 				handleAuthentication(props);
 				return <Callback {...props} />
 			}} />
-      		<Route path="/payment" component={StripePayment} />
-		  </>
-		  </Router>
+      <Route path="/payment" component={StripePayment} />
+		</>
+		</Router>
 		);
 	  }
 
