@@ -2,7 +2,7 @@ import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import mapboxgl from "mapbox-gl";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchPredictionData } from "../../../actions";
+import { fetchPredictionData, fetchHistoricalData } from "../../../actions";
 import "../../../scss/Map.scss";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
@@ -14,6 +14,11 @@ class Map extends Component {
     coordinates: {
       latitude: 39.8283,
       longitude: -98.5795
+    },
+    historySelections: {
+      fipscode: 17033,
+      startyear: 2000,
+      endyear: 2005
     }
   };
 
@@ -21,6 +26,11 @@ class Map extends Component {
     return (
       <div id="map" className="map">
         <div id="menu" />
+        <div id="time-mode">
+          Map Mode:
+          <button onClick={() => this.pastMode()}>Past</button>
+          <button onClick={() => this.futureMode()}>Future</button>
+        </div>
       </div>
     );
   }
@@ -28,6 +38,15 @@ class Map extends Component {
   componentDidMount() {
     this.initMap();
   }
+
+  pastMode = () => {
+    console.log("pastMode");
+    this.props.fetchHistoricalData(this.state.historySelections);
+  };
+
+  futureMode = () => {
+    console.log("futureMode");
+  };
 
   initMap = () => {
     // create map with state values
@@ -43,6 +62,7 @@ class Map extends Component {
 
     // load layers
     map.on("load", () => {
+      this.futureMode();
       map.addLayer({
         id: "Counties",
         type: "line",
@@ -193,13 +213,17 @@ class Map extends Component {
 
 const mapStateToProps = ({
   fetchingPredictionData,
-  coordinatePredictions
+  coordinatePredictions,
+  fetchHistoricalData,
+  historySelections
 }) => ({
   fetchingPredictionData,
-  coordinatePredictions
+  coordinatePredictions,
+  fetchHistoricalData,
+  historySelections
 });
 
 export default connect(
   mapStateToProps,
-  { fetchPredictionData }
+  { fetchPredictionData, fetchHistoricalData }
 )(Map);
