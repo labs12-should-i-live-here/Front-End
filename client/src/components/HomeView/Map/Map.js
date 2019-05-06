@@ -1,17 +1,20 @@
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import mapboxgl from "mapbox-gl";
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { fetchPredictionData } from "../../../actions";
 import "../../../scss/Map.scss";
-import axios from "axios";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 class Map extends Component {
   state = {
-    lng: -98.5795, // center of US
-    lat: 39.8283,
     zoom: 3.1,
-    minZoom: 2
+    minZoom: 2,
+    coordinates: {
+      latitude: 39.8283,
+      longitude: -98.5795
+    }
   };
 
   render() {
@@ -28,11 +31,12 @@ class Map extends Component {
 
   initMap = () => {
     // create map with state values
-    const { lng, lat, zoom, minZoom } = this.state;
+    const { zoom, minZoom } = this.state;
+    const { longitude, latitude } = this.state.coordinates;
     const map = new mapboxgl.Map({
       container: "map",
       style: "mapbox://styles/brilles/cjv3zbk1u2uw11fqx8i0zgfkj",
-      center: [lng, lat],
+      center: [longitude, latitude],
       zoom,
       minZoom
     });
@@ -133,7 +137,7 @@ class Map extends Component {
         };
 
         const layers = document.getElementById("menu");
-        layers.appendChild(link);
+        return layers.appendChild(link);
       });
     });
 
@@ -163,41 +167,42 @@ class Map extends Component {
     const marker = new mapboxgl.Marker({
       draggable: true
     })
-      .setLngLat([lng, lat])
+      .setLngLat([longitude, latitude])
       .setPopup(popup)
       .addTo(map);
 
+    const update = updatedCoordinates => {
+      this.setState({ coordinates: updatedCoordinates });
+      this.props.fetchPredictionData(this.state.coordinates);
+    };
+
     function onDragEnd() {
       const lngLat = marker.getLngLat();
-      console.log(
-        `LONGITUDE: ${lngLat.lng.toPrecision(
-          8
-        )}, LATITUDE: ${lngLat.lat.toPrecision(8)}`
-      );
-      axios
-        .post(
-          "http://flask-env.ye8czngppq.us-east-2.elasticbeanstalk.com/prediction",
-          {
-            latitude: lngLat.lat.toPrecision(8),
-            longitude: lngLat.lng.toPrecision(8)
-          }
-        )
 
-        .then(res => console.log(res))
-        .catch(error => console.log(error));
-
-      // axios
-      //   .get(
-      //     "https://api.mapbox.com/datasets/v1/brilles/cjv5mw37j104b2xmx6vf16b6m/features?access_token=pk.eyJ1IjoiYnJpbGxlcyIsImEiOiJjanJkdjRlOWwwbTNsNDlwbzU0ZDhreWoyIn0.yxDY7UlW1i-3IrB9aQW7bQ"
-      //   )
-      //   .then(res => {
-      //     const counties = res.data.features;
-      //     console.log(counties);
-      //   });
+      const updatedCoordinates = {
+        latitude: lngLat.lat.toPrecision(8),
+        longitude: lngLat.lng.toPrecision(8)
+      };
+      update(updatedCoordinates);
     }
 
+    this.props.fetchPredictionData(this.state.coordinates);
     marker.on("dragend", onDragEnd);
   };
+  componentDidUpdate() {
+    console.log(this.state.coordinates);
+  }
 }
 
-export default Map;
+const mapStateToProps = ({
+  fetchingPredictionData,
+  coordinatePredictions
+}) => ({
+  fetchingPredictionData,
+  coordinatePredictions
+});
+
+export default connect(
+  mapStateToProps,
+  { fetchPredictionData }
+)(Map);
