@@ -8,10 +8,7 @@ export const FETCH_PREDICTION_DATA_FAILURE = "FETCH_PREDICTION_DATA_FAILURE";
 export const fetchPredictionData = coordinates => dispatch => {
   dispatch({ type: FETCH_PREDICTION_DATA_START });
   axios
-    .post(
-      "http://flask-env.ye8czngppq.us-east-2.elasticbeanstalk.com/prediction",
-      coordinates
-    )
+    .post("https://d2drg1tc2gs4lr.cloudfront.net/prediction", coordinates)
     .then(res =>
       dispatch({ type: FETCH_PREDICTION_DATA_SUCCESS, payload: res.data })
     )
