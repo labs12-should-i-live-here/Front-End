@@ -4,8 +4,8 @@ import Map from "../../components/HomeView/Map/Map.js";
 import Stats from "../../components/HomeView/Stats/Stats.js";
 import CompareDeck from "../../components/HomeView/Compare/CompareDeck.js";
 import Footer from "../../components/HomeView/Footer";
-import "../../scss/Home.scss";
 import Auth from "../../Auth0/Auth.js";
+import "../../scss/Home.scss";
 
 const auth = new Auth();
 
