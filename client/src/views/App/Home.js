@@ -3,13 +3,22 @@ import Navbar from "../../components/Shared/Navbar.js";
 import Map from "../../components/HomeView/Map/Map.js";
 import Stats from "../../components/HomeView/Stats/Stats.js";
 import CompareDeck from "../../components/HomeView/Compare/CompareDeck.js";
-import Footer from '../../components/HomeView/Footer'
+import Footer from "../../components/HomeView/Footer";
 import "../../scss/Home.scss";
-import Auth from '../../Auth0/Auth.js';
+import Auth from "../../Auth0/Auth.js";
 
 const auth = new Auth();
 
 class Home extends Component {
+
+  componentDidMount() {
+    const { renewSession } = auth;
+
+    if (localStorage.getItem('isLoggedIn') === 'true') {
+      renewSession();
+    }
+  }
+
   render() {
     return (
       <div>

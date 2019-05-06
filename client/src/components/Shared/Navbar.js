@@ -4,10 +4,71 @@ import { Navbar as Nav /*, Button*/ } from "react-bootstrap";
 
 import "../../scss/Navbar.scss";
 
-class Navbar extends Component {
-  render() {
-    // const { isAuthenticated } = this.props.auth;
 
+
+function Greeting(props) {
+  const isLoggedIn = localStorage.getItem('isLoggedIn');
+      
+  if (isLoggedIn) {
+    const user = localStorage.getItem('username');
+    let welcome = `Welcome, ${user}`;
+    return <h3>{props.message}<Link to="/logout"><button>Log Out</button></Link></h3>;
+  }    
+    
+  else 
+    return <Link to="/login">{props.message}</Link>;
+
+}
+
+class Navbar extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = {message: '', isLoggedin: false}
+  }
+  
+  componentDidUpdate() {
+
+  }
+  componentDidMount() {
+    //fetchDate();
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    const user = localStorage.getItem('username');
+    let welcome = `Welcome ${user}`;
+    
+    //let message;
+    console.log(user)
+    if (isLoggedIn) {
+    this.setState( { message : <h2>{welcome}</h2>, isLoggedIn: true });
+    } else {
+      this.setState( { message : <button>login</button> , isLoggedIn: false});
+      //message = <button>loginn</button>;
+    }
+
+  }
+
+
+
+  render() {
+
+    // // const { isAuthenticated } = this.props.auth;
+    // const user = localStorage.getItem('username');
+    // console.log(user);
+
+    // let welcome = "Welcome " + user;
+    //  const isLoggedIn = localStorage.getItem('isLoggedIn');
+    // let message;
+    // if (isLoggedIn) {
+    //   message = <h2>{welcome}</h2>;
+    // } else {
+    //   message = <button>loginn</button>;
+    // }
+
+    // return (
+    //   <div>
+    //     <Greeting isLoggedIn={isLoggedIn} />
+    //     {button}
+    //   </div>
     return (
       // <div>
       //   <Nav fluid>
@@ -42,19 +103,25 @@ class Navbar extends Component {
       //     </Nav.Header>
       //   </Nav>
       // </div>
-      <Nav fluid>
-        <div className="Navbar">
-          <nav className="nav-left">
-            <Link to="/payment">Log Out</Link>
-            <Link to="/compare">compare</Link>
-            <Link to="/payment">payment</Link>
-          </nav>
-          <nav className="nav-right">
-            <Link to="/register">register</Link>
-            <Link to="/login">login</Link>
-          </nav>
-        </div>
-      </Nav>
+    <Nav fluid = "true">
+      
+      <div className="Navbar">
+        <nav className="nav-left">
+
+         
+          {/* <Link to="/logout">Log Out</Link> */}
+          <Link to="/compare">compare</Link>
+          <Link to="/payment">payment</Link>
+        </nav>
+        <nav className="nav-right">
+         {/* <Link to="/register">register</Link> */}
+          {/* <Link to="/login">{this.state.message}</Link> */}
+          <Greeting message = {this.state.message}></Greeting>
+        </nav>
+          {/* <p>{test}</p> */}
+      </div>
+      
+    </Nav>
     );
   }
 }
