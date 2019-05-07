@@ -27,4 +27,4 @@ We solve the problem by giving the user an interactive map of the whole US with 
 
 # Integrated Technologies
 
-React, Redux, Axios, SASS, Styled Components Stripe ,Axios ,Grommet.io,Moment.js ,Mapbox, ReactMapGl,Knex,StyledComponents,OAuth
+React, Redux, Axios, SASS, Styled Components, Stripe ,Axios , Material Ui,Moment.js ,Mapbox, ReactMapGl,Knex,StyledComponents,OAuth
