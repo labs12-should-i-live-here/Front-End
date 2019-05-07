@@ -17,8 +17,8 @@ class Map extends Component {
     },
     historySelections: {
       fipscode: 17033,
-      startyear: 2000,
-      endyear: 2005
+      startyear: 1990,
+      endyear: 2014
     }
   };
 
