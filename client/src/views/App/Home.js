@@ -10,11 +10,10 @@ import "../../scss/Home.scss";
 const auth = new Auth();
 
 class Home extends Component {
-
   componentDidMount() {
     const { renewSession } = auth;
 
-    if (localStorage.getItem('isLoggedIn') === 'true') {
+    if (localStorage.getItem("isLoggedIn") === "true") {
       renewSession();
     }
   }
@@ -22,7 +21,6 @@ class Home extends Component {
   render() {
     return (
       <div>
-        Home view
         <Navbar auth={auth} />
         <div className="main-content">
           <div className="left-panel">

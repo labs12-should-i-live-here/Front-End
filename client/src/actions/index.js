@@ -1,60 +1,49 @@
 import axios from "axios";
 
-//login actions
-export const LOGIN_START = "LOGIN_START";
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-export const LOGIN_FAILURE = "LOGIN_FAILURE";
+// Todo: Displaying prediction data on the plotly.
+export const FETCH_PREDICTION_DATA_START = "FETCH_PREDICTION_DATA_START";
+export const FETCH_PREDICTION_DATA_SUCCESS = "FETCH_PREDICTION_DATA_SUCCESS";
+export const FETCH_PREDICTION_DATA_FAILURE = "FETCH_PREDICTION_DATA_FAILURE";
 
-export const login = creds => dispatch => {
-  dispatch({ type: LOGIN_START });
-  return axios
-    .post("https://labs12.herokuapp.com/login", creds)
-    .then(res => {
-      console.log(res);
-      // localStorage.setItem("token", res.data.payload);
-      // dispatch({ type: LOGIN_SUCCESS, payload: res.data.payload });
-    })
-    .catch(err => console.log(err));
+export const fetchPredictionData = coordinates => dispatch => {
+  dispatch({ type: FETCH_PREDICTION_DATA_START });
+  axios
+    .post("https://d2drg1tc2gs4lr.cloudfront.net/prediction", coordinates)
+    .then(res =>
+      dispatch({ type: FETCH_PREDICTION_DATA_SUCCESS, payload: res.data })
+    )
+    .catch(error => {
+      dispatch({
+        type: FETCH_PREDICTION_DATA_FAILURE,
+        payload: error.response
+      });
+    });
 };
 
-//sign up actions
-export const SIGN_UP_START = "SIGN_UP_START";
-export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
-export const SIGN_UP_FAILURE = "SIGN_UP_FAILURE";
+// Todo: Displaying historical data on the plotly.
+export const FETCH_HISTORICAL_DATA_START = "FETCH_HISTORICAL_DATA_START";
+export const FETCH_HISTORICAL_DATA_SUCCESS = "FETCH_HISTORICAL_DATA_SUCCESS";
+export const FETCH_HISTORICAL_DATA_FAILURE = "FETCH_HISTORICAL_DATA_FAILURE";
 
-export const signUp = creds => dispatch => {
-  dispatch({ type: SIGN_UP_START });
-  return axios
-    .post("https://labs12.herokuapp.com/register", creds)
-    .then(res => {
-      console.log(res);
-      // localStorage.setItem("token", res.data.payload);
-      // dispatch({ type: SIGN_UP_SUCCESS, payload: res.data.payload });
-    })
-    .catch(err => console.log(err.response));
+export const fetchHistoricalData = fipsCodeAndYearRange => dispatch => {
+  dispatch({ type: FETCH_HISTORICAL_DATA_START });
+  axios
+    .post("https://d2drg1tc2gs4lr.cloudfront.net/history", fipsCodeAndYearRange)
+    .then(res =>
+      dispatch({
+        type: FETCH_HISTORICAL_DATA_SUCCESS,
+        payload: res.data
+      })
+    )
+    .catch(error => {
+      dispatch({
+        type: FETCH_HISTORICAL_DATA_FAILURE,
+        payload: error.response
+      });
+    });
 };
 
-// define mapbox access tokens
-// const ACCESS_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
-// const COUNTIES_LAYER = "cjv6xucugir5w2wqup4mf7u0c";
-
-// //get layers from mapbox
-// export const FETCH_DATA_START = "FETCH_DATA_START";
-// export const FETCH_DATA_SUCCESS = "FETCH_DATA_SUCCESS";
-// export const FETCH_DATA_FAILURE = "FETCH_DATA_FAILURE";
-
-// export const getData = () => dispatch => {
-//   dispatch({ type: FETCH_DATA_START });
-//   axios
-//     .get(
-//       `https://api.mapbox.com/datasets/v1/brilles/${COUNTIES_LAYER}/features?access_token=${ACCESS_TOKEN}` //TODO: replace with team account later
-//     )
-//     .then(res => dispatch({ type: FETCH_DATA_SUCCESS, payload: res.data }))
-//     .catch(error =>
-//       dispatch({ type: FETCH_DATA_FAILURE, payload: error.response })
-//     );
-// };
-
+// Get Users
 export const GET_USERS_SUCCESS = 'GET_USERS_SUCCESS';
 export const GET_USERS_FAILURE = 'GET_USERS_FAILURE';
 

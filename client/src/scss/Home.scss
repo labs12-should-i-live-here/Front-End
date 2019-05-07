@@ -10,10 +10,12 @@
   }
   .right-panel {
     width: 40%;
-    border: 1px solid red;
+    background: #fff;
+    border: 1px solid rgb(0, 132, 255);
+    border-radius: 20px;
     .top-panel {
       height: 50%;
-      border-bottom: 1px solid red;
+      border-bottom: 1px solid rgb(0, 132, 255);
     }
     .bottom-panel {
       height: 50%;
