@@ -13,7 +13,7 @@ render() {
     <>  
         <Navbar auth={auth} />
         <AccInfo/>
-        <Footer/>  
+        {/*<Footer/> */ }
     </>
     )
 }
