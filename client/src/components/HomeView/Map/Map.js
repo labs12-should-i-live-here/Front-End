@@ -31,6 +31,7 @@ class Map extends Component {
           <button onClick={() => this.pastMode()}>Past</button>
           <button onClick={() => this.futureMode()}>Future</button>
         </div>
+        <div className="slider">Time</div>
       </div>
     );
   }
