@@ -16,16 +16,14 @@ class Map extends Component {
 
   render() {
     return (
-    <>
-   
-    <div id="map">
-        <div id="menu" />
-    </div>
-    <div id="map2">
-        <div id="menu2" />
-    </div>
- 
-    </>
+      <>
+        <div id="map" className="map2">
+          <div id="menu" />
+        </div>
+        <div id="map2" className="map2">
+          <div id="menu2" />
+        </div>
+      </>
     );
   }
 
@@ -47,69 +45,69 @@ class Map extends Component {
 
     // load layers
     map.on("load", () => {
-    map.addLayer({
+      map.addLayer({
         id: "Counties",
         type: "line",
         source: {
-            type: "vector",
-            url: "mapbox://brilles.8m1jc8xq"
+          type: "vector",
+          url: "mapbox://brilles.8m1jc8xq"
         },
         "source-layer": "2__quake_county-6aj5at",
         layout: {
-            "line-join": "round",
-            "line-cap": "round"
+          "line-join": "round",
+          "line-cap": "round"
         },
         paint: {
-            "line-color": "rgba(0, 132, 255, 1)",
-            "line-width": 1
+          "line-color": "rgba(0, 132, 255, 1)",
+          "line-width": 1
         }
-    });
+      });
 
-    map.addLayer({
+      map.addLayer({
         id: "Counties Highlighted",
         type: "fill",
         source: {
-            type: "vector",
-            url: "mapbox://brilles.8m1jc8xq"
+          type: "vector",
+          url: "mapbox://brilles.8m1jc8xq"
         },
         "source-layer": "2__quake_county-6aj5at",
         paint: {
-            "fill-color": "rgba(0, 132, 255, 0.247)"
+          "fill-color": "rgba(0, 132, 255, 0.247)"
         },
         filter: ["in", "FIPS", ""]
-        });
+      });
 
-    map.addLayer({
+      map.addLayer({
         id: "Quake Risk",
         type: "line",
         source: {
-            type: "vector",
-            url: "mapbox://brilles.2qq6qnqp"
+          type: "vector",
+          url: "mapbox://brilles.2qq6qnqp"
         },
         "source-layer": "1__quake_contour-5vbtwp",
         layout: {
-            "line-join": "round",
-            "line-cap": "round"
+          "line-join": "round",
+          "line-cap": "round"
         },
         paint: {
-            "line-color": "green",
-            "line-width": 1
+          "line-color": "green",
+          "line-width": 1
         }
-    });
+      });
 
-    map.on("click", "Counties", e => {
+      map.on("click", "Counties", e => {
         new mapboxgl.Popup()
-            .setLngLat(e.lngLat)
-            .setHTML(`${e.features[0].properties.NAME} County`)
-            .addTo(map);
+          .setLngLat(e.lngLat)
+          .setHTML(`${e.features[0].properties.NAME} County`)
+          .addTo(map);
 
         const filter = ["in", "FIPS", e.features[0].properties.FIPS];
         map.setFilter("Counties Highlighted", filter);
-    });
+      });
 
-        const toggleableLayers = ["Quake Risk", "Counties"];
+      const toggleableLayers = ["Quake Risk", "Counties"];
 
-    toggleableLayers.map((layer, index) => {
+      toggleableLayers.map((layer, index) => {
         const id = toggleableLayers[index];
         const link = document.createElement("a");
         link.href = "#";
@@ -121,74 +119,74 @@ class Map extends Component {
 
         link.onclick = function(e) {
           // toggle layer
-        const clickedLayer = this.textContent;
+          const clickedLayer = this.textContent;
 
-        e.preventDefault();
-        e.stopPropagation();
+          e.preventDefault();
+          e.stopPropagation();
 
-        var visibility = map.getLayoutProperty(clickedLayer, "visibility");
+          var visibility = map.getLayoutProperty(clickedLayer, "visibility");
 
-        if (visibility === undefined) {
+          if (visibility === undefined) {
             map.setLayoutProperty(clickedLayer, "visibility", "none");
             this.className = "";
-            } else if (visibility === "visible") {
+          } else if (visibility === "visible") {
             map.setLayoutProperty(clickedLayer, "visibility", "none");
             this.className = "";
-            } else {
+          } else {
             this.className = "active";
             map.setLayoutProperty(clickedLayer, "visibility", "visible");
-            }
+          }
         };
 
         const layers = document.getElementById("menu");
         layers.appendChild(link);
-    });
+      });
     });
 
     // add map controls
     map
-    .addControl(
+      .addControl(
         new MapboxGeocoder({
-            accessToken: mapboxgl.accessToken,
-            mapboxgl,
-            countries: "us"
+          accessToken: mapboxgl.accessToken,
+          mapboxgl,
+          countries: "us"
         })
-    )
+      )
 
-        .addControl(new mapboxgl.NavigationControl())
-        .addControl(new mapboxgl.FullscreenControl())
-        .addControl(
+      .addControl(new mapboxgl.NavigationControl())
+      .addControl(new mapboxgl.FullscreenControl())
+      .addControl(
         new mapboxgl.GeolocateControl({
-            positionOptions: {
-                enableHighAccuracy: true
-            },
-            trackUserLocation: true
+          positionOptions: {
+            enableHighAccuracy: true
+          },
+          trackUserLocation: true
         })
-    );
+      );
 
     const popup = new mapboxgl.Popup({ offset: 20 }).setText("USER marker 1");
 
     const marker = new mapboxgl.Marker({
-        draggable: true
+      draggable: true
     })
-        .setLngLat([lng, lat])
-        .setPopup(popup)
-        .addTo(map);
+      .setLngLat([lng, lat])
+      .setPopup(popup)
+      .addTo(map);
 
     function onDragEnd() {
-        const lngLat = marker.getLngLat();
-        console.log(
+      const lngLat = marker.getLngLat();
+      console.log(
         `LONGITUDE: ${lngLat.lng.toPrecision(
-            8
+          8
         )}, LATITUDE: ${lngLat.lat.toPrecision(8)}`
-        );
-        axios
+      );
+      axios
         .post(
-            "http://flask-env.ye8czngppq.us-east-2.elasticbeanstalk.com/prediction",
-            {
+          "http://flask-env.ye8czngppq.us-east-2.elasticbeanstalk.com/prediction",
+          {
             latitude: lngLat.lat.toPrecision(8),
             longitude: lngLat.lng.toPrecision(8)
-            }
+          }
         )
 
         .then(res => console.log(res))
@@ -205,7 +203,7 @@ class Map extends Component {
     }
 
     marker.on("dragend", onDragEnd);
-};
+  };
 
   initMap2 = () => {
     // create map with state values

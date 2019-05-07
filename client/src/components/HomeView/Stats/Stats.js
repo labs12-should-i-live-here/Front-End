@@ -1,30 +1,30 @@
 import React, { Component } from "react";
 import "../../../scss/Stats.scss";
-// import Plot from "react-plotly.js";
+import { connect } from "react-redux";
 
 class Stats extends Component {
-  state = {
-    trace1: {
-      x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      y: [10, 15, 13, 17, 20, 16, 15],
-      type: "scatter"
-    }
-  };
-
   render() {
-    const data = [this.state.trace1];
-
     return (
-      <>
-        {/* <Plot
-          data={data}
-          layout={{ title: "Projection" }}
-          config={{ displayModeBar: false }}
-        /> */}
-        plot
-      </>
+      <div>
+        {this.props.fetchingPredictionData ||
+        this.props.fetchingHistoricalData ? (
+          <h2>FETCHING DATA</h2>
+        ) : (
+          <h2>No data</h2>
+        )}
+      </div>
     );
   }
 }
 
-export default Stats;
+const mapStateToProps = ({
+  error,
+  fetchingPredictionData,
+  fetchingHistoricalData
+}) => ({
+  error,
+  fetchingPredictionData,
+  fetchingHistoricalData
+});
+
+export default connect(mapStateToProps)(Stats);
