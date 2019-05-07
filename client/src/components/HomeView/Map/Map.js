@@ -214,12 +214,12 @@ class Map extends Component {
 const mapStateToProps = ({
   fetchingPredictionData,
   coordinatePredictions,
-  fetchHistoricalData,
+  fetchingHistoricalData,
   historySelections
 }) => ({
   fetchingPredictionData,
   coordinatePredictions,
-  fetchHistoricalData,
+  fetchingHistoricalData,
   historySelections
 });
 
