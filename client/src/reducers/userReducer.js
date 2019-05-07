@@ -1,6 +1,8 @@
 import {
     LOGIN_START,
-    LOGIN_SUCCESS
+    LOGIN_SUCCESS,
+    GET_USERS_SUCCESS,
+    GET_USERS_FAILURE
     // LOGIN_FAILURE,
     // SIGN_UP_START,
     // SIGN_UP_SUCCESS,
@@ -36,6 +38,16 @@ import {
           error: "",
           loggingIn: false
         };
+        case GET_USERS_SUCCESS:
+          return {
+            ...state,
+            users: action.payload,
+          };
+      case GET_USERS_FAILURE:
+          return {
+            ...state,
+            error: action.payload,
+};
       default:
         return state;
     }
