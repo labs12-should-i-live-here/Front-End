@@ -2,7 +2,7 @@ import React from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
-import withStyles from "@material-ui/core/styles/withStyles";
+import { withStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 // @material-ui/icons
@@ -16,12 +16,84 @@ import Button from "../../components/CustomButtons/Button.jsx";
 import HeaderLinks from "../../components/Header/HeaderLinks.jsx";
 import Parallax from "../../components/Parallax/Parallax.jsx";
 
-import landingPageStyle from "../../assets/jss/material-kit-pro-react/views/landingPageStyle.jsx";
+// import landingPageStyle from "../../assets/jss/material-kit-pro-react/views/landingPageStyle.jsx";
 
 // Sections for this page
 import SectionProduct from "./Sections/SectionProduct.jsx";
 import SectionTeam from "./Sections/SectionTeam.jsx";
 import SectionWork from "./Sections/SectionWork.jsx";
+
+import {
+  container,
+  title,
+  main,
+  whiteColor,
+  mainRaised
+} from "../../assets/jss/material-kit-pro-react.jsx";
+
+const styles = {
+  container: {
+    color: whiteColor,
+    ...container,
+    zIndex: "2"
+  },
+  title: {
+    ...title,
+    display: "inline-block",
+    position: "relative",
+    marginTop: "30px",
+    minHeight: "32px",
+    color: whiteColor,
+    textDecoration: "none"
+  },
+  subtitle: {
+    fontSize: "1.313rem",
+    maxWidth: "500px",
+    margin: "10px auto 0"
+  },
+  main: {
+    ...main
+  },
+  mainRaised: {
+    ...mainRaised
+  },
+  block: {
+    color: "inherit",
+    padding: "0.9375rem",
+    fontWeight: "500",
+    fontSize: "12px",
+    textTransform: "uppercase",
+    borderRadius: "3px",
+    textDecoration: "none",
+    position: "relative",
+    display: "block"
+  },
+  inlineBlock: {
+    display: "inline-block",
+    padding: "0px",
+    width: "auto"
+  },
+  list: {
+    marginBottom: "0",
+    padding: "0",
+    marginTop: "0"
+  },
+  left: {
+    float: "left!important",
+    display: "block"
+  },
+  right: {
+    padding: "15px 0",
+    margin: "0",
+    float: "right"
+  },
+  icon: {
+    width: "18px",
+    height: "18px",
+    top: "3px",
+    position: "relative"
+  }
+};
 
 class LandingPage extends React.Component {
   componentDidMount() {
@@ -29,7 +101,7 @@ class LandingPage extends React.Component {
     document.body.scrollTop = 0;
   }
   render() {
-    const { classes, ...rest } = this.props;
+    const {classes, ...rest } = this.props;
     return (
       <div>
         <Header
@@ -129,4 +201,4 @@ class LandingPage extends React.Component {
   }
 }
 
-export default withStyles(landingPageStyle)(LandingPage);
+export default withStyles(styles)(LandingPage);
