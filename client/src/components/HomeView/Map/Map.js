@@ -12,10 +12,11 @@ import "../../../scss/Map.scss";
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 class Map extends Component {
+  map;
   state = {
     zoom: 3.1,
     minZoom: 2,
-    coordinates: { latitude: 36.8283, longitude: -94.5795 },
+    coordinates: { latitude: 37.8283, longitude: -94.5795 },
     historySelections: {
       fipscode: 17033,
       startyear: 1990,
@@ -26,7 +27,7 @@ class Map extends Component {
 
   render() {
     return (
-      <div id="map" className="map">
+      <div id="map" ref={el => (this.mapContainer = el)} className="map">
         {this.props.addingPin
           ? console.log("adding")
           : console.log("not adding")}
@@ -45,19 +46,6 @@ class Map extends Component {
     this.initMap();
   }
 
-  addPin = () => {
-    this.props.savePin();
-    console.log("Adding pin...");
-    console.log("Pin coordinates: ", this.state.coordinates);
-    // const pinDetails = {from props and state };
-    // this.props.savePin(pinDetails);
-    console.log("PINS ON STATE", this.state.pins);
-
-    this.props.pins.push(this.state.coordinates);
-    console.log(this.props.pins);
-    console.log("PINS ON STATE", this.state.pins);
-  };
-
   pastMode = () => {
     console.log("pastMode");
     this.props.fetchHistoricalData(this.state.historySelections);
@@ -72,7 +60,7 @@ class Map extends Component {
     const { zoom, minZoom } = this.state;
     const { longitude, latitude } = this.state.coordinates;
     const map = new mapboxgl.Map({
-      container: "map",
+      container: this.mapContainer,
       style: "mapbox://styles/brilles/cjv3zbk1u2uw11fqx8i0zgfkj",
       center: [longitude, latitude],
       zoom,
@@ -177,6 +165,30 @@ class Map extends Component {
 
         const layers = document.getElementById("menu");
         return layers.appendChild(link);
+      });
+    });
+
+    map.on("click", () => {
+      console.log("clicked");
+      this.props.savePin();
+      console.log("Pin coordinates: ", this.state.coordinates);
+      // const pinDetails = {from props and state };
+      // this.props.savePin(pinDetails);
+      console.log("PINS ON STATE", this.state.pins);
+
+      this.props.pins.push(this.state.coordinates);
+      console.log(this.props.pins);
+      console.log("PINS ON STATE", this.state.pins);
+      this.props.pins.map(pin => {
+        let popup = new mapboxgl.Popup({ offset: 20 }).setText([
+          pin.latitude,
+          pin.longitude // add notes / input for notes etc
+        ]);
+
+        new mapboxgl.Marker()
+          .setLngLat([pin.longitude, pin.latitude])
+          .setPopup(popup)
+          .addTo(map);
       });
     });
 
