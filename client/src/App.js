@@ -13,6 +13,8 @@ import Callback from './Auth0/Callback.js'
 import history from './Auth0/History'
 // import { Navbar, Button } from 'react-bootstrap';
 // import './App.css';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
 
 const auth = new Auth();
 
@@ -26,6 +28,7 @@ function App() {
 		return (
 			<Router history={history} component={Login}>
 		<>
+		<MuiThemeProvider theme={theme}> 
 		<Route exact path="/" component={Home} />
 			<Route exact path="/home" component={Home} />
 			<Route path="/register" component={SignUp} />
@@ -38,6 +41,8 @@ function App() {
 				return <Callback {...props} />
 			}} />
       <Route path="/payment" component={StripePayment} />
+		</MuiThemeProvider>
+		
 		</>
 		</Router>
 		);
