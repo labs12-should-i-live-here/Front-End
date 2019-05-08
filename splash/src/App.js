@@ -1,18 +1,20 @@
 import React from "react";
 import "./App.css";
 
-import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
-import { Router, Route, Switch } from "react-router";
+let classic = createBrowserHistory();
 
 import "assets/scss/material-kit-pro-react.scss?v=1.3.0";
 
-function App() {
+import { Router, Route, Switch } from "react-router";
+import SplashPage from "views/LandingPage/LandingPage.jsx";
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">hi</header>
-    </div>
+    <Router history={classic}>
+      <Switch>
+        <Route path="/" component={SplashPage} />
+      </Switch>
+    </Router>
   );
 }
-
-export default App;
