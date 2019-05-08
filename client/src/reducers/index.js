@@ -32,9 +32,9 @@ const reducer = (state = initialState, action) => {
     case FETCH_PREDICTION_DATA_FAILURE:
       return {
         ...state,
-        error: action.payload.status,
+        error: action.payload,
         fetchingPredictionData: false,
-        errorStatusCode: action.payload.status
+        errorStatusCode: action.payload
       };
     case FETCH_HISTORICAL_DATA_START:
       return {
@@ -50,9 +50,9 @@ const reducer = (state = initialState, action) => {
     case FETCH_HISTORICAL_DATA_FAILURE:
       return {
         ...state,
-        error: action.payload.status,
+        error: action.payload,
         fetchingHistoricalData: false,
-        errorStatusCode: action.payload.status
+        errorStatusCode: action.payload
       };
     default:
       return state;
