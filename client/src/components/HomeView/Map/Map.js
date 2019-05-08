@@ -2,7 +2,11 @@ import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import mapboxgl from "mapbox-gl";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchPredictionData, fetchHistoricalData } from "../../../actions";
+import {
+  fetchPredictionData,
+  fetchHistoricalData,
+  savePin
+} from "../../../actions";
 import "../../../scss/Map.scss";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
@@ -27,9 +31,9 @@ class Map extends Component {
       <div id="map" className="map">
         <div id="menu" />
         <div id="time-mode">
-          Map Mode:
-          <button onClick={() => this.pastMode()}>Past</button>
-          <button onClick={() => this.futureMode()}>Future</button>
+          <button onClick={this.pastMode}>Past</button>
+          <button onClick={this.futureMode}>Future</button>
+          <button onClick={this.addPin}>Add Pin</button>
         </div>
         <div className="slider">Time</div>
       </div>
@@ -39,6 +43,13 @@ class Map extends Component {
   componentDidMount() {
     this.initMap();
   }
+
+  addPin = () => {
+    console.log("adding pin");
+    console.log(this.state.coordinates);
+    // const pinDetails = {from props and state };
+    // this.props.savePin(pinDetails);
+  };
 
   pastMode = () => {
     console.log("pastMode");
@@ -216,15 +227,17 @@ const mapStateToProps = ({
   fetchingPredictionData,
   coordinatePredictions,
   fetchingHistoricalData,
-  historySelections
+  historySelections,
+  savePin
 }) => ({
   fetchingPredictionData,
   coordinatePredictions,
   fetchingHistoricalData,
-  historySelections
+  historySelections,
+  savePin
 });
 
 export default connect(
   mapStateToProps,
-  { fetchPredictionData, fetchHistoricalData }
+  { fetchPredictionData, fetchHistoricalData, savePin }
 )(Map);
