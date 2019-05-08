@@ -38,7 +38,7 @@ const initialState = {
   fetchingPin: false,
   updatingPin: false,
   updatedPin: 0,
-  pin
+  pin: 0
 };
 
 const reducer = (state = initialState, action) => {
