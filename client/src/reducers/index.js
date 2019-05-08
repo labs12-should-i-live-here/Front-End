@@ -30,7 +30,12 @@ const initialState = {
   errorStatusCode: null,
   coordinatePredictions: {},
   addingPin: false,
-  pins: [],
+  pins: [
+    { latitude: 39.8283, longitude: -98.5795 },
+    { latitude: 38.8283, longitude: -98.5795 },
+    { latitude: 38.8283, longitude: -97.5795 },
+    { latitude: 38.8283, longitude: -94.5795 }
+  ], //testing
   deletingPin: false,
   addedPin: 0,
   deletedPin: 0,

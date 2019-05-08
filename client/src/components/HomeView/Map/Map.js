@@ -15,20 +15,21 @@ class Map extends Component {
   state = {
     zoom: 3.1,
     minZoom: 2,
-    coordinates: {
-      latitude: 39.8283,
-      longitude: -98.5795
-    },
+    coordinates: { latitude: 36.8283, longitude: -94.5795 },
     historySelections: {
       fipscode: 17033,
       startyear: 1990,
       endyear: 2014
-    }
+    },
+    pins: this.props.pins
   };
 
   render() {
     return (
       <div id="map" className="map">
+        {this.props.addingPin
+          ? console.log("adding")
+          : console.log("not adding")}
         <div id="menu" />
         <div id="time-mode">
           <button onClick={this.pastMode}>Past</button>
@@ -45,10 +46,16 @@ class Map extends Component {
   }
 
   addPin = () => {
-    console.log("adding pin");
-    console.log(this.state.coordinates);
+    this.props.savePin();
+    console.log("Adding pin...");
+    console.log("Pin coordinates: ", this.state.coordinates);
     // const pinDetails = {from props and state };
     // this.props.savePin(pinDetails);
+    console.log("PINS ON STATE", this.state.pins);
+
+    this.props.pins.push(this.state.coordinates);
+    console.log(this.props.pins);
+    console.log("PINS ON STATE", this.state.pins);
   };
 
   pastMode = () => {
@@ -179,10 +186,10 @@ class Map extends Component {
         new MapboxGeocoder({
           accessToken: mapboxgl.accessToken,
           mapboxgl,
-          countries: "us"
+          countries: "us",
+          popup: true
         })
       )
-
       .addControl(new mapboxgl.NavigationControl())
       .addControl(new mapboxgl.FullscreenControl())
       .addControl(
@@ -194,32 +201,43 @@ class Map extends Component {
         })
       );
 
-    const popup = new mapboxgl.Popup({ offset: 20 }).setText("USER marker 1");
+    // Populate pins on map
+    this.props.pins.map(pin => {
+      let popup = new mapboxgl.Popup({ offset: 20 }).setText([
+        pin.latitude,
+        pin.longitude // add notes / input for notes etc
+      ]);
 
-    const marker = new mapboxgl.Marker({
-      draggable: true
-    })
-      .setLngLat([longitude, latitude])
-      .setPopup(popup)
-      .addTo(map);
+      new mapboxgl.Marker()
+        .setLngLat([pin.longitude, pin.latitude])
+        .setPopup(popup)
+        .addTo(map);
+    });
 
-    const update = updatedCoordinates => {
-      this.setState({ coordinates: updatedCoordinates });
-      this.props.fetchPredictionData(this.state.coordinates);
-    };
+    // const marker = new mapboxgl.Marker({
+    //   draggable: true
+    // })
+    //   .setLngLat([longitude, latitude])
+    //   .setPopup(popup)
+    //   .addTo(map);
 
-    function onDragEnd() {
-      const lngLat = marker.getLngLat();
+    // const update = updatedCoordinates => {
+    //   this.setState({ coordinates: updatedCoordinates });
+    //   this.props.fetchPredictionData(this.state.coordinates);
+    // };
 
-      const updatedCoordinates = {
-        latitude: lngLat.lat.toPrecision(8),
-        longitude: lngLat.lng.toPrecision(8)
-      };
-      update(updatedCoordinates);
-    }
+    // function onDragEnd() {
+    //   const lngLat = marker.getLngLat();
 
-    this.props.fetchPredictionData(this.state.coordinates);
-    marker.on("dragend", onDragEnd);
+    //   const updatedCoordinates = {
+    //     latitude: lngLat.lat.toPrecision(8),
+    //     longitude: lngLat.lng.toPrecision(8)
+    //   };
+    //   update(updatedCoordinates);
+    // }
+
+    // this.props.fetchPredictionData(this.state.coordinates);
+    // marker.on("dragend", onDragEnd);
   };
 }
 
@@ -228,13 +246,15 @@ const mapStateToProps = ({
   coordinatePredictions,
   fetchingHistoricalData,
   historySelections,
-  savePin
+  pins,
+  addingPin
 }) => ({
   fetchingPredictionData,
   coordinatePredictions,
   fetchingHistoricalData,
   historySelections,
-  savePin
+  pins,
+  addingPin
 });
 
 export default connect(
