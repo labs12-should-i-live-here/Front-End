@@ -35,7 +35,6 @@ class Map extends Component {
         <div id="time-mode">
           <button onClick={this.pastMode}>Past</button>
           <button onClick={this.futureMode}>Future</button>
-          <button onClick={this.addPin}>Add Pin</button>
         </div>
         <div className="slider">Time</div>
       </div>
@@ -168,28 +167,28 @@ class Map extends Component {
       });
     });
 
-    map.on("click", () => {
-      console.log("clicked");
-      this.props.savePin();
-      console.log("Pin coordinates: ", this.state.coordinates);
-      // const pinDetails = {from props and state };
-      // this.props.savePin(pinDetails);
-      console.log("PINS ON STATE", this.state.pins);
+    map.on("dblclick", e => {
+      const userId = this.props.userId;
+      console.log(userId);
+      const pin = {
+        userId: this.props.userId,
+        LATITUDE: e.lngLat.lat,
+        LONGITUDE: e.lngLat.lng,
+        notes: "Is this working?",
+        home: 0
+      }; // refactor to native format
+      this.props.pins.push(pin);
 
-      this.props.pins.push(this.state.coordinates);
-      console.log(this.props.pins);
-      console.log("PINS ON STATE", this.state.pins);
-      this.props.pins.map(pin => {
-        let popup = new mapboxgl.Popup({ offset: 20 }).setText([
-          pin.latitude,
-          pin.longitude // add notes / input for notes etc
-        ]);
+      let popup = new mapboxgl.Popup({ offset: 20 }).setText(
+        `Notes: ${pin.notes}`
+      );
 
-        new mapboxgl.Marker()
-          .setLngLat([pin.longitude, pin.latitude])
-          .setPopup(popup)
-          .addTo(map);
-      });
+      new mapboxgl.Marker()
+        .setLngLat([pin.LONGITUDE, pin.LATITUDE])
+        .setPopup(popup)
+        .addTo(map);
+
+      this.props.savePin(pin);
     });
 
     // add map controls
@@ -259,14 +258,16 @@ const mapStateToProps = ({
   fetchingHistoricalData,
   historySelections,
   pins,
-  addingPin
+  addingPin,
+  userId
 }) => ({
   fetchingPredictionData,
   coordinatePredictions,
   fetchingHistoricalData,
   historySelections,
   pins,
-  addingPin
+  addingPin,
+  userId
 });
 
 export default connect(

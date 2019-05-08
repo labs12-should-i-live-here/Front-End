@@ -61,13 +61,14 @@ export const ADD_PIN_START = "ADD_PIN_START";
 export const ADD_PIN_SUCCESS = "ADD_PIN_SUCCESS";
 export const ADD_PIN_FAILURE = "ADD_PIN_FAILURE";
 
-export const savePin = addPinDetails => dispatch => {
+export const savePin = pin => dispatch => {
   dispatch({ type: ADD_PIN_START });
-  // const URL = "https://labs12.herokuapp.com/pin/:id/pins"; //! need to replace ID
-  // axios
-  //   .post(URL, addPinDetails)
-  //   .then(res => console.log(res))
-  //   .catch(error => console.log(error));
+  console.log(pin);
+  const URL = `https://labs12.herokuapp.com/pin/${pin.userId}/pins`;
+  axios
+    .post(URL, pin)
+    .then(res => console.log(res))
+    .catch(error => console.log(error));
 };
 
 // Todo: integrate this in UI
