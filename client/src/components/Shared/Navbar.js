@@ -1,9 +1,23 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Navbar as Nav /*, Button*/ } from "react-bootstrap";
+import PropTypes from 'prop-types';
+import { withStyles, AppBar, Toolbar, Button, IconButton, Typography, Menu } from "@material-ui/core";
 
 import "../../scss/Navbar.scss";
 
+const styles = {
+  root: {
+    flexGrow: 1,
+  },
+  grow: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
+};
 
 
 function Greeting(props) {
@@ -103,25 +117,38 @@ class Navbar extends Component {
       //     </Nav.Header>
       //   </Nav>
       // </div>
-    <Nav fluid = "true">
+
+    // <Nav fluid = "true">
       
-      <div className="Navbar">
-        <nav className="nav-left">
+    //   <div className="Navbar">
+    //     <nav className="nav-left">
 
          
-          {/* <Link to="/logout">Log Out</Link> */}
-          <Link to="/compare">compare</Link>
-          <Link to="/payment">payment</Link>
-        </nav>
-        <nav className="nav-right">
-         {/* <Link to="/register">register</Link> */}
-          {/* <Link to="/login">{this.state.message}</Link> */}
-          <Greeting message = {this.state.message}></Greeting>
-        </nav>
-          {/* <p>{test}</p> */}
-      </div>
+    //       {/* <Link to="/logout">Log Out</Link> */}
+    //       <Link to="/compare">compare</Link>
+    //       <Link to="/payment">payment</Link>
+    //     </nav>
+    //     <nav className="nav-right">
+    //      {/* <Link to="/register">register</Link> */}
+    //       {/* <Link to="/login">{this.state.message}</Link> */}
+    //       <Greeting message = {this.state.message}></Greeting>
+    //     </nav>
+    //       {/* <p>{test}</p> */}
+    //   </div>
       
-    </Nav>
+    // </Nav>
+    <AppBar position="static">
+      <Toolbar>
+        <IconButton aria-label="Menu">
+          <Typography variant="h6">
+            <Button href="/compare" color="white">Compare</Button>
+            <Button href="/payment">Payment</Button>
+          </Typography>
+            <Button color="inherit">Register</Button>
+            <Button color="inherit">Login</Button>
+        </IconButton>  
+      </Toolbar>
+    </AppBar>
     );
   }
 }

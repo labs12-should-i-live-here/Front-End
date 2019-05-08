@@ -1,11 +1,20 @@
 import React from "react";
 import Navbar from "../../components/Shared/Navbar.js";
-import '../../scss/UserForm.scss'
+import '../../scss/SignUp.scss'
 import { Link } from "react-router-dom";
+// import HUE from '@material-ui/core/colors/HUE';
+import Button from '@material-ui/core/Button';
+import blue from '@material-ui/core/colors/purple';
+import green from '@material-ui/core/colors/red';
+import purple from '@material-ui/core/colors/red';
+
 
 import styled from 'styled-components';
 var Red = styled.p`text-align:center;`
 
+const primary = blue[600];
+const accent = green[400];
+const secondAccent = purple[800];
 
 class SignUp extends React.Component{
   constructor(props) {
@@ -54,7 +63,9 @@ class SignUp extends React.Component{
         value={this.state.credentials.password}
         type="password"
         onChange={this.onChange}></input>
-        <button className="options btn">Sign Up</button>
+        <Button variant="outlined" className="Button">
+          Sign Up
+        </Button>
       </form>
       <Red>
       Already a member? <Link to="/login">Log In</Link>
