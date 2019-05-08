@@ -111,7 +111,7 @@ class Navbar extends Component {
          
           {/* <Link to="/logout">Log Out</Link> */}
           <Link to="/compare">compare</Link>
-          <Link to="/payment">payment</Link>
+          <Link to="/primeaccess">prime access</Link>
         </nav>
         <nav className="nav-right">
          {/* <Link to="/register">register</Link> */}
