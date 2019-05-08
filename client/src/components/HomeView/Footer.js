@@ -14,8 +14,7 @@ var B = styled.a`
 `;
 
 var Div = styled.div`
-  background-image: url("https://66.media.tumblr.com/81c6db27363b0c87990f58711f4c315c/tumblr_pb467re9mh1tu03dbo7_r1_250.gif");
-`;
+border:solid red 1px`;
 
 export default class Footer extends Component {
   render() {
