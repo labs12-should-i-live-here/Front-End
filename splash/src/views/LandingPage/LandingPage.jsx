@@ -115,7 +115,7 @@ class LandingPage extends React.Component {
           }}
           {...rest}
         />
-        <Parallax image={require("")} filter="dark">
+        <Parallax filter="dark">
           <div className={classes.container}>
             <GridContainer>
               <GridItem xs={12} sm={6} md={6}>
