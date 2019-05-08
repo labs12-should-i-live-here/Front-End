@@ -104,22 +104,24 @@ class LandingPage extends React.Component {
     const {classes, ...rest } = this.props;
     return (
       <div>
+      {/* nav bar */}
         <Header
           color="transparent"
-          brand="Material Kit PRO React"
           links={<HeaderLinks dropdownHoverColor="info" />}
           fixed
           changeColorOnScroll={{
             height: 300,
             color: "info"
           }}
+          //
           {...rest}
         />
-        <Parallax filter="dark">
+      <Parallax filter="dark">
+       { /* background picture*/}
           <div className={classes.container}>
             <GridContainer>
               <GridItem xs={12} sm={6} md={6}>
-                <h1 className={classes.title}>Your Story Starts With Us.</h1>
+                <h1 className={classes.title}>LiveSafe</h1>
                 <h4>
                   Every landing page needs a small description after the big
                   bold title, that's why we added this text here. Add here all

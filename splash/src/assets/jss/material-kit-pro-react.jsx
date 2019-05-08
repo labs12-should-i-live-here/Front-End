@@ -330,7 +330,7 @@ const title = {
   marginTop: "30px",
   marginBottom: "25px",
   minHeight: "32px",
-  fontFamily: `"Roboto Slab", "Times New Roman", serif`
+  fontFamily: `"Segoe UI Emoji", serif`
 };
 
 const cardTitle = {
