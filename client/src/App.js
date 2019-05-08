@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Router } from 'react-router-dom';
+import { Route, Router, Switch } from 'react-router-dom';
 import './scss/App.scss';
 import Home from './views/App/Home.js';
 import Profile from './views/App/Profile';
@@ -7,7 +7,10 @@ import SignUp from './views/App/SignUp.js';
 import Login from './views/App/Login.js';
 import Logout from './views/App/Logout.js';
 import Compare from './views/App/Compare.js';
-import StripePayment from './views/App/StripePayment';
+//stripe
+import StripePayment from './components/StripePayments/StripePayment';
+import { UnpaidPrime } from './views/App/UnpaidPrime';
+//auth0
 import Auth from './Auth0/Auth.js';
 import Callback from './Auth0/Callback.js'
 import history from './Auth0/History'
@@ -37,7 +40,9 @@ function App() {
 				handleAuthentication(props);
 				return <Callback {...props} />
 			}} />
+			{/* stripe */}
       <Route path="/payment" component={StripePayment} />
+			<Route path="/primeaccess" component={UnpaidPrime} />
 		</>
 		</Router>
 		);
