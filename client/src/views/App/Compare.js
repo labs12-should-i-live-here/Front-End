@@ -8,7 +8,7 @@ import "../../scss/Compare.scss"
 
 function Compare() {
   return (
-    <div>
+    <div className="compareBody">
       <Navbar />
       <div className="main-content">
           <div className="left-panel">

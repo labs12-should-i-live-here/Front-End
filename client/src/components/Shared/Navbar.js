@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { withStyles, AppBar, Toolbar, Button, IconButton, Typography, Menu } from "@material-ui/core";
 
 import "../../scss/Navbar.scss";
+import "../../scss/Home.scss";
 
 const styles = {
   root: {
@@ -137,9 +138,9 @@ class Navbar extends Component {
     //   </div>
       
     // </Nav>
-    <AppBar position="static" color="primary">
-      <Toolbar style={{margin: "0% 0% 0% 0%"}}>
-            <Button style={{margin: "0 65% 0 0"}}>LiveSafe</Button>
+    <AppBar position="static" color="primary" style={{margin: "0% 0% 2% 0%"}}>
+      <Toolbar>
+            <Button classsName="liveSafeBTN" style={{margin: "0% 65% 0% 0%"}}>LiveSafe</Button>
         <IconButton aria-label="Menu">
             <Button href="/compare">Compare</Button>
             <Button href="/payment">Payment</Button>

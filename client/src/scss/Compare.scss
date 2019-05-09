@@ -1,7 +1,12 @@
 // borders are for dev purposes
+.compareBody {
+  background-color: rgb(203, 214, 205);
+}
+
+
 .main-content {
   width: 98%;
-  height: 88vh;
+  height: 95vh;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -9,8 +14,9 @@
     width: 58%;
   }
   .right-panel {
-    margin: 1% 0 0 0;
+    margin: 0 0 0 0;
     width: 40%;
+    height: 81%;
     border: 0px solid gray;
     .top-panel {
       height: 50%;
