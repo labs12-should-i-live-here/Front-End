@@ -20,7 +20,7 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
+      <div className="homeBody">
         <Navbar auth={auth} />
         <div className="main-content">
           <div className="left-panel">

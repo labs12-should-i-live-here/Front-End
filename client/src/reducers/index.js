@@ -30,7 +30,7 @@ const initialState = {
   errorStatusCode: null,
   coordinatePredictions: {},
   addingPin: false,
-  pins: [],
+  pins: [], //testing
   deletingPin: false,
   addedPin: 0,
   deletedPin: 0,
@@ -38,7 +38,10 @@ const initialState = {
   fetchingPin: false,
   updatingPin: false,
   updatedPin: 0,
-  pin: 0
+  pin: 0,
+  userId: localStorage.getItem("userId"),
+  pinAddresses: [],
+  fetchingAddress: false
 };
 
 const reducer = (state = initialState, action) => {

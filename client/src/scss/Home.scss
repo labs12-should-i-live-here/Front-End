@@ -1,4 +1,7 @@
-// borders are for dev purposes
+.homeBody {
+  background-color:  rgb(203, 214, 205);
+}
+
 .main-content {
   width: 98%;
   height: 88vh;
@@ -7,11 +10,13 @@
   justify-content: space-between;
   .left-panel {
     width: 58%;
+    height: 90%;
   }
   .right-panel {
     width: 40%;
+    height: 100%;
     border: 1px solid rgb(0, 132, 255);
-    border-radius: 20px;
+    border-radius: 0px;
     .top-panel {
       height: 50%;
       border-bottom: 1px solid rgb(0, 132, 255);

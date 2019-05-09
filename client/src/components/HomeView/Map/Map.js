@@ -8,32 +8,35 @@ import {
   savePin
 } from "../../../actions";
 import "../../../scss/Map.scss";
+import MapboxClient from "@mapbox/mapbox-sdk";
+import axios from "axios";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 class Map extends Component {
+  map;
   state = {
     zoom: 3.1,
     minZoom: 2,
-    coordinates: {
-      latitude: 39.8283,
-      longitude: -98.5795
-    },
+    coordinates: { latitude: 37.8283, longitude: -94.5795 },
     historySelections: {
       fipscode: 17033,
       startyear: 1990,
       endyear: 2014
-    }
+    },
+    pins: this.props.pins
   };
 
   render() {
     return (
-      <div id="map" className="map">
+      <div id="map" ref={el => (this.mapContainer = el)} className="map">
+        {this.props.addingPin
+          ? console.log("adding")
+          : console.log("not adding")}
         <div id="menu" />
         <div id="time-mode">
           <button onClick={this.pastMode}>Past</button>
           <button onClick={this.futureMode}>Future</button>
-          <button onClick={this.addPin}>Add Pin</button>
         </div>
         <div className="slider">Time</div>
       </div>
@@ -43,13 +46,6 @@ class Map extends Component {
   componentDidMount() {
     this.initMap();
   }
-
-  addPin = () => {
-    console.log("adding pin");
-    console.log(this.state.coordinates);
-    // const pinDetails = {from props and state };
-    // this.props.savePin(pinDetails);
-  };
 
   pastMode = () => {
     console.log("pastMode");
@@ -65,7 +61,7 @@ class Map extends Component {
     const { zoom, minZoom } = this.state;
     const { longitude, latitude } = this.state.coordinates;
     const map = new mapboxgl.Map({
-      container: "map",
+      container: this.mapContainer,
       style: "mapbox://styles/brilles/cjv3zbk1u2uw11fqx8i0zgfkj",
       center: [longitude, latitude],
       zoom,
@@ -173,16 +169,59 @@ class Map extends Component {
       });
     });
 
+    map.doubleClickZoom.disable();
+
+    map.on("dblclick", e => {
+      const userId = this.props.userId;
+      const pin = {
+        userId: this.props.userId,
+        LATITUDE: e.lngLat.lat,
+        LONGITUDE: e.lngLat.lng,
+        notes: "Is this working?",
+        home: 0
+      }; // refactor to native format
+
+      // Updates store, DB
+      this.props.pins.push(pin);
+      this.props.savePin(pin);
+
+      const URL = `https://api.mapbox.com/geocoding/v5/mapbox.places/${
+        pin.LONGITUDE
+      },${pin.LATITUDE}.json?access_token=${
+        process.env.REACT_APP_MAPBOX_TOKEN
+      }`;
+      axios
+        .get(URL)
+        .then(res => {
+          // ! DO NOT STORE THE RESPONSES IN A DB, THAT VIOLATES MAPBOX's TOS.
+          this.props.pinAddresses.push(res.data.features[0].place_name);
+          const id = this.props.pins.length - 1;
+          let popup = new mapboxgl.Popup({ offset: 20 }).setHTML(
+            `<h1>${this.props.pinAddresses[id]}</h1>`
+          );
+
+          new mapboxgl.Marker()
+            .setLngLat([pin.LONGITUDE, pin.LATITUDE])
+            .setPopup(popup)
+            .addTo(map);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
+      // TODO: add this area not supported for outside of US
+    });
+
     // add map controls
     map
       .addControl(
         new MapboxGeocoder({
           accessToken: mapboxgl.accessToken,
           mapboxgl,
-          countries: "us"
+          countries: "us",
+          marker: false
         })
       )
-
       .addControl(new mapboxgl.NavigationControl())
       .addControl(new mapboxgl.FullscreenControl())
       .addControl(
@@ -194,32 +233,43 @@ class Map extends Component {
         })
       );
 
-    const popup = new mapboxgl.Popup({ offset: 20 }).setText("USER marker 1");
+    // Populate pins on map
+    this.props.pins.map(pin => {
+      let popup = new mapboxgl.Popup({ offset: 20 }).setText([
+        pin.latitude,
+        pin.longitude // add notes / input for notes etc
+      ]);
 
-    const marker = new mapboxgl.Marker({
-      draggable: true
-    })
-      .setLngLat([longitude, latitude])
-      .setPopup(popup)
-      .addTo(map);
+      new mapboxgl.Marker()
+        .setLngLat([pin.longitude, pin.latitude])
+        .setPopup(popup)
+        .addTo(map);
+    });
 
-    const update = updatedCoordinates => {
-      this.setState({ coordinates: updatedCoordinates });
-      this.props.fetchPredictionData(this.state.coordinates);
-    };
+    // const marker = new mapboxgl.Marker({
+    //   draggable: true
+    // })
+    //   .setLngLat([longitude, latitude])
+    //   .setPopup(popup)
+    //   .addTo(map);
 
-    function onDragEnd() {
-      const lngLat = marker.getLngLat();
+    // const update = updatedCoordinates => {
+    //   this.setState({ coordinates: updatedCoordinates });
+    //   this.props.fetchPredictionData(this.state.coordinates);
+    // };
 
-      const updatedCoordinates = {
-        latitude: lngLat.lat.toPrecision(8),
-        longitude: lngLat.lng.toPrecision(8)
-      };
-      update(updatedCoordinates);
-    }
+    // function onDragEnd() {
+    //   const lngLat = marker.getLngLat();
 
-    this.props.fetchPredictionData(this.state.coordinates);
-    marker.on("dragend", onDragEnd);
+    //   const updatedCoordinates = {
+    //     latitude: lngLat.lat.toPrecision(8),
+    //     longitude: lngLat.lng.toPrecision(8)
+    //   };
+    //   update(updatedCoordinates);
+    // }
+
+    // this.props.fetchPredictionData(this.state.coordinates);
+    // marker.on("dragend", onDragEnd);
   };
 }
 
@@ -228,13 +278,21 @@ const mapStateToProps = ({
   coordinatePredictions,
   fetchingHistoricalData,
   historySelections,
-  savePin
+  pins,
+  addingPin,
+  userId,
+  fetchingAddress,
+  pinAddresses
 }) => ({
   fetchingPredictionData,
   coordinatePredictions,
   fetchingHistoricalData,
   historySelections,
-  savePin
+  pins,
+  addingPin,
+  userId,
+  fetchingAddress,
+  pinAddresses
 });
 
 export default connect(
