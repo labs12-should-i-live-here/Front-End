@@ -181,27 +181,36 @@ class Map extends Component {
         notes: "Is this working?",
         home: 0
       }; // refactor to native format
+
+      // Updates store, DB
       this.props.pins.push(pin);
-      this.props.getPinAddress(pin);
+      this.props.savePin(pin);
 
-      const renderMarker = () => {
-        const id = this.props.pins.length - 1;
-        console.log(this.props.pinAddresses[id]);
-        let popup = new mapboxgl.Popup({ offset: 20 }).setHTML(
-          `<h1>${this.props.pinAddresses[id]}</h1>`
-        );
+      const URL = `https://api.mapbox.com/geocoding/v5/mapbox.places/${
+        pin.LONGITUDE
+      },${pin.LATITUDE}.json?access_token=${
+        process.env.REACT_APP_MAPBOX_TOKEN
+      }`;
+      axios
+        .get(URL)
+        .then(res => {
+          // ! DO NOT STORE THE RESPONSES IN A DB, THAT VIOLATES MAPBOX's TOS.
+          this.props.pinAddresses.push(res.data.features[0].place_name);
+          const id = this.props.pins.length - 1;
+          let popup = new mapboxgl.Popup({ offset: 20 }).setHTML(
+            `<h1>${this.props.pinAddresses[id]}</h1>`
+          );
 
-        new mapboxgl.Marker()
-          .setLngLat([pin.LONGITUDE, pin.LATITUDE])
-          .setPopup(popup)
-          .addTo(map);
-      };
-
-      setTimeout(renderMarker, 2000); //! REFACTOR TO ASYNC/Conditional render
+          new mapboxgl.Marker()
+            .setLngLat([pin.LONGITUDE, pin.LATITUDE])
+            .setPopup(popup)
+            .addTo(map);
+        })
+        .catch(error => {
+          console.log(error);
+        });
 
       // TODO: add this area not supported for outside of US
-
-      this.props.savePin(pin);
     });
 
     // add map controls
