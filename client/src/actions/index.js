@@ -51,7 +51,7 @@ export const GET_USERS_FAILURE = "GET_USERS_FAILURE";
 
 export const getUsers = () => dispatch => {
   axios
-    .get("https://use-my-tech-stuff.herokuapp.com/api/users")
+    .get("https://labs12.herokuapp.com/users")
     .then(res => dispatch({ type: GET_USERS_SUCCESS, payload: res.data }))
     .catch(err => dispatch({ type: GET_USERS_FAILURE, payload: err }));
 };
@@ -64,7 +64,7 @@ export const ADD_PIN_FAILURE = "ADD_PIN_FAILURE";
 export const savePin = pin => dispatch => {
   dispatch({ type: ADD_PIN_START });
   console.log(pin);
-  const URL = `https://labs12.herokuapp.com/pin/${pin.userId}/pins`;
+  const URL = `https://labs12.herokuapp.com/pin/pins`;
   axios
     .post(URL, pin)
     .then(res => console.log(res))
@@ -76,11 +76,11 @@ export const FETCH_PINS_START = "FETCH_PINS_START";
 export const FETCH_PINS_SUCCESS = "FETCH_PINS_SUCCESS";
 export const FETCH_PINS_FAILURE = "FETCH_PINS_FAILURE";
 
-export const getPins = userId => dispatch => {
+export const getPins = pin => dispatch => {
   dispatch({ type: FETCH_PINS_START });
-  const URL = "";
+  const URL = `https://labs12.herokuapp.com/pin/pins/${pin.userId}`;
   axios
-    .get(URL, userId)
+    .get(URL, pin)
     .then(res => console.log(res))
     .catch(error => console.log(error));
 };
@@ -90,11 +90,11 @@ export const FETCH_PIN_START = "FETCH_PIN_START";
 export const FETCH_PIN_SUCCESS = "FETCH_PIN_SUCCESS";
 export const FETCH_PIN_FAILURE = "FETCH_PIN_FAILURE";
 
-export const getPin = getPinDetails => dispatch => {
+export const getPin = pin => dispatch => {
   dispatch({ type: FETCH_PIN_START });
-  const URL = "";
+  const URL = `https://labs12.herokuapp.com/pin/pins/${pin.userId}`;
   axios
-    .get(URL, getPinDetails)
+    .get(URL, ...pin)
     .then(res => console.log(res))
     .catch(error => console.log(error));
 };
@@ -104,11 +104,11 @@ export const UPDATE_PINS_START = "UPDATE_PINS_START";
 export const UPDATE_PINS_SUCCESS = "UPDATE_PINS_SUCCESS";
 export const UPDATE_PINS_FAILURE = "UPDATE_PINS_FAILURE";
 
-export const updatePins = updatePinDetails => dispatch => {
+export const updatePins = pin => dispatch => {
   dispatch({ type: UPDATE_PINS_START });
-  const URL = "";
+  const URL = `https://labs12.herokuapp.com/pin/pins/${pin.userId}`;
   axios
-    .put(URL, updatePinDetails)
+    .put(URL, ...pin)
     .then(res => console.log(res))
     .catch(error => console.log(error));
 };
@@ -118,9 +118,9 @@ export const DELETE_PIN_START = "DELETE_PIN_START";
 export const DELETE_PIN_SUCCESS = "DELETE_PIN_START";
 export const DELETE_PIN_FAILURE = "DELETE_PIN_FAILURE";
 
-export const deletePin = deletePinDetails => dispatch => {
+export const deletePin = pin => dispatch => {
   dispatch({ type: DELETE_PIN_START });
-  const URL = "https://labs12.herokuapp.com/:id/pins/:id";
+  const URL = `https://labs12.herokuapp.com/pin/pins/${pin.userId}`;
   axios
     .delete(URL)
     .then(res => console.log(res))
