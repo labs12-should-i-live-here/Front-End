@@ -8,6 +8,8 @@ import {
   savePin
 } from "../../../actions";
 import "../../../scss/Map.scss";
+import MapboxClient from "@mapbox/mapbox-sdk";
+import axios from "axios";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
@@ -167,9 +169,10 @@ class Map extends Component {
       });
     });
 
+    map.doubleClickZoom.disable();
+
     map.on("dblclick", e => {
       const userId = this.props.userId;
-      console.log(userId);
       const pin = {
         userId: this.props.userId,
         LATITUDE: e.lngLat.lat,
@@ -177,18 +180,36 @@ class Map extends Component {
         notes: "Is this working?",
         home: 0
       }; // refactor to native format
+
+      // Updates store, DB
       this.props.pins.push(pin);
-
-      let popup = new mapboxgl.Popup({ offset: 20 }).setText(
-        `Notes: ${pin.notes}`
-      );
-
-      new mapboxgl.Marker()
-        .setLngLat([pin.LONGITUDE, pin.LATITUDE])
-        .setPopup(popup)
-        .addTo(map);
-
       this.props.savePin(pin);
+
+      const URL = `https://api.mapbox.com/geocoding/v5/mapbox.places/${
+        pin.LONGITUDE
+      },${pin.LATITUDE}.json?access_token=${
+        process.env.REACT_APP_MAPBOX_TOKEN
+      }`;
+      axios
+        .get(URL)
+        .then(res => {
+          // ! DO NOT STORE THE RESPONSES IN A DB, THAT VIOLATES MAPBOX's TOS.
+          this.props.pinAddresses.push(res.data.features[0].place_name);
+          const id = this.props.pins.length - 1;
+          let popup = new mapboxgl.Popup({ offset: 20 }).setHTML(
+            `<h1>${this.props.pinAddresses[id]}</h1>`
+          );
+
+          new mapboxgl.Marker()
+            .setLngLat([pin.LONGITUDE, pin.LATITUDE])
+            .setPopup(popup)
+            .addTo(map);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
+      // TODO: add this area not supported for outside of US
     });
 
     // add map controls
@@ -198,7 +219,7 @@ class Map extends Component {
           accessToken: mapboxgl.accessToken,
           mapboxgl,
           countries: "us",
-          popup: true
+          marker: false
         })
       )
       .addControl(new mapboxgl.NavigationControl())
@@ -259,7 +280,9 @@ const mapStateToProps = ({
   historySelections,
   pins,
   addingPin,
-  userId
+  userId,
+  fetchingAddress,
+  pinAddresses
 }) => ({
   fetchingPredictionData,
   coordinatePredictions,
@@ -267,7 +290,9 @@ const mapStateToProps = ({
   historySelections,
   pins,
   addingPin,
-  userId
+  userId,
+  fetchingAddress,
+  pinAddresses
 });
 
 export default connect(

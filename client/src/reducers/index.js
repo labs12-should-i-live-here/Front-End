@@ -39,7 +39,9 @@ const initialState = {
   updatingPin: false,
   updatedPin: 0,
   pin: 0,
-  userId: 1
+  userId: localStorage.getItem("userId"),
+  pinAddresses: [],
+  fetchingAddress: false
 };
 
 const reducer = (state = initialState, action) => {
