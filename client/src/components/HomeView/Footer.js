@@ -1,6 +1,3 @@
-import React, { Component } from 'react'
-
-
 import React, { Component } from "react";
 import styled from "styled-components";
 import { IoLogoGithub } from "react-icons/io";
@@ -16,13 +13,11 @@ var B = styled.a`
   color: blueviolet;
 `;
 
-var Div = styled.div`
-border:solid red 1px;`;
 
   export default class Footer extends Component {
     render() {
       return (
-        <Div>
+        <div>
           <Foot>
             <nav>
               <a href='https://github.com/labs12-should-i-live-here/Front-End'>
@@ -31,7 +26,7 @@ border:solid red 1px;`;
               <B>sitemap</B>
             </nav>
           </Foot>
-        </Div>
+        </div>
       )
     }
   }
