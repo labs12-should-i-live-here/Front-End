@@ -8,6 +8,8 @@ import {
   savePin
 } from "../../../actions";
 import "../../../scss/Map.scss";
+import MapboxClient from "@mapbox/mapbox-sdk";
+import axios from "axios";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
@@ -181,12 +183,22 @@ class Map extends Component {
       }; // refactor to native format
       this.props.pins.push(pin);
 
-      let popup = new mapboxgl.Popup({ offset: 20 }).setHTML("<h1>title</h1>");
+      let popup = new mapboxgl.Popup({ offset: 20 }).setHTML(
+        "<div><h1>1234 Rocket Road</h1><input><button/>+</div>"
+      );
 
       new mapboxgl.Marker()
         .setLngLat([pin.LONGITUDE, pin.LATITUDE])
         .setPopup(popup)
         .addTo(map);
+
+      axios
+        .get(
+          `https://api.mapbox.com/geocoding/v5/mapbox.places/${pin.LONGITUDE},${
+            pin.LATITUDE
+          }.json?access_token=pk.eyJ1IjoiYnJpbGxlcyIsImEiOiJjanJkdjRlOWwwbTNsNDlwbzU0ZDhreWoyIn0.yxDY7UlW1i-3IrB9aQW7bQ`
+        )
+        .then(res => console.log(res));
 
       this.props.savePin(pin);
     });
