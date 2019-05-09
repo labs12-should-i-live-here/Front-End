@@ -1,12 +1,22 @@
 @import url('https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet');
 
 $pacifico: 'Pacifico', cursive;
+$break-small: 500px;
+$break-large: 800px;
 
 .Navbar {
   display: flexbox;
   flex-flow: row;
   padding-left: 3%;
   padding: 10px 0;
+  @media screen and (max-width: $break-small) {
+    max-width: 500px;
+    float: none;
+  }
+  @media screen and (max-width: $break-small) {
+    max-width: 800px;
+    float: none;
+  }
   .nav-right{
     display: inherit;
     text-align: right;

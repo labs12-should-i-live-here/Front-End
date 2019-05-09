@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import { Navbar as Nav /*, Button*/ } from "react-bootstrap";
 import PropTypes from 'prop-types';
 import { withStyles, AppBar, Toolbar, Button, IconButton, Typography, Menu } from "@material-ui/core";
-
-import "../../scss/Navbar.scss";
-import "../../scss/Home.scss";
+import '../../scss/Navbar.scss';
 
 const styles = {
   root: {
@@ -138,8 +136,8 @@ class Navbar extends Component {
     //   </div>
       
     // </Nav>
-    <AppBar position="static" color="primary" style={{margin: "0% 0% 2% 0%"}}>
-      <Toolbar>
+    <AppBar className="Navbar" position="static" color="primary" style={{marginBottom: "2%"}}>
+      <Toolbar className="Navbar">
             <Button classsName="liveSafeBTN" style={{margin: "0% 65% 0% 0%"}}>LiveSafe</Button>
         <IconButton aria-label="Menu">
             <Button href="/compare">Compare</Button>
