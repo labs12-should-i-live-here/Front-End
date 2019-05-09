@@ -2,6 +2,7 @@ auth0
 import Auth from './Auth';
 import { Navbar, Button } from 'react-bootstrap';
 import './App.css';
+import '../../scss/SignUp';
 
 const auth = new Auth();
 auth.login();
