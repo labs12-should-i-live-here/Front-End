@@ -126,29 +126,3 @@ export const deletePin = deletePinDetails => dispatch => {
     .then(res => console.log(res))
     .catch(error => console.log(error)); //! need to replace ID
 };
-
-// MAP: Reverse geocoding
-export const FETCH_ADDRESS_START = "FETCH_ADDRESS_START";
-export const FETCH_ADDRESS_SUCCESS = "FETCH_ADDRESS_SUCCESS";
-export const FETCH_ADDRESS_FAILURE = "FETCH_ADDRESS_FAILURE";
-
-export const getPinAddress = pin => dispatch => {
-  dispatch({ type: FETCH_ADDRESS_START });
-  const URL = `https://api.mapbox.com/geocoding/v5/mapbox.places/${
-    pin.LONGITUDE
-  },${pin.LATITUDE}.json?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`;
-  axios
-    .get(URL)
-    .then(res => {
-      dispatch({
-        type: FETCH_ADDRESS_SUCCESS,
-        payload: res.data.features[0].place_name
-      });
-    })
-    .catch(error => {
-      dispatch({
-        type: FETCH_ADDRESS_FAILURE,
-        payload: error
-      });
-    });
-};

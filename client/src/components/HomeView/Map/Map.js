@@ -5,8 +5,7 @@ import { connect } from "react-redux";
 import {
   fetchPredictionData,
   fetchHistoricalData,
-  savePin,
-  getPinAddress
+  savePin
 } from "../../../actions";
 import "../../../scss/Map.scss";
 import MapboxClient from "@mapbox/mapbox-sdk";
@@ -298,5 +297,5 @@ const mapStateToProps = ({
 
 export default connect(
   mapStateToProps,
-  { fetchPredictionData, fetchHistoricalData, savePin, getPinAddress }
+  { fetchPredictionData, fetchHistoricalData, savePin }
 )(Map);
