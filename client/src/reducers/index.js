@@ -39,7 +39,7 @@ const initialState = {
   updatingPin: false,
   updatedPin: 0,
   pin: 0,
-  userId: 1
+  userId: localStorage.getItem("userId")
 };
 
 const reducer = (state = initialState, action) => {

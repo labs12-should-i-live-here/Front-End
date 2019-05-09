@@ -167,6 +167,8 @@ class Map extends Component {
       });
     });
 
+    map.doubleClickZoom.disable();
+
     map.on("dblclick", e => {
       const userId = this.props.userId;
       console.log(userId);
@@ -179,9 +181,7 @@ class Map extends Component {
       }; // refactor to native format
       this.props.pins.push(pin);
 
-      let popup = new mapboxgl.Popup({ offset: 20 }).setText(
-        `Notes: ${pin.notes}`
-      );
+      let popup = new mapboxgl.Popup({ offset: 20 }).setHTML("<h1>title</h1>");
 
       new mapboxgl.Marker()
         .setLngLat([pin.LONGITUDE, pin.LATITUDE])
