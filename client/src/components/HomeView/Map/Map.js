@@ -174,7 +174,6 @@ class Map extends Component {
 
     map.on("dblclick", e => {
       const userId = this.props.userId;
-      console.log(userId);
       const pin = {
         userId: this.props.userId,
         LATITUDE: e.lngLat.lat,
@@ -183,17 +182,25 @@ class Map extends Component {
         home: 0
       }; // refactor to native format
       this.props.pins.push(pin);
-
-      let popup = new mapboxgl.Popup({ offset: 20 }).setHTML(
-        "<div><h1>1234 Rocket Road</h1><input><button/>+</div>"
-      );
-
-      new mapboxgl.Marker()
-        .setLngLat([pin.LONGITUDE, pin.LATITUDE])
-        .setPopup(popup)
-        .addTo(map);
-
       this.props.getPinAddress(pin);
+
+      const renderMarker = () => {
+        const id = this.props.pins.length - 1;
+        console.log(this.props.pinAddresses[id]);
+        let popup = new mapboxgl.Popup({ offset: 20 }).setHTML(
+          `<h1>${this.props.pinAddresses[id]}</h1>`
+        );
+
+        new mapboxgl.Marker()
+          .setLngLat([pin.LONGITUDE, pin.LATITUDE])
+          .setPopup(popup)
+          .addTo(map);
+      };
+
+      setTimeout(renderMarker, 2000); //! REFACTOR TO ASYNC/Conditional render
+
+      // TODO: add this area not supported for outside of US
+
       this.props.savePin(pin);
     });
 
@@ -204,7 +211,7 @@ class Map extends Component {
           accessToken: mapboxgl.accessToken,
           mapboxgl,
           countries: "us",
-          popup: true
+          marker: false
         })
       )
       .addControl(new mapboxgl.NavigationControl())
@@ -265,7 +272,9 @@ const mapStateToProps = ({
   historySelections,
   pins,
   addingPin,
-  userId
+  userId,
+  fetchingAddress,
+  pinAddresses
 }) => ({
   fetchingPredictionData,
   coordinatePredictions,
@@ -273,7 +282,9 @@ const mapStateToProps = ({
   historySelections,
   pins,
   addingPin,
-  userId
+  userId,
+  fetchingAddress,
+  pinAddresses
 });
 
 export default connect(
