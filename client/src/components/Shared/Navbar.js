@@ -124,17 +124,17 @@ class Navbar extends Component {
     //     <nav className="nav-left">
 
          
-    //       {/* <Link to="/logout">Log Out</Link> */}
-    //       <Link to="/compare">compare</Link>
-    //       <Link to="/payment">payment</Link>
-    //     </nav>
-    //     <nav className="nav-right">
-    //      {/* <Link to="/register">register</Link> */}
-    //       {/* <Link to="/login">{this.state.message}</Link> */}
-    //       <Greeting message = {this.state.message}></Greeting>
-    //     </nav>
-    //       {/* <p>{test}</p> */}
-    //   </div>
+          {/* <Link to="/logout">Log Out</Link> */}
+          <Link to="/compare">compare</Link>
+          <Link to="/primeaccess">prime access</Link>
+        </nav>
+        <nav className="nav-right">
+         {/* <Link to="/register">register</Link> */}
+          {/* <Link to="/login">{this.state.message}</Link> */}
+          <Greeting message = {this.state.message}></Greeting>
+        </nav>
+          {/* <p>{test}</p> */}
+      </div>
       
     // </Nav>
     <AppBar position="static">
