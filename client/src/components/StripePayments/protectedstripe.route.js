@@ -14,6 +14,8 @@ export const ProtectedStripe = ({ component: Component, ...rest }) => {
   );
 };
 
+
+//Check for authentication
 {/* <Route
       {...rest}
       render={props => {
