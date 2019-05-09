@@ -19,7 +19,10 @@ import {
   UPDATE_PINS_FAILURE,
   DELETE_PIN_START,
   DELETE_PIN_SUCCESS,
-  DELETE_PIN_FAILURE
+  DELETE_PIN_FAILURE,
+  FETCH_ADDRESS_START,
+  FETCH_ADDRESS_SUCCESS,
+  FETCH_ADDRESS_FAILURE
 } from "../actions/index";
 
 const initialState = {
@@ -39,7 +42,9 @@ const initialState = {
   updatingPin: false,
   updatedPin: 0,
   pin: 0,
-  userId: localStorage.getItem("userId")
+  userId: localStorage.getItem("userId"),
+  pinAddresses: [],
+  fetchingAddress: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -168,6 +173,25 @@ const reducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
         deletingPin: false,
+        errorStatusCode: action.payload
+      };
+    case FETCH_ADDRESS_START:
+      return {
+        ...state,
+        fetchingAddress: true
+      };
+    case FETCH_ADDRESS_SUCCESS:
+      return {
+        ...state,
+        fetchingAddress: false,
+        pinAddresses: [...state.pinAddresses, action.payload]
+      };
+
+    case FETCH_ADDRESS_FAILURE:
+      return {
+        ...state,
+        fetchingAddress: false,
+        error: action.payload,
         errorStatusCode: action.payload
       };
     default:

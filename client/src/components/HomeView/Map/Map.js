@@ -5,7 +5,8 @@ import { connect } from "react-redux";
 import {
   fetchPredictionData,
   fetchHistoricalData,
-  savePin
+  savePin,
+  getPinAddress
 } from "../../../actions";
 import "../../../scss/Map.scss";
 import MapboxClient from "@mapbox/mapbox-sdk";
@@ -192,14 +193,7 @@ class Map extends Component {
         .setPopup(popup)
         .addTo(map);
 
-      axios
-        .get(
-          `https://api.mapbox.com/geocoding/v5/mapbox.places/${pin.LONGITUDE},${
-            pin.LATITUDE
-          }.json?access_token=pk.eyJ1IjoiYnJpbGxlcyIsImEiOiJjanJkdjRlOWwwbTNsNDlwbzU0ZDhreWoyIn0.yxDY7UlW1i-3IrB9aQW7bQ`
-        )
-        .then(res => console.log(res));
-
+      this.props.getPinAddress(pin);
       this.props.savePin(pin);
     });
 
@@ -284,5 +278,5 @@ const mapStateToProps = ({
 
 export default connect(
   mapStateToProps,
-  { fetchPredictionData, fetchHistoricalData, savePin }
+  { fetchPredictionData, fetchHistoricalData, savePin, getPinAddress }
 )(Map);
