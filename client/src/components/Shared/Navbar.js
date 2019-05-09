@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Navbar as Nav /*, Button*/ } from "react-bootstrap";
 import PropTypes from 'prop-types';
-import { withStyles, AppBar, Toolbar, Button, IconButton, Typography, Menu } from "@material-ui/core";
+import { withStyles, AppBar, Toolbar, Button, Grid, IconButton, Typography, Menu } from "@material-ui/core";
 import '../../scss/Navbar.scss';
 
 const styles = {
@@ -138,13 +137,17 @@ class Navbar extends Component {
     // </Nav>
     <AppBar className="Navbar" position="static" color="primary" style={{marginBottom: "2%"}}>
       <Toolbar className="Navbar">
+          <Grid>
             <Button classsName="liveSafeBTN" style={{margin: "0% 65% 0% 0%"}}>LiveSafe</Button>
         <IconButton aria-label="Menu">
-            <Button href="/compare">Compare</Button>
+          <Grid>
+          <Button href="/compare">Compare</Button>
             <Button href="/payment">Payment</Button>
             <Button color="error">Register</Button>
             <Button color="error">Login</Button>
+          </Grid>       
         </IconButton>  
+        </Grid>
       </Toolbar>
     </AppBar>
     );

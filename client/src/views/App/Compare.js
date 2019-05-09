@@ -1,4 +1,6 @@
 import React from "react";
+import { Grid } from "@material-ui/core";
+
 import Navbar from "../../components/Shared/Navbar.js";
 import Footer from "../../components/HomeView/Footer";
 import TwinMap from "../../components/CompareView/TwinMap";
@@ -10,22 +12,23 @@ function Compare() {
   return (
     <div className="compareBody">
       <Navbar />
-      <div className="main-content">
-          <div className="left-panel">
+      <Grid className="main-content" container spacing={2}>
+          <Grid className="left-panel" item xs={12} md={8}>
             <TwinMap />
-          </div>
-          <div className="right-panel">
-            <div className="top-panel">
+          </Grid>
+          <Grid className="right-panel" item xs={12} md={4}>
+            <Grid className="top-panel">
               <Stats />
-            </div>
-            <div className="bottom-panel">
+            </Grid>
+            <Grid className="bottom-panel">
               <CompareDeck />
-            </div>
-          </div>
-        </div>
-        <footer>
+            </Grid>
+          </Grid>
+          <footer>
           <Footer />
         </footer>
+        </Grid>
+
       </div>
   );
 }
