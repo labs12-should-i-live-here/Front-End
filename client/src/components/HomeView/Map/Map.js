@@ -8,7 +8,6 @@ import {
   savePin
 } from "../../../actions";
 import "../../../scss/Map.scss";
-import MapboxClient from "@mapbox/mapbox-sdk";
 import axios from "axios";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
@@ -38,7 +37,6 @@ class Map extends Component {
           <button onClick={this.pastMode}>Past</button>
           <button onClick={this.futureMode}>Future</button>
         </div>
-        <div className="slider">Time</div>
       </div>
     );
   }
@@ -121,6 +119,19 @@ class Map extends Component {
         }
       });
 
+      map.addLayer({
+        id: "Quakes",
+        type: "circle",
+        source: {
+          type: "vector",
+          url: "mapbox://brilles.2xbld1lx"
+        },
+        "source-layer": "quakes1-1p0ws7",
+        paint: {
+          "circle-color": "red"
+        }
+      });
+
       map.on("click", "Counties", e => {
         new mapboxgl.Popup()
           .setLngLat(e.lngLat)
@@ -131,7 +142,7 @@ class Map extends Component {
         map.setFilter("Counties Highlighted", filter);
       });
 
-      const toggleableLayers = ["Quake Risk", "Counties"];
+      const toggleableLayers = ["Quake Risk", "Counties", "Quakes"];
 
       toggleableLayers.map((layer, index) => {
         const id = toggleableLayers[index];
@@ -142,6 +153,7 @@ class Map extends Component {
         map.setLayoutProperty("Quake Risk", "visibility", "none");
         map.setLayoutProperty("Counties", "visibility", "none");
         map.setLayoutProperty("Counties Highlighted", "visibility", "none");
+        map.setLayoutProperty("Quakes", "visibility", "none");
 
         link.onclick = function(e) {
           // toggle layer
