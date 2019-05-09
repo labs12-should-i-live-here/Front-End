@@ -32,7 +32,7 @@ class Map extends Component {
         {this.props.addingPin
           ? console.log("adding")
           : console.log("not adding")}
-        <div id="menu" />
+        <div id="menu-a" />
         <div id="time-mode">
           <button onClick={this.pastMode}>Past</button>
           <button onClick={this.futureMode}>Future</button>
@@ -176,7 +176,7 @@ class Map extends Component {
           }
         };
 
-        const layers = document.getElementById("menu");
+        const layers = document.getElementById("menu-a");
         return layers.appendChild(link);
       });
     });
