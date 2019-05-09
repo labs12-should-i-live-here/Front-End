@@ -16,7 +16,7 @@ import Callback from './Auth0/Callback.js'
 import history from './Auth0/History'
 // import { Navbar, Button } from 'react-bootstrap';
 // import './App.css';
-import { ThemeProvider } from '@material-ui/styles'
+import { MuiThemeProvider } from '@material-ui/core/styles'
 import theme1 from './materialUI/Theme1'
 
 const auth = new Auth();
@@ -29,7 +29,7 @@ const handleAuthentication = (nextState, replace) => {
 
 function App() {
 		return (
-			<ThemeProvider theme={theme1}>
+			<MuiThemeProvider theme={theme1}>
 			<Router history={history} component={Login}>
 		<>
 		
@@ -49,7 +49,7 @@ function App() {
 			<Route path="/primeaccess" component={UnpaidPrime} />
 		</>
 		</Router>
-		</ThemeProvider>
+		</MuiThemeProvider>
 		);
 	  }
 

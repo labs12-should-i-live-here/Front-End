@@ -124,28 +124,27 @@ class Navbar extends Component {
     //     <nav className="nav-left">
 
          
-          {/* <Link to="/logout">Log Out</Link> */}
-          <Link to="/compare">compare</Link>
-          <Link to="/primeaccess">prime access</Link>
-        </nav>
-        <nav className="nav-right">
-         {/* <Link to="/register">register</Link> */}
-          {/* <Link to="/login">{this.state.message}</Link> */}
-          <Greeting message = {this.state.message}></Greeting>
-        </nav>
-          {/* <p>{test}</p> */}
-      </div>
+    //       {/* <Link to="/logout">Log Out</Link> */}
+    //       <Link to="/compare">compare</Link>
+    //       <Link to="/primeaccess">prime access</Link>
+    //     </nav>
+    //     <nav className="nav-right">
+    //      {/* <Link to="/register">register</Link> */}
+    //       {/* <Link to="/login">{this.state.message}</Link> */}
+    //       <Greeting message = {this.state.message}></Greeting>
+    //     </nav>
+    //       {/* <p>{test}</p> */}
+    //   </div>
       
     // </Nav>
-    <AppBar position="static">
-      <Toolbar>
+    <AppBar position="static" color="primary">
+      <Toolbar style={{margin: "0% 0% 0% 0%"}}>
+            <Button style={{margin: "0 65% 0 0"}}>LiveSafe</Button>
         <IconButton aria-label="Menu">
-          <Typography variant="h6">
-            <Button href="/compare" color="white">Compare</Button>
+            <Button href="/compare">Compare</Button>
             <Button href="/payment">Payment</Button>
-          </Typography>
-            <Button color="inherit">Register</Button>
-            <Button color="inherit">Login</Button>
+            <Button color="error">Register</Button>
+            <Button color="error">Login</Button>
         </IconButton>  
       </Toolbar>
     </AppBar>

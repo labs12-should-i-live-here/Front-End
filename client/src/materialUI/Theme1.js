@@ -3,11 +3,19 @@ import { purple, orange } from '@material-ui/core/colors';
 
 const theme1 = createMuiTheme({
     palette: {
-        primary: '#5afc7d',
-        secondary: '#5afcda',
-        third: '#5acdfc',
-        fourth: '#5a7cfc',
-        fifth: '#895ae1'
+        primary: {
+            main: '#5a7cfc',
+            light: '#5acdfc',
+            medium: '#895ae1',
+            contrastText: '#5acdfc'
+        },
+        secondary: {
+            main: '#5afcda',
+            dark: '#5afc7d'
+        },
+        error: {
+            main: '#895ae1'
+        },
       },
       typography: {
         fontFamily: [
