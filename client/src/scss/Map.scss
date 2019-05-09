@@ -11,6 +11,13 @@
       padding-right: 0px;
     }
   }
+  .mapboxgl-popup-content {
+    font-size: 12px;
+    h3 {
+      font-size: 13px;
+      font-weight: bold;
+    }
+  }
 }
 
 #menu-a {

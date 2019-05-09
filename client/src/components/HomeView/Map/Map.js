@@ -209,7 +209,9 @@ class Map extends Component {
           this.props.pinAddresses.push(res.data.features[0].place_name);
           const id = this.props.pins.length - 1;
           let popup = new mapboxgl.Popup({ offset: 20 }).setHTML(
-            `<h1>${this.props.pinAddresses[id]}</h1>`
+            `<h3>Address:</h3> <p>${
+              this.props.pinAddresses[id]
+            }</p> <p><h3>Notes:</h3> -Not too many earthquakes here. Seems kinda safe. 😊</p> <form><input placeholder="Add a note..." /><button>Add</form?`
           );
 
           new mapboxgl.Marker()
