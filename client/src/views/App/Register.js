@@ -34,7 +34,7 @@ class App extends Component {
 		const { isAuthenticated } = this.props.auth;
 	
 		return (
-		  <div>
+		  <div class="registerBG">
 			<Navbar fluid>
 			  <Navbar.Header>
 				<Navbar.Brand>
