@@ -9,14 +9,19 @@
     width: 58%;
   }
   .right-panel {
+    margin: 1% 0 0 0;
     width: 40%;
-    border: 1px solid#0366d6;
+    border: 0px solid gray;
     .top-panel {
       height: 50%;
-      border-bottom: 1px solid #0366d6;
-    }
-    .bottom-panel {
-      height: 50%;
+      border-bottom: 0px solid gray;
+      background-color: #a1c8e9;
+      border-bottom: 1px solid gray;
+      }
+      .bottom-panel {
+        height: 50%;
+        background-color: #a1c8e9;
+
+      }
     }
   }
-}
