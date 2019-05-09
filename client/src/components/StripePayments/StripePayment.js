@@ -1,6 +1,6 @@
 import React from "react";
-import Navbar from "../../components/Shared/Navbar.js";
-import StripeButton from "../../components/StripePayments/StripeButton.js";
+import Navbar from "../Shared/Navbar.js";
+import StripeButton from "./StripeButton.js";
 
 
 
