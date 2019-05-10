@@ -5,17 +5,33 @@ export const FETCH_PREDICTION_DATA_START = "FETCH_PREDICTION_DATA_START";
 export const FETCH_PREDICTION_DATA_SUCCESS = "FETCH_PREDICTION_DATA_SUCCESS";
 export const FETCH_PREDICTION_DATA_FAILURE = "FETCH_PREDICTION_DATA_FAILURE";
 
+
+
+
 export const fetchPredictionData = coordinates => dispatch => {
   dispatch({ type: FETCH_PREDICTION_DATA_START });
+
+  let { latitude, longitude } = coordinates;
+  //console.log('coordinates are ', latitude, longitude)
+
+  let request = {
+    latitude: parseInt(latitude),
+    longitude: parseInt(longitude),
+    years: 25
+  }
+  //console.log(request)
+  //
   axios
-    .post("https://d2drg1tc2gs4lr.cloudfront.net/prediction", coordinates)
+    .post("https://d2drg1tc2gs4lr.cloudfront.net/allpredictions", request)
     .then(res =>
       dispatch({ type: FETCH_PREDICTION_DATA_SUCCESS, payload: res.data })
     )
     .catch(error => {
+      console.log( 'in prediction call. error :', error)
       dispatch({
         type: FETCH_PREDICTION_DATA_FAILURE,
-        payload: error.response
+        payload: error.response,
+        
       });
     });
 };

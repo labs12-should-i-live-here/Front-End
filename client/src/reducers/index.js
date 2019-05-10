@@ -13,7 +13,7 @@ const initialState = {
   fipsCodePredictions: {},
   error: "",
   errorStatusCode: null,
-  coordinatePredictions: {}
+  coordinatePredictions: { } //prediction: { dry_spells : { 2019: {avg : 0, max: 0 }}, extreme_cold_events : { 2019: {avg : 0, max: 0 }}} 
 };
 
 const reducer = (state = initialState, action) => {

@@ -8,11 +8,11 @@ import "../../scss/Navbar.scss";
 
 function Greeting(props) {
   const isLoggedIn = localStorage.getItem('isLoggedIn');
-      
+  const user = localStorage.getItem('username');
   if (isLoggedIn) {
-    const user = localStorage.getItem('username');
+    
     let welcome = `Welcome, ${user}`;
-    return <h3>{props.message}<Link to="/logout"><button>Log Out</button></Link></h3>;
+    return <h3>{welcome}<Link to="/logout"><button>Log Out</button></Link></h3>;
   }    
     
   else 

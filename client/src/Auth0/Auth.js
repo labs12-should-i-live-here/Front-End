@@ -33,7 +33,7 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: 'dev-sz7on0tz.auth0.com',
     clientID: 'tNlC3QYcN3D0WbM0d3SKvxKHXXQJxUZv',
-    redirectUri: 'https://livesafe.netlify.com/callback',//'https://livesafe.netlify.com/callback', //'http://localhost:3000/callback',  //'https://livesafe.netlify.com/callback',
+    redirectUri: 'http://localhost:3000/callback',//'https://livesafe.netlify.com/callback', //'http://localhost:3000/callback',  //'https://livesafe.netlify.com/callback',
     responseType: 'token id_token',
     scope: 'openid profile'
   });
@@ -73,8 +73,10 @@ export default class Auth {
             console.log('error', err)
           console.log('trying to get userinfo',JSON.stringify(user));
           localStorage.setItem( 'username', user.given_name);
+          localStorage.setItem( 'userid', user.sub);
           const API_URL = 'https://labs12.herokuapp.com';  //http://localhost:3000
           const userid = user.sub;
+          //localStorage.setItem( 'username', userid);
           axios
               .post(`${API_URL}/register`, { userid: userid })
               .then(response => console.log(response))
@@ -125,9 +127,9 @@ export default class Auth {
        if (authResult && authResult.accessToken && authResult.idToken) {
          this.setSession(authResult);
        } else if (err) {
-         this.logout();
+         //this.logout();
          console.log(err);
-         alert(`Could not get a new token (${err.error}: ${err.error_description}).`);
+         //alert(`Could not get a new token (${err.error}: ${err.error_description}).`);
        }
     });
   }
