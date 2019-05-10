@@ -9,7 +9,6 @@ import {
 } from "../../../actions";
 import "../../../scss/Map.scss";
 import axios from "axios";
-import Popup from "./Popup";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
@@ -34,10 +33,6 @@ class Map extends Component {
           ? console.log("adding")
           : console.log("not adding")}
         <div id="menu-a" />
-        <div id="time-mode">
-          <button onClick={this.pastMode}>Past</button>
-          <button onClick={this.futureMode}>Future</button>
-        </div>
       </div>
     );
   }
@@ -212,7 +207,6 @@ class Map extends Component {
           // ! DO NOT STORE THE RESPONSES IN A DB, THAT VIOLATES MAPBOX's TOS.
           this.props.pinAddresses.push(res.data.features[0].place_name);
           const id = this.props.pins.length - 1;
-          console.log(<Popup />);
           let popupContent = `<div class="address"><h3>Address:</h3> <p>${
             this.props.pinAddresses[id]
           }</p></div>`;
@@ -220,18 +214,15 @@ class Map extends Component {
           let popup = new mapboxgl.Popup({
             className: "popup"
           }).setHTML(popupContent);
-          // .setText("<Popup />");
 
-          let marker = new mapboxgl.Marker({
-            color: "rgb(0, 132, 255)"
-          })
+          let marker = new mapboxgl.Marker()
             .setLngLat([pin.LONGITUDE, pin.LATITUDE])
             .setPopup(popup)
             .addTo(map)
             .togglePopup();
 
           popup.on("open", e => {
-            console.log(e.target._lngLat);
+            console.log("OPEN");
             this.setState({
               coordinates: {
                 latitude: e.target._lngLat.lat,
@@ -273,17 +264,17 @@ class Map extends Component {
       );
 
     // Populate pins on map
-    this.props.pins.map(pin => {
-      let popup = new mapboxgl.Popup({ offset: 20 }).setText([
-        pin.latitude,
-        pin.longitude // add notes / input for notes etc
-      ]);
+    // this.props.pins.map(pin => {
+    //   let popup = new mapboxgl.Popup().setText([
+    //     pin.latitude,
+    //     pin.longitude // add notes / input for notes etc
+    //   ]);
 
-      new mapboxgl.Marker()
-        .setLngLat([pin.longitude, pin.latitude])
-        .setPopup(popup)
-        .addTo(map);
-    });
+    //   new mapboxgl.Marker()
+    //     .setLngLat([pin.longitude, pin.latitude])
+    //     .setPopup(popup)
+    //     .addTo(map);
+    // });
 
     // const marker = new mapboxgl.Marker({
     //   draggable: true
