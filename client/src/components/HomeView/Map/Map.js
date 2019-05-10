@@ -8,8 +8,8 @@ import {
   savePin
 } from "../../../actions";
 import "../../../scss/Map.scss";
-import MapboxClient from "@mapbox/mapbox-sdk";
 import axios from "axios";
+import Popup from "./Popup.js";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
@@ -33,12 +33,11 @@ class Map extends Component {
         {this.props.addingPin
           ? console.log("adding")
           : console.log("not adding")}
-        <div id="menu" />
+        <div id="menu-a" />
         <div id="time-mode">
           <button onClick={this.pastMode}>Past</button>
           <button onClick={this.futureMode}>Future</button>
         </div>
-        <div className="slider">Time</div>
       </div>
     );
   }
@@ -121,6 +120,19 @@ class Map extends Component {
         }
       });
 
+      map.addLayer({
+        id: "Quakes",
+        type: "circle",
+        source: {
+          type: "vector",
+          url: "mapbox://brilles.2xbld1lx"
+        },
+        "source-layer": "quakes1-1p0ws7",
+        paint: {
+          "circle-color": "red"
+        }
+      });
+
       map.on("click", "Counties", e => {
         new mapboxgl.Popup()
           .setLngLat(e.lngLat)
@@ -131,7 +143,7 @@ class Map extends Component {
         map.setFilter("Counties Highlighted", filter);
       });
 
-      const toggleableLayers = ["Quake Risk", "Counties"];
+      const toggleableLayers = ["Quake Risk", "Counties", "Quakes"];
 
       toggleableLayers.map((layer, index) => {
         const id = toggleableLayers[index];
@@ -142,6 +154,7 @@ class Map extends Component {
         map.setLayoutProperty("Quake Risk", "visibility", "none");
         map.setLayoutProperty("Counties", "visibility", "none");
         map.setLayoutProperty("Counties Highlighted", "visibility", "none");
+        map.setLayoutProperty("Quakes", "visibility", "none");
 
         link.onclick = function(e) {
           // toggle layer
@@ -164,7 +177,7 @@ class Map extends Component {
           }
         };
 
-        const layers = document.getElementById("menu");
+        const layers = document.getElementById("menu-a");
         return layers.appendChild(link);
       });
     });
@@ -185,6 +198,9 @@ class Map extends Component {
       this.props.pins.push(pin);
       this.props.savePin(pin);
 
+      console.log(this.state.coordinates);
+      this.props.fetchPredictionData(this.state.coordinates);
+
       const URL = `https://api.mapbox.com/geocoding/v5/mapbox.places/${
         pin.LONGITUDE
       },${pin.LATITUDE}.json?access_token=${
@@ -196,14 +212,36 @@ class Map extends Component {
           // ! DO NOT STORE THE RESPONSES IN A DB, THAT VIOLATES MAPBOX's TOS.
           this.props.pinAddresses.push(res.data.features[0].place_name);
           const id = this.props.pins.length - 1;
-          let popup = new mapboxgl.Popup({ offset: 20 }).setHTML(
-            `<h1>${this.props.pinAddresses[id]}</h1>`
+          let popup = new mapboxgl.Popup({
+            className: "popup"
+          }).setHTML(
+            `<div class="address"><h3>Address:</h3> <p>${
+              this.props.pinAddresses[id]
+            }</p></div>`
           );
+          // .setText("<Popup />");
 
-          new mapboxgl.Marker()
+          let marker = new mapboxgl.Marker({
+            color: "rgb(0, 132, 255)"
+          })
             .setLngLat([pin.LONGITUDE, pin.LATITUDE])
             .setPopup(popup)
-            .addTo(map);
+            .addTo(map)
+            .togglePopup();
+
+          popup.on("open", e => {
+            console.log(e.target._lngLat);
+            this.setState({
+              coordinates: {
+                latitude: e.target._lngLat.lat,
+                longitude: e.target._lngLat.lng
+              }
+            });
+          });
+
+          popup.on("close", () => {
+            console.log("close");
+          });
         })
         .catch(error => {
           console.log(error);

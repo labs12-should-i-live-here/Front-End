@@ -7,10 +7,20 @@
   border-radius: 20px;
   .mapboxgl-ctrl-attrib {
     padding-right: 8px;
+    @media (max-width: 800px) {
+      padding-right: 0px;
+    }
+  }
+  .mapboxgl-popup-content {
+    font-size: 12px;
+    h3 {
+      font-size: 13px;
+      font-weight: bold;
+    }
   }
 }
 
-#menu {
+#menu-a {
   background: #fff;
   position: absolute;
   z-index: 1;
@@ -19,6 +29,14 @@
   width: 90px;
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
+  @media (max-width: 800px) {
+    top: 86.5%;
+    bottom: 10px;
+    left: 25%;
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+  }
   a {
     border-radius: 4px;
     font-size: 14px;
@@ -81,4 +99,13 @@
   bottom: 40px;
   right: 10%;
   position: absolute;
+}
+
+.address {
+  padding-bottom: 10px;
+  border-bottom: 1px solid red;
+}
+
+.controls {
+  padding-top: 10px;
 }
