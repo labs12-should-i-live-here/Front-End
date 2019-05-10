@@ -8,6 +8,8 @@ import Button from '@material-ui/core/Button';
 // import green from '@material-ui/core/colors/red';
 // import purple from '@material-ui/core/colors/red';
 import { makeStyles } from "@material-ui/styles";
+import { Grid } from "@material-ui/core";
+
 
 
 import styled from 'styled-components';
@@ -57,7 +59,8 @@ class SignUp extends React.Component {
           <Navbar />
           {/* email */}
           <div className={styles.modal}>
-            <FormControl style={{ margin: "15% 0% 0% 40%" }} onSubmit={this.onSubmit}>
+          <Grid container spacing={2} justify='center' style={{marginTop: "25%"}}>
+            <FormControl onSubmit={this.onSubmit}>
               <TextField className='input' placeholder="Email"
                 value={this.state.credentials.name}
                 type="email" onChange={this.onChange}></TextField>
@@ -74,12 +77,13 @@ class SignUp extends React.Component {
               <Button className="Button" color="primary">
                 Sign Up
               </Button>
-              <Typography style={{ margin: "10% 0% 0% 0%", color: "gray"}}>
+              <Typography style={{ color: "gray"}}>
                 <Red>
                   Already a member? <Link  to="/login">Log In</Link>
                 </Red>
             </Typography>
             </FormControl>
+          </Grid>
           </div>
         </div>
       </>

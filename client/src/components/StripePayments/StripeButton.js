@@ -13,7 +13,7 @@ export default class StripeButton extends React.Component {
     //https://labs12.herokuapp.com/payment
     //http://localhost:4200/payment
     //make sure URL is changed!!
-    fetch("https://labs12.herokuapp.com/payment", {
+    fetch("http://localhost:4200/payment", {
       method: "POST",
       headers: {
         Accept: "application/json",

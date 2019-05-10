@@ -1,6 +1,8 @@
 import React from 'react';
 import Navbar from '../../components/Shared/Navbar';
 import '../../scss/Landing.scss';
+// import { Grid } from '@material-ui/core';
+
 
 class Landing extends React.Component {
     constructor(props){
@@ -10,9 +12,11 @@ class Landing extends React.Component {
         return (
             <div className="body">
                 <Navbar />
-                <div className='body'>
-                <div className="title">LiveSafe</div>
-                <div className="tag">Because Nobody wants to Deal with the Insurance Company</div>
+                <div className='titleBody'>
+                    <div className='body'>
+                        <div className="title">LiveSafe</div>
+                        <div className="tag">Because Nobody wants to Deal with the Insurance Company</div>
+                    </div>
                 </div>
             </div>
         )

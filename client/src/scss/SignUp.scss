@@ -1,8 +1,23 @@
 
-.FormControl {
-    padding: 25% 0 0 0;
+.registerBG {
+ background-color: #CAD2D3;
+//  height: 1000px;
 }
+
+.MuiPaper-root-10 {
+    background-color: #CAD2D3;
+}
+
+// .FormControl {
+//     padding: 25% 0 0 0;
+// }
 
 .TextField {
     border: none;
+}
+
+.body {
+    width: 100%;
+    align-self: center;
+    text-align: center;
 }

@@ -1,28 +1,37 @@
 .homeBody {
-  background-color:  rgb(203, 214, 205);
+  background-color:  #CAD2D3;
 }
 
 .main-content {
-  width: 98%;
-  height: 88vh;
+  //width: 98%;
+  //height: 88vh;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  @media screen and (max-width: 500px){
+    max-width: 500px;
+    //flex-direction: column;
+  }
   .left-panel {
-    width: 58%;
-    height: 90%;
+    //width: 58%;
+    //height: 90%;
+    min-height: 600px;
+
+    @media screen and (max-width: 500px) {
+      //width: 100%;
+    }
   }
   .right-panel {
-    width: 40%;
-    height: 100%;
+    //width: 40%;
+    //height: 100%;
     border: 1px solid rgb(0, 132, 255);
     border-radius: 0px;
     .top-panel {
-      height: 50%;
+      //height: 50%;
       border-bottom: 1px solid rgb(0, 132, 255);
     }
-    .bottom-panel {
-      height: 50%;
-    }
+    // .bottom-panel {
+    //   //height: 50%;
+    // }
   }
 }
