@@ -9,6 +9,7 @@ import {
 } from "../../../actions";
 import "../../../scss/Map.scss";
 import axios from "axios";
+import Popup from "./Popup.js";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
@@ -197,6 +198,9 @@ class Map extends Component {
       this.props.pins.push(pin);
       this.props.savePin(pin);
 
+      console.log(this.state.coordinates);
+      this.props.fetchPredictionData(this.state.coordinates);
+
       const URL = `https://api.mapbox.com/geocoding/v5/mapbox.places/${
         pin.LONGITUDE
       },${pin.LATITUDE}.json?access_token=${
@@ -208,16 +212,35 @@ class Map extends Component {
           // ! DO NOT STORE THE RESPONSES IN A DB, THAT VIOLATES MAPBOX's TOS.
           this.props.pinAddresses.push(res.data.features[0].place_name);
           const id = this.props.pins.length - 1;
-          let popup = new mapboxgl.Popup({ offset: 20 }).setHTML(
-            `<h3>Address:</h3> <p>${
+          let popup = new mapboxgl.Popup({
+            className: "popup"
+          }).setHTML(
+            `<div class="address"><h3>Address:</h3> <p>${
               this.props.pinAddresses[id]
-            }</p> <p><h3>Notes:</h3> -Not too many earthquakes here. Seems kinda safe. 😊</p> <form><input placeholder="Add a note..." /><button>Add</form?`
+            }</p></div>`
           );
+          // .setText("<Popup />");
 
-          new mapboxgl.Marker()
+          let marker = new mapboxgl.Marker({
+            color: "rgb(0, 132, 255)"
+          })
             .setLngLat([pin.LONGITUDE, pin.LATITUDE])
             .setPopup(popup)
             .addTo(map);
+
+          popup.on("open", e => {
+            console.log(e.target._lngLat);
+            this.setState({
+              coordinates: {
+                latitude: e.target._lngLat.lat,
+                longitude: e.target._lngLat.lng
+              }
+            });
+          });
+
+          popup.on("close", () => {
+            console.log("close");
+          });
         })
         .catch(error => {
           console.log(error);

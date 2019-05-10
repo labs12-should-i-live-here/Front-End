@@ -30,7 +30,7 @@ const initialState = {
   errorStatusCode: null,
   coordinatePredictions: {},
   addingPin: false,
-  pins: [], //testing
+  pins: [],
   deletingPin: false,
   addedPin: 0,
   deletedPin: 0,
