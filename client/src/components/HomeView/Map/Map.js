@@ -226,7 +226,8 @@ class Map extends Component {
           })
             .setLngLat([pin.LONGITUDE, pin.LATITUDE])
             .setPopup(popup)
-            .addTo(map);
+            .addTo(map)
+            .togglePopup();
 
           popup.on("open", e => {
             console.log(e.target._lngLat);
