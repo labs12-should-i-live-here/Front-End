@@ -9,7 +9,7 @@ import {
 } from "../../../actions";
 import "../../../scss/Map.scss";
 import axios from "axios";
-import Popup from "./Popup.js";
+import Popup from "./Popup";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
@@ -133,15 +133,15 @@ class Map extends Component {
         }
       });
 
-      map.on("click", "Counties", e => {
-        new mapboxgl.Popup()
-          .setLngLat(e.lngLat)
-          .setHTML(`${e.features[0].properties.NAME} County`)
-          .addTo(map);
+      // map.on("click", "Counties", e => {
+      //   new mapboxgl.Popup()
+      //     .setLngLat(e.lngLat)
+      //     .setHTML(`${e.features[0].properties.NAME} County`)
+      //     .addTo(map);
 
-        const filter = ["in", "FIPS", e.features[0].properties.FIPS];
-        map.setFilter("Counties Highlighted", filter);
-      });
+      //   const filter = ["in", "FIPS", e.features[0].properties.FIPS];
+      //   map.setFilter("Counties Highlighted", filter);
+      // });
 
       const toggleableLayers = ["Quake Risk", "Counties", "Quakes"];
 
@@ -212,13 +212,14 @@ class Map extends Component {
           // ! DO NOT STORE THE RESPONSES IN A DB, THAT VIOLATES MAPBOX's TOS.
           this.props.pinAddresses.push(res.data.features[0].place_name);
           const id = this.props.pins.length - 1;
+          console.log(<Popup />);
+          let popupContent = `<div class="address"><h3>Address:</h3> <p>${
+            this.props.pinAddresses[id]
+          }</p></div>`;
+
           let popup = new mapboxgl.Popup({
             className: "popup"
-          }).setHTML(
-            `<div class="address"><h3>Address:</h3> <p>${
-              this.props.pinAddresses[id]
-            }</p></div>`
-          );
+          }).setHTML(popupContent);
           // .setText("<Popup />");
 
           let marker = new mapboxgl.Marker({
