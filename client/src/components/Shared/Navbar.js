@@ -143,9 +143,10 @@ class Navbar extends Component {
           <Grid>
           <Button href="/compare">Compare</Button>
             <Button href="/payment">Payment</Button>
-            <Button color="error">Register</Button>
-            <Button color="error">Login</Button>
-          </Grid>       
+            <Button href="/register" color="error">Register</Button>
+            <Button href="/login" color="error">Login</Button>
+          </Grid>
+       
         </IconButton>  
         </Grid>
       </Toolbar>
