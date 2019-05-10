@@ -7,9 +7,18 @@ export const FETCH_PREDICTION_DATA_FAILURE = "FETCH_PREDICTION_DATA_FAILURE";
 
 export const fetchPredictionData = coordinates => dispatch => {
   dispatch({ type: FETCH_PREDICTION_DATA_START });
-  const URL = "https://d2drg1tc2gs4lr.cloudfront.net/prediction";
+  const URL = "https://d2drg1tc2gs4lr.cloudfront.net/allpredictions";
+
+  console.log('coordinates are --------->', coordinates)
+  let {latitude, longitude} = coordinates;
+
+  let request = {
+    latitude: latitude,
+    longitude: longitude,
+    years: 25
+  }
   axios
-    .post(URL, coordinates)
+    .post(URL, request)
     .then(res =>
       dispatch({ type: FETCH_PREDICTION_DATA_SUCCESS, payload: res.data })
     )
