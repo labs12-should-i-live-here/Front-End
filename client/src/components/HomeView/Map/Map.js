@@ -23,7 +23,8 @@ class Map extends Component {
       startyear: 1990,
       endyear: 2014
     },
-    pins: this.props.pins
+    pins: this.props.pins,
+    style: "mapbox://styles/brilles/cjv3zbk1u2uw11fqx8i0zgfkj"
   };
 
   render() {
@@ -39,6 +40,11 @@ class Map extends Component {
 
   componentDidMount() {
     this.initMap();
+    //  if (this.props.dark) {
+    //    this.setState({
+    //      style: "mapbox://styles/brilles/cjv6tzh284d5x1fqqydk5mi8h"
+    //    });
+    //  }
   }
 
   pastMode = () => {
@@ -56,7 +62,7 @@ class Map extends Component {
     const { longitude, latitude } = this.state.coordinates;
     const map = new mapboxgl.Map({
       container: this.mapContainer,
-      style: "mapbox://styles/brilles/cjv3zbk1u2uw11fqx8i0zgfkj",
+      style: this.state.style,
       center: [longitude, latitude],
       zoom,
       minZoom
@@ -312,7 +318,8 @@ const mapStateToProps = ({
   addingPin,
   userId,
   fetchingAddress,
-  pinAddresses
+  pinAddresses,
+  dark
 }) => ({
   fetchingPredictionData,
   coordinatePredictions,
@@ -322,7 +329,8 @@ const mapStateToProps = ({
   addingPin,
   userId,
   fetchingAddress,
-  pinAddresses
+  pinAddresses,
+  dark
 });
 
 export default connect(

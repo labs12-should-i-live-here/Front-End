@@ -5,6 +5,8 @@ import "../../scss/Home2.scss";
 import styled from "styled-components";
 import { NavigateBefore } from "styled-icons/material/NavigateBefore";
 import { NavigateNext } from "styled-icons/material/NavigateNext";
+import { Compare } from "styled-icons/material/Compare";
+import { connect } from "react-redux";
 
 const BlackLeft = styled(NavigateBefore)`
   color: grey;
@@ -27,12 +29,23 @@ const BlackRight = styled(NavigateNext)`
   cursor: pointer;
 `;
 
+const BlackCompare = styled(Compare)`
+  color: black;
+  height: 35px;
+  width: 35px;
+  border-radius: 6px;
+  :hover {
+    background: rgb(224, 224, 224);
+  }
+  cursor: pointer;
+`;
+
 class Home2 extends Component {
   render() {
     return (
       <>
         <NavbarB />
-        <div className="main-layout">
+        <div className={"main-layout " + (this.props.dark ? "dark" : "light")}>
           <div className="left-pane">
             <Map />
           </div>
@@ -49,6 +62,7 @@ class Home2 extends Component {
             <div className="right-bottom">
               <header>
                 <h2>Compare</h2>
+                <BlackCompare />
               </header>
             </div>
           </div>
@@ -58,4 +72,8 @@ class Home2 extends Component {
   }
 }
 
-export default Home2;
+const mapStateToProps = ({ dark }) => ({
+  dark
+});
+
+export default connect(mapStateToProps)(Home2);

@@ -4,13 +4,24 @@
   height: 95%;
   padding: 10px;
   font-family: "Rubik", sans-serif;
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
   .left-pane {
     height: 89vh;
     width: 65%;
+    @media (max-width: 800px) {
+      width: 100%;
+      height: 65vh;
+    }
   }
   .right-pane {
     border-radius: 20px;
     width: 34%;
+    @media (max-width: 800px) {
+      margin-top: 15px;
+      width: 100%;
+    }
     header {
       display: flex;
       justify-content: space-between;
@@ -30,7 +41,7 @@
       h2 {
         padding: 2px;
         background: #2e86ab;
-        width: 15%;
+        width: 100px;
         text-align: center;
         border-radius: 22px;
         color: white;
@@ -52,10 +63,43 @@
       h2 {
         padding: 2px;
         background: #f24236;
-        width: 20%;
+        width: 100px;
         text-align: center;
         border-radius: 22px;
         color: white;
+        font-weight: bold;
+        height: 17.5px;
+      }
+    }
+  }
+}
+
+.dark {
+  .right-pane {
+    header {
+      border-bottom: 1px solid #fff;
+    }
+    .right-top {
+      box-shadow: 0px 0px 3px 2px #555454;
+      background-color: #555454;
+
+      h2 {
+        color: #000;
+      }
+    }
+    .right-top:hover,
+    .right-bottom:hover {
+      box-shadow: 0px 0px 3px 2px #646464;
+    }
+    .right-bottom {
+      box-shadow: 0px 0px 3px 2px #555454;
+      margin-top: 10px;
+      border-radius: 6px;
+      padding: 5px;
+      height: 20%;
+      background-color: #555454;
+      h2 {
+        color: #000;
         font-weight: bold;
         height: 17.5px;
       }

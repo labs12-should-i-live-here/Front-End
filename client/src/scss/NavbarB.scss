@@ -1,5 +1,5 @@
 .navbarb {
-  background: #fff;
+  background-color: #fff;
   font-size: 15px;
   width: 100%;
   height: 54px;
@@ -7,17 +7,22 @@
   justify-content: center;
   border-bottom: 1px solid #2e86ab;
   font-family: "Montserrat", sans-serif;
+
   .nav {
     height: 100%;
     width: 98%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     a {
       padding: 0 10px;
     }
     .center {
       width: 40%;
+      @media (max-width: 800px) {
+        width: 60%;
+      }
     }
     form {
       display: flex;
@@ -56,6 +61,9 @@
       }
     }
     .right {
+      @media (max-width: 800px) {
+        display: none;
+      }
       a {
         text-decoration: none;
         font-weight: bold;
@@ -66,6 +74,38 @@
       a:hover {
         border-bottom: 2px solid #f24236;
         color: #000;
+      }
+    }
+  }
+}
+
+.dark {
+  background-color: #3e3e3e;
+  .nav {
+    form {
+      input {
+        border: 1px solid rgba(128, 128, 128, 0.527);
+        background-color: #555454;
+      }
+      input::placeholder {
+        color: #fff;
+      }
+      button {
+      }
+    }
+    .left {
+      color: #fff;
+      a {
+        color: #fff;
+      }
+    }
+    .right {
+      a {
+        color: rgb(228, 228, 228);
+      }
+      a:hover {
+        border-bottom: 2px solid #f24236;
+        color: #fff;
       }
     }
   }
