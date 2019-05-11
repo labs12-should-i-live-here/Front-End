@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Router, Switch } from "react-router-dom";
 import "./scss/App.scss";
-import Home from "./views/App/Home.js";
+import Home2 from "./views/App/Home2.js";
 import Profile from "./views/App/Profile";
 import SignUp from "./views/App/SignUp.js";
 import Login from "./views/App/Login.js";
@@ -27,8 +27,8 @@ function App() {
   return (
     <Router history={history} component={Login}>
       <>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/home" component={Home} />
+        <Route exact path="/" component={Home2} />
+        <Route exact path="/home" component={Home2} />
         <Route path="/landing" component={Landing} />
         <Route path="/register" component={SignUp} />
         <Route path="/login" component={Login} />

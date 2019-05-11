@@ -244,14 +244,14 @@ class Map extends Component {
 
     // add map controls
     map
-      .addControl(
-        new MapboxGeocoder({
-          accessToken: mapboxgl.accessToken,
-          mapboxgl,
-          countries: "us",
-          marker: false
-        })
-      )
+      // .addControl(
+      //   new MapboxGeocoder({
+      //     accessToken: mapboxgl.accessToken,
+      //     mapboxgl,
+      //     countries: "us",
+      //     marker: false
+      //   })
+      // )
       .addControl(new mapboxgl.NavigationControl())
       .addControl(new mapboxgl.FullscreenControl())
       .addControl(
