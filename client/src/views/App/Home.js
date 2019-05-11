@@ -18,6 +18,9 @@ class Home extends Component {
       renewSession();
     }
   }
+  dataUpdate = () => {
+    console.log("data updated");
+  };
 
   render() {
     return (
@@ -25,7 +28,7 @@ class Home extends Component {
         <NavbarB auth={auth} />
         <Grid className="main-content" container spacing={2}>
           <Grid className="left-panel" item xs={12} md={8}>
-            <Map />
+            <Map dataUpdate={this.dataUpdate} />
           </Grid>
           <Grid className="right-panel" item xs={12} md={4}>
             <Grid className="top-panel">

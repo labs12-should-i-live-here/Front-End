@@ -29,8 +29,9 @@ class Home2 extends Component {
   }
 }
 
-const mapStateToProps = ({ dark }) => ({
-  dark
+const mapStateToProps = ({ dark, pinAddresses }) => ({
+  dark,
+  pinAddresses
 });
 
 export default connect(mapStateToProps)(Home2);
