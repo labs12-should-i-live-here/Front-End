@@ -29,6 +29,12 @@
       border-bottom: 1px solid black;
       align-items: center;
       padding-bottom: 5px;
+      h3 {
+        font-weight: bold;
+        span {
+          color: #2eab6d;
+        }
+      }
     }
 
     .right-top {
@@ -69,6 +75,18 @@
         color: white;
         font-weight: bold;
         height: 17.5px;
+      }
+      .link {
+        color: #2d7ff9;
+        display: flex;
+        align-items: center;
+        width: 70%;
+        justify-content: space-between;
+        p {
+          font-size: 14px;
+          display: flex;
+          align-items: center;
+        }
       }
     }
   }

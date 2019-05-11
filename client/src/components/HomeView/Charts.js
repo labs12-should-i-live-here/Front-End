@@ -27,10 +27,14 @@ const BlackRight = styled(NavigateNext)`
 `;
 
 export default function Charts() {
+  //change type to dynamic + icons
   return (
     <>
       <header>
         <h2>Charts</h2>
+        <h3>
+          Type: <span>Bar</span>
+        </h3>
         <div className="toggle">
           <BlackLeft />
           <BlackRight />

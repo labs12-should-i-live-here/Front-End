@@ -34,14 +34,14 @@
   width: 90px;
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
-  @media (max-width: 800px) {
-    top: 82%;
-    bottom: 10px;
-    left: 25%;
-    display: flex;
-    width: 50%;
-    flex-direction: column;
-  }
+  // @media (max-width: 800px) {
+  //   top: 82%;
+  //   bottom: 10px;
+  //   left: 25%;
+  //   display: flex;
+  //   width: 50%;
+  //   flex-direction: column;
+  // }
   a {
     border-radius: 4px;
     font-size: 14px;

@@ -144,7 +144,8 @@ class Map extends Component {
         map.setFilter("Counties Highlighted", filter);
       });
 
-      const toggleableLayers = ["Quake Risk", "Counties", "Quakes"];
+      // const toggleableLayers = ["Quake Risk", "Counties", "Quakes"];
+      const toggleableLayers = ["Quakes"];
 
       toggleableLayers.map((layer, index) => {
         const id = toggleableLayers[index];
@@ -155,7 +156,7 @@ class Map extends Component {
         map.setLayoutProperty("Quake Risk", "visibility", "none");
         map.setLayoutProperty("Counties", "visibility", "none");
         map.setLayoutProperty("Counties Highlighted", "visibility", "none");
-        map.setLayoutProperty("Quakes", "visibility", "none");
+        // map.setLayoutProperty("Quakes", "visibility", "none");
 
         link.onclick = function(e) {
           // toggle layer
@@ -179,7 +180,7 @@ class Map extends Component {
         };
 
         const layers = document.getElementById("menu-a");
-        return layers.appendChild(link);
+        // return layers.appendChild(link);
       });
     });
 
