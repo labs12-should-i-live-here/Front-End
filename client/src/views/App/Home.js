@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Navbar from "../../components/Shared/Navbar.js";
+import NavbarB from "../../components/Shared/NavbarB.js";
 import Map from "../../components/HomeView/Map/Map.js";
 import Stats from "../../components/HomeView/Stats/Stats.js";
 import CompareDeck from "../../components/HomeView/Compare/CompareDeck.js";
@@ -22,7 +22,7 @@ class Home extends Component {
   render() {
     return (
       <div className="homeBody">
-        <Navbar auth={auth} />
+        <NavbarB auth={auth} />
         <Grid className="main-content" container spacing={2}>
           <Grid className="left-panel" item xs={12} md={8}>
             <Map />
@@ -36,8 +36,8 @@ class Home extends Component {
             </Grid>
           </Grid>
           <footer>
-          <Footer />
-        </footer>
+            <Footer />
+          </footer>
         </Grid>
       </div>
     );

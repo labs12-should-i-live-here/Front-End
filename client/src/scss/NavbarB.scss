@@ -1,0 +1,112 @@
+.navbarb {
+  background-color: #fff;
+  font-size: 15px;
+  width: 100%;
+  height: 54px;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #2e86ab;
+  font-family: "Montserrat", sans-serif;
+
+  .nav {
+    height: 100%;
+    width: 98%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    a {
+      padding: 0 10px;
+    }
+    .center {
+      width: 40%;
+      @media (max-width: 800px) {
+        width: 60%;
+      }
+    }
+    form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      input {
+        width: 80%;
+        height: 25px;
+        border-radius: 6px;
+        font-size: 14px;
+        border: 1px solid rgba(128, 128, 128, 0.527);
+        outline: none;
+        font-weight: bold;
+        padding: 5px 7.5px;
+      }
+      button {
+        padding: 5px 7.5px;
+        margin: 0 3px;
+        background: #2d7ff9;
+        border: none;
+        border-radius: 6px;
+        outline: none;
+        cursor: pointer;
+      }
+    }
+    .left {
+      font-size: 30px;
+      font-family: "Itim", cursive;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      a {
+        text-decoration: none;
+        color: #000;
+        padding: 0 3px;
+      }
+    }
+    .right {
+      @media (max-width: 800px) {
+        display: none;
+      }
+      a {
+        text-decoration: none;
+        font-weight: bold;
+        color: rgb(59, 59, 59);
+        padding: 0;
+        margin: 0 15px;
+      }
+      a:hover {
+        border-bottom: 2px solid #f24236;
+        color: #000;
+      }
+    }
+  }
+}
+
+.dark {
+  background-color: #3e3e3e;
+  .nav {
+    form {
+      input {
+        border: 1px solid rgba(128, 128, 128, 0.527);
+        background-color: #555454;
+      }
+      input::placeholder {
+        color: #fff;
+      }
+      button {
+      }
+    }
+    .left {
+      color: #fff;
+      a {
+        color: #fff;
+      }
+    }
+    .right {
+      a {
+        color: rgb(228, 228, 228);
+      }
+      a:hover {
+        border-bottom: 2px solid #f24236;
+        color: #fff;
+      }
+    }
+  }
+}
