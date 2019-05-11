@@ -134,53 +134,53 @@ class Map extends Component {
         }
       });
 
-      // map.on("click", "Counties", e => {
-      //   new mapboxgl.Popup()
-      //     .setLngLat(e.lngLat)
-      //     .setHTML(`${e.features[0].properties.NAME} County`)
-      //     .addTo(map);
+      map.on("click", "Counties", e => {
+        new mapboxgl.Popup()
+          .setLngLat(e.lngLat)
+          .setHTML(`${e.features[0].properties.NAME} County`)
+          .addTo(map);
 
-      //   const filter = ["in", "FIPS", e.features[0].properties.FIPS];
-      //   map.setFilter("Counties Highlighted", filter);
-      // });
+        const filter = ["in", "FIPS", e.features[0].properties.FIPS];
+        map.setFilter("Counties Highlighted", filter);
+      });
 
-      // const toggleableLayers = ["Quake Risk", "Counties", "Quakes"];
+      const toggleableLayers = ["Quake Risk", "Counties", "Quakes"];
 
-      // toggleableLayers.map((layer, index) => {
-      //   const id = toggleableLayers[index];
-      //   const link = document.createElement("a");
-      //   link.href = "#";
-      //   // link.className = "active";
-      //   link.textContent = id;
-      //   map.setLayoutProperty("Quake Risk", "visibility", "none");
-      //   map.setLayoutProperty("Counties", "visibility", "none");
-      //   map.setLayoutProperty("Counties Highlighted", "visibility", "none");
-      //   map.setLayoutProperty("Quakes", "visibility", "none");
+      toggleableLayers.map((layer, index) => {
+        const id = toggleableLayers[index];
+        const link = document.createElement("a");
+        link.href = "#";
+        // link.className = "active";
+        link.textContent = id;
+        map.setLayoutProperty("Quake Risk", "visibility", "none");
+        map.setLayoutProperty("Counties", "visibility", "none");
+        map.setLayoutProperty("Counties Highlighted", "visibility", "none");
+        map.setLayoutProperty("Quakes", "visibility", "none");
 
-      // link.onclick = function(e) {
-      //   // toggle layer
-      //   const clickedLayer = this.textContent;
+        link.onclick = function(e) {
+          // toggle layer
+          const clickedLayer = this.textContent;
 
-      //   e.preventDefault();
-      //   e.stopPropagation();
+          e.preventDefault();
+          e.stopPropagation();
 
-      //   var visibility = map.getLayoutProperty(clickedLayer, "visibility");
+          var visibility = map.getLayoutProperty(clickedLayer, "visibility");
 
-      //   if (visibility === undefined) {
-      //     map.setLayoutProperty(clickedLayer, "visibility", "none");
-      //     this.className = "";
-      //   } else if (visibility === "visible") {
-      //     map.setLayoutProperty(clickedLayer, "visibility", "none");
-      //     this.className = "";
-      //   } else {
-      //     this.className = "active";
-      //     map.setLayoutProperty(clickedLayer, "visibility", "visible");
-      //   }
-      // };
+          if (visibility === undefined) {
+            map.setLayoutProperty(clickedLayer, "visibility", "none");
+            this.className = "";
+          } else if (visibility === "visible") {
+            map.setLayoutProperty(clickedLayer, "visibility", "none");
+            this.className = "";
+          } else {
+            this.className = "active";
+            map.setLayoutProperty(clickedLayer, "visibility", "visible");
+          }
+        };
 
-      // const layers = document.getElementById("menu-a");
-      // return layers.appendChild(link);
-      // });
+        const layers = document.getElementById("menu-a");
+        return layers.appendChild(link);
+      });
     });
 
     map.doubleClickZoom.disable();
