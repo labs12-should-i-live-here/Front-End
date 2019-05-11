@@ -8,6 +8,7 @@ import Login from "./views/App/Login.js";
 import Logout from "./views/App/Logout.js";
 import Compare from "./views/App/Compare.js";
 import Landing from "./views/App/Landing";
+import Pricing from "./views/App/Pricing.js";
 //stripe
 import StripePayment from "./components/StripePayments/StripePayment";
 import { UnpaidPrime } from "./views/App/UnpaidPrime";
@@ -28,6 +29,7 @@ function App() {
     <Router history={history} component={Login}>
       <>
         <Route exact path="/" component={Home2} />
+        <Route exact path="/pricing" component={Pricing} />
         <Route exact path="/home" component={Home2} />
         <Route path="/landing" component={Landing} />
         <Route path="/register" component={SignUp} />

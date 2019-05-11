@@ -1,0 +1,47 @@
+.main-pricing {
+  display: flex;
+  margin: 10px auto;
+  height: 89vh;
+  width: 85%;
+  border-radius: 6px;
+  box-shadow: 0px 0px 3px 2px rgb(235, 235, 235);
+  font-family: "Montserrat", sans-serif;
+  h2,
+  h3 {
+    font-weight: bold;
+  }
+  .left {
+    width: 35%;
+    padding: 30px;
+    padding: 15px;
+    font-size: 27.5px;
+  }
+  .details {
+    width: 65%;
+    display: flex;
+    .cost {
+      padding: 10px 0;
+    }
+    h2 {
+      display: flex;
+      justify-content: center;
+      padding: 15px;
+      border-radius: 22px 22px 0 0;
+      background-color: black;
+      color: white;
+    }
+    .free {
+      border-radius: 22px;
+      width: 50%;
+      margin: 15px;
+
+      background-color: #2eab6d88;
+    }
+    .pro {
+      border-radius: 22px;
+      width: 50%;
+      margin: 15px;
+      background-color: #2e86ab88;
+    }
+  }
+}

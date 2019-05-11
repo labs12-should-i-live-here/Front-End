@@ -73,7 +73,7 @@ class NavbarB extends Component {
               {darkmode ? <MoonDarkA /> : <MoonLightA />}
             </span>
 
-            <NavLink exact to="/payment">
+            <NavLink exact to="/pricing" activeClassName="activeA">
               Pricing
             </NavLink>
             <NavLink exact to="/register">

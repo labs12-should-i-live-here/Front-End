@@ -1,7 +1,6 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-
 import { Compare } from "styled-icons/material/Compare";
 
 const BlackCompare = styled(Compare)`
@@ -20,7 +19,9 @@ export default function Compare3() {
     <>
       <header>
         <h2>Compare</h2>
-        <BlackCompare />
+        <Link exact to="/compare">
+          <BlackCompare />
+        </Link>
       </header>
     </>
   );
