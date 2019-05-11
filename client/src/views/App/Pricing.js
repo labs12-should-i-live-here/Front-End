@@ -6,6 +6,7 @@ import { AccountCircle } from "styled-icons/material/AccountCircle";
 import { CheckCircle } from "styled-icons/boxicons-regular/CheckCircle";
 import { LongArrowAltRight } from "styled-icons/fa-solid/LongArrowAltRight";
 import { DeleteOutline } from "styled-icons/typicons/DeleteOutline";
+import { Link } from "react-router-dom";
 
 const AccountRed = styled(AccountCircle)`
   color: #f24336;
@@ -99,7 +100,9 @@ export default function Pricing() {
           <div className="no-account">
             <h2>No Account</h2>
             <div className="label-2">$0 / month</div>
-            <div className="label-2">Unlimited</div>
+            <div className="label-2">
+              Unlimited <Link to="/">Continue</Link>
+            </div>
             <div className="label-2">
               <BlackCheck />
             </div>
@@ -120,7 +123,9 @@ export default function Pricing() {
               Free <AccountRed />
             </h2>
             <div className="label-2">$0 / month</div>
-            <div className="label-2">Unlimited</div>
+            <div className="label-2">
+              Unlimited<Link to="/register">Get now</Link>
+            </div>
             <div className="label-2">
               <BlackCheck />
             </div>
@@ -141,7 +146,9 @@ export default function Pricing() {
               Pro <AccountBlue />
             </h2>
             <div className="label-2">$2 / month</div>
-            <div className="label-2">Unlimited</div>
+            <div className="label-2">
+              Unlimited<Link to="/register">Get now</Link>
+            </div>
             <div className="label-2">
               <BlackCheck />
             </div>
