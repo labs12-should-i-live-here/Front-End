@@ -29,6 +29,7 @@
     "redux-thunk": "^2.3.0",
     "stripe": "^6.31.1",
     "styled-components": "^4.2.0",
+    "styled-icons": "^7.14.0",
     "typeface-roboto": "^0.0.54"
   },
   "scripts": {

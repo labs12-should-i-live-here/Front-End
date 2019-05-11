@@ -1,68 +1,69 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import PropTypes from 'prop-types';
-import { withStyles, AppBar, Toolbar, Button, Grid, IconButton, Typography, Menu } from "@material-ui/core";
-import '../../scss/Navbar.scss';
+import {
+  withStyles,
+  AppBar,
+  Toolbar,
+  Button,
+  Grid,
+  IconButton,
+  Typography,
+  Menu
+} from "@material-ui/core";
+import "../../scss/Navbar.scss";
 
 const styles = {
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   grow: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   menuButton: {
     marginLeft: -12,
-    marginRight: 20,
-  },
+    marginRight: 20
+  }
 };
 
-
 function Greeting(props) {
-  const isLoggedIn = localStorage.getItem('isLoggedIn');
-      
-  if (isLoggedIn) {
-    const user = localStorage.getItem('username');
-    let welcome = `Welcome, ${user}`;
-    return <h3>{props.message}<Link to="/logout"><button>Log Out</button></Link></h3>;
-  }    
-    
-  else 
-    return <Link to="/login">{props.message}</Link>;
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
 
+  if (isLoggedIn) {
+    const user = localStorage.getItem("username");
+    let welcome = `Welcome, ${user}`;
+    return (
+      <h3>
+        {props.message}
+        <Link to="/logout">
+          <button>Log Out</button>
+        </Link>
+      </h3>
+    );
+  } else return <Link to="/login">{props.message}</Link>;
 }
 
 class Navbar extends Component {
-
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = {message: '', isLoggedin: false}
+    this.state = { message: "", isLoggedin: false };
   }
-  
-  componentDidUpdate() {
 
-  }
   componentDidMount() {
-    //fetchDate();
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    const user = localStorage.getItem('username');
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    const user = localStorage.getItem("username");
     let welcome = `Welcome ${user}`;
-    
+
     //let message;
-    console.log(user)
+    console.log(user);
     if (isLoggedIn) {
-    this.setState( { message : <h2>{welcome}</h2>, isLoggedIn: true });
+      this.setState({ message: <h2>{welcome}</h2>, isLoggedIn: true });
     } else {
-      this.setState( { message : <button>login</button> , isLoggedIn: false});
+      this.setState({ message: <button>login</button>, isLoggedIn: false });
       //message = <button>loginn</button>;
     }
-
   }
 
-
-
   render() {
-
     // // const { isAuthenticated } = this.props.auth;
     // const user = localStorage.getItem('username');
     // console.log(user);
@@ -116,40 +117,46 @@ class Navbar extends Component {
       //   </Nav>
       // </div>
 
-    // <Nav fluid = "true">
-      
-    //   <div className="Navbar">
-    //     <nav className="nav-left">
+      // <Nav fluid = "true">
 
-         
-    //       {/* <Link to="/logout">Log Out</Link> */}
-    //       <Link to="/compare">compare</Link>
-    //       <Link to="/primeaccess">prime access</Link>
-    //     </nav>
-    //     <nav className="nav-right">
-    //      {/* <Link to="/register">register</Link> */}
-    //       {/* <Link to="/login">{this.state.message}</Link> */}
-    //       <Greeting message = {this.state.message}></Greeting>
-    //     </nav>
-    //       {/* <p>{test}</p> */}
-    //   </div>
-      
-    // </Nav>
-    <AppBar className="Navbar" position="static" color="primary" style={{marginBottom: "2%"}}>
-      <Toolbar className="Navbar">
+      //   <div className="Navbar">
+      //     <nav className="nav-left">
+
+      //       {/* <Link to="/logout">Log Out</Link> */}
+      //       <Link to="/compare">compare</Link>
+      //       <Link to="/primeaccess">prime access</Link>
+      //     </nav>
+      //     <nav className="nav-right">
+      //      {/* <Link to="/register">register</Link> */}
+      //       {/* <Link to="/login">{this.state.message}</Link> */}
+      //       <Greeting message = {this.state.message}></Greeting>
+      //     </nav>
+      //       {/* <p>{test}</p> */}
+      //   </div>
+
+      // </Nav>
+      <AppBar
+        className="Navbar"
+        position="static"
+        color="primary"
+        style={{ marginBottom: "2%" }}
+      >
+        <Toolbar className="Navbar">
           <Grid>
-            <Button classsName="liveSafeBTN" style={{margin: "0% 65% 0% 0%"}}>LiveSafe</Button>
-        <IconButton aria-label="Menu">
-          <Grid>
-          <Button href="/compare">Compare</Button>
-            <Button href="/payment">Payment</Button>
-            <Button color="error">Register</Button>
-            <Button color="error">Login</Button>
-          </Grid>       
-        </IconButton>  
-        </Grid>
-      </Toolbar>
-    </AppBar>
+            <Button classsName="liveSafeBTN" style={{ margin: "0% 35% 0% 0%" }}>
+              LiveSafe
+            </Button>
+            <IconButton aria-label="Menu">
+              <Grid>
+                <Button href="/compare">Compare</Button>
+                <Button href="/payment">Payment</Button>
+                <Button color="error">Register</Button>
+                <Button color="error">Login</Button>
+              </Grid>
+            </IconButton>
+          </Grid>
+        </Toolbar>
+      </AppBar>
     );
   }
 }
