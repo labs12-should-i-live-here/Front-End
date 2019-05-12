@@ -47,8 +47,8 @@ class Charts extends Component {
   };
 
   rightClick = () => {
-    if (this.state.index === 0) {
-      this.setState({ index: this.state.graphs.length - 1 });
+    if (this.state.index === this.state.graphs.length - 1) {
+      this.setState({ index: 0 });
     } else {
       this.setState(prevState => {
         return {
