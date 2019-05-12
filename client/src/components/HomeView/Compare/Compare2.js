@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Compare } from "styled-icons/material/Compare";
-import { ArrowRight } from "styled-icons/feather/ArrowRight";
+import { RightArrowCircle } from "styled-icons/boxicons-regular/RightArrowCircle";
 import { connect } from "react-redux";
 
 const BlackCompare = styled(Compare)`
@@ -16,12 +16,13 @@ const BlackCompare = styled(Compare)`
   cursor: pointer;
 `;
 
-const ArrowBlue = styled(ArrowRight)`
-  color: black;
+const ArrowWhite = styled(RightArrowCircle)`
+  color: white;
   height: 20px;
   width: 20px;
   border-radius: 6px;
   padding-left: 5px;
+  cursor: pointer;
 `;
 
 class Compare3 extends Component {
@@ -31,27 +32,24 @@ class Compare3 extends Component {
     return (
       <>
         <header>
-          <h2>Compare</h2>
-          <div className="link">
-            <p>
-              click to compare! <ArrowBlue />
-            </p>
-
-            <Link exact to="/compare">
-              <BlackCompare />
-            </Link>
-          </div>
+          <h2>Pins</h2>
+          <Link exact to="/comparison">
+            compare <ArrowWhite />
+          </Link>
         </header>
+
         <div className="main-compare-card">
-          {this.props.pinAddresses[0] ? (
-            this.props.pinAddresses.map((pin, index) => (
-              <p className="card" key={index}>
-                {pin}
-              </p>
-            ))
-          ) : (
-            <p>No addresses... double click map to add!</p>
-          )}
+          <div className="top">
+            {this.props.pinAddresses[0] ? (
+              this.props.pinAddresses.map((pin, index) => (
+                <p className="card" key={index}>
+                  {pin}
+                </p>
+              ))
+            ) : (
+              <p>No addresses... double click map to add!</p>
+            )}
+          </div>
         </div>
       </>
     );
