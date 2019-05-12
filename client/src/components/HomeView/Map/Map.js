@@ -141,7 +141,7 @@ class Map extends Component {
         }
       });
 
-      map.on("click", "Counties", e => {
+      map.on("click,", "Counties", e => {
         new mapboxgl.Popup()
           .setLngLat(e.lngLat)
           .setHTML(`${e.features[0].properties.NAME} County`)
