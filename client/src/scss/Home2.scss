@@ -24,7 +24,7 @@
     overflow-y: scroll;
     width: 35%;
     height: 92.75vh;
-    border-left: 1px solid rgba(128, 128, 128, 0.479);
+    // border-left: 1px solid rgba(128, 128, 128, 0.479);
     @media (max-width: 800px) {
       margin-top: 5px;
       width: 100%;
@@ -166,18 +166,4 @@
       }
     }
   }
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  border-radius: 10px;
-  background-color: rgb(255, 255, 255);
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background-color: rgb(187, 187, 187);
 }
