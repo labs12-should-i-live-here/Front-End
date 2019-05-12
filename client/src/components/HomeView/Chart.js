@@ -52,7 +52,7 @@ class Chart extends Component {
         />
       );
     } else if (this.props.graphs[this.props.index] === "Line") {
-      return <Line data={this.state.data} />;
+      return <Line height={220} width={300} data={this.state.data} />;
     }
   };
 
