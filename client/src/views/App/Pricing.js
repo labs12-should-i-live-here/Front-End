@@ -4,8 +4,9 @@ import "../../scss/Pricing.scss";
 import styled from "styled-components";
 import { AccountCircle } from "styled-icons/material/AccountCircle";
 import { CheckCircle } from "styled-icons/boxicons-regular/CheckCircle";
-import { LongArrowAltRight } from "styled-icons/fa-solid/LongArrowAltRight";
+import { PrimitiveDot } from "styled-icons/octicons/PrimitiveDot";
 import { DeleteOutline } from "styled-icons/typicons/DeleteOutline";
+import { Blocked } from "styled-icons/icomoon/Blocked";
 import { Link } from "react-router-dom";
 
 const AccountRed = styled(AccountCircle)`
@@ -13,6 +14,19 @@ const AccountRed = styled(AccountCircle)`
   height: 30px;
   width: 30px;
   padding-left: 10px;
+  @media (max-width: 500px) {
+    padding-left: 3px;
+  }
+`;
+
+const BlockedWhite = styled(Blocked)`
+  color: white;
+  height: 25px;
+  width: 25px;
+  padding-left: 10px;
+  @media (max-width: 500px) {
+    padding-left: 3px;
+  }
 `;
 
 const BlackDelete = styled(DeleteOutline)`
@@ -21,11 +35,14 @@ const BlackDelete = styled(DeleteOutline)`
   width: 35px;
 `;
 
-const Arrow = styled(LongArrowAltRight)`
+const Arrow = styled(PrimitiveDot)`
   color: gray;
-  height: 30px;
-  width: 30px;
-  padding: 0 20px;
+  height: 15px;
+  width: 15px;
+  padding-right: 10px;
+  @media (max-width: 500px) {
+    padding-right: 3px;
+  }
 `;
 
 const BlackCheck = styled(CheckCircle)`
@@ -39,12 +56,16 @@ const AccountBlue = styled(AccountCircle)`
   height: 30px;
   width: 30px;
   padding-left: 10px;
+  @media (max-width: 500px) {
+    padding-left: 3px;
+  }
 `;
 
 export default function Pricing() {
   return (
     <>
       <NavbarB />
+      <h1 className="title">Pricing</h1>
       <div className="main-pricing">
         <div className="left">
           <h3>Easy Pricing</h3>
@@ -62,13 +83,13 @@ export default function Pricing() {
           <div className="label">
             <p>
               <Arrow />
-              Comparisons
+              Compare
             </p>
           </div>
           <div className="label">
             <p>
               <Arrow />
-              Comparison count
+              Compare count
             </p>
           </div>
           <div className="label">
@@ -98,7 +119,10 @@ export default function Pricing() {
         </div>
         <div className="details">
           <div className="no-account">
-            <h2>No Account</h2>
+            <h2>
+              <span>None</span>
+              <BlockedWhite />
+            </h2>
             <div className="label-2">$0 / month</div>
             <div className="label-2">
               Unlimited <Link to="/">Continue</Link>
@@ -120,7 +144,7 @@ export default function Pricing() {
           </div>
           <div className="free">
             <h2>
-              Free <AccountRed />
+              <span>Free</span> <AccountRed />
             </h2>
             <div className="label-2">$0 / month</div>
             <div className="label-2">
@@ -143,7 +167,7 @@ export default function Pricing() {
           </div>
           <div className="pro">
             <h2>
-              Pro <AccountBlue />
+              <span>Pro</span> <AccountBlue />
             </h2>
             <div className="label-2">$2 / month</div>
             <div className="label-2">
