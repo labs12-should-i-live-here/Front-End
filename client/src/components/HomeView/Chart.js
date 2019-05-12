@@ -35,12 +35,12 @@ class Chart extends Component {
     }
   };
 
-  render() {
-    console.log(this.state);
-    return (
-      <>
+  selectedGraph = () => {
+    if (this.props.graphs[this.props.index] === "Bar") {
+      return (
         <Bar
-          height={250}
+          height={220}
+          width={300}
           data={this.state.data}
           options={{
             title: {
@@ -50,8 +50,14 @@ class Chart extends Component {
             }
           }}
         />
-      </>
-    );
+      );
+    } else if (this.props.graphs[this.props.index] === "Line") {
+      return <Line data={this.state.data} />;
+    }
+  };
+
+  render() {
+    return <div className="carousel">{this.selectedGraph()}</div>;
   }
 }
 

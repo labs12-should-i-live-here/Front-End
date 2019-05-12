@@ -29,6 +29,35 @@ const BlackRight = styled(NavigateNext)`
 // change chart to dynamic
 class Charts extends Component {
   //change type to dynamic + icons
+  state = {
+    graphs: ["Bar", "Line"],
+    index: 0
+  };
+
+  leftClick = () => {
+    if (this.state.index === 0) {
+      this.setState({ index: this.state.graphs.length - 1 });
+    } else {
+      this.setState(prevState => {
+        return {
+          index: prevState.index - 1
+        };
+      });
+    }
+  };
+
+  rightClick = () => {
+    if (this.state.index === 0) {
+      this.setState({ index: this.state.graphs.length - 1 });
+    } else {
+      this.setState(prevState => {
+        return {
+          index: prevState.index + 1
+        };
+      });
+    }
+  };
+
   render() {
     return (
       <>
@@ -38,8 +67,8 @@ class Charts extends Component {
             Type: <span>Bar</span>
           </h3>
           <div className="toggle">
-            <BlackLeft />
-            <BlackRight />
+            <BlackLeft onClick={this.leftClick} />
+            <BlackRight onClick={this.rightClick} />
           </div>
         </header>
 
@@ -47,7 +76,7 @@ class Charts extends Component {
           {this.props.fetchingPredictionData ? (
             <p>fetching prediction data...</p>
           ) : this.props.coordinatePredictions.prediction ? (
-            <Chart />
+            <Chart graphs={this.state.graphs} index={this.state.index} />
           ) : (
             <p>no data</p>
           )}
