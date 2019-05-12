@@ -1,9 +1,10 @@
-import React from "react";
-
+import React, { Component } from "react";
+import styled from "styled-components";
 import { NavigateBefore } from "styled-icons/material/NavigateBefore";
 import { NavigateNext } from "styled-icons/material/NavigateNext";
 import "../../scss/Home2.scss";
-import styled from "styled-components";
+import Chart from "./Chart.js";
+import { connect } from "react-redux";
 
 const BlackLeft = styled(NavigateBefore)`
   color: grey;
@@ -25,21 +26,43 @@ const BlackRight = styled(NavigateNext)`
   }
   cursor: pointer;
 `;
-
-export default function Charts() {
+// change chart to dynamic
+class Charts extends Component {
   //change type to dynamic + icons
-  return (
-    <>
-      <header>
-        <h2>Charts</h2>
-        <h3>
-          Type: <span>Bar</span>
-        </h3>
-        <div className="toggle">
-          <BlackLeft />
-          <BlackRight />
+  render() {
+    return (
+      <>
+        <header>
+          <h2>Charts</h2>
+          <h3>
+            Type: <span>Bar</span>
+          </h3>
+          <div className="toggle">
+            <BlackLeft />
+            <BlackRight />
+          </div>
+        </header>
+
+        <div className="chart">
+          {this.props.fetchingPredictionData ? (
+            <p>fetching prediction data...</p>
+          ) : this.props.coordinatePredictions.prediction ? (
+            <Chart />
+          ) : (
+            <p>no data</p>
+          )}
         </div>
-      </header>
-    </>
-  );
+      </>
+    );
+  }
 }
+
+const mapStateToProps = ({
+  fetchingPredictionData,
+  coordinatePredictions
+}) => ({
+  fetchingPredictionData,
+  coordinatePredictions
+});
+
+export default connect(mapStateToProps)(Charts);

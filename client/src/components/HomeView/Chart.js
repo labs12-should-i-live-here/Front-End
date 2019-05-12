@@ -1,0 +1,66 @@
+import React, { Component } from "react";
+import { Line, Pie, Bar } from "react-chartjs-2";
+import { connect } from "react-redux";
+
+class Chart extends Component {
+  state = {
+    data: {
+      labels: ["Dry Spells", "Cold", "Heat", "Precipitation", "Heat Wave"],
+      datasets: [
+        {
+          label: "Projected events",
+          data: [
+            this.props.coordinatePredictions.prediction.dry_spells["2019"].avg,
+            this.props.coordinatePredictions.prediction.extreme_cold_events[
+              "2019"
+            ].avg,
+            this.props.coordinatePredictions.prediction.extreme_heat_events[
+              "2019"
+            ].avg,
+            this.props.coordinatePredictions.prediction
+              .extreme_precipitation_events["2019"].avg,
+            this.props.coordinatePredictions.prediction.heat_wave_incidents[
+              "2019"
+            ].avg
+          ],
+          backgroundColor: [
+            "rgba(249,194,46, 0.6)",
+            "rgba(83,179,203, 0.6)",
+            "rgba(241,89,70, 0.6)",
+            "rgba(12,164,165, 0.6)",
+            "rgba(224,26,79, 0.6)"
+          ]
+        }
+      ]
+    }
+  };
+
+  render() {
+    console.log(this.state);
+    return (
+      <>
+        <Bar
+          height={250}
+          data={this.state.data}
+          options={{
+            title: {
+              display: "Line",
+              text: "Extreme Events",
+              fontSize: 15
+            }
+          }}
+        />
+      </>
+    );
+  }
+}
+
+const mapStateToProps = ({
+  fetchingPredictionData,
+  coordinatePredictions
+}) => ({
+  fetchingPredictionData,
+  coordinatePredictions
+});
+
+export default connect(mapStateToProps)(Chart);
