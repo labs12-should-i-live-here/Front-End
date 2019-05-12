@@ -8,6 +8,7 @@ import { PrimitiveDot } from "styled-icons/octicons/PrimitiveDot";
 import { DeleteOutline } from "styled-icons/typicons/DeleteOutline";
 import { Blocked } from "styled-icons/icomoon/Blocked";
 import { Link } from "react-router-dom";
+import "animate.css";
 
 const AccountRed = styled(AccountCircle)`
   color: #f24336;
@@ -148,7 +149,10 @@ export default function Pricing() {
             </h2>
             <div className="label-2">$0 / month</div>
             <div className="label-2">
-              Unlimited<Link to="/register">Get now</Link>
+              Unlimited
+              <Link to="/register" className="animated bounce">
+                Join now
+              </Link>
             </div>
             <div className="label-2">
               <BlackCheck />
@@ -171,7 +175,10 @@ export default function Pricing() {
             </h2>
             <div className="label-2">$2 / month</div>
             <div className="label-2">
-              Unlimited<Link to="/register">Get now</Link>
+              Unlimited
+              <Link to="/register" className="animated bounce">
+                Join now
+              </Link>
             </div>
             <div className="label-2">
               <BlackCheck />
