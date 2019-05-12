@@ -14,6 +14,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    .activeA {
+      border-bottom: 2px solid #f24236;
+      color: #000;
+    }
 
     a {
       padding: 0 10px;

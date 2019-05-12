@@ -1,0 +1,103 @@
+.main-pricing {
+  box-sizing: border-box;
+  display: flex;
+  margin: 10px auto;
+  margin-top: 15px;
+  width: 70%;
+  border-radius: 6px;
+  border: 1px solid rgb(235, 235, 235);
+  font-family: "Montserrat", sans-serif;
+  h2,
+  h3 {
+    font-weight: bold;
+  }
+  h3 {
+    height: 55px;
+    padding-top: 10px;
+    border-bottom: 1px solid black;
+  }
+  p {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px;
+  }
+  .left {
+    width: 35%;
+    padding: 30px;
+    padding: 15px;
+    font-size: 27.5px;
+    .label {
+      padding: 15px 0;
+      height: 35px;
+      p {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+  .details {
+    width: 65%;
+    display: flex;
+    font-weight: bold;
+    color: rgb(46, 45, 45);
+
+    .label-2 {
+      padding: 15px 0;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    h2 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 65px;
+      border-radius: 22px 22px 0 0;
+      background-color: black;
+      color: white;
+      margin-bottom: 15px;
+      font-size: 22px;
+    }
+    .no-account {
+      text-align: center;
+      border-radius: 22px;
+      width: 33.3%;
+      margin: 15px;
+      background-color: #2eab6d88;
+    }
+    .no-account:hover {
+      box-shadow: 0px 0px 3px 3px rgb(235, 235, 235);
+    }
+    .free {
+      text-align: center;
+      border-radius: 22px;
+      width: 33.3%;
+      margin: 15px;
+      background-color: #f243369a;
+    }
+    .free:hover {
+      box-shadow: 0px 0px 3px 3px rgb(235, 235, 235);
+    }
+    .pro {
+      text-align: center;
+      border-radius: 22px;
+      width: 33.3%;
+      margin: 15px;
+      background-color: #2e86ab88;
+    }
+    .pro:hover {
+      box-shadow: 0px 0px 3px 3px rgb(235, 235, 235);
+    }
+  }
+  a {
+    margin-left: 10px;
+    padding: 5px;
+    text-decoration: none;
+    color: #2d7ff9;
+  }
+  a:hover {
+    border-radius: 0;
+    border-bottom: 2px solid #fff;
+  }
+}
