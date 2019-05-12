@@ -1,16 +1,14 @@
 .main-layout {
   display: flex;
   justify-content: space-between;
-  height: 90vh;
-  padding: 1vh;
-  padding-top: 0;
+  height: 92.8vh;
   font-family: "Rubik", sans-serif;
   @media (max-width: 800px) {
     flex-direction: column;
   }
   .left-pane {
-    padding-top: 1vh;
-    height: 89vh;
+    padding: 1vh;
+    height: 90vh;
     width: 65%;
     @media (max-width: 800px) {
       width: 100%;
@@ -19,7 +17,9 @@
   }
   .right-pane {
     overflow-y: scroll;
-    width: 34.5%;
+    width: 35%;
+    height: 92.75vh;
+    border-left: 1px solid rgba(128, 128, 128, 0.479);
     @media (max-width: 800px) {
       margin-top: 15px;
       width: 100%;

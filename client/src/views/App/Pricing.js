@@ -150,7 +150,7 @@ export default function Pricing() {
             <div className="label-2">$0 / month</div>
             <div className="label-2">
               Unlimited
-              <Link to="/register" className="animated bounce">
+              <Link to="/register" className="animated tada">
                 Join now
               </Link>
             </div>
@@ -176,7 +176,7 @@ export default function Pricing() {
             <div className="label-2">$2 / month</div>
             <div className="label-2">
               Unlimited
-              <Link to="/register" className="animated bounce">
+              <Link to="/register" className="animated tada">
                 Join now
               </Link>
             </div>
