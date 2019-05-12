@@ -22,6 +22,7 @@ class Home2 extends Component {
             <div className="right-bottom">
               <Compare2 />
             </div>
+            <div className="footer">footer</div>
           </div>
         </div>
       </>
