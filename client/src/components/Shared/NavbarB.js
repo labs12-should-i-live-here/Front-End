@@ -69,9 +69,9 @@ class NavbarB extends Component {
             </form>
           </div>
           <div className="right">
-            <span onClick={this.mode}>
+            {/* <span onClick={this.mode}>
               {darkmode ? <MoonDarkA /> : <MoonLightA />}
-            </span>
+            </span> */}
 
             <NavLink exact to="/pricing" activeClassName="activeA">
               Pricing
