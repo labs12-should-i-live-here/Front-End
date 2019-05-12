@@ -5,6 +5,7 @@ import "../../scss/Home2.scss";
 import { connect } from "react-redux";
 import Charts from "../../components/HomeView/Charts.js";
 import Compare2 from "../../components/HomeView/Compare/Compare2.js";
+import Footer from "../../components/HomeView/Footer.js";
 
 class Home2 extends Component {
   render() {
@@ -22,7 +23,9 @@ class Home2 extends Component {
             <div className="right-bottom">
               <Compare2 />
             </div>
-            <div className="footer">footer</div>
+            <div className="footer">
+            <Footer/>
+            </div>
           </div>
         </div>
       </>

@@ -143,18 +143,6 @@ class Navbar extends Component {
       >
         <Toolbar className="Navbar">
           <Grid>
-<<<<<<< HEAD
-          <Button href="/compare">Compare</Button>
-            <Button href="/payment">Payment</Button>
-            <Button href="/register" color="error">Register</Button>
-            <Button href="/login" color="error">Login</Button>
-            <Button href="/primeaccess">Prime Access</Button>
-          </Grid>
-        </IconButton>  
-        </Grid>
-      </Toolbar>
-    </AppBar>
-=======
             <Button classsName="liveSafeBTN" style={{ margin: "0% 35% 0% 0%" }}>
               LiveSafe
             </Button>
@@ -169,7 +157,6 @@ class Navbar extends Component {
           </Grid>
         </Toolbar>
       </AppBar>
->>>>>>> dda269c44f7004c1023a3e3ff5a7f50d7a856fed
     );
   }
 }
