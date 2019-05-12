@@ -13,6 +13,7 @@
     "axios": "^0.18.0",
     "chart.js": "^2.8.0",
     "mapbox-gl": "^0.54.0",
+    "mapbox-gl-compare": "^0.2.0",
     "node-sass": "^4.11.0",
     "plotly.js-cartesian-dist": "^1.47.4",
     "react": "^16.8.6",
