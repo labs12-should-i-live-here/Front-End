@@ -75,7 +75,7 @@ class Charts extends Component {
           ) : this.props.coordinatePredictions.prediction ? (
             <Chart graphs={this.state.graphs} index={this.state.index} />
           ) : (
-            <p>no data</p>
+            <p>No Pin selected... double click map to add</p>
           )}
         </div>
       </>

@@ -4,6 +4,7 @@
   height: 92.8vh;
   font-family: "Rubik", sans-serif;
   margin: 0 auto;
+  margin-top: 7vh;
   @media (max-width: 800px) {
     flex-direction: column;
     width: 100%;
@@ -24,7 +25,9 @@
     overflow-y: scroll;
     width: 35%;
     height: 92.75vh;
+    padding-right: 5px;
     // border-left: 1px solid rgba(128, 128, 128, 0.479);
+    margin-top: 2px;
     @media (max-width: 800px) {
       margin-top: 5px;
       width: 100%;
@@ -52,9 +55,8 @@
       margin: 5px;
       padding: 5px;
       margin-top: 1vh;
-      min-height: 375px;
+      min-height: 420px;
       background-color: #fff;
-
       h2 {
         padding: 2px;
         background: #2e86ab;
@@ -65,9 +67,20 @@
         font-weight: bold;
         height: 17.5px;
       }
+      p {
+        margin: 20% auto;
+        text-align: center;
+        color: rgb(87, 87, 87);
+      }
 
       .chart {
-        margin: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .carousel {
+          width: 100%;
+        }
       }
     }
     .right-bottom {
