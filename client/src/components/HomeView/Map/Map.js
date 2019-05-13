@@ -9,6 +9,13 @@ import {
 } from "../../../actions";
 import "../../../scss/Map.scss";
 import axios from "axios";
+import styled from "styled-components";
+import { Pulse } from "styled-icons/boxicons-regular/Pulse";
+const RedQuake = styled(Pulse)`
+  color: red;
+  height: 35px;
+  width: 35px;
+`;
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
@@ -134,7 +141,7 @@ class Map extends Component {
         }
       });
 
-      map.on("click", "Counties", e => {
+      map.on("click,", "Counties", e => {
         new mapboxgl.Popup()
           .setLngLat(e.lngLat)
           .setHTML(`${e.features[0].properties.NAME} County`)

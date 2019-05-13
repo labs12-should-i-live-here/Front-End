@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 class Chart extends Component {
   state = {
     data: {
-      labels: ["Dry Spells", "Cold", "Heat", "Precipitation", "Heat Wave"],
+      labels: ["Dry Spells", "Cold", "Heat", "Rain", "Heat Wave"],
       datasets: [
         {
           label: "Projected events",
@@ -39,20 +39,20 @@ class Chart extends Component {
     if (this.props.graphs[this.props.index] === "Bar") {
       return (
         <Bar
-          height={220}
-          width={300}
+          height={325}
+          width={400}
           data={this.state.data}
-          options={{
-            title: {
-              display: "Line",
-              text: "Extreme Events",
-              fontSize: 15
-            }
-          }}
+          // options={{
+          //   title: {
+          //     display: "Line",
+          //     text: "Extreme Events",
+          //     fontSize: 15
+          //   }
+          // }}
         />
       );
     } else if (this.props.graphs[this.props.index] === "Line") {
-      return <Line height={220} width={300} data={this.state.data} />;
+      return <Line height={325} width={400} data={this.state.data} />;
     }
   };
 

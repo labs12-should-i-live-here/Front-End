@@ -47,7 +47,7 @@ class Compare3 extends Component {
                 </p>
               ))
             ) : (
-              <p>No addresses... double click map to add!</p>
+              <p>No pins... double click map to add</p>
             )}
           </div>
         </div>

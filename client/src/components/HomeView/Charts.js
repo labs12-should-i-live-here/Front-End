@@ -7,7 +7,7 @@ import Chart from "./Chart.js";
 import { connect } from "react-redux";
 
 const BlackLeft = styled(NavigateBefore)`
-  color: grey;
+  color: black;
   height: 35px;
   width: 35px;
   border-radius: 6px;
@@ -63,9 +63,6 @@ class Charts extends Component {
       <>
         <header>
           <h2>Charts</h2>
-          <h3>
-            Type: <span>Bar</span>
-          </h3>
           <div className="toggle">
             <BlackLeft onClick={this.leftClick} />
             <BlackRight onClick={this.rightClick} />
@@ -78,7 +75,7 @@ class Charts extends Component {
           ) : this.props.coordinatePredictions.prediction ? (
             <Chart graphs={this.state.graphs} index={this.state.index} />
           ) : (
-            <p>no data</p>
+            <p>No Pin selected... double click map to add</p>
           )}
         </div>
       </>
