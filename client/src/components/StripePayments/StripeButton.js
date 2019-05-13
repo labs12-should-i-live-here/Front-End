@@ -13,7 +13,7 @@ export default class StripeButton extends React.Component {
     //https://labs12.herokuapp.com/payment
     //http://localhost:4200/payment
     //make sure URL is changed!!
-    fetch("http://localhost:4200/payment", {
+    fetch("https://labs12.herokuapp.com/payment", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -44,3 +44,5 @@ export default class StripeButton extends React.Component {
 }
 
 // export default StripeButton;
+//pr 1
+//pr 2
