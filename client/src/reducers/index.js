@@ -43,7 +43,8 @@ const initialState = {
   userId: localStorage.getItem("userId"),
   pinAddresses: [],
   fetchingAddress: false,
-  dark: false
+  dark: false,
+  selectedPinIndex: 0
 };
 
 const reducer = (state = initialState, action) => {
@@ -57,7 +58,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingPredictionData: false,
-        coordinatePredictions: [...state.coordinatePredictions, action.payload]
+        coordinatePredictions: [...state.coordinatePredictions, action.payload],
+        selectedPinIndex: state.coordinatePredictions.length
       };
     case FETCH_PREDICTION_DATA_FAILURE:
       return {
