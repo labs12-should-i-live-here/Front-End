@@ -40,7 +40,7 @@ var GitLogo = styled.a`
         <>
           <Inform>
             <Title>𝕿𝖎𝖛𝖊 𝕳𝖆𝖋𝖊</Title>
-             <p>  The Lie Safe Team has built this interactive website to bring together relevant information about disaster risks in a particular area, to inform the buying and renting decisions of potential homeowners.</p><br />
+            <p>  The Lie Safe Team has built this interactive website to bring together relevant information about disaster risks in a particular area, to inform the buying and renting decisions of potential homeowners.</p><br />
 
             <h6> • Data Sources:</h6> 
             <Source>
