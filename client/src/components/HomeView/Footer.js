@@ -39,13 +39,13 @@ var GitLogo = styled.a`
       return (
         <>
           <Inform>
-            <Title>Live Safe</Title>
-             <p>  The Live Safe Team has built this interactive website to bring together relevant information about disaster risks in a particular area, to inform the buying and renting decisions of potential homeowners.</p><br />
+            <Title>𝕿𝖎𝖛𝖊 𝕳𝖆𝖋𝖊</Title>
+             <p>  The Lie Safe Team has built this interactive website to bring together relevant information about disaster risks in a particular area, to inform the buying and renting decisions of potential homeowners.</p><br />
 
-            <h6>Data Sources:</h6> 
+            <h6> • Data Sources:</h6> 
             <Source>
-            <a href="https://www.ncdc.noaa.gov/stormevents/ftp.jsp">Storm Events</a> <a href="https://climate.azavea.com/">Climate Data</a> <a href="https://github.com/usgs/libcomcat">API</a><br />
-            <a href="https://www.fema.gov/media-library/assets/documents/7877"> FEMA Disaster Guide</a> <a href="https://www.ready.gov/earthquakes">Earthquake Prep</a>
+            <a href="https://www.ncdc.noaa.gov/stormevents/ftp.jsp">Storm Events</a> ♘ <a href="https://climate.azavea.com/">Climate Data</a> ♘ <a href="https://github.com/usgs/libcomcat">API</a> ♘ <br />
+            <a href="https://www.fema.gov/media-library/assets/documents/7877"> FEMA Disaster Guide</a> ♘ <a href="https://www.ready.gov/earthquakes">Earthquake Prep</a>
             </Source>
           </Inform>
           <Foot>
