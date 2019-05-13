@@ -277,6 +277,15 @@ class Map extends Component {
         })
       );
 
+    const geocoder = new MapboxGeocoder({
+      accessToken: mapboxgl.accessToken,
+      mapboxgl,
+      countries: "us",
+      marker: false
+    });
+
+    document.getElementById("geocoder").appendChild(geocoder.onAdd(map));
+
     // Populate pins on map
     // this.props.pins.map(pin => {
     //   let popup = new mapboxgl.Popup().setText([

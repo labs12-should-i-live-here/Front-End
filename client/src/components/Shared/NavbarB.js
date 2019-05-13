@@ -61,12 +61,13 @@ class NavbarB extends Component {
             </Link>
           </div>
           <div className="center">
-            <form>
+            {/* <form>
               <input type="text" placeholder="Enter a location" />
               <button>
                 <WhiteSearch />
               </button>
-            </form>
+            </form> */}
+            <div id="geocoder" class="geocoder" />
           </div>
           <div className="right">
             <span onClick={this.mode}>

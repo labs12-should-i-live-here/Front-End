@@ -12,6 +12,22 @@
   @media (max-width: 800px) {
     height: 54px;
   }
+
+  @media (min-width: 640px) {
+    max-width: 100%;
+  }
+  .mapboxgl-ctrl-geocoder.mapboxgl-ctrl {
+    width: 100%;
+    box-shadow: none;
+    border: 1px solid rgb(197, 197, 197);
+    margin-right: 0;
+    @media (min-width: 640px) {
+      max-width: 100%;
+    }
+  }
+  .geocoder {
+    width: 100%;
+  }
   .nav {
     height: 100%;
     width: 98%;
@@ -28,34 +44,21 @@
     }
     .center {
       width: 40%;
+      display: flex;
       @media (max-width: 800px) {
         width: 60%;
       }
-    }
-    form {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      input {
-        width: 80%;
-        height: 25px;
-        border-radius: 6px;
-        font-size: 14px;
-        border: 1px solid rgba(128, 128, 128, 0.527);
-        outline: none;
-        font-weight: bold;
+      .search {
         padding: 5px 7.5px;
-      }
-      button {
-        padding: 5px 7.5px;
-        margin: 0 3px;
         background: #2d7ff9;
         border: none;
-        border-radius: 6px;
+        border-radius: 0px 6px 6px 0px;
         outline: none;
         cursor: pointer;
+        color: white;
       }
     }
+
     .left {
       font-size: 30px;
       font-family: "Itim", cursive;
