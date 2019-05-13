@@ -16,23 +16,23 @@ export const ProtectedStripe = ({ component: Component, ...rest }) => {
 
 
 //Check for authentication
-{/* <Route
-      {...rest}
-      render={props => {
-        //check if user is prime
-        if (stripeauth.isAuthenticated()) {
-          return <Component {...props} />;
-        } else {
-          return (
-            <Redirect
-              to={{
-                pathname: "/primeaccess",
-                state: {
-                  from: props.location
-                }
-              }}
-            />
-          );
-        }
-      }}
-    /> */}
+//  <Route
+//       {...rest}
+//       render={props => {
+//         //check if user is prime
+//         if (stripeauth.isAuthenticated()) {
+//           return <Component {...props} />;
+//         } else {
+//           return (
+//             <Redirect
+//               to={{
+//                 pathname: "/primeaccess",
+//                 state: {
+//                   from: props.location
+//                 }
+//               }}
+//             />
+//           );
+//         }
+//       }}
+//     />

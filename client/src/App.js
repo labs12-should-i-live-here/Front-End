@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Router, Switch } from "react-router-dom";
+import { Route, Router} from "react-router-dom";
 import "./scss/App.scss";
 import Home2 from "./views/App/Home2.js";
 import Profile from "./views/App/Profile";
