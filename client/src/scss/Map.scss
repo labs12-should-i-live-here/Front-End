@@ -11,17 +11,12 @@
   }
 
   border-radius: 6px;
-  .mapboxgl-ctrl-attrib {
-    padding-right: 8px;
-    @media (max-width: 800px) {
-      padding-right: 0px;
-    }
-  }
   .mapboxgl-popup-content {
     font-size: 12px;
+    border-radius: 6px;
     h3 {
       font-size: 13px;
-      font-weight: bold;
+      font-weight: 700;
     }
   }
 }

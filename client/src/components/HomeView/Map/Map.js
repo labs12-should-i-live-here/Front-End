@@ -37,9 +37,6 @@ class Map extends Component {
   render() {
     return (
       <div id="map" ref={el => (this.mapContainer = el)} className="map">
-        {this.props.addingPin
-          ? console.log("adding")
-          : console.log("not adding")}
         <div id="menu-a" />
       </div>
     );
@@ -55,12 +52,7 @@ class Map extends Component {
   }
 
   pastMode = () => {
-    console.log("pastMode");
     this.props.fetchHistoricalData(this.state.historySelections);
-  };
-
-  futureMode = () => {
-    console.log("futureMode");
   };
 
   initMap = () => {
@@ -77,7 +69,6 @@ class Map extends Component {
 
     // load layers
     map.on("load", () => {
-      this.futureMode();
       map.addLayer({
         id: "Counties",
         type: "line",
@@ -207,7 +198,6 @@ class Map extends Component {
       this.props.pins.push(pin);
       this.props.savePin(pin);
 
-      console.log(this.state.coordinates);
       this.props.fetchPredictionData(this.state.coordinates);
 
       const URL = `https://api.mapbox.com/geocoding/v5/mapbox.places/${
@@ -236,17 +226,12 @@ class Map extends Component {
             .togglePopup();
 
           popup.on("open", e => {
-            console.log("OPEN");
             this.setState({
               coordinates: {
                 latitude: e.target._lngLat.lat,
                 longitude: e.target._lngLat.lng
               }
             });
-          });
-
-          popup.on("close", () => {
-            console.log("close");
           });
         })
         .catch(error => {
@@ -276,6 +261,15 @@ class Map extends Component {
           trackUserLocation: true
         })
       );
+
+    const geocoder = new MapboxGeocoder({
+      accessToken: mapboxgl.accessToken,
+      mapboxgl,
+      countries: "us",
+      marker: true
+    });
+
+    document.getElementById("geocoder").appendChild(geocoder.onAdd(map));
 
     // Populate pins on map
     // this.props.pins.map(pin => {

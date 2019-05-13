@@ -24,6 +24,7 @@ const WhiteSearch = styled(Search)`
 const MoonLightA = styled(MoonLight)`
   height: 26px;
   width: 26px;
+  color: white;
   transform: rotate(-40deg);
   cursor: pointer;
   border-radius: 6px;
@@ -61,17 +62,20 @@ class NavbarB extends Component {
             </Link>
           </div>
           <div className="center">
-            <form>
+            {/* <form>
               <input type="text" placeholder="Enter a location" />
               <button>
                 <WhiteSearch />
               </button>
-            </form>
+            </form> */}
+            <div id="geocoder" class="geocoder" />
           </div>
           <div className="right">
-            {/* <span onClick={this.mode}>
-              {darkmode ? <MoonDarkA /> : <MoonLightA />}
-            </span> */}
+            <span onClick={this.mode}>
+              <button className="icons">
+                {darkmode ? <MoonDarkA /> : <MoonLightA />}
+              </button>
+            </span>
 
             <NavLink exact to="/pricing" activeClassName="activeA">
               Pricing

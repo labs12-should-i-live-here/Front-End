@@ -1,7 +1,7 @@
 .main-layout {
   display: flex;
   justify-content: space-between;
-  height: 92.8vh;
+  height: 92.9vh;
   font-family: "Rubik", sans-serif;
   margin: 0 auto;
   margin-top: 7vh;
@@ -41,6 +41,13 @@
       border-bottom: 1px solid black;
       align-items: center;
       padding-bottom: 5px;
+      .toggle {
+        svg {
+          animation-duration: 2.5s;
+          animation-delay: 3s;
+          animation-iteration-count: 1;
+        }
+      }
       h3 {
         font-weight: bold;
         span {
@@ -57,6 +64,7 @@
       margin-top: 1vh;
       min-height: 420px;
       background-color: #fff;
+
       h2 {
         padding: 2px;
         // background: #2e86ab;
@@ -68,7 +76,7 @@
         height: 17.5px;
       }
       p {
-        margin: 20% auto;
+        margin-top: 30%;
         text-align: center;
         color: rgb(87, 87, 87);
       }
@@ -151,7 +159,6 @@
       @media (max-width: 800px) {
         margin: 1.5vh 0 0 0;
       }
-
     }
   }
 }
@@ -167,10 +174,6 @@
       h2 {
         color: #000;
       }
-    }
-    .right-top:hover,
-    .right-bottom:hover {
-      box-shadow: 0px 0px 3px 2px #646464;
     }
     .right-bottom {
       box-shadow: 0px 0px 3px 2px #555454;
