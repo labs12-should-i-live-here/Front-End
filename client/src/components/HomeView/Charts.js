@@ -83,7 +83,7 @@ class Charts extends Component {
             <p>
               <Loader type="Oval" color="#2576a5" height="35" width="35" />
             </p>
-          ) : this.props.coordinatePredictions.prediction ? (
+          ) : this.props.coordinatePredictions[0] ? (
             <Chart graphs={this.state.graphs} index={this.state.index} />
           ) : (
             <p>No Pin selected... double click map to add</p>

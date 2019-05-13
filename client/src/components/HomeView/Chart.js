@@ -10,18 +10,21 @@ class Chart extends Component {
         {
           label: "Projected events",
           data: [
-            this.props.coordinatePredictions.prediction.dry_spells["2019"].avg,
-            this.props.coordinatePredictions.prediction.extreme_cold_events[
-              "2019"
-            ].avg,
-            this.props.coordinatePredictions.prediction.extreme_heat_events[
-              "2019"
-            ].avg,
-            this.props.coordinatePredictions.prediction
-              .extreme_precipitation_events["2019"].avg,
-            this.props.coordinatePredictions.prediction.heat_wave_incidents[
-              "2019"
-            ].avg
+            this.props.coordinatePredictions[
+              this.props.coordinatePredictions.length - 1
+            ].prediction.dry_spells["2019"].avg,
+            this.props.coordinatePredictions[
+              this.props.coordinatePredictions.length - 1
+            ].prediction.extreme_cold_events["2019"].avg,
+            this.props.coordinatePredictions[
+              this.props.coordinatePredictions.length - 1
+            ].prediction.extreme_heat_events["2019"].avg,
+            this.props.coordinatePredictions[
+              this.props.coordinatePredictions.length - 1
+            ].prediction.extreme_precipitation_events["2019"].avg,
+            this.props.coordinatePredictions[
+              this.props.coordinatePredictions.length - 1
+            ].prediction.heat_wave_incidents["2019"].avg
           ],
           backgroundColor: [
             "rgba(249,194,46, 0.6)",

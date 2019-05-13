@@ -29,7 +29,7 @@ const initialState = {
   fipsCodePredictions: {},
   error: "",
   errorStatusCode: null,
-  coordinatePredictions: {},
+  coordinatePredictions: [],
   addingPin: false,
   pins: [],
   deletingPin: false,
@@ -57,7 +57,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingPredictionData: false,
-        coordinatePredictions: action.payload
+        coordinatePredictions: [...state.coordinatePredictions, action.payload]
       };
     case FETCH_PREDICTION_DATA_FAILURE:
       return {

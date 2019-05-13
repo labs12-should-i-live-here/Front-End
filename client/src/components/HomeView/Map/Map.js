@@ -198,7 +198,11 @@ class Map extends Component {
       this.props.pins.push(pin);
       this.props.savePin(pin);
 
-      this.props.fetchPredictionData(this.state.coordinates);
+      console.log(this.state.coordinates);
+      this.props.fetchPredictionData({
+        latitude: pin.LATITUDE,
+        longitude: pin.LONGITUDE
+      });
 
       const URL = `https://api.mapbox.com/geocoding/v5/mapbox.places/${
         pin.LONGITUDE
