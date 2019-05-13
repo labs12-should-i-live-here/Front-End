@@ -14,7 +14,7 @@ const BlackLeft = styled(NavigateBefore)`
   width: 35px;
   border-radius: 6px;
   :hover {
-    background: rgb(224, 224, 224);
+    background: rgb(138, 138, 138);
   }
   cursor: pointer;
 `;
@@ -24,7 +24,7 @@ const BlackRight = styled(NavigateNext)`
   width: 35px;
   border-radius: 6px;
   :hover {
-    background: rgb(224, 224, 224);
+    background: rgb(138, 138, 138);
   }
   cursor: pointer;
 `;

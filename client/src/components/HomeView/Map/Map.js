@@ -266,7 +266,7 @@ class Map extends Component {
       accessToken: mapboxgl.accessToken,
       mapboxgl,
       countries: "us",
-      marker: true
+      marker: false
     });
 
     document.getElementById("geocoder").appendChild(geocoder.onAdd(map));
