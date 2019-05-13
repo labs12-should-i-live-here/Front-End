@@ -67,7 +67,14 @@ class Charts extends Component {
           <h2>Charts</h2>
           <div className="toggle">
             <BlackLeft onClick={this.leftClick} />
-            <BlackRight onClick={this.rightClick} className="animated shake" />
+            <BlackRight
+              onClick={this.rightClick}
+              className={
+                this.props.coordinatePredictions.prediction
+                  ? "animated shake "
+                  : ""
+              }
+            />
           </div>
         </header>
 
