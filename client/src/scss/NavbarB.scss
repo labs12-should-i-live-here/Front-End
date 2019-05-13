@@ -13,20 +13,28 @@
     height: 54px;
   }
 
-  @media (min-width: 640px) {
-    max-width: 100%;
+  .mapboxgl-ctrl-geocoder .suggestions {
+    z-index: -1;
   }
+
   .mapboxgl-ctrl-geocoder.mapboxgl-ctrl {
     width: 100%;
     box-shadow: none;
     border: 1px solid rgb(197, 197, 197);
     margin-right: 0;
     @media (min-width: 640px) {
-      max-width: 100%;
+      max-width: 98.5%;
     }
   }
   .geocoder {
     width: 100%;
+  }
+  .icons {
+    background: rgb(167, 167, 167);
+    padding: 3px;
+    border-radius: 50%;
+    border: none;
+    outline: none;
   }
   .nav {
     height: 100%;
@@ -47,15 +55,6 @@
       display: flex;
       @media (max-width: 800px) {
         width: 60%;
-      }
-      .search {
-        padding: 5px 7.5px;
-        background: #2d7ff9;
-        border: none;
-        border-radius: 0px 6px 6px 0px;
-        outline: none;
-        cursor: pointer;
-        color: white;
       }
     }
 

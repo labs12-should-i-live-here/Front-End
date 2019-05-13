@@ -5,6 +5,8 @@ import { NavigateNext } from "styled-icons/material/NavigateNext";
 import "../../scss/Home2.scss";
 import Chart from "./Chart.js";
 import { connect } from "react-redux";
+import Loader from "react-loader-spinner";
+import "animate.css";
 
 const BlackLeft = styled(NavigateBefore)`
   color: black;
@@ -65,13 +67,15 @@ class Charts extends Component {
           <h2>Charts</h2>
           <div className="toggle">
             <BlackLeft onClick={this.leftClick} />
-            <BlackRight onClick={this.rightClick} />
+            <BlackRight onClick={this.rightClick} className="animated shake" />
           </div>
         </header>
 
         <div className="chart">
           {this.props.fetchingPredictionData ? (
-            <p>fetching prediction data...</p>
+            <p>
+              <Loader type="Oval" color="#2576a5" height="35" width="35" />
+            </p>
           ) : this.props.coordinatePredictions.prediction ? (
             <Chart graphs={this.state.graphs} index={this.state.index} />
           ) : (
