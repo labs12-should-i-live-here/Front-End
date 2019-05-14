@@ -30,7 +30,7 @@ const PlayGreenDisabled = styled(PlayCircle)`
 `;
 
 const MapPinGreen = styled(MapMarkerAlt)`
-  color: red;
+  color: #f2433680;
   height: 75px;
   width: 75px;
   margin-right: 5px;

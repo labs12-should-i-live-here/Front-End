@@ -33,7 +33,7 @@ const BlackRight = styled(NavigateNext)`
 `;
 
 const BarChartYellow = styled(BarChart)`
-  color: #ffbd08c2;
+  color: #f2433680;
   height: 80px;
   width: 80px;
 `;
@@ -90,7 +90,14 @@ class Charts extends Component {
         <div className="chart">
           {this.props.fetchingPredictionData ? (
             <p>
-              <Loader type="Oval" color="#2576a5" height="35" width="35" />
+              <Loader
+                className="loader"
+                type="Oval"
+                color="#2576a5"
+                height="35"
+                width="35"
+                className="loader"
+              />
             </p>
           ) : this.props.coordinatePredictions[0] ? (
             <Chart graphs={this.state.graphs} index={this.state.index} />
