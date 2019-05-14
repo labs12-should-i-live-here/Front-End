@@ -149,7 +149,24 @@ class Map extends Component {
           type: "vector",
           url: "mapbox://livesafe.cjvnzaaao06dg2ypfj08fw02n-2td4t"
         },
-        "source-layer": "fl"
+        "source-layer": "fl",
+        paint: {
+          "line-color": "purple"
+        }
+      });
+   
+      map.addLayer({
+        id: "Sea Level",
+        type: "fill",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.3lxztgam"
+        },
+        "source-layer": "sea_level-6ugk2j",
+        paint: {
+          "fill-color": "#75cff0",
+        },
+        // filter: [1,2,3,4,5,7,6,8,14,16,17,18,133]
       });
 
       map.on("click,", "Counties", e => {
@@ -167,7 +184,8 @@ class Map extends Component {
         "Counties",
         "Quakes",
         "Quake Heat Map",
-        "San Andreas Fault"
+        "San Andreas Fault",
+        "Sea Level"
       ];
       // const toggleableLayers = ["Quakes"];
 
@@ -183,6 +201,7 @@ class Map extends Component {
         map.setLayoutProperty("Quakes", "visibility", "none");
         map.setLayoutProperty("Quake Heat Map", "visibility", "none");
         map.setLayoutProperty("San Andreas Fault", "visibility", "none");
+        map.setLayoutProperty("Sea Level", "visibility", "none");
 
         link.onclick = function(e) {
           // toggle layer
