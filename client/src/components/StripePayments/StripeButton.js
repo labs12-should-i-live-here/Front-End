@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import StripeCheckout from "react-stripe-checkout";
 
 export default class StripeButton extends React.Component {
@@ -44,5 +44,18 @@ export default class StripeButton extends React.Component {
 }
 
 // export default StripeButton;
-//pr 1
-//pr 2
+
+// payment 
+
+// if false
+
+// trigger the payment function
+// post id: 'cus_F4BZqUAYIWXLCT' to our user.stripeid null
+// post to stripe asking for
+// payment status
+// status: 'active',
+
+
+// if true 
+// user.stripeid true
+
