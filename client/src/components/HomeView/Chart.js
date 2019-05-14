@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Line, Radar, Bar } from "react-chartjs-2";
+import { Line, Bar } from "react-chartjs-2";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { Info } from "styled-icons/octicons/Info";
@@ -28,19 +28,42 @@ class Chart extends Component {
   };
 
   selectedGraph = () => {
+    const options = {
+      scales: {
+        xAxes: [
+          {
+            stacked: true
+          }
+        ],
+        yAxes: [
+          {
+            stacked: true
+          }
+        ]
+      }
+    };
+
+    let data = {
+      datasets: [
+        {
+          label: "test1",
+          data: [1]
+        },
+        {
+          label: "test2",
+          data: [2]
+        }
+      ],
+      labels: ["label"]
+    };
+
     if (this.props.graphs[this.props.index] === "Bar") {
       return (
         <Bar
           height={325}
           width={400}
           data={this.props.timeMode ? this.state.data : this.state.data2}
-          // options={{
-          //   title: {
-          //     display: "Line",
-          //     text: "Extreme Events",
-          //     fontSize: 15
-          //   }
-          // }}
+          options={options}
         />
       );
     } else if (this.props.graphs[this.props.index] === "Line") {
@@ -50,14 +73,7 @@ class Chart extends Component {
           height={325}
           width={400}
           data={this.props.timeMode ? this.state.data : this.state.data2}
-        />
-      );
-    } else if (this.props.graphs[this.props.index] === "Radar") {
-      return (
-        <Radar
-          data={this.props.timeMode ? this.state.data : this.state.data2}
-          height={325}
-          width={400}
+          options={options}
         />
       );
     }
@@ -199,30 +215,42 @@ class Chart extends Component {
             {
               label: "Hurricane",
               data: [...hurricane],
-              backgroundColor: "rgba(54, 162, 235, 0.6)"
+              backgroundColor: "rgba(54, 235, 114, 0.6)"
             },
             {
               label: "Storm",
               data: [...storm],
-              backgroundColor: "rgba(54, 162, 235, 0.6)"
+              backgroundColor: "rgba(235, 54, 235, 0.6)"
             },
             {
               label: "Tornado",
               data: [...tornado],
-              backgroundColor: "rgba(54, 162, 235, 0.6)"
+              backgroundColor: "rgba(217, 235, 54, 0.6)"
             },
             {
               label: "Winter Weather",
               data: [...winterweather],
-              backgroundColor: "rgba(54, 162, 235, 0.6)"
+              backgroundColor: "rgba(235, 96, 54, 0.6)"
             }
           ]
         }
       });
     }
+
+    // var ctx = document.getElementById("canvas").getContext("2d");
+
+    // window.myBar = new Chart(ctx, {
+    //   type: "bar",
+    //   data: this.state.data2,
+
+    // });
   }
 
   render() {
+    // else if (this.props.graphs[this.props.index] === "Stacked") {
+    //   return
+    // }
+
     return (
       <>
         <div className="carousel">{this.selectedGraph()}</div>

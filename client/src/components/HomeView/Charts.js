@@ -45,7 +45,7 @@ const BarChartYellow = styled(BarChart)`
 class Charts extends Component {
   //change type to dynamic + icons
   state = {
-    graphs: ["Bar", "Line", "Radar"],
+    graphs: ["Bar", "Line"],
     index: 0
   };
 

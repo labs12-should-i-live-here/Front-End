@@ -1,27 +1,27 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet');
 
-$roboto: 'Roboto', san-serif;
+$roboto: "Roboto", san-serif;
 
 .body {
-    height: 800px;
-    background: url('../assets/landing-img.jpg') no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    .title {
-        color: black;
-        font-size: 84px;
-        display: flex;
-        justify-content: center;
-        font-family: $roboto;
-        font-weight: bold;
-        margin: 10% 0 2% 0; 
-    }
-    .tag {
-        color: black;
-        font-size: 40px;
-        display: flex;
-        justify-content: center;
-    }   
+  height: 800px;
+  background: url("../assets/landing-img.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  .title {
+    color: black;
+    font-size: 84px;
+    display: flex;
+    justify-content: center;
+    font-family: $roboto;
+    font-weight: bold;
+    margin: 10% 0 2% 0;
+  }
+  .tag {
+    color: black;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+  }
 }
