@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { IoLogoGithub } from "react-icons/io";
 
+
 var Inform = styled.div`
 margin-top: 5px;
 color: whitesmoke;
