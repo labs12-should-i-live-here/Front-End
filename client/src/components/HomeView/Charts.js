@@ -19,6 +19,7 @@ const BlackLeft = styled(NavigateBefore)`
     opacity: 1;
   }
   cursor: pointer;
+  background: rgba(0, 0, 0, 0.05);
 `;
 const BlackRight = styled(NavigateNext)`
   color: black;
@@ -30,10 +31,12 @@ const BlackRight = styled(NavigateNext)`
     opacity: 1;
   }
   cursor: pointer;
+  background: rgba(0, 0, 0, 0.05);
+  margin-left: 3px;
 `;
 
 const BarChartYellow = styled(BarChart)`
-  color: #f2433680;
+  color: #2e64ab9c;
   height: 80px;
   width: 80px;
 `;
@@ -89,24 +92,17 @@ class Charts extends Component {
 
         <div className="chart">
           {this.props.fetchingPredictionData ? (
-            <p>
-              <Loader
-                className="loader"
-                type="Oval"
-                color="#2576a5"
-                height="35"
-                width="35"
-                className="loader"
-              />
+            <p className="loader">
+              <Loader type="Oval" color="#2e64ab" height="40" width="40" />
             </p>
           ) : this.props.coordinatePredictions[0] ? (
             <Chart graphs={this.state.graphs} index={this.state.index} />
           ) : (
             <>
-              <p>No Pin selected... double click map to add</p>
               <p>
                 <BarChartYellow />
               </p>
+              <p className="msg">No Pin selected... double click map to add</p>
             </>
           )}
         </div>

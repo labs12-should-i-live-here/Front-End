@@ -240,7 +240,7 @@ class Map extends Component {
           }).setHTML(popupContent);
 
           let marker = new mapboxgl.Marker({
-            color: "red"
+            color: "#2e64ab"
           })
             .setLngLat([pin.LONGITUDE, pin.LATITUDE])
             .setPopup(popup)

@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Compare } from "styled-icons/material/Compare";
-import { RightArrowCircle } from "styled-icons/boxicons-regular/RightArrowCircle";
+import { ArrowRight2 } from "styled-icons/icomoon/ArrowRight2";
 import { connect } from "react-redux";
 import { PlayCircle } from "styled-icons/boxicons-regular/PlayCircle";
 import { changePinIndex } from "../../../actions";
 import { MapMarkerAlt } from "styled-icons/fa-solid/MapMarkerAlt";
+import { BuildingHouse } from "styled-icons/boxicons-solid/BuildingHouse";
 
 const PlayGreen = styled(PlayCircle)`
   color: rgb(255, 255, 255);
@@ -29,20 +30,29 @@ const PlayGreenDisabled = styled(PlayCircle)`
   border-radius: 6px;
 `;
 
+const HomeRed = styled(BuildingHouse)`
+  color: red;
+  height: 16px;
+  width: 16px;
+  margin-right: 8px;
+  border-radius: 6px;
+`;
+
 const MapPinGreen = styled(MapMarkerAlt)`
-  color: #f2433680;
+  color: #2e64ab9c;
   height: 75px;
   width: 75px;
   margin-right: 5px;
 `;
 
 const MapPinGreenSmall = styled(MapMarkerAlt)`
-  color: red;
-  height: 25px;
-  width: 25px;
+  color: #2e64ab;
+  height: 15px;
+  width: 15px;
+  padding-right: 5px;
 `;
 
-const ArrowBlack = styled(RightArrowCircle)`
+const ArrowBlack = styled(ArrowRight2)`
   color: black;
   height: 20px;
   width: 20px;
@@ -97,6 +107,7 @@ class Compare3 extends Component {
                     <>
                       <button onClick={this.sendPinIndex(index)}>
                         <MapPinGreenSmall />
+                        <HomeRed />
                         {pin}
                       </button>
                     </>
@@ -105,10 +116,10 @@ class Compare3 extends Component {
               ))
             ) : (
               <>
-                <p>No pins... double click map to add</p>
                 <p>
                   <MapPinGreen />
                 </p>
+                <p className="msg">No pins... double click map to add</p>
               </>
             )}
           </div>
