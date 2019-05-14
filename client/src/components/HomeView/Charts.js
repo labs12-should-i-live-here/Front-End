@@ -7,32 +7,44 @@ import Chart from "./Chart.js";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 import "animate.css";
+import { BarChart } from "styled-icons/boxicons-regular/BarChart";
 
 const BlackLeft = styled(NavigateBefore)`
   color: black;
-  height: 35px;
-  width: 35px;
+  height: 30px;
+  width: 30px;
   border-radius: 6px;
+  opacity: 0.7;
   :hover {
-    background: rgb(224, 224, 224);
+    opacity: 1;
   }
   cursor: pointer;
+  background: rgba(0, 0, 0, 0.05);
 `;
 const BlackRight = styled(NavigateNext)`
   color: black;
-  height: 35px;
-  width: 35px;
+  height: 30px;
+  width: 30px;
   border-radius: 6px;
+  opacity: 0.7;
   :hover {
-    background: rgb(224, 224, 224);
+    opacity: 1;
   }
   cursor: pointer;
+  background: rgba(0, 0, 0, 0.05);
+  margin-left: 3px;
+`;
+
+const BarChartYellow = styled(BarChart)`
+  color: #2e64ab9c;
+  height: 90px;
+  width: 90px;
 `;
 // change chart to dynamic
 class Charts extends Component {
   //change type to dynamic + icons
   state = {
-    graphs: ["Bar", "Line"],
+    graphs: ["Bar", "Line", "Radar"],
     index: 0
   };
 
@@ -65,13 +77,18 @@ class Charts extends Component {
       <>
         <header>
           <h2>Charts</h2>
+          <div className="center-time-controls">
+            <p>Past</p>
+            <p>Future</p>
+          </div>
+
           <div className="toggle">
             <BlackLeft onClick={this.leftClick} />
             <BlackRight
               onClick={this.rightClick}
               className={
                 this.props.coordinatePredictions.prediction
-                  ? "animated shake "
+                  ? "animated tada "
                   : ""
               }
             />
@@ -80,13 +97,18 @@ class Charts extends Component {
 
         <div className="chart">
           {this.props.fetchingPredictionData ? (
-            <p>
-              <Loader type="Oval" color="#2576a5" height="35" width="35" />
+            <p className="loader">
+              <Loader type="Oval" color="#2e64ab" height="40" width="40" />
             </p>
-          ) : this.props.coordinatePredictions.prediction ? (
+          ) : this.props.coordinatePredictions[0] ? (
             <Chart graphs={this.state.graphs} index={this.state.index} />
           ) : (
-            <p>No Pin selected... double click map to add</p>
+            <div className="middle">
+              <p>
+                <BarChartYellow />
+              </p>
+              <p className="msg">No Pin selected... double click map to add</p>
+            </div>
           )}
         </div>
       </>
