@@ -7,14 +7,16 @@ import Chart from "./Chart.js";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 import "animate.css";
+import { BarChart } from "styled-icons/boxicons-regular/BarChart";
 
 const BlackLeft = styled(NavigateBefore)`
   color: black;
   height: 35px;
   width: 35px;
   border-radius: 6px;
+  opacity: 0.7;
   :hover {
-    background: rgb(138, 138, 138);
+    opacity: 1;
   }
   cursor: pointer;
 `;
@@ -23,10 +25,17 @@ const BlackRight = styled(NavigateNext)`
   height: 35px;
   width: 35px;
   border-radius: 6px;
+  opacity: 0.7;
   :hover {
-    background: rgb(138, 138, 138);
+    opacity: 1;
   }
   cursor: pointer;
+`;
+
+const BarChartYellow = styled(BarChart)`
+  color: #ffbd08c2;
+  height: 80px;
+  width: 80px;
 `;
 // change chart to dynamic
 class Charts extends Component {
@@ -86,7 +95,12 @@ class Charts extends Component {
           ) : this.props.coordinatePredictions[0] ? (
             <Chart graphs={this.state.graphs} index={this.state.index} />
           ) : (
-            <p>No Pin selected... double click map to add</p>
+            <>
+              <p>No Pin selected... double click map to add</p>
+              <p>
+                <BarChartYellow />
+              </p>
+            </>
           )}
         </div>
       </>

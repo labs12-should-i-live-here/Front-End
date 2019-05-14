@@ -30,8 +30,11 @@
   .geocoder {
     width: 100%;
   }
+  button {
+    background: none;
+    box-shadow: 0px 0px 3px 2px rgb(235, 235, 235);
+  }
   .icons {
-    background: rgb(167, 167, 167);
     padding: 3px;
     border-radius: 50%;
     border: none;
@@ -93,6 +96,10 @@
 
 .dark {
   background-color: #3e3e3e;
+  button {
+    background: none;
+    box-shadow: 0px 0px 3px 2px rgb(94, 94, 94);
+  }
   .nav {
     form {
       input {

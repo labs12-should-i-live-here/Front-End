@@ -24,7 +24,7 @@ const WhiteSearch = styled(Search)`
 const MoonLightA = styled(MoonLight)`
   height: 26px;
   width: 26px;
-  color: white;
+  color: black;
   transform: rotate(-40deg);
   cursor: pointer;
   border-radius: 6px;

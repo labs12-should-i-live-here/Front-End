@@ -41,8 +41,10 @@
       border-bottom: 1px solid black;
       align-items: center;
       padding: 5px;
+      padding-left: 2px;
       border-radius: 6px 6px 0 0;
-      background: rgba(230, 230, 230, 0.445);
+      background: #498dfa;
+      font-size: 18px;
       h2 {
         // background: #2e86ab;
         padding-left: 15px;
@@ -52,6 +54,7 @@
         font-weight: bold;
         height: 17.5px;
       }
+
       .toggle {
         svg {
           animation-duration: 2.5s;
@@ -75,17 +78,12 @@
       min-height: 420px;
       background-color: #fff;
 
-      p {
-        margin-top: 30%;
-        text-align: center;
-        color: rgb(87, 87, 87);
-      }
-
       .chart {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
+        p {
+          color: rgb(87, 87, 87);
+          padding-top: 10vh;
+          text-align: center;
+        }
         .carousel {
           width: 100%;
         }
@@ -98,19 +96,18 @@
       margin-top: 2vh;
       min-height: 300px;
       header {
-        height: 40px;
         a {
-          color: #2d7ff9;
+          background-color: white;
+          border: none;
           cursor: pointer;
-          width: 30%;
           text-decoration: none;
-          background-color: #2d7ff9;
           border-radius: 22px;
-          color: white;
           font-size: 14px;
           text-align: center;
           padding: 4px 6px;
-          box-shadow: 0px 0px 4px 2px rgb(221, 221, 221);
+          box-shadow: 0px 0px 3px 2px rgba(235, 235, 235, 0.562);
+
+          width: 100px;
         }
       }
 
@@ -118,22 +115,31 @@
         display: flex;
         justify-content: center;
         align-content: center;
+        box-sizing: border-box;
         .top {
-          width: 80%;
+          width: 95%;
         }
         .card {
           font-size: 13px;
           padding: 3px;
-          margin: 0 auto;
-          border-radius: 6px;
+          margin: 8px auto;
+          border-radius: 22px;
           border: 1px solid rgba(128, 128, 128, 0.562);
-          margin-top: 5px;
+          background-color: rgb(219, 242, 255);
+          display: flex;
+          align-items: center;
+          align-content: center;
+          padding: 5px;
+          button {
+            background: none;
+            border: none;
+          }
         }
         p {
-          margin: 20% auto;
-          text-align: center;
           color: rgb(87, 87, 87);
-          cursor: pointer;
+          padding-top: 6vh;
+          // cursor: pointer;
+          text-align: center;
         }
       }
     }
@@ -147,7 +153,7 @@
       @media (max-width: 800px) {
         margin: 1.5vh 0 0 0;
       }
-      a{
+      a {
         text-decoration: none;
         color: whitesmoke;
         justify-content: space-evenly;

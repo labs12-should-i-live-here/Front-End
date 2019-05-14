@@ -6,27 +6,44 @@ import { RightArrowCircle } from "styled-icons/boxicons-regular/RightArrowCircle
 import { connect } from "react-redux";
 import { PlayCircle } from "styled-icons/boxicons-regular/PlayCircle";
 import { changePinIndex } from "../../../actions";
+import { MapMarkerAlt } from "styled-icons/fa-solid/MapMarkerAlt";
 
 const PlayGreen = styled(PlayCircle)`
-  color: green;
+  color: rgb(255, 255, 255);
   height: 35px;
   width: 35px;
   border-radius: 6px;
+  opacity: 0.8;
   :hover {
-    background: rgb(224, 224, 224);
+    opacity: 1;
   }
   cursor: pointer;
+  margin-right: 8px;
 `;
 
 const PlayGreenDisabled = styled(PlayCircle)`
-  color: gray;
+  color: rgba(255, 255, 255, 0.459);
   height: 35px;
   width: 35px;
+  margin-right: 8px;
   border-radius: 6px;
 `;
 
-const ArrowWhite = styled(RightArrowCircle)`
-  color: white;
+const MapPinGreen = styled(MapMarkerAlt)`
+  color: #21a17883;
+  height: 75px;
+  width: 75px;
+  margin-right: 5px;
+`;
+
+const MapPinGreenSmall = styled(MapMarkerAlt)`
+  color: #21a178;
+  height: 25px;
+  width: 25px;
+`;
+
+const ArrowBlack = styled(RightArrowCircle)`
+  color: black;
   height: 20px;
   width: 20px;
   border-radius: 6px;
@@ -51,17 +68,24 @@ class Compare3 extends Component {
       <>
         <header>
           <h2>Pins</h2>
-          {this.props.pinAddresses[1] ? (
-            <>
-              <p>Click to tour your locations</p>
-              <PlayGreen onClick={this.tour} />
-            </>
-          ) : (
-            <PlayGreenDisabled />
-          )}
-          <Link exact to="/comparison">
-            compare <ArrowWhite />
-          </Link>
+          <div>
+            {this.props.pinAddresses[1] ? (
+              <>
+                <PlayGreen onClick={this.tour} />
+              </>
+            ) : (
+              <>
+                {/* <span className="popup show">
+                  You must have at least 2 pins to be be able to fly through
+                  them. Add some, we promise it's cool!
+                </span> */}
+                <PlayGreenDisabled />
+              </>
+            )}
+            <Link exact to="/comparison">
+              compare <ArrowBlack />
+            </Link>
+          </div>
         </header>
 
         <div className="main-compare-card">
@@ -69,11 +93,23 @@ class Compare3 extends Component {
             {this.props.pinAddresses[0] ? (
               this.props.pinAddresses.map((pin, index) => (
                 <p className="card" key={index}>
-                  {<button onClick={this.sendPinIndex(index)}>{pin}</button>}
+                  {
+                    <>
+                      <button onClick={this.sendPinIndex(index)}>
+                        <MapPinGreenSmall />
+                        {pin}
+                      </button>
+                    </>
+                  }
                 </p>
               ))
             ) : (
-              <p>No pins... double click map to add</p>
+              <>
+                <p>No pins... double click map to add</p>
+                <p>
+                  <MapPinGreen />
+                </p>
+              </>
             )}
           </div>
         </div>
