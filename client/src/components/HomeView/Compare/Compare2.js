@@ -5,6 +5,7 @@ import { Compare } from "styled-icons/material/Compare";
 import { RightArrowCircle } from "styled-icons/boxicons-regular/RightArrowCircle";
 import { connect } from "react-redux";
 import { PlayCircle } from "styled-icons/boxicons-regular/PlayCircle";
+import { changePinIndex } from "../../../actions";
 
 const PlayGreen = styled(PlayCircle)`
   color: green;
@@ -40,13 +41,21 @@ class Compare3 extends Component {
     console.log("tour of counties to be implemented on this click!");
   };
 
+  sendPinIndex = index => {
+    console.log("index from ", index);
+    this.props.changePinIndex(index);
+  };
+
   render() {
     return (
       <>
         <header>
           <h2>Pins</h2>
           {this.props.pinAddresses[1] ? (
-            <PlayGreen onClick={this.tour} />
+            <>
+              <p>Click to tour your locations</p>
+              <PlayGreen onClick={this.tour} />
+            </>
           ) : (
             <PlayGreenDisabled />
           )}
@@ -60,7 +69,7 @@ class Compare3 extends Component {
             {this.props.pinAddresses[0] ? (
               this.props.pinAddresses.map((pin, index) => (
                 <p className="card" key={index}>
-                  {pin}
+                  {<button onClick={this.sendPinIndex(index)}>{pin}</button>}
                 </p>
               ))
             ) : (
@@ -78,4 +87,7 @@ const mapStateToProps = ({ fetchingPredictionData, pinAddresses }) => ({
   pinAddresses
 });
 
-export default connect(mapStateToProps)(Compare3);
+export default connect(
+  mapStateToProps,
+  { changePinIndex }
+)(Compare3);

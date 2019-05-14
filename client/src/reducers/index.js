@@ -20,7 +20,8 @@ import {
   DELETE_PIN_START,
   DELETE_PIN_SUCCESS,
   DELETE_PIN_FAILURE,
-  FLIP_MODE
+  FLIP_MODE,
+  CHANGE_SELECTED_PIN_INDEX
 } from "../actions/index";
 
 const initialState = {
@@ -180,6 +181,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         dark: !state.dark
+      };
+    case CHANGE_SELECTED_PIN_INDEX:
+      return {
+        ...state,
+        selectedPinIndex: action.payload
       };
     default:
       return state;
