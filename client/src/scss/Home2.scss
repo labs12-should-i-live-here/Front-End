@@ -150,7 +150,7 @@
       }
     }
     .footer {
-      height: 120px;
+      height: 155px;
       margin: 30px 2px 5px 5px;
       padding: 5px;
       background-color: rgb(25, 25, 25);
@@ -158,6 +158,11 @@
       background-color: rgb(179, 179, 179);
       @media (max-width: 800px) {
         margin: 1.5vh 0 0 0;
+      }
+      a{
+        text-decoration: none;
+        color: whitesmoke;
+        justify-content: space-evenly;
       }
     }
   }
