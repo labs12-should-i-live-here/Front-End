@@ -250,7 +250,7 @@ var layout3 = {
       }
     }],
   title: '<b>Risk Level</b> <br> ',
-  height:500,
+  height:300,
   width: 500,
   xaxis: {zeroline:false, showticklabels:false,
              showgrid: false, range: [-1, 1]},
