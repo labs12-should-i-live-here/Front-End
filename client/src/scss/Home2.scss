@@ -43,7 +43,7 @@
       padding: 2px;
       padding-left: 2px;
       border-radius: 6px 6px 0 0;
-      background: #f83212;
+      background: #1276f8b9;
       font-size: 18px;
       h2 {
         // background: #2e86ab;
@@ -163,16 +163,13 @@
 }
 
 .dark {
-  p {
-    color: white;
-  }
   .right-pane {
     header {
       border-bottom: 1px solid #fff;
     }
     .right-top {
-      box-shadow: 0px 0px 3px 2px #555454;
-      background-color: #555454;
+      box-shadow: none;
+      background-color: #000000;
       h2 {
         color: #000;
       }
@@ -186,8 +183,8 @@
       }
     }
     .right-bottom {
-      box-shadow: 0px 0px 3px 2px #555454;
-      background-color: #555454;
+      box-shadow: none;
+      background-color: #000000;
 
       h2 {
         color: #000;
