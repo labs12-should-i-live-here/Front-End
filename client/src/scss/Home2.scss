@@ -81,11 +81,18 @@
 
       .chart {
         position: relative;
+        .middle {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          margin-top: 10%;
+          height: 200px;
+        }
         p {
           color: rgb(87, 87, 87);
-          text-align: center;
+          // text-align: center;
           padding: 5px;
-          margin: 17.5% 9% 0 9%;
         }
         .msg {
           background: rgba(0, 0, 0, 0.05);
@@ -95,7 +102,8 @@
           width: 100%;
         }
         .loader {
-          padding-top: 30%;
+          padding-top: 35%;
+          padding-left: 45%;
         }
       }
     }
@@ -133,6 +141,14 @@
         .top {
           width: 95%;
         }
+        .middle {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          margin-top: 5%;
+          height: 200px;
+        }
         .card {
           font-size: 13px;
           padding: 3px;
@@ -152,8 +168,6 @@
         }
         p {
           color: rgb(87, 87, 87);
-          margin: 10% 9% 0 9%;
-          text-align: center;
           padding: 5px;
         }
         .msg {

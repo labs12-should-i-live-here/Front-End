@@ -33,7 +33,6 @@
   }
   button {
     background: none;
-    box-shadow: 0px 0px 3px 2px rgb(235, 235, 235);
   }
   .icons {
     padding: 3px;
@@ -77,6 +76,8 @@
       }
     }
     .right {
+      display: flex;
+      align-items: center;
       @media (max-width: 800px) {
         display: none;
       }
@@ -97,10 +98,6 @@
 
 .dark {
   background-color: #353535;
-  button {
-    background: none;
-    box-shadow: 0px 0px 3px 2px rgb(94, 94, 94);
-  }
   .nav {
     form {
       input {

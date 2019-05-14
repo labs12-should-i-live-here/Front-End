@@ -37,8 +37,8 @@ const BlackRight = styled(NavigateNext)`
 
 const BarChartYellow = styled(BarChart)`
   color: #2e64ab9c;
-  height: 80px;
-  width: 80px;
+  height: 90px;
+  width: 90px;
 `;
 // change chart to dynamic
 class Charts extends Component {
@@ -83,7 +83,7 @@ class Charts extends Component {
               onClick={this.rightClick}
               className={
                 this.props.coordinatePredictions.prediction
-                  ? "animated shake "
+                  ? "animated tada "
                   : ""
               }
             />
@@ -98,12 +98,12 @@ class Charts extends Component {
           ) : this.props.coordinatePredictions[0] ? (
             <Chart graphs={this.state.graphs} index={this.state.index} />
           ) : (
-            <>
+            <div className="middle">
               <p>
                 <BarChartYellow />
               </p>
               <p className="msg">No Pin selected... double click map to add</p>
-            </>
+            </div>
           )}
         </div>
       </>

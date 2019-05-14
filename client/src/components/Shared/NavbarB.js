@@ -25,20 +25,30 @@ const WhiteSearch = styled(Search)`
 `;
 
 const MoonLightA = styled(MoonLight)`
-  height: 26px;
-  width: 26px;
+  height: 23px;
+  width: 23px;
   color: black;
-  transform: rotate(-40deg);
+  padding: 3px 5px;
+  background: rgba(0, 0, 0, 0.05);
   cursor: pointer;
   border-radius: 6px;
+  opacity: 0.7;
+  :hover {
+    opacity: 1;
+  }
 `;
 
 const MoonDarkA = styled(MoonDark)`
-  height: 26px;
-  width: 26px;
-  transform: rotate(-40deg);
+  height: 23px;
+  width: 23px;
+  padding: 3px 5px;
+  background: rgba(0, 0, 0, 0.05);
   cursor: pointer;
   border-radius: 6px;
+  opacity: 0.7;
+  :hover {
+    opacity: 1;
+  }
 `;
 
 // remove premiuim to after login
@@ -74,12 +84,6 @@ class NavbarB extends Component {
             <div id="geocoder" class="geocoder" />
           </div>
           <div className="right">
-            <span onClick={this.mode}>
-              <button className="icons">
-                {darkmode ? <MoonDarkA /> : <MoonLightA />}
-              </button>
-            </span>
-
             <NavLink exact to="/pricing" activeClassName="activeA">
               Pricing
             </NavLink>
@@ -89,6 +93,12 @@ class NavbarB extends Component {
             <NavLink exact to="/login" activeClassName="activeA">
               Log in
             </NavLink>
+
+            <span onClick={this.mode}>
+              <button className="icons">
+                {darkmode ? <MoonDarkA /> : <MoonLightA />}
+              </button>
+            </span>
           </div>
         </div>
       </div>

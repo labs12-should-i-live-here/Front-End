@@ -10,11 +10,11 @@ import { MapMarkerAlt } from "styled-icons/fa-solid/MapMarkerAlt";
 import { BuildingHouse } from "styled-icons/boxicons-solid/BuildingHouse";
 
 const PlayGreen = styled(PlayCircle)`
-  color: rgb(255, 255, 255);
+  color: black;
   height: 35px;
   width: 35px;
   border-radius: 6px;
-  opacity: 0.8;
+  opacity: 0.7;
   :hover {
     opacity: 1;
   }
@@ -23,7 +23,7 @@ const PlayGreen = styled(PlayCircle)`
 `;
 
 const PlayGreenDisabled = styled(PlayCircle)`
-  color: rgba(255, 255, 255, 0.459);
+  color: grey;
   height: 35px;
   width: 35px;
   margin-right: 8px;
@@ -42,7 +42,7 @@ const MapPinGreen = styled(MapMarkerAlt)`
   color: #2e64ab9c;
   height: 75px;
   width: 75px;
-  margin-right: 5px;
+  margin-bottom: 15px;
 `;
 
 const MapPinGreenSmall = styled(MapMarkerAlt)`
@@ -115,12 +115,12 @@ class Compare3 extends Component {
                 </p>
               ))
             ) : (
-              <>
+              <div className="middle">
                 <p>
                   <MapPinGreen />
                 </p>
                 <p className="msg">No pins... double click map to add</p>
-              </>
+              </div>
             )}
           </div>
         </div>

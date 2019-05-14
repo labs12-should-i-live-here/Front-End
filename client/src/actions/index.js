@@ -19,8 +19,9 @@ export const fetchPredictionData = coordinates => dispatch => {
   };
   axios
     .post(URL, request)
-    .then(res =>
-      dispatch({ type: FETCH_PREDICTION_DATA_SUCCESS, payload: res.data })
+    .then(
+      res => console.log(res.data)
+      // dispatch({ type: FETCH_PREDICTION_DATA_SUCCESS, payload: res.data })
     )
     .catch(error => {
       dispatch({
