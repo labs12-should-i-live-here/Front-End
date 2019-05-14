@@ -142,6 +142,16 @@ class Map extends Component {
         "source-layer": "quakes1"
       });
 
+      map.addLayer({
+        id: "San Andreas Fault",
+        type: "line",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.cjvnzaaao06dg2ypfj08fw02n-2td4t"
+        },
+        "source-layer": "fl"
+      });
+
       map.on("click,", "Counties", e => {
         new mapboxgl.Popup()
           .setLngLat(e.lngLat)
@@ -156,7 +166,8 @@ class Map extends Component {
         "Quake Risk",
         "Counties",
         "Quakes",
-        "Quake Heat Map"
+        "Quake Heat Map",
+        "San Andreas Fault"
       ];
       // const toggleableLayers = ["Quakes"];
 
@@ -171,6 +182,7 @@ class Map extends Component {
         map.setLayoutProperty("Counties Highlighted", "visibility", "none");
         map.setLayoutProperty("Quakes", "visibility", "none");
         map.setLayoutProperty("Quake Heat Map", "visibility", "none");
+        map.setLayoutProperty("San Andreas Fault", "visibility", "none");
 
         link.onclick = function(e) {
           // toggle layer
