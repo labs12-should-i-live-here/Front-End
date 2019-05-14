@@ -10,6 +10,7 @@
   position: fixed;
   top: 0;
   z-index: 10;
+  box-shadow: 0px 3px 3px 0px rgba(240, 240, 240, 1);
   @media (max-width: 800px) {
     height: 54px;
   }
@@ -21,7 +22,8 @@
   .mapboxgl-ctrl-geocoder.mapboxgl-ctrl {
     width: 100%;
     box-shadow: none;
-    border: 1px solid rgb(197, 197, 197);
+    border-radius: 22px;
+    background: rgba(0, 0, 0, 0.05);
     margin-right: 0;
     @media (min-width: 640px) {
       max-width: 98.5%;
@@ -104,7 +106,7 @@
     form {
       input {
         border: 1px solid rgba(128, 128, 128, 0.527);
-        background-color: #555454;
+        background-color: #7e7e7e;
       }
       input::placeholder {
         color: #fff;

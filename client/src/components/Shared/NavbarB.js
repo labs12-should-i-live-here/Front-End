@@ -13,6 +13,9 @@ const RedHome = styled(Home)`
   color: #f24236;
   height: 35px;
   width: 35px;
+  padding: 2px;
+  border-radius: 50%;
+  background-color: white;
 `;
 
 const WhiteSearch = styled(Search)`

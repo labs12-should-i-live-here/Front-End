@@ -11,8 +11,8 @@ import { BarChart } from "styled-icons/boxicons-regular/BarChart";
 
 const BlackLeft = styled(NavigateBefore)`
   color: black;
-  height: 35px;
-  width: 35px;
+  height: 30px;
+  width: 30px;
   border-radius: 6px;
   opacity: 0.7;
   :hover {
@@ -22,8 +22,8 @@ const BlackLeft = styled(NavigateBefore)`
 `;
 const BlackRight = styled(NavigateNext)`
   color: black;
-  height: 35px;
-  width: 35px;
+  height: 30px;
+  width: 30px;
   border-radius: 6px;
   opacity: 0.7;
   :hover {
