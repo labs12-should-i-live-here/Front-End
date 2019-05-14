@@ -20,7 +20,8 @@ import {
   DELETE_PIN_START,
   DELETE_PIN_SUCCESS,
   DELETE_PIN_FAILURE,
-  FLIP_MODE
+  FLIP_MODE,
+  CHANGE_SELECTED_PIN_INDEX
 } from "../actions/index";
 
 const initialState = {
@@ -29,7 +30,7 @@ const initialState = {
   fipsCodePredictions: {},
   error: "",
   errorStatusCode: null,
-  coordinatePredictions: {},
+  coordinatePredictions: [],
   addingPin: false,
   pins: [],
   deletingPin: false,
@@ -43,7 +44,9 @@ const initialState = {
   userId: localStorage.getItem("userId"),
   pinAddresses: [],
   fetchingAddress: false,
-  dark: false
+  dark: false,
+  selectedPinIndex: 0,
+  selectedData: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -57,7 +60,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingPredictionData: false,
-        coordinatePredictions: action.payload
+        coordinatePredictions: [...state.coordinatePredictions, action.payload],
+        selectedPinIndex: state.coordinatePredictions.length
       };
     case FETCH_PREDICTION_DATA_FAILURE:
       return {
@@ -178,6 +182,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         dark: !state.dark
+      };
+    case CHANGE_SELECTED_PIN_INDEX:
+      return {
+        ...state,
+        selectedPinIndex: action.payload
       };
     default:
       return state;

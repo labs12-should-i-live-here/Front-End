@@ -5,22 +5,24 @@
   height: 7vh;
   display: flex;
   justify-content: center;
-  border-bottom: 1px solid #2e86ab;
+  border-bottom: 1px solid #2e64ab;
   font-family: "Montserrat", sans-serif;
   position: fixed;
   top: 0;
+  z-index: 10;
   @media (max-width: 800px) {
     height: 54px;
   }
 
   .mapboxgl-ctrl-geocoder .suggestions {
-    z-index: -1;
+    z-index: 2;
   }
 
   .mapboxgl-ctrl-geocoder.mapboxgl-ctrl {
     width: 100%;
     box-shadow: none;
-    border: 1px solid rgb(197, 197, 197);
+    border-radius: 22px;
+    background: rgba(0, 0, 0, 0.05);
     margin-right: 0;
     @media (min-width: 640px) {
       max-width: 98.5%;
@@ -29,8 +31,10 @@
   .geocoder {
     width: 100%;
   }
+  button {
+    background: none;
+  }
   .icons {
-    background: rgb(167, 167, 167);
     padding: 3px;
     border-radius: 50%;
     border: none;
@@ -72,6 +76,8 @@
       }
     }
     .right {
+      display: flex;
+      align-items: center;
       @media (max-width: 800px) {
         display: none;
       }
@@ -91,12 +97,12 @@
 }
 
 .dark {
-  background-color: #3e3e3e;
+  background-color: #353535;
   .nav {
     form {
       input {
         border: 1px solid rgba(128, 128, 128, 0.527);
-        background-color: #555454;
+        background-color: #7e7e7e;
       }
       input::placeholder {
         color: #fff;
@@ -113,7 +119,7 @@
         color: rgb(228, 228, 228);
       }
       a:hover {
-        border-bottom: 2px solid #f24236;
+        border-bottom: 2px solid #f2433680;
         color: #fff;
       }
     }

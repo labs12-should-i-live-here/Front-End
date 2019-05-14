@@ -139,7 +139,7 @@ class Map extends Component {
           type: "vector",
           url: "mapbox://livesafe.cjvn8h2c30bcw2xmja9dpoaq7-7iwaw"
         },
-        "source-layer": "quakes1",
+        "source-layer": "quakes1"
       });
 
       map.on("click,", "Counties", e => {
@@ -152,7 +152,12 @@ class Map extends Component {
         map.setFilter("Counties Highlighted", filter);
       });
 
-      const toggleableLayers = ["Quake Risk", "Counties", "Quakes", "Quake Heat Map"];
+      const toggleableLayers = [
+        "Quake Risk",
+        "Counties",
+        "Quakes",
+        "Quake Heat Map"
+      ];
       // const toggleableLayers = ["Quakes"];
 
       toggleableLayers.map((layer, index) => {
@@ -209,7 +214,11 @@ class Map extends Component {
       this.props.pins.push(pin);
       this.props.savePin(pin);
 
-      this.props.fetchPredictionData(this.state.coordinates);
+      console.log(this.state.coordinates);
+      this.props.fetchPredictionData({
+        latitude: pin.LATITUDE,
+        longitude: pin.LONGITUDE
+      });
 
       const URL = `https://api.mapbox.com/geocoding/v5/mapbox.places/${
         pin.LONGITUDE
@@ -230,7 +239,9 @@ class Map extends Component {
             className: "popup"
           }).setHTML(popupContent);
 
-          let marker = new mapboxgl.Marker()
+          let marker = new mapboxgl.Marker({
+            color: "#2e64ab"
+          })
             .setLngLat([pin.LONGITUDE, pin.LATITUDE])
             .setPopup(popup)
             .addTo(map)
@@ -277,7 +288,7 @@ class Map extends Component {
       accessToken: mapboxgl.accessToken,
       mapboxgl,
       countries: "us",
-      marker: true
+      marker: false
     });
 
     document.getElementById("geocoder").appendChild(geocoder.onAdd(map));

@@ -142,3 +142,10 @@ export const FLIP_MODE = "FLIP_MODE";
 export const flipMode = () => dispatch => {
   dispatch({ type: FLIP_MODE });
 };
+
+export const CHANGE_SELECTED_PIN_INDEX = "CHANGE_SELECTED_PIN_INDEX";
+
+export const changePinIndex = index => dispatch => {
+  console.log(index);
+  dispatch({ type: CHANGE_SELECTED_PIN_INDEX, payload: index });
+};
