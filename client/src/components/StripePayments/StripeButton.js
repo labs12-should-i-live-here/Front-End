@@ -12,6 +12,8 @@ export default class StripeButton extends React.Component {
 //Send payment token
   onToken(token) {
     console.log("onToken", token);
+    //cors fix
+    //https://cors-anywhere.herokuapp.com/
     //https://labs12.herokuapp.com/payment
     //http://localhost:4200/payment
     //make sure URL is changed!!
@@ -33,7 +35,7 @@ export default class StripeButton extends React.Component {
   //     });
     axios
 
-      .post("https://cors-anywhere.herokuapp.com/https://labs12.herokuapp.com/payment", {stripeToken: token.id})
+      .post("https://labs12.herokuapp.com/payment", {stripeToken: token.id})
       .then(response => {
         console.log(response.data);
       })
