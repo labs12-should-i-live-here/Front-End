@@ -31,7 +31,7 @@ class Map extends Component {
       endyear: 2014
     },
     pins: this.props.pins,
-    style: "mapbox://styles/brilles/cjv3zbk1u2uw11fqx8i0zgfkj"
+    style: "mapbox://styles/livesafe/cjvn7ns5m4pzs1clqctev9l5i"
   };
 
   render() {
@@ -121,6 +121,19 @@ class Map extends Component {
 
       map.addLayer({
         id: "Quakes",
+        type: "circle",
+        source: {
+          type: "vector",
+          url: "mapbox://brilles.2xbld1lx"
+        },
+        "source-layer": "quakes1-1p0ws7",
+        paint: {
+          "circle-color": "red"
+        }
+      });
+
+      map.addLayer({
+        id: "Quakes Heat Map",
         type: "circle",
         source: {
           type: "vector",
