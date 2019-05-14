@@ -45,7 +45,8 @@ const initialState = {
   pinAddresses: [],
   fetchingAddress: false,
   dark: false,
-  selectedPinIndex: 0
+  selectedPinIndex: 0,
+  selectedData: []
 };
 
 const reducer = (state = initialState, action) => {

@@ -78,7 +78,22 @@
       margin-top: 1vh;
       min-height: 420px;
       background-color: #fff;
+      .center-time-controls {
+        display: flex;
+        p {
+          font-size: 13px;
+          padding: 8px;
+          border-radius: 6px;
+          opacity: 0.7;
 
+          cursor: pointer;
+          background: rgba(0, 0, 0, 0.05);
+          margin-left: 3px;
+        }
+        p:hover {
+          opacity: 1;
+        }
+      }
       .chart {
         position: relative;
         .middle {
@@ -102,7 +117,7 @@
           width: 100%;
         }
         .loader {
-          padding-top: 35%;
+          padding-top: 30%;
           padding-left: 45%;
         }
       }
@@ -159,16 +174,32 @@
           align-items: center;
           align-content: center;
           padding: 5px;
+          min-height: 40px;
           cursor: pointer;
           button {
+            display: flex;
+            align-items: center;
+            .card-left {
+              // width: 65px;
+              width: 30px;
+            }
+            .card-right {
+              width: 15px;
+            }
+            width: 100%;
             background: none;
             border: none;
             display: flex;
+            justify-content: space-between;
           }
         }
         p {
           color: rgb(87, 87, 87);
           padding: 5px;
+        }
+        .loader {
+          padding-top: 22.5%;
+          padding-left: 45%;
         }
         .msg {
           background: rgba(0, 0, 0, 0.05);

@@ -8,6 +8,8 @@ import { PlayCircle } from "styled-icons/boxicons-regular/PlayCircle";
 import { changePinIndex } from "../../../actions";
 import { MapMarkerAlt } from "styled-icons/fa-solid/MapMarkerAlt";
 import { BuildingHouse } from "styled-icons/boxicons-solid/BuildingHouse";
+import { DotsVerticalRounded } from "styled-icons/boxicons-regular/DotsVerticalRounded";
+import Loader from "react-loader-spinner";
 
 const PlayGreen = styled(PlayCircle)`
   color: black;
@@ -22,8 +24,22 @@ const PlayGreen = styled(PlayCircle)`
   margin-right: 8px;
 `;
 
+const DotsBlack = styled(DotsVerticalRounded)`
+  color: black;
+  height: 18px;
+  width: 18px;
+  border-radius: 6px;
+  opacity: 0.7;
+  :hover {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.05);
+  }
+  cursor: pointer;
+  margin-right: 8px;
+`;
+
 const PlayGreenDisabled = styled(PlayCircle)`
-  color: grey;
+  color: black;
   height: 35px;
   width: 35px;
   margin-right: 8px;
@@ -100,15 +116,24 @@ class Compare3 extends Component {
 
         <div className="main-compare-card">
           <div className="top">
-            {this.props.pinAddresses[0] ? (
+            {this.props.fetchingPredictionData ? (
+              <p className="loader">
+                <Loader type="Oval" color="#2e64ab" height="40" width="40" />
+              </p>
+            ) : this.props.pinAddresses[0] ? (
               this.props.pinAddresses.map((pin, index) => (
                 <p className="card" key={index}>
                   {
                     <>
                       <button onClick={this.sendPinIndex(index)}>
-                        <MapPinGreenSmall />
-                        <HomeRed />
+                        <div className="card-left">
+                          <MapPinGreenSmall />
+                          {/* <HomeRed /> */}
+                        </div>
                         {pin}
+                        <div className="card-right">
+                          <DotsBlack />
+                        </div>
                       </button>
                     </>
                   }

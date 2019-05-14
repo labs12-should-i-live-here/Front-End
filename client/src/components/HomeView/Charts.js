@@ -44,7 +44,7 @@ const BarChartYellow = styled(BarChart)`
 class Charts extends Component {
   //change type to dynamic + icons
   state = {
-    graphs: ["Bar", "Line"],
+    graphs: ["Bar", "Line", "Radar"],
     index: 0
   };
 
@@ -77,6 +77,11 @@ class Charts extends Component {
       <>
         <header>
           <h2>Charts</h2>
+          <div className="center-time-controls">
+            <p>Past</p>
+            <p>Future</p>
+          </div>
+
           <div className="toggle">
             <BlackLeft onClick={this.leftClick} />
             <BlackRight
