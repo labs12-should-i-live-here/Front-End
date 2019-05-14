@@ -9,7 +9,7 @@ import Logout from "./views/App/Logout.js";
 import Compare from "./views/App/Compare.js";
 import Landing from "./views/App/Landing";
 import Pricing from "./views/App/Pricing.js";
-import Email from "./components/SendGrid/Email";
+// import Email from "./components/SendGrid/Email";
 //stripe
 import StripePayment from "./components/StripePayments/StripePayment";
 import { UnpaidPrime } from "./views/App/UnpaidPrime";
@@ -38,7 +38,7 @@ function App() {
         <Route path="/profile" component={Profile} /> {/* NEW! */}
         <Route path="/logout" component={Logout} />
         <Route path="/compare" component={Compare} />
-        <Route path="/Email" componet={Email} /> {/* SendGrid */}
+        {/* <Route path="/Email" componet={Email} />  --> potential UI for mass email via SendGrid */}
         <Route
           path="/callback"
           render={props => {
