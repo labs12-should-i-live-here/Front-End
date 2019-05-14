@@ -9,6 +9,7 @@ import { DeleteOutline } from "styled-icons/typicons/DeleteOutline";
 import { Blocked } from "styled-icons/icomoon/Blocked";
 import { Link } from "react-router-dom";
 import "animate.css";
+import StripeButton from "../../components/StripePayments/StripeButton.js";
 
 const AccountRed = styled(AccountCircle)`
   color: #f24336;
@@ -197,6 +198,7 @@ export default function Pricing() {
             </div>
           </div>
         </div>
+        <StripeButton />
       </div>
     </>
   );
