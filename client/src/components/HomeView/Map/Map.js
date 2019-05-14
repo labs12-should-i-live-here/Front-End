@@ -133,16 +133,13 @@ class Map extends Component {
       });
 
       map.addLayer({
-        id: "Quakes Heat Map",
-        type: "circle",
+        id: "Quake Heat Map",
+        type: "heatmap",
         source: {
           type: "vector",
-          url: "mapbox://brilles.2xbld1lx"
+          url: "mapbox://livesafe.cjvn8h2c30bcw2xmja9dpoaq7-7iwaw"
         },
-        "source-layer": "quakes1-1p0ws7",
-        paint: {
-          "circle-color": "red"
-        }
+        "source-layer": "quakes1",
       });
 
       map.on("click,", "Counties", e => {
@@ -155,7 +152,7 @@ class Map extends Component {
         map.setFilter("Counties Highlighted", filter);
       });
 
-      const toggleableLayers = ["Quake Risk", "Counties", "Quakes"];
+      const toggleableLayers = ["Quake Risk", "Counties", "Quakes", "Quake Heat Map"];
       // const toggleableLayers = ["Quakes"];
 
       toggleableLayers.map((layer, index) => {
@@ -168,6 +165,7 @@ class Map extends Component {
         map.setLayoutProperty("Counties", "visibility", "none");
         map.setLayoutProperty("Counties Highlighted", "visibility", "none");
         map.setLayoutProperty("Quakes", "visibility", "none");
+        map.setLayoutProperty("Quake Heat Map", "visibility", "none");
 
         link.onclick = function(e) {
           // toggle layer
