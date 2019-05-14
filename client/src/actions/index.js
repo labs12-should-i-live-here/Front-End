@@ -9,14 +9,14 @@ export const fetchPredictionData = coordinates => dispatch => {
   dispatch({ type: FETCH_PREDICTION_DATA_START });
   const URL = "https://d2drg1tc2gs4lr.cloudfront.net/allpredictions";
 
-  console.log('coordinates are --------->', coordinates)
-  let {latitude, longitude} = coordinates;
+  console.log("coordinates are --------->", coordinates);
+  let { latitude, longitude } = coordinates;
 
   let request = {
     latitude: latitude,
     longitude: longitude,
     years: 25
-  }
+  };
   axios
     .post(URL, request)
     .then(res =>
@@ -134,4 +134,11 @@ export const deletePin = pin => dispatch => {
     .delete(URL)
     .then(res => console.log(res))
     .catch(error => console.log(error)); //! need to replace ID
+};
+
+// Darkmode
+export const FLIP_MODE = "FLIP_MODE";
+
+export const flipMode = () => dispatch => {
+  dispatch({ type: FLIP_MODE });
 };

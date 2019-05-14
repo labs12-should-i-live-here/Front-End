@@ -5,9 +5,9 @@ import '../../scss/Landing.scss';
 
 
 class Landing extends React.Component {
-    constructor(props){
-        super(props);
-    }
+    // constructor(props){
+    //     super(props);
+    // }
     render() {
         return (
             <div className="body">

@@ -154,7 +154,7 @@ render() {
 
     if (this.state.fipsData.length >2)
         console.log('State fipsData is -----------------------> ', Object.values(this.state.fipsData[0]));
-    let firstarr = [];
+    // let firstarr = [];
     // for (let i = 0; i < this.state.fipsData.length; i++)
     //   firstarr.push()
 

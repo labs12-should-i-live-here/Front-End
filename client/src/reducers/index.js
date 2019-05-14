@@ -19,7 +19,8 @@ import {
   UPDATE_PINS_FAILURE,
   DELETE_PIN_START,
   DELETE_PIN_SUCCESS,
-  DELETE_PIN_FAILURE
+  DELETE_PIN_FAILURE,
+  FLIP_MODE
 } from "../actions/index";
 
 const initialState = {
@@ -30,7 +31,7 @@ const initialState = {
   errorStatusCode: null,
   coordinatePredictions: {},
   addingPin: false,
-  pins: [], //testing
+  pins: [],
   deletingPin: false,
   addedPin: 0,
   deletedPin: 0,
@@ -41,7 +42,8 @@ const initialState = {
   pin: 0,
   userId: localStorage.getItem("userId"),
   pinAddresses: [],
-  fetchingAddress: false
+  fetchingAddress: false,
+  dark: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -171,6 +173,11 @@ const reducer = (state = initialState, action) => {
         error: action.payload,
         deletingPin: false,
         errorStatusCode: action.payload
+      };
+    case FLIP_MODE:
+      return {
+        ...state,
+        dark: !state.dark
       };
     default:
       return state;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
 
 //This is the action for getting users
-import {getUsers} from '../../actions/index'
+// import {getUsers} from '../../actions/index'
 
 var Load = styled.div `text-align:center; margin:15%;`;
 
