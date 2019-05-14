@@ -116,6 +116,16 @@ class Map extends Component {
       });
 
       map.addLayer({
+        id: "Quake Heat Map",
+        type: "heatmap",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.cjvn8h2c30bcw2xmja9dpoaq7-7iwaw"
+        },
+        "source-layer": "quakes1"
+      });
+      
+      map.addLayer({
         id: "Quakes",
         type: "circle",
         source: {
@@ -124,18 +134,18 @@ class Map extends Component {
         },
         "source-layer": "quakes1-1p0ws7",
         paint: {
-          "circle-color": "red"
+          "circle-color": "purple"
         }
       });
 
       map.addLayer({
-        id: "Quake Heat Map",
-        type: "heatmap",
+        id: "San Andreas Fault",
+        type: "line",
         source: {
           type: "vector",
-          url: "mapbox://livesafe.cjvn8h2c30bcw2xmja9dpoaq7-7iwaw"
+          url: "mapbox://livesafe.cjvnzaaao06dg2ypfj08fw02n-2td4t"
         },
-        "source-layer": "quakes1"
+        "source-layer": "fl"
       });
 
       map.on("click,", "Counties", e => {
@@ -152,7 +162,8 @@ class Map extends Component {
         "Quake Risk",
         "Counties",
         "Quakes",
-        "Quake Heat Map"
+        "Quake Heat Map",
+        "San Andreas Fault"
       ];
       // const toggleableLayers = ["Quakes"];
 
@@ -167,6 +178,7 @@ class Map extends Component {
         map.setLayoutProperty("Counties Highlighted", "visibility", "none");
         map.setLayoutProperty("Quakes", "visibility", "none");
         map.setLayoutProperty("Quake Heat Map", "visibility", "none");
+        map.setLayoutProperty("San Andreas Fault", "visibility", "none");
 
         link.onclick = function(e) {
           // toggle layer
