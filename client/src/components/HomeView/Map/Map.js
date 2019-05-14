@@ -120,6 +120,16 @@ class Map extends Component {
       });
 
       map.addLayer({
+        id: "Quake Heat Map",
+        type: "heatmap",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.cjvn8h2c30bcw2xmja9dpoaq7-7iwaw"
+        },
+        "source-layer": "quakes1"
+      });
+      
+      map.addLayer({
         id: "Quakes",
         type: "circle",
         source: {
@@ -128,18 +138,8 @@ class Map extends Component {
         },
         "source-layer": "quakes1-1p0ws7",
         paint: {
-          "circle-color": "red"
+          "circle-color": "purple"
         }
-      });
-
-      map.addLayer({
-        id: "Quake Heat Map",
-        type: "heatmap",
-        source: {
-          type: "vector",
-          url: "mapbox://livesafe.cjvn8h2c30bcw2xmja9dpoaq7-7iwaw"
-        },
-        "source-layer": "quakes1"
       });
 
       map.addLayer({
