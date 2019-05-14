@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 import "animate.css";
 import { BarChart } from "styled-icons/boxicons-regular/BarChart";
+import { changeTimeMode } from "../../actions";
 
 const BlackLeft = styled(NavigateBefore)`
   color: black;
@@ -72,14 +73,18 @@ class Charts extends Component {
     }
   };
 
+  changeMode = () => {
+    this.props.changeTimeMode();
+  };
+
   render() {
     return (
       <>
         <header>
           <h2>Charts</h2>
           <div className="center-time-controls">
-            <p>Past</p>
-            <p>Future</p>
+            <p onClick={this.changeMode}>Past</p>
+            <p onClick={this.changeMode}>Future</p>
           </div>
 
           <div className="toggle">
@@ -96,11 +101,13 @@ class Charts extends Component {
         </header>
 
         <div className="chart">
-          {this.props.fetchingPredictionData ? (
+          {this.props.fetchingHistoricalData ||
+          this.props.fetchingPredictionData ? (
             <p className="loader">
               <Loader type="Oval" color="#2e64ab" height="40" width="40" />
             </p>
-          ) : this.props.coordinatePredictions[0] ? (
+          ) : this.props.fipsCodePredictions.count &&
+            this.props.coordinatePredictions[0] ? (
             <Chart graphs={this.state.graphs} index={this.state.index} />
           ) : (
             <div className="middle">
@@ -118,10 +125,15 @@ class Charts extends Component {
 
 const mapStateToProps = ({
   fetchingPredictionData,
-  coordinatePredictions
+  coordinatePredictions,
+  fipsCodePredictions
 }) => ({
   fetchingPredictionData,
-  coordinatePredictions
+  coordinatePredictions,
+  fipsCodePredictions
 });
 
-export default connect(mapStateToProps)(Charts);
+export default connect(
+  mapStateToProps,
+  { changeTimeMode }
+)(Charts);

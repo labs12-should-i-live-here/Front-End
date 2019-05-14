@@ -28,7 +28,7 @@ class Map extends Component {
     historySelections: {
       fipscode: 17033,
       startyear: 1990,
-      endyear: 2014
+      endyear: 2019
     },
     pins: this.props.pins,
     style: "mapbox://styles/livesafe/cjvn7ns5m4pzs1clqctev9l5i"
@@ -50,10 +50,6 @@ class Map extends Component {
     //    });
     //  }
   }
-
-  pastMode = () => {
-    this.props.fetchHistoricalData(this.state.historySelections);
-  };
 
   initMap = () => {
     // create map with state values
@@ -215,6 +211,7 @@ class Map extends Component {
       this.props.savePin(pin);
 
       console.log(this.state.coordinates);
+      this.props.fetchHistoricalData(this.state.historySelections);
       this.props.fetchPredictionData({
         latitude: pin.LATITUDE,
         longitude: pin.LONGITUDE
@@ -225,6 +222,7 @@ class Map extends Component {
       },${pin.LATITUDE}.json?access_token=${
         process.env.REACT_APP_MAPBOX_TOKEN
       }`;
+
       axios
         .get(URL)
         .then(res => {

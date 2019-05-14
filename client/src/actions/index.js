@@ -149,3 +149,9 @@ export const changePinIndex = index => dispatch => {
   console.log(index);
   dispatch({ type: CHANGE_SELECTED_PIN_INDEX, payload: index });
 };
+
+export const CHANGE_TIME_MODE = "CHANGE_TIME_MODE ";
+
+export const changeTimeMode = () => dispatch => {
+  dispatch({ type: CHANGE_TIME_MODE });
+};
