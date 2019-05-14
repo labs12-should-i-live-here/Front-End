@@ -1,5 +1,7 @@
 import React, { useReducer } from "react";
 import StripeCheckout from "react-stripe-checkout";
+import axios from "axios";
+
 
 export default class StripeButton extends React.Component {
   constructor(props) {
@@ -13,23 +15,32 @@ export default class StripeButton extends React.Component {
     //https://labs12.herokuapp.com/payment
     //http://localhost:4200/payment
     //make sure URL is changed!!
-    fetch("https://labs12.herokuapp.com/payment", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        stripeToken: token.id
+  //   fetch("https://labs12.herokuapp.com/payment", {
+  //     method: "POST",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify({
+  //       stripeToken: token.id
+  //     })
+  //   })
+  //   //callback token
+  //     .then(res => res.json())
+  //     .then(json => {
+  //       console.log("json");
+  //       console.log(json);
+  //     });
+    axios
+      .post("https://labs12.herokuapp.com/payment", {stripeToken: token.id})
+      .then(response => {
+        console.log(response.data);
       })
-    })
-    //callback token
-      .then(res => res.json())
-      .then(json => {
-        console.log("json");
-        console.log(json);
+      .catch(error => {
+        console.log("Payment Pending", error);
       });
-  }
+  };
+  
 
   render() {
     return (
