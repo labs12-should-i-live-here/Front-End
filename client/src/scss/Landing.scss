@@ -1,27 +1,39 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
-$roboto: 'Roboto', san-serif;
-
-.body {
-    height: 800px;
-    background: url('../assets/landing-img.jpg') no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
+.landingPage {
+    background-image: url('../assets/landing-img2.jpg');
+    height: 890px;
+    background-position: center fixed;
+    background-repeat: no-repeat fixed;
     background-size: cover;
-    .title {
-        color: black;
-        font-size: 84px;
-        display: flex;
-        justify-content: center;
-        font-family: $roboto;
-        font-weight: bold;
-        margin: 10% 0 2% 0; 
-    }
-    .tag {
-        color: black;
-        font-size: 40px;
-        display: flex;
-        justify-content: center;
-    }   
+    display: flex;
+    justify-content: center;
+}
+
+.taglineSearch {
+    color: white;
+    font-size: 84px;
+    // padding: 20% 0 0 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.tagline {
+    font-family: 'Roboto', sans-serif;
+    // padding: 0 0 0 20%;
+    align-self: center;
+}
+
+.subtagline {
+    font-size: 24px;
+    padding: 4% 0 0 22%; 
+    align-self: center;
+}
+
+.landingSearchBox {
+    border-radius: 2px; 
+    width: 500px;
+    height: 40px;
+    // padding: 5% 0 15% 0;
 }
