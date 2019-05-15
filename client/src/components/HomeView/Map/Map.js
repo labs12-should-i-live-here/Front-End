@@ -239,13 +239,12 @@ class Map extends Component {
       });
 
       const toggleableLayers = [
-        "Counties",
-        "Tornado Events",
-        "Flood Events",
-        "Major Storm Events",
         "Quake Events",
         "Quake Risk",
         "Quake Heat Map",
+        "Tornado Events",
+        "Flood Events",
+        "Major Storm Events",
         "San Andreas Fault",
         "Sea Levels"
       ];
