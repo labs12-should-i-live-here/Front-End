@@ -30,7 +30,7 @@ class Map extends Component {
       endyear: 2019
     },
     pins: this.props.pins,
-    style: "mapbox://styles/livesafe/cjvn7ns5m4pzs1clqctev9l5i"
+    style: "mapbox://styles/livesafe/cjvodc5af09t31dm8u2qhri51"
   };
 
   render() {
@@ -151,7 +151,7 @@ class Map extends Component {
       });
 
       map.addLayer({
-        id: "Sea Level",
+        id: "Sea Levels",
         type: "fill",
         source: {
           type: "vector",
@@ -163,6 +163,21 @@ class Map extends Component {
         }
         // filter: [1,2,3,4,5,7,6,8,14,16,17,18,133]
       });
+      
+      // map.addLayer({
+      //   id: "Risk by County",
+      //   type: "fill",
+      //   source: {
+      //     type: "vector",
+      //     url: "mapbox://livesafe.ctlgoa5o"
+      //   },
+      //   "source-layer": "danger-8xjejj",
+      //   paint: {
+      //   "fill-color": ['interpolate',['linear'],
+      //   3544, 'f0334c', 625, '#f5c170',0,"#82f570"],
+      //     'fill-opacity': 0.75,
+      //   }},
+      // );
 
       map.on("click,", "Counties", e => {
         new mapboxgl.Popup()
@@ -175,12 +190,13 @@ class Map extends Component {
       });
 
       const toggleableLayers = [
-        "Quake Risk",
         "Counties",
+        "Risk by County",
+        "Quake Risk",
         "Quakes",
         "Quake Heat Map",
         "San Andreas Fault",
-        "Sea Level"
+        "Sea Levels"
       ];
       // const toggleableLayers = ["Quakes"];
 
@@ -196,7 +212,8 @@ class Map extends Component {
         map.setLayoutProperty("Quakes", "visibility", "none");
         map.setLayoutProperty("Quake Heat Map", "visibility", "none");
         map.setLayoutProperty("San Andreas Fault", "visibility", "none");
-        map.setLayoutProperty("Sea Level", "visibility", "none");
+        map.setLayoutProperty("Sea Levels", "visibility", "none");
+        map.setLayoutProperty("Risk by County", "visibility", "none");
 
         link.onclick = function(e) {
           // toggle layer
@@ -218,7 +235,7 @@ class Map extends Component {
             map.setLayoutProperty(clickedLayer, "visibility", "visible");
           }
         };
-
+        // Where the data is coming into from the FLASK app
         const layers = document.getElementById("menu-a");
         return layers.appendChild(link);
       });
