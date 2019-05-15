@@ -31,6 +31,7 @@ class Map extends Component {
       endyear: 2014
     },
     pins: this.props.pins,
+    //Outside Map from LiveSafe Mapbox studio
     style: "mapbox://styles/livesafe/cjvodc5af09t31dm8u2qhri51"
   };
 
@@ -215,6 +216,19 @@ class Map extends Component {
             "circle-color": "#909090"
           }
           },);
+
+          map.addLayer({
+            id: "Major Storm Events",
+            type: "circle",
+            source: {
+              type: "vector",
+              url: "mapbox://livesafe.dnwen5g1"
+            },
+            "source-layer": "storms-91hh4e",
+            paint: {
+              "circle-color": "#f6a80e"
+            }
+            },);
       
       map.on("click,", "Counties", e => {
         new mapboxgl.Popup()
@@ -231,6 +245,7 @@ class Map extends Component {
         "Risk by County",
         "Tornado Events",
         "Flood Events",
+        "Major Storm Events",
         "Quake Events",
         "Quake Risk",
         "Quake Heat Map",
@@ -255,6 +270,7 @@ class Map extends Component {
         map.setLayoutProperty("Risk by County", "visibility", "none");
         map.setLayoutProperty("Flood Events", "visibility", "none");
         map.setLayoutProperty("Tornado Events", "visibility", "none");
+        map.setLayoutProperty("Major Storm Events", "visibility", "none");
         
         link.onclick = function(e) {
           // toggle layer
