@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
-
+import connect from 'react-redux';
 
 export default class StripeButton extends React.Component {
   constructor(props) {
@@ -9,41 +9,37 @@ export default class StripeButton extends React.Component {
 
     this.onToken = this.onToken.bind(this);
   }
-//Send payment token
-  onToken(token) {
+  //Send payment token
+  onToken(token, user) {
     console.log("onToken", token);
+
+    //LINKS----------------------------
     //cors fix
     //https://cors-anywhere.herokuapp.com/
     //https://labs12.herokuapp.com/payment
     //http://localhost:4200/payment
     //make sure URL is changed!!
-  //   fetch("https://labs12.herokuapp.com/payment", {
-  //     method: "POST",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify({
-  //       stripeToken: token.id
-  //     })
-  //   })
-  //   //callback token
-  //     .then(res => res.json())
-  //     .then(json => {
-  //       console.log("json");
-  //       console.log(json);
-  //     });
-    axios
 
-      .post("https://labs12.herokuapp.com/payment", {stripeToken: token.id})
+    axios
+      .post("https://labs12.herokuapp.com/payment", { stripeToken: token.id })
       .then(response => {
         console.log(response.data);
       })
       .catch(error => {
         console.log("Payment Pending", error);
       });
-  };
-  
+
+
+
+    axios
+      .put("https://labs12.herokuapp.com/register", { user: user.id})
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.log("Payment Pending", error);
+      });
+  }
 
   render() {
     return (
@@ -56,10 +52,9 @@ export default class StripeButton extends React.Component {
     );
   }
 }
-
 // export default StripeButton;
 
-// payment 
+// payment auth theory-----------------------------
 
 // if false
 
@@ -69,7 +64,5 @@ export default class StripeButton extends React.Component {
 // payment status
 // status: 'active',
 
-
-// if true 
+// if true
 // user.stripeid true
-
