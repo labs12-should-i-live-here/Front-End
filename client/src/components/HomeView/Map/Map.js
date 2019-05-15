@@ -169,22 +169,25 @@ class Map extends Component {
         // filter: [1,2,3,4,5,7,6,8,14,16,17,18,133]
       });
       
-      map.addLayer({
-        id: "Risk by County",
-        type: "fill",
-        source: {
-          type: "vector",
-          url: "mapbox://livesafe.ctlgoa5o"
-        },
-        "source-layer": "danger-8xjejj",
-        paint:{
-        "fill-color": ["interpolate",["linear"],["heatmap-density"],
-        3544, 'f0334c', 
-        625, '#f5c170',
-        0,"#82f570"],
-          'fill-opacity': 0.75}
-        },
-      );
+      // map.addLayer({
+      //   id: "Risk by County",
+      //   type: "fill",
+      //   source: {
+      //     type: "vector",
+      //     url: "mapbox://livesafe.ctlgoa5o"
+      //   },
+      //   "source-layer": "danger-8xjejj",
+      //   paint:{
+      //   "fill-color": [
+      //     "interpolate",
+      //     ["linear"],
+      //     ['danger'],
+      //   3544, '#f0334c', 
+      //   625, '#f5c170',
+      //   0,"#82f570"],
+      //     'fill-opacity': 0.75}
+      //   },
+      // );
       
       map.addLayer({
         id: "Flood Events",
@@ -237,7 +240,6 @@ class Map extends Component {
 
       const toggleableLayers = [
         "Counties",
-        "Risk by County",
         "Tornado Events",
         "Flood Events",
         "Major Storm Events",
@@ -262,7 +264,6 @@ class Map extends Component {
         map.setLayoutProperty("Quake Heat Map", "visibility", "none");
         map.setLayoutProperty("San Andreas Fault", "visibility", "none");
         map.setLayoutProperty("Sea Levels", "visibility", "none");
-        map.setLayoutProperty("Risk by County", "visibility", "none");
         map.setLayoutProperty("Flood Events", "visibility", "none");
         map.setLayoutProperty("Tornado Events", "visibility", "none");
         map.setLayoutProperty("Major Storm Events", "visibility", "none");
