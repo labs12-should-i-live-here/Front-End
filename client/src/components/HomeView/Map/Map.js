@@ -201,10 +201,21 @@ class Map extends Component {
         paint: {
           "circle-color": "#4c59f3"
         }
-        
-        },
-      );
+        },);
 
+        map.addLayer({
+          id: "Tornado Events",
+          type: "circle",
+          source: {
+            type: "vector",
+            url: "mapbox://livesafe.81a8t1f6"
+          },
+          "source-layer": "tornadoes-3kygrw",
+          paint: {
+            "circle-color": "#909090"
+          }
+          },);
+      
       map.on("click,", "Counties", e => {
         new mapboxgl.Popup()
           .setLngLat(e.lngLat)
@@ -218,9 +229,10 @@ class Map extends Component {
       const toggleableLayers = [
         "Counties",
         "Risk by County",
-        "Quake Risk",
+        "Tornado Events",
         "Flood Events",
         "Quake Events",
+        "Quake Risk",
         "Quake Heat Map",
         "San Andreas Fault",
         "Sea Levels"
@@ -242,6 +254,7 @@ class Map extends Component {
         map.setLayoutProperty("Sea Levels", "visibility", "none");
         map.setLayoutProperty("Risk by County", "visibility", "none");
         map.setLayoutProperty("Flood Events", "visibility", "none");
+        map.setLayoutProperty("Tornado Events", "visibility", "none");
         
         link.onclick = function(e) {
           // toggle layer
