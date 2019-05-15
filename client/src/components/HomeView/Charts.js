@@ -6,9 +6,22 @@ import "../../scss/Home2.scss";
 import Chart from "./Chart.js";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
-import "animate.css";
 import { BarChart } from "styled-icons/boxicons-regular/BarChart";
 import { changeTimeMode } from "../../actions";
+import { Info } from "styled-icons/octicons/Info";
+
+const InfoDark = styled(Info)`
+  color: rgba(0, 0, 0, 0.5);
+  height: 17.5px;
+  width: 17.5px;
+  padding: 3px;
+  margin-left: 8px;
+  border-radius: 20%;
+  :hover {
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.05);
+  }
+`;
 
 const BlackLeft = styled(NavigateBefore)`
   color: black;
@@ -41,9 +54,8 @@ const BarChartYellow = styled(BarChart)`
   height: 90px;
   width: 90px;
 `;
-// change chart to dynamic
+
 class Charts extends Component {
-  //change type to dynamic + icons
   state = {
     graphs: ["Bar", "Line"],
     index: 0
@@ -81,22 +93,33 @@ class Charts extends Component {
     return (
       <>
         <header>
-          <h2>Charts</h2>
-          <div className="center-time-controls">
-            <p onClick={this.changeMode}>Past</p>
-            <p onClick={this.changeMode}>Future</p>
+          <div className="chart-title">
+            <h2>Charts</h2>
+            <InfoDark />
           </div>
 
+          {this.props.fipsCodePredictions.count ? (
+            <div className="center-time-controls">
+              {this.props.timeMode ? (
+                <h3>Future Data</h3>
+              ) : (
+                <h3>Historical Data</h3>
+              )}
+            </div>
+          ) : (
+            <p> </p>
+          )}
+
           <div className="toggle">
-            <BlackLeft onClick={this.leftClick} />
-            <BlackRight
-              onClick={this.rightClick}
-              className={
-                this.props.coordinatePredictions.prediction
-                  ? "animated tada "
-                  : ""
-              }
-            />
+            {this.props.timeMode ? (
+              <p onClick={this.changeMode}>Toggle Future</p>
+            ) : (
+              <p onClick={this.changeMode}>Toggle Past</p>
+            )}
+            <div>
+              <BlackLeft onClick={this.leftClick} />
+              <BlackRight onClick={this.rightClick} />
+            </div>
           </div>
         </header>
 
@@ -126,11 +149,13 @@ class Charts extends Component {
 const mapStateToProps = ({
   fetchingPredictionData,
   coordinatePredictions,
-  fipsCodePredictions
+  fipsCodePredictions,
+  timeMode
 }) => ({
   fetchingPredictionData,
   coordinatePredictions,
-  fipsCodePredictions
+  fipsCodePredictions,
+  timeMode
 });
 
 export default connect(

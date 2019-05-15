@@ -1,26 +1,13 @@
 import React, { Component } from "react";
 import { Line, Bar } from "react-chartjs-2";
 import { connect } from "react-redux";
-import styled from "styled-components";
-import { Info } from "styled-icons/octicons/Info";
-
-const InfoDark = styled(Info)`
-  color: rgba(0, 0, 0, 0.5);
-  height: 15px;
-  width: 15px;
-  margin-left: 96.5%;
-  padding: 1px;
-  border-radius: 6px 0px 6px 0;
-  :hover {
-    cursor: pointer;
-    background: rgba(0, 0, 0, 0.05);
-  }
-`;
 
 class Chart extends Component {
   state = {
+    // prediction data
     data: {},
 
+    // historical data
     data2: {
       labels: [...Object.keys(this.props.fipsCodePredictions.history)],
       datasets: []
@@ -28,6 +15,7 @@ class Chart extends Component {
   };
 
   selectedGraph = () => {
+    // makes graph items stacked
     const options = {
       scales: {
         xAxes: [
@@ -43,20 +31,7 @@ class Chart extends Component {
       }
     };
 
-    let data = {
-      datasets: [
-        {
-          label: "test1",
-          data: [1]
-        },
-        {
-          label: "test2",
-          data: [2]
-        }
-      ],
-      labels: ["label"]
-    };
-
+    // renders graph  "cards"
     if (this.props.graphs[this.props.index] === "Bar") {
       return (
         <Bar
@@ -80,7 +55,7 @@ class Chart extends Component {
   };
 
   componentDidMount() {
-    //Historical
+    // Retrieving prediction data from store after the request is successfull
     if (this.props.coordinatePredictions[0]) {
       const dry_spells_array = Object.values(
         this.props.coordinatePredictions[this.props.selectedPinIndex].prediction
@@ -107,6 +82,7 @@ class Chart extends Component {
           .heat_wave_incidents
       ).map(val => val.avg);
 
+      // setting the retrieved data to state & therefore view
       this.setState({
         data: {
           labels: [
@@ -118,33 +94,34 @@ class Chart extends Component {
             {
               label: "Extreme Heat Events",
               data: [...extreme_heat_events_array],
-              backgroundColor: "#fe6383"
+              backgroundColor: "rgba(255, 99, 132, 0.65)"
             },
             {
               label: "Extreme Rain Events",
               data: [...extreme_precipitation_events_array],
-              backgroundColor: "#049bff"
+              backgroundColor: "rgba(54, 162, 235, 0.65)"
             },
             {
               label: "Heat Wave Incidents",
               data: [...heat_wave_incidents_array],
-              backgroundColor: "#ff3d67"
+              backgroundColor: "rgba(75, 192, 192, 0.65)"
             },
             {
               label: "Dry Spells",
               data: [...dry_spells_array],
-              backgroundColor: "#ffce57"
+              backgroundColor: "rgba(255, 206, 86, 0.65)"
             },
             {
               label: "Extreme Cold Events",
               data: [...extreme_cold_events_array],
-              backgroundColor: "#22cece"
+              backgroundColor: "rgba(153, 102, 255, 0.65)"
             }
           ]
         }
       });
     }
 
+    // Retrieving historical data from store after the request is successfull
     if (this.props.fipsCodePredictions.count !== undefined || null) {
       const drought = Object.values(this.props.fipsCodePredictions.history).map(
         val => val.drought
@@ -182,6 +159,7 @@ class Chart extends Component {
         this.props.fipsCodePredictions.history
       ).map(val => val.winterweather);
 
+      // setting the retrieved data to state & therefore view
       this.setState({
         data2: {
           labels: [...Object.keys(this.props.fipsCodePredictions.history)],
@@ -189,47 +167,47 @@ class Chart extends Component {
             {
               label: "Drought",
               data: [...drought],
-              backgroundColor: "#FFDC00"
+              backgroundColor: "rgba(255, 99, 132, 0.65)"
             },
             {
               label: "Earthquake",
               data: [...earthquake],
-              backgroundColor: "#FF4136"
+              backgroundColor: "rgba(255, 159, 64, 0.65)"
             },
             {
               label: "Fire",
               data: [...fire],
-              backgroundColor: "#B22222"
+              backgroundColor: "rgba(153, 102, 255, 0.65)"
             },
             {
               label: "Flood",
               data: [...flood],
-              backgroundColor: "#7FDBFF"
+              backgroundColor: "rgba(75, 192, 192, 0.65)"
             },
             {
               label: "Heat",
               data: [...heat],
-              backgroundColor: "#FF851B"
+              backgroundColor: "rgba(255, 206, 86, 0.65)"
             },
             {
               label: "Hurricane",
               data: [...hurricane],
-              backgroundColor: "#2ECC40"
+              backgroundColor: "rgba(54, 162, 235, 0.65)"
             },
             {
               label: "Storm",
               data: [...storm],
-              backgroundColor: "#3D9970"
+              backgroundColor: "rgba(255, 99, 132, 0.65)"
             },
             {
               label: "Tornado",
               data: [...tornado],
-              backgroundColor: "#85144b"
+              backgroundColor: "rgba(214, 162, 235, 0.65)"
             },
             {
               label: "Winter Weather",
               data: [...winterweather],
-              backgroundColor: "#39CCCC"
+              backgroundColor: "rgba(15, 199, 132, 0.65)"
             }
           ]
         }
@@ -241,7 +219,6 @@ class Chart extends Component {
     return (
       <>
         <div className="carousel">{this.selectedGraph()}</div>
-        <InfoDark />
       </>
     );
   }

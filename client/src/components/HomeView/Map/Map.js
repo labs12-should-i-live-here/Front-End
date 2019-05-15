@@ -20,7 +20,6 @@ const RedQuake = styled(Pulse)`
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 class Map extends Component {
-  map;
   state = {
     zoom: 3.1,
     minZoom: 2,
@@ -124,7 +123,7 @@ class Map extends Component {
         },
         "source-layer": "quakes1"
       });
-      
+
       map.addLayer({
         id: "Quakes",
         type: "circle",
@@ -150,7 +149,7 @@ class Map extends Component {
           "line-color": "purple"
         }
       });
-   
+
       map.addLayer({
         id: "Sea Level",
         type: "fill",
@@ -160,8 +159,8 @@ class Map extends Component {
         },
         "source-layer": "sea_level-6ugk2j",
         paint: {
-          "fill-color": "#75cff0",
-        },
+          "fill-color": "#75cff0"
+        }
         // filter: [1,2,3,4,5,7,6,8,14,16,17,18,133]
       });
 

@@ -55,8 +55,27 @@
         height: 17.5px;
         margin-left: 10px;
       }
+      .chart-title {
+        display: flex;
+      }
 
       .toggle {
+        display: flex;
+        align-items: center;
+        align-content: center;
+        p {
+          font-size: 13px;
+          padding: 8px;
+          border-radius: 6px;
+          opacity: 0.7;
+          margin-right: 3px;
+          cursor: pointer;
+          background: rgba(0, 0, 0, 0.05);
+          margin-left: 3px;
+        }
+        p:hover {
+          opacity: 1;
+        }
         svg {
           animation-duration: 2.5s;
           animation-delay: 3s;
@@ -78,21 +97,9 @@
       margin-top: 1vh;
       min-height: 420px;
       background-color: #fff;
+
       .center-time-controls {
         display: flex;
-        p {
-          font-size: 13px;
-          padding: 8px;
-          border-radius: 6px;
-          opacity: 0.7;
-
-          cursor: pointer;
-          background: rgba(0, 0, 0, 0.05);
-          margin-left: 3px;
-        }
-        p:hover {
-          opacity: 1;
-        }
       }
       .chart {
         position: relative;
