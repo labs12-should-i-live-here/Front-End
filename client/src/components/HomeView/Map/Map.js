@@ -168,6 +168,21 @@ class Map extends Component {
         },
         // filter: [1,2,3,4,5,7,6,8,14,16,17,18,133]
       });
+      
+      // map.addLayer({
+      //   id: "Risk by County",
+      //   type: "fill",
+      //   source: {
+      //     type: "vector",
+      //     url: "mapbox://livesafe.ctlgoa5o"
+      //   },
+      //   "source-layer": "danger-8xjejj",
+      //   paint: {
+      //   "fill-color": ['interpolate',['linear'],
+      //   3544, 'f0334c', 625, '#f5c170',0,"#82f570"],
+      //     'fill-opacity': 0.75,
+      //   }},
+      // );
 
       map.on("click,", "Counties", e => {
         new mapboxgl.Popup()
@@ -180,12 +195,13 @@ class Map extends Component {
       });
 
       const toggleableLayers = [
-        "Quake Risk",
         "Counties",
+        "Risk by County",
+        "Quake Risk",
         "Quakes",
         "Quake Heat Map",
         "San Andreas Fault",
-        "Sea Level"
+        "Sea Levels"
       ];
       // const toggleableLayers = ["Quakes"];
 
@@ -202,6 +218,7 @@ class Map extends Component {
         map.setLayoutProperty("Quake Heat Map", "visibility", "none");
         map.setLayoutProperty("San Andreas Fault", "visibility", "none");
         map.setLayoutProperty("Sea Level", "visibility", "none");
+        map.setLayoutProperty("Risk by County", "visibility", "none");
 
         link.onclick = function(e) {
           // toggle layer
