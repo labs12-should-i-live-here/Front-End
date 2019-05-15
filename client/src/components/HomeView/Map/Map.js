@@ -67,6 +67,9 @@ class Map extends Component {
       minZoom
     });
 
+
+    //connect to menu-b to test it
+
     // load layers
     map.on("load", () => {
       map.addLayer({
@@ -151,7 +154,7 @@ class Map extends Component {
         },
         "source-layer": "fl",
         paint: {
-          "line-color": "purple"
+          "line-color": "red"
         }
       });
 
@@ -169,20 +172,20 @@ class Map extends Component {
         // filter: [1,2,3,4,5,7,6,8,14,16,17,18,133]
       });
       
-      // map.addLayer({
-      //   id: "Risk by County",
-      //   type: "fill",
-      //   source: {
-      //     type: "vector",
-      //     url: "mapbox://livesafe.ctlgoa5o"
-      //   },
-      //   "source-layer": "danger-8xjejj",
-      //   paint: {
-      //   "fill-color": ['interpolate',['linear'],
-      //   3544, 'f0334c', 625, '#f5c170',0,"#82f570"],
-      //     'fill-opacity': 0.75,
-      //   }},
-      // );
+      map.addLayer({
+        id: "Risk by County",
+        type: "fill",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.ctlgoa5o"
+        },
+        "source-layer": "danger-8xjejj",
+        paint: {
+        "fill-color": ['interpolate',['linear'],
+        3544, 'f0334c', 625, '#f5c170',0,"#82f570"],
+          'fill-opacity': 0.75,
+        }},
+      );
 
       map.on("click,", "Counties", e => {
         new mapboxgl.Popup()
