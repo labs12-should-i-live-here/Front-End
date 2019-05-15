@@ -20,7 +20,6 @@ const RedQuake = styled(Pulse)`
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 class Map extends Component {
-  map;
   state = {
     zoom: 3.1,
     minZoom: 2,
@@ -28,7 +27,7 @@ class Map extends Component {
     historySelections: {
       fipscode: 17033,
       startyear: 1990,
-      endyear: 2014
+      endyear: 2019
     },
     pins: this.props.pins,
     //Outside Map from LiveSafe Mapbox studio
@@ -51,10 +50,6 @@ class Map extends Component {
     //    });
     //  }
   }
-
-  pastMode = () => {
-    this.props.fetchHistoricalData(this.state.historySelections);
-  };
 
   initMap = () => {
     // create map with state values
@@ -133,7 +128,7 @@ class Map extends Component {
         },
         "source-layer": "quakes1"
       });
-      
+
       map.addLayer({
         id: "Quake Events",
         type: "circle",
@@ -169,8 +164,8 @@ class Map extends Component {
         },
         "source-layer": "sea_level-6ugk2j",
         paint: {
-          "fill-color": "#75cff0",
-        },
+          "fill-color": "#75cff0"
+        }
         // filter: [1,2,3,4,5,7,6,8,14,16,17,18,133]
       });
       
@@ -315,6 +310,7 @@ class Map extends Component {
       this.props.savePin(pin);
 
       console.log(this.state.coordinates);
+      this.props.fetchHistoricalData(this.state.historySelections);
       this.props.fetchPredictionData({
         latitude: pin.LATITUDE,
         longitude: pin.LONGITUDE
@@ -325,6 +321,7 @@ class Map extends Component {
       },${pin.LATITUDE}.json?access_token=${
         process.env.REACT_APP_MAPBOX_TOKEN
       }`;
+
       axios
         .get(URL)
         .then(res => {
