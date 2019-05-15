@@ -72,6 +72,7 @@ class Map extends Component {
 
     // load layers
     map.on("load", () => {
+
       map.addLayer({
         id: "Counties",
         type: "line",
@@ -133,7 +134,7 @@ class Map extends Component {
       });
       
       map.addLayer({
-        id: "Quakes",
+        id: "Quake Events",
         type: "circle",
         source: {
           type: "vector",
@@ -180,11 +181,28 @@ class Map extends Component {
           url: "mapbox://livesafe.ctlgoa5o"
         },
         "source-layer": "danger-8xjejj",
+        paint:{
+        "fill-color": ["interpolate",["linear"],["heatmap-density"],
+        3544, 'f0334c', 
+        625, '#f5c170',
+        0,"#82f570"],
+          'fill-opacity': 0.75}
+        },
+      );
+      
+      map.addLayer({
+        id: "Flood Events",
+        type: "circle",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.6j9dlgvl"
+        },
+        "source-layer": "floods-4gxba6",
         paint: {
-        "fill-color": ['interpolate',['linear'],
-        3544, 'f0334c', 625, '#f5c170',0,"#82f570"],
-          'fill-opacity': 0.75,
-        }},
+          "circle-color": "#4c59f3"
+        }
+        
+        },
       );
 
       map.on("click,", "Counties", e => {
@@ -201,7 +219,8 @@ class Map extends Component {
         "Counties",
         "Risk by County",
         "Quake Risk",
-        "Quakes",
+        "Flood Events",
+        "Quake Events",
         "Quake Heat Map",
         "San Andreas Fault",
         "Sea Levels"
@@ -217,12 +236,13 @@ class Map extends Component {
         map.setLayoutProperty("Quake Risk", "visibility", "none");
         map.setLayoutProperty("Counties", "visibility", "none");
         map.setLayoutProperty("Counties Highlighted", "visibility", "none");
-        map.setLayoutProperty("Quakes", "visibility", "none");
+        map.setLayoutProperty("Quake Events", "visibility", "none");
         map.setLayoutProperty("Quake Heat Map", "visibility", "none");
         map.setLayoutProperty("San Andreas Fault", "visibility", "none");
         map.setLayoutProperty("Sea Levels", "visibility", "none");
         map.setLayoutProperty("Risk by County", "visibility", "none");
-
+        map.setLayoutProperty("Flood Events", "visibility", "none");
+        
         link.onclick = function(e) {
           // toggle layer
           const clickedLayer = this.textContent;
