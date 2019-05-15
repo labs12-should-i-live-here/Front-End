@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { IoLogoGithub } from "react-icons/io";
-
+import icon from "../../assets/icon.svg"
 
 var Inform = styled.div`
 margin-top: 5px;
@@ -30,6 +30,10 @@ justify-content:space-around;
   font-size:100%;
 `;
 
+var I = styled.img`
+block-size:21px;
+outline-color: whitesmoke;`
+
 var GitLogo = styled.a`
   text-decoration: none;
   color: whitesmoke;
@@ -56,7 +60,9 @@ var GitLogo = styled.a`
               sitemap
               <GitLogo href='https://github.com/labs12-should-i-live-here/Front-End'>
                 <IoLogoGithub />
-              </GitLogo>
+              </GitLogo><a href="https://rebellion.earth/">
+              <I  src={icon}></I>
+              </a>
           </Foot>
         </>
       )
