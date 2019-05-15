@@ -30,6 +30,7 @@ class Map extends Component {
       endyear: 2019
     },
     pins: this.props.pins,
+    //Outside Map from LiveSafe Mapbox studio
     style: "mapbox://styles/livesafe/cjvodc5af09t31dm8u2qhri51"
   };
 
@@ -62,8 +63,12 @@ class Map extends Component {
       minZoom
     });
 
+
+    //connect to menu-b to test it
+
     // load layers
     map.on("load", () => {
+
       map.addLayer({
         id: "Counties",
         type: "line",
@@ -125,7 +130,7 @@ class Map extends Component {
       });
 
       map.addLayer({
-        id: "Quakes",
+        id: "Quake Events",
         type: "circle",
         source: {
           type: "vector",
@@ -146,7 +151,7 @@ class Map extends Component {
         },
         "source-layer": "fl",
         paint: {
-          "line-color": "purple"
+          "line-color": "red"
         }
       });
 
@@ -164,21 +169,62 @@ class Map extends Component {
         // filter: [1,2,3,4,5,7,6,8,14,16,17,18,133]
       });
       
-      // map.addLayer({
-      //   id: "Risk by County",
-      //   type: "fill",
-      //   source: {
-      //     type: "vector",
-      //     url: "mapbox://livesafe.ctlgoa5o"
-      //   },
-      //   "source-layer": "danger-8xjejj",
-      //   paint: {
-      //   "fill-color": ['interpolate',['linear'],
-      //   3544, 'f0334c', 625, '#f5c170',0,"#82f570"],
-      //     'fill-opacity': 0.75,
-      //   }},
-      // );
+      map.addLayer({
+        id: "Risk by County",
+        type: "fill",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.ctlgoa5o"
+        },
+        "source-layer": "danger-8xjejj",
+        paint:{
+        "fill-color": ["interpolate",["linear"],["heatmap-density"],
+        3544, 'f0334c', 
+        625, '#f5c170',
+        0,"#82f570"],
+          'fill-opacity': 0.75}
+        },
+      );
+      
+      map.addLayer({
+        id: "Flood Events",
+        type: "circle",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.6j9dlgvl"
+        },
+        "source-layer": "floods-4gxba6",
+        paint: {
+          "circle-color": "#4c59f3"
+        }
+        },);
 
+        map.addLayer({
+          id: "Tornado Events",
+          type: "circle",
+          source: {
+            type: "vector",
+            url: "mapbox://livesafe.81a8t1f6"
+          },
+          "source-layer": "tornadoes-3kygrw",
+          paint: {
+            "circle-color": "#909090"
+          }
+          },);
+
+          map.addLayer({
+            id: "Major Storm Events",
+            type: "circle",
+            source: {
+              type: "vector",
+              url: "mapbox://livesafe.dnwen5g1"
+            },
+            "source-layer": "storms-91hh4e",
+            paint: {
+              "circle-color": "#f6a80e"
+            }
+            },);
+      
       map.on("click,", "Counties", e => {
         new mapboxgl.Popup()
           .setLngLat(e.lngLat)
@@ -192,8 +238,11 @@ class Map extends Component {
       const toggleableLayers = [
         "Counties",
         "Risk by County",
+        "Tornado Events",
+        "Flood Events",
+        "Major Storm Events",
+        "Quake Events",
         "Quake Risk",
-        "Quakes",
         "Quake Heat Map",
         "San Andreas Fault",
         "Sea Levels"
@@ -209,12 +258,15 @@ class Map extends Component {
         map.setLayoutProperty("Quake Risk", "visibility", "none");
         map.setLayoutProperty("Counties", "visibility", "none");
         map.setLayoutProperty("Counties Highlighted", "visibility", "none");
-        map.setLayoutProperty("Quakes", "visibility", "none");
+        map.setLayoutProperty("Quake Events", "visibility", "none");
         map.setLayoutProperty("Quake Heat Map", "visibility", "none");
         map.setLayoutProperty("San Andreas Fault", "visibility", "none");
         map.setLayoutProperty("Sea Levels", "visibility", "none");
         map.setLayoutProperty("Risk by County", "visibility", "none");
-
+        map.setLayoutProperty("Flood Events", "visibility", "none");
+        map.setLayoutProperty("Tornado Events", "visibility", "none");
+        map.setLayoutProperty("Major Storm Events", "visibility", "none");
+        
         link.onclick = function(e) {
           // toggle layer
           const clickedLayer = this.textContent;
