@@ -31,7 +31,7 @@ class Map extends Component {
       endyear: 2014
     },
     pins: this.props.pins,
-    style: "mapbox://styles/livesafe/cjvn7ns5m4pzs1clqctev9l5i"
+    style: "mapbox://styles/livesafe/cjvodc5af09t31dm8u2qhri51"
   };
 
   render() {
@@ -154,9 +154,9 @@ class Map extends Component {
           "line-color": "purple"
         }
       });
-   
+
       map.addLayer({
-        id: "Sea Level",
+        id: "Sea Levels",
         type: "fill",
         source: {
           type: "vector",
@@ -217,7 +217,7 @@ class Map extends Component {
         map.setLayoutProperty("Quakes", "visibility", "none");
         map.setLayoutProperty("Quake Heat Map", "visibility", "none");
         map.setLayoutProperty("San Andreas Fault", "visibility", "none");
-        map.setLayoutProperty("Sea Level", "visibility", "none");
+        map.setLayoutProperty("Sea Levels", "visibility", "none");
         map.setLayoutProperty("Risk by County", "visibility", "none");
 
         link.onclick = function(e) {
@@ -240,7 +240,7 @@ class Map extends Component {
             map.setLayoutProperty(clickedLayer, "visibility", "visible");
           }
         };
-
+        // Where the data is coming into from the FLASK app
         const layers = document.getElementById("menu-a");
         return layers.appendChild(link);
       });
