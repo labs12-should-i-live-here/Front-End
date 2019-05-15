@@ -107,7 +107,7 @@ class Charts extends Component {
               <Loader type="Oval" color="#2e64ab" height="40" width="40" />
             </p>
           ) : this.props.fipsCodePredictions.count &&
-            this.props.coordinatePredictions[0] ? (
+            this.props.coordinatePredictions ? (
             <Chart graphs={this.state.graphs} index={this.state.index} />
           ) : (
             <div className="middle">

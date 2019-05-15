@@ -81,7 +81,6 @@ class Chart extends Component {
 
   componentDidMount() {
     //Historical
-
     if (this.props.coordinatePredictions[0]) {
       const dry_spells_array = Object.values(
         this.props.coordinatePredictions[this.props.selectedPinIndex].prediction
@@ -119,33 +118,33 @@ class Chart extends Component {
             {
               label: "Extreme Heat Events",
               data: [...extreme_heat_events_array],
-              backgroundColor: "rgba(255, 206, 86, 0.6)"
+              backgroundColor: "#fe6383"
             },
             {
               label: "Extreme Rain Events",
               data: [...extreme_precipitation_events_array],
-              backgroundColor: "rgba(75, 192, 192, 0.6)"
+              backgroundColor: "#049bff"
             },
             {
               label: "Heat Wave Incidents",
               data: [...heat_wave_incidents_array],
-              backgroundColor: "rgba(153, 102, 255, 0.6)"
+              backgroundColor: "#ff3d67"
             },
             {
               label: "Dry Spells",
               data: [...dry_spells_array],
-              backgroundColor: "rgba(255, 99, 132, 0.6)"
+              backgroundColor: "#ffce57"
             },
             {
               label: "Extreme Cold Events",
               data: [...extreme_cold_events_array],
-              backgroundColor: "rgba(54, 162, 235, 0.6)"
+              backgroundColor: "#22cece"
             }
           ]
         }
       });
     }
-    //Predictions
+
     if (this.props.fipsCodePredictions.count !== undefined || null) {
       const drought = Object.values(this.props.fipsCodePredictions.history).map(
         val => val.drought
@@ -190,67 +189,55 @@ class Chart extends Component {
             {
               label: "Drought",
               data: [...drought],
-              backgroundColor: "rgba(255, 206, 86, 0.6)"
+              backgroundColor: "#FFDC00"
             },
             {
               label: "Earthquake",
               data: [...earthquake],
-              backgroundColor: "rgba(75, 192, 192, 0.6)"
+              backgroundColor: "#FF4136"
             },
             {
               label: "Fire",
               data: [...fire],
-              backgroundColor: "rgba(153, 102, 255, 0.6)"
+              backgroundColor: "#B22222"
             },
             {
               label: "Flood",
               data: [...flood],
-              backgroundColor: "rgba(255, 99, 132, 0.6)"
+              backgroundColor: "#7FDBFF"
             },
             {
               label: "Heat",
               data: [...heat],
-              backgroundColor: "rgba(54, 162, 235, 0.6)"
+              backgroundColor: "#FF851B"
             },
             {
               label: "Hurricane",
               data: [...hurricane],
-              backgroundColor: "rgba(54, 235, 114, 0.6)"
+              backgroundColor: "#2ECC40"
             },
             {
               label: "Storm",
               data: [...storm],
-              backgroundColor: "rgba(235, 54, 235, 0.6)"
+              backgroundColor: "#3D9970"
             },
             {
               label: "Tornado",
               data: [...tornado],
-              backgroundColor: "rgba(217, 235, 54, 0.6)"
+              backgroundColor: "#85144b"
             },
             {
               label: "Winter Weather",
               data: [...winterweather],
-              backgroundColor: "rgba(235, 96, 54, 0.6)"
+              backgroundColor: "#39CCCC"
             }
           ]
         }
       });
     }
-
-    // var ctx = document.getElementById("canvas").getContext("2d");
-
-    // window.myBar = new Chart(ctx, {
-    //   type: "bar",
-    //   data: this.state.data2,
-
-    // });
   }
 
   render() {
-    // else if (this.props.graphs[this.props.index] === "Stacked") {
-    //   return
-    // }
-
     return (
       <>
         <div className="carousel">{this.selectedGraph()}</div>
