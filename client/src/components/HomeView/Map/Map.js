@@ -11,6 +11,7 @@ import "../../../scss/Map.scss";
 import axios from "axios";
 import styled from "styled-components";
 import { Pulse } from "styled-icons/boxicons-regular/Pulse";
+
 const RedQuake = styled(Pulse)`
   color: red;
   height: 35px;
@@ -37,8 +38,8 @@ class Map extends Component {
   render() {
     return (
       <div id="map" ref={el => (this.mapContainer = el)} className="map">
-        <div id="menu-a" />
-      </div>
+        <div id="menu-a">Map Layers</div>
+        </div>
     );
   }
 
@@ -126,7 +127,33 @@ class Map extends Component {
           type: "vector",
           url: "mapbox://livesafe.cjvn8h2c30bcw2xmja9dpoaq7-7iwaw"
         },
-        "source-layer": "quakes1"
+        "source-layer": "quakes1",
+        paint:{
+          "heatmap-intensity": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            0, 1,
+            9, 3
+            ],"heatmap-color": [
+              "interpolate",
+              ["linear"],
+              ["heatmap-density"],
+              0, "rgba(33,102,172,0)",
+              0.1, "rgb(103,169,207)",
+              0.2, "rgb(209,229,240)",
+              0.4, "#fbec57",
+              0.8, "#fbc457",
+              1, "#fb5757"
+              ],
+              "heatmap-radius": [
+                "interpolate",
+                ["linear"],
+                ["zoom"],
+                0, 2,
+                9, 20
+                ]
+        }
       });
 
       map.addLayer({
@@ -138,7 +165,7 @@ class Map extends Component {
         },
         "source-layer": "quakes1-1p0ws7",
         paint: {
-          "circle-color": "purple"
+          "circle-color": "red"
         }
       });
 
@@ -151,40 +178,21 @@ class Map extends Component {
         },
         "source-layer": "fl",
         paint: {
-          "line-color": "red"
+          "line-color": "black","circle-stroke-color": "white",
+          "circle-stroke-width": 1
         }
-      });
-
-      map.addLayer({
-        id: "Sea Levels",
-        type: "fill",
-        source: {
-          type: "vector",
-          url: "mapbox://livesafe.3lxztgam"
-        },
-        "source-layer": "sea_level-6ugk2j",
-        paint: {
-          "fill-color": "#75cff0"
-        }
-        // filter: [1,2,3,4,5,7,6,8,14,16,17,18,133]
       });
       
-      map.addLayer({
-        id: "Risk by County",
-        type: "fill",
-        source: {
-          type: "vector",
-          url: "mapbox://livesafe.ctlgoa5o"
-        },
-        "source-layer": "danger-8xjejj",
-        paint:{
-        "fill-color": ["interpolate",["linear"],["heatmap-density"],
-        3544, 'f0334c', 
-        625, '#f5c170',
-        0,"#82f570"],
-          'fill-opacity': 0.75}
-        },
-      );
+      // map.addLayer({
+      //   id: "Risk by County",
+      //   type: "fill",
+      //   source: {
+      //     type: "vector",
+      //     url: "mapbox://livesafe.ctlgoa5o"
+      //   },
+      //   "source-layer": "danger-8xjejj"
+      //   },
+      // );
       
       map.addLayer({
         id: "Flood Events",
@@ -214,17 +222,58 @@ class Map extends Component {
 
           map.addLayer({
             id: "Major Storm Events",
-            type: "circle",
+            type: "heatmap",
             source: {
               type: "vector",
               url: "mapbox://livesafe.dnwen5g1"
             },
             "source-layer": "storms-91hh4e",
-            paint: {
-              "circle-color": "#f6a80e"
+            paint:{
+              "heatmap-intensity": [
+                "interpolate",
+                ["linear"],
+                ["zoom"],
+                0, 1,
+                9, 3
+                ],"heatmap-color": [
+                  "interpolate",
+                  ["linear"],
+                  ["heatmap-density"],
+                  0, "rgba(33,102,172,0)",
+                  0.1, "rgb(103,169,207)",
+                  0.2, "rgb(209,229,240)",
+                  0.4, "#fbec57",
+                  0.8, "#fbc457",
+                  1, "#fb5757"
+                  ],
+                  "heatmap-radius": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    0, 2,
+                    9, 5
+                    ],
+
             }
             },);
-      
+
+            map.addLayer({
+              id: "Sea Levels",
+              type: "fill",
+              source: {
+                type: "vector",
+                url: "mapbox://livesafe.3lxztgam"
+              },
+              "source-layer": "sea_level-6ugk2j",
+              paint: {
+                "fill-color": [
+                  'interpolate',
+                  ['linear'],
+                  ['get', 'mag'], 
+                  2010 , "#62aaff",
+                  2200, "#75CFF0"
+                ] && "#75CFF0"}});
+
       map.on("click,", "Counties", e => {
         new mapboxgl.Popup()
           .setLngLat(e.lngLat)
@@ -236,16 +285,13 @@ class Map extends Component {
       });
 
       const toggleableLayers = [
-        "Counties",
-        "Risk by County",
+        "Quake Risk",
+        "Quake Heat Map",
+        "Quake Events",
         "Tornado Events",
         "Flood Events",
         "Major Storm Events",
-        "Quake Events",
-        "Quake Risk",
-        "Quake Heat Map",
         "San Andreas Fault",
-        "Sea Levels"
       ];
       // const toggleableLayers = ["Quakes"];
 
@@ -262,7 +308,6 @@ class Map extends Component {
         map.setLayoutProperty("Quake Heat Map", "visibility", "none");
         map.setLayoutProperty("San Andreas Fault", "visibility", "none");
         map.setLayoutProperty("Sea Levels", "visibility", "none");
-        map.setLayoutProperty("Risk by County", "visibility", "none");
         map.setLayoutProperty("Flood Events", "visibility", "none");
         map.setLayoutProperty("Tornado Events", "visibility", "none");
         map.setLayoutProperty("Major Storm Events", "visibility", "none");
@@ -291,7 +336,39 @@ class Map extends Component {
         const layers = document.getElementById("menu-a");
         return layers.appendChild(link);
       });
+      // sea level rise by year
+          // const years =[
+          //   '2010',
+          //   '2020',
+          //   '2030',
+          //   '2040',
+          //   '2050',
+          //   '2060',
+          //   '2070',
+          //   '2080',
+          //   '2090',
+          //   '2100',
+          //   '2150',
+          //   '2200'
+          // ]
+          
+
+  //         function filterBy(years) {
+      
+  //           var filters = ['==', 'year', years];
+  //           map.setFilter('year', filters);
+      
+  //           document.getElementById('slider').textContent = years[years];
+  //           }
+  //           filterBy(0);
+
+  // document.getElementById('slider').addEventListener('input', function(e) {
+  // var years = parseInt(e.target.value, 10);
+  // filterBy(years);})
     });
+
+
+    
 
     map.doubleClickZoom.disable();
 
