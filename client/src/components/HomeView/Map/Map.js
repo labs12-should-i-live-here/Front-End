@@ -158,25 +158,16 @@ class Map extends Component {
         }
       });
       
-      // map.addLayer({
-      //   id: "Risk by County",
-      //   type: "fill",
-      //   source: {
-      //     type: "vector",
-      //     url: "mapbox://livesafe.ctlgoa5o"
-      //   },
-      //   "source-layer": "danger-8xjejj",
-      //   paint:{
-      //   "fill-color": [
-      //     "interpolate",
-      //     ["linear"],
-      //     ['danger'],
-      //   3544, '#f0334c', 
-      //   625, '#f5c170',
-      //   0,"#82f570"],
-      //     'fill-opacity': 0.75}
-      //   },
-      // );
+      map.addLayer({
+        id: "Risk by County",
+        type: "fill",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.ctlgoa5o"
+        },
+        "source-layer": "danger-8xjejj"
+        },
+      );
       
       map.addLayer({
         id: "Flood Events",
