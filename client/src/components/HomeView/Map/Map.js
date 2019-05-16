@@ -37,11 +37,8 @@ class Map extends Component {
   render() {
     return (
       <div id="map" ref={el => (this.mapContainer = el)} className="map">
-        <div id="menu-a">Map Layers</div>
-        <div id="menu-b">
-        <input id="slider" type="range" min="2010" max="2220" step="10"/>
+        <div id="menu-a"> Layers</div>
         </div>
-      </div>
     );
   }
 
@@ -158,16 +155,16 @@ class Map extends Component {
         }
       });
       
-      map.addLayer({
-        id: "Risk by County",
-        type: "fill",
-        source: {
-          type: "vector",
-          url: "mapbox://livesafe.ctlgoa5o"
-        },
-        "source-layer": "danger-8xjejj"
-        },
-      );
+      // map.addLayer({
+      //   id: "Risk by County",
+      //   type: "fill",
+      //   source: {
+      //     type: "vector",
+      //     url: "mapbox://livesafe.ctlgoa5o"
+      //   },
+      //   "source-layer": "danger-8xjejj"
+      //   },
+      // );
       
       map.addLayer({
         id: "Flood Events",
@@ -204,9 +201,26 @@ class Map extends Component {
             },
             "source-layer": "storms-91hh4e",
             paint: {
-              "circle-color": "#f6a80e"
+              "circle-color": "#909090"
             }
             },);
+
+            map.addLayer({
+              id: "Sea Levels",
+              type: "fill",
+              source: {
+                type: "vector",
+                url: "mapbox://livesafe.3lxztgam"
+              },
+              "source-layer": "sea_level-6ugk2j",
+              paint: {
+                "fill-color": [
+                  'interpolate',
+                  ['linear'],
+                  ['get', 'mag'], 
+                  2010 , "#62aaff",
+                  2200, "#75CFF0"
+                ] && "#75CFF0"}});
 
       map.on("click,", "Counties", e => {
         new mapboxgl.Popup()
@@ -224,7 +238,6 @@ class Map extends Component {
         "Quake Heat Map",
         "Tornado Events",
         "Flood Events",
-        "Major Storm Events",
         "San Andreas Fault",
         "Sea Levels"
       ];
@@ -245,7 +258,6 @@ class Map extends Component {
         map.setLayoutProperty("Sea Levels", "visibility", "none");
         map.setLayoutProperty("Flood Events", "visibility", "none");
         map.setLayoutProperty("Tornado Events", "visibility", "none");
-        map.setLayoutProperty("Major Storm Events", "visibility", "none");
         
         link.onclick = function(e) {
           // toggle layer
@@ -272,46 +284,34 @@ class Map extends Component {
         return layers.appendChild(link);
       });
       // sea level rise by year
-          const years =[
-            '2010',
-            '2020',
-            '2030',
-            '2040',
-            '2050',
-            '2060',
-            '2070',
-            '2080',
-            '2090',
-            '2100',
-            '2150',
-            '2200'
-          ]
+          // const years =[
+          //   '2010',
+          //   '2020',
+          //   '2030',
+          //   '2040',
+          //   '2050',
+          //   '2060',
+          //   '2070',
+          //   '2080',
+          //   '2090',
+          //   '2100',
+          //   '2150',
+          //   '2200'
+          // ]
+          
 
-          map.addLayer({
-            id: "Sea Levels",
-            type: "fill",
-            source: {
-              type: "vector",
-              url: "mapbox://livesafe.3lxztgam"
-            },
-            "source-layer": "sea_level-6ugk2j",
-            paint: {
-              "fill-color": "#75cff0"
-            }
-          });
-
-          function filterBy(year) {
+  //         function filterBy(years) {
       
-            var filters = ['==', 'year', year];
-            map.setFilter('year', filters);
+  //           var filters = ['==', 'year', years];
+  //           map.setFilter('year', filters);
       
-            document.getElementById('slider').textContent = years[year];
-            }
-            filterBy(0);
+  //           document.getElementById('slider').textContent = years[years];
+  //           }
+  //           filterBy(0);
 
-  document.getElementById('slider').addEventListener('input', function(e) {
-  var month = parseInt(e.target.value, 10);
-  filterBy(month);})
+  // document.getElementById('slider').addEventListener('input', function(e) {
+  // var years = parseInt(e.target.value, 10);
+  // filterBy(years);})
     });
 
 
