@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import Charts from "../../components/HomeView/Charts.js";
 import Compare2 from "../../components/HomeView/Compare/Compare2.js";
 import Footer from "../../components/HomeView/Footer.js";
+import Compare3 from "../../components/HomeView/Compare/Compare3.js";
 import Authenticate from "../../components/AuthView/Authenticate.js";
 
 class Home2 extends Component {
@@ -23,6 +24,9 @@ class Home2 extends Component {
             </div>
             <div className="right-bottom">
               <Compare2 />
+            </div>
+            <div className="right-compare">
+              <Compare3 />
             </div>
             <div className="footer">
               <Footer />

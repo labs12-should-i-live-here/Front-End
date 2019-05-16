@@ -31,15 +31,14 @@ function App() {
     <Router history={history} component={Login}>
       <>
         {/* <Route
-          exact
           path="/"
           render={() =>
             localStorage.getItem("isLoggedIn") ? <HomeAuthed /> : <Home2 />
           }
         /> */}
-        <Route exact path="/" exact path="/" component={Home2} />
+        <Route exact path="/" component={Home2} />
         <Route exact path="/pricing" component={Pricing} />
-        <Route exact path="/home" component={HomeAuthed} />
+        <Route path="/home" component={HomeAuthed} />
         <Route path="/landing" component={Landing} />
         <Route path="/register" component={SignUp} />
         <Route path="/login" component={Login} />

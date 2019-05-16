@@ -22,7 +22,8 @@ import {
   DELETE_PIN_FAILURE,
   FLIP_MODE,
   CHANGE_SELECTED_PIN_INDEX,
-  CHANGE_TIME_MODE
+  CHANGE_TIME_MODE,
+  SET_DATA
 } from "../actions/index";
 
 const initialState = {
@@ -48,7 +49,8 @@ const initialState = {
   dark: false,
   selectedPinIndex: 0,
   selectedData: [],
-  timeMode: false
+  timeMode: false,
+  client: ""
 };
 
 const reducer = (state = initialState, action) => {
@@ -194,6 +196,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         timeMode: !state.timeMode
+      };
+    case SET_DATA:
+      return {
+        ...state,
+        client: action.payload
       };
     default:
       return state;

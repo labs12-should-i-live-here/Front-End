@@ -5,9 +5,21 @@ import "../../scss/Home2.scss";
 import { connect } from "react-redux";
 import Charts from "../../components/HomeView/Charts.js";
 import Compare2 from "../../components/HomeView/Compare/Compare2.js";
+import Compare3 from "../../components/HomeView/Compare/Compare3.js";
 import Footer from "../../components/HomeView/Footer.js";
+import Auth from "../../Auth0/Auth.js";
+
+const auth = new Auth();
 
 class Home2 extends Component {
+  componentDidMount() {
+    const { renewSession } = auth;
+
+    if (localStorage.getItem("isLoggedIn") === "true") {
+      renewSession();
+    }
+  }
+
   render() {
     return (
       <>
@@ -17,14 +29,18 @@ class Home2 extends Component {
             <Map />
           </div>
           <div className="right-pane">
-            <div className="right-top">
+            <div id="1" className="right-top">
               <Charts />
             </div>
-            <div className="right-bottom">
+            <div id="2" className="right-bottom">
               <Compare2 />
             </div>
+            <div id="3" />
+            <div className="right-compare">
+              <Compare3 />
+            </div>
             <div className="footer">
-            <Footer/>
+              <Footer />
             </div>
           </div>
         </div>

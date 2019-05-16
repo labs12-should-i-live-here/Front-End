@@ -100,7 +100,11 @@ class Charts extends Component {
 
           {this.props.fipsCodePredictions.count ? (
             <div className="center-time-controls">
-              {this.props.timeMode ? <h3>Predictions</h3> : <h3>History</h3>}
+              {this.props.timeMode ? (
+                <h3>Predicted Extreme Events</h3>
+              ) : (
+                <h3>Past Extreme Events</h3>
+              )}
             </div>
           ) : (
             <p> </p>
@@ -108,7 +112,7 @@ class Charts extends Component {
 
           <div className="toggle">
             {this.props.timeMode ? (
-              <p onClick={this.changeMode}>See History</p>
+              <p onClick={this.changeMode}>See Past</p>
             ) : (
               <p onClick={this.changeMode}>See Predictions</p>
             )}

@@ -33,11 +33,13 @@ class Map extends Component {
     //Outside Map from LiveSafe Mapbox studio
     style: "mapbox://styles/livesafe/cjvodc5af09t31dm8u2qhri51"
   };
-
+  //TODO: link this link with the fly-in
   render() {
     return (
       <div id="map" ref={el => (this.mapContainer = el)} className="map">
-        <div id="menu-a" />
+        <div id="menu-a">
+          <a href="#3">Compare</a>
+        </div>
       </div>
     );
   }
@@ -63,12 +65,10 @@ class Map extends Component {
       minZoom
     });
 
-
     //connect to menu-b to test it
 
     // load layers
     map.on("load", () => {
-
       map.addLayer({
         id: "Counties",
         type: "line",
@@ -168,7 +168,7 @@ class Map extends Component {
         }
         // filter: [1,2,3,4,5,7,6,8,14,16,17,18,133]
       });
-      
+
       map.addLayer({
         id: "Risk by County",
         type: "fill",
@@ -177,15 +177,22 @@ class Map extends Component {
           url: "mapbox://livesafe.ctlgoa5o"
         },
         "source-layer": "danger-8xjejj",
-        paint:{
-        "fill-color": ["interpolate",["linear"],["heatmap-density"],
-        3544, 'f0334c', 
-        625, '#f5c170',
-        0,"#82f570"],
-          'fill-opacity': 0.75}
-        },
-      );
-      
+        paint: {
+          "fill-color": [
+            "interpolate",
+            ["linear"],
+            ["heatmap-density"],
+            3544,
+            "f0334c",
+            625,
+            "#f5c170",
+            0,
+            "#82f570"
+          ],
+          "fill-opacity": 0.75
+        }
+      });
+
       map.addLayer({
         id: "Flood Events",
         type: "circle",
@@ -197,34 +204,34 @@ class Map extends Component {
         paint: {
           "circle-color": "#4c59f3"
         }
-        },);
+      });
 
-        map.addLayer({
-          id: "Tornado Events",
-          type: "circle",
-          source: {
-            type: "vector",
-            url: "mapbox://livesafe.81a8t1f6"
-          },
-          "source-layer": "tornadoes-3kygrw",
-          paint: {
-            "circle-color": "#909090"
-          }
-          },);
+      map.addLayer({
+        id: "Tornado Events",
+        type: "circle",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.81a8t1f6"
+        },
+        "source-layer": "tornadoes-3kygrw",
+        paint: {
+          "circle-color": "#909090"
+        }
+      });
 
-          map.addLayer({
-            id: "Major Storm Events",
-            type: "circle",
-            source: {
-              type: "vector",
-              url: "mapbox://livesafe.dnwen5g1"
-            },
-            "source-layer": "storms-91hh4e",
-            paint: {
-              "circle-color": "#f6a80e"
-            }
-            },);
-      
+      map.addLayer({
+        id: "Major Storm Events",
+        type: "circle",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.dnwen5g1"
+        },
+        "source-layer": "storms-91hh4e",
+        paint: {
+          "circle-color": "#f6a80e"
+        }
+      });
+
       map.on("click,", "Counties", e => {
         new mapboxgl.Popup()
           .setLngLat(e.lngLat)
@@ -266,7 +273,7 @@ class Map extends Component {
         map.setLayoutProperty("Flood Events", "visibility", "none");
         map.setLayoutProperty("Tornado Events", "visibility", "none");
         map.setLayoutProperty("Major Storm Events", "visibility", "none");
-        
+
         link.onclick = function(e) {
           // toggle layer
           const clickedLayer = this.textContent;

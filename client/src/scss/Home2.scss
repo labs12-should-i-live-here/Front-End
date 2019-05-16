@@ -24,10 +24,11 @@
   .right-pane {
     overflow-y: scroll;
     width: 35%;
-    height: 92.75vh;
-    padding-right: 5px;
+    height: 92.9vh;
+    padding-right: 3px;
+    // padding-left: 3px;
     // border-left: 1px solid rgba(128, 128, 128, 0.479);
-    margin-top: 2px;
+
     @media (max-width: 800px) {
       margin-top: 5px;
       width: 100%;
@@ -100,6 +101,9 @@
 
       .center-time-controls {
         display: flex;
+        h3 {
+          font-size: 14px;
+        }
       }
       .chart {
         position: relative;
@@ -129,12 +133,14 @@
         }
       }
     }
-    .right-bottom {
+    .right-bottom,
+    .right-compare {
       margin: 5px;
       box-shadow: 0px 0px 3px 2px rgb(235, 235, 235);
       border-radius: 6px;
-      margin-top: 2vh;
-      min-height: 300px;
+      margin-top: 1.75vh;
+      min-height: 100px;
+      background-color: #fff;
       header {
         a {
           background: rgba(0, 0, 0, 0.05);
@@ -154,12 +160,16 @@
           cursor: pointer;
         }
       }
+      .locations {
+        height: 800px;
+      }
 
       .main-compare-card {
         display: flex;
         justify-content: center;
         align-content: center;
         box-sizing: border-box;
+        min-height: 150px;
         .top {
           width: 95%;
         }
@@ -169,19 +179,18 @@
           justify-content: center;
           align-items: center;
           margin-top: 5%;
-          height: 200px;
+          height: 150px;
         }
         .card {
           font-size: 13px;
-          padding: 3px;
-          margin: 8px auto;
+          padding: 1px 3px;
+          margin: 5px auto;
           border-radius: 4px;
           background: rgba(0, 0, 0, 0.05);
           display: flex;
           align-items: center;
           align-content: center;
-          padding: 5px;
-          min-height: 40px;
+          min-height: 30px;
           cursor: pointer;
           button {
             display: flex;
