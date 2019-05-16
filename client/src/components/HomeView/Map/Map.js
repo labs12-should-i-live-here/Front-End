@@ -63,6 +63,8 @@ class Map extends Component {
     pins: this.props.pins,
     style: "mapbox://styles/livesafe/cjvodc5af09t31dm8u2qhri51",
     toggler: true
+
+  
   };
 
   render() {
