@@ -18,7 +18,38 @@ const RedQuake = styled(Pulse)`
   width: 35px;
 `;
 
+const CompareNav = styled.div`
+  width: 100%;
+  height: 40px;
+  position: absolute;
+  z-index: 1;
+  opacity: 1;
+  display: flex;
+  
+  align-items: center;
+  
+`;
+
+const Button = styled.button`
+  display: block;  
+  margin: 0px auto;
+  width: 20%;
+  height: 100%;
+  padding: 10px;
+  
+  border: none;
+  border-radius: 3px;
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
+  background: #E66;  
+  opacity: .75;
+  cursor: pointer;
+`;
+
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
+
+
 
 class Map extends Component {
   state = {
@@ -31,15 +62,43 @@ class Map extends Component {
       endyear: 2019
     },
     pins: this.props.pins,
-    //Outside Map from LiveSafe Mapbox studio
-    style: "mapbox://styles/livesafe/cjvodc5af09t31dm8u2qhri51"
+    style: "mapbox://styles/livesafe/cjvodc5af09t31dm8u2qhri51",
+    toggler: true
+
+  
   };
 
   render() {
     return (
+<<<<<<< HEAD
+      
+      <div id="map" ref={el => (this.mapContainer = el)} className="map"> 
+        <div id="menu-a" />
+        <pre id='features'></pre>
+        <CompareNav>
+          <Button id='compare'>{(this.state.toggler) ? 'Compare' : 'Return'}</Button>
+          <Button id='browse'>Browse</Button>
+        </CompareNav>
+       {/* {( this.state.pins.length < 2) ? 
+        (<div><Button id='compare' style={{display: 'none'}}  >{(this.state.toggler % 2 === 0) ? 'Compare' : 'Return'}</Button>
+         <Button id='browse' style={{display: 'none'}} >Browse</Button></div>): 
+       
+        (<CompareNav>
+          <Button id='compare' style={{display: 'block'}} onClick = {this.compare} >{(this.state.toggler % 2 === 0) ? 'Compare' : 'Return'}</Button>
+          <Button id='browse'>Browse</Button>
+        </CompareNav> )} */}
+       
+        {/* <div>
+          <button id='compare'>Compare</button>
+          <br/>
+          <button id='fly'>Browse</button>
+        </div> */}
+      </div>
+=======
       <div id="map" ref={el => (this.mapContainer = el)} className="map">
         <div id="menu-a">Map Layers</div>
         </div>
+>>>>>>> d7220ed5b9b4818a80a6958ab1448905d4a9454a
     );
   }
 
@@ -69,6 +128,11 @@ class Map extends Component {
 
     // load layers
     map.on("load", () => {
+
+      map.addSource('counties', {
+        "type": "vector",
+        "url": "mapbox://mapbox.82pkq93d"
+        });
 
       map.addLayer({
         id: "Counties",
@@ -392,6 +456,7 @@ class Map extends Component {
         latitude: pin.LATITUDE,
         longitude: pin.LONGITUDE
       });
+      console.log("Predictions are ", this.props.coordinatePredictions)
 
       const URL = `https://api.mapbox.com/geocoding/v5/mapbox.places/${
         pin.LONGITUDE
@@ -433,7 +498,7 @@ class Map extends Component {
         .catch(error => {
           console.log(error);
         });
-
+        console.log("Pins so far:  ", this.props.pins, this.props.pins.length);
       // TODO: add this area not supported for outside of US
     });
 
@@ -466,6 +531,201 @@ class Map extends Component {
     });
 
     document.getElementById("geocoder").appendChild(geocoder.onAdd(map));
+
+    let toggler = -1;
+    // Create a popup for displaying county name
+    var countyPopup = new mapboxgl.Popup({
+      closeButton: false
+    });
+
+    var countyPopup2 = new mapboxgl.Popup({
+      closeButton: false
+    });
+
+    let pins = this.props.pins;
+    console.log('pins from state : ', pins)
+
+
+    document.getElementById('compare').addEventListener('click', function (e) {
+      //const { pins } = this.state;
+      console.log('pins from inside event listener : ', pins)
+
+        var features = map.queryRenderedFeatures(e.point, {
+          layers: ['counties']
+        });
+        console.log('got back features = ', e);
+        toggler++;
+
+        let flyToLocations = []; 
+        let camera = {};
+        for (let i = 0; i < pins.length; i++) {
+          let { LATITUDE, LONGITUDE } = pins[i];
+          //let center = [latitude, longitude];
+          camera = {
+            center: [LONGITUDE, LATITUDE],
+            zoom: 12.68,
+            bearing: Math.floor(Math.random()*80),
+            pitch: 80, 
+            speed: 0.75, // make the flying slow
+            curve: 1, // change the speed at which it zooms out
+    
+            // This can be any easing function: it takes a number between
+            // 0 and 1 and returns another number between 0 and 1.
+            easing: function (t) { return t; }
+            }
+            console.log('inside playback function for loop with camera = ', camera)
+          flyToLocations.push(camera);
+          
+        }   
+        console.log('fly to locations = ',flyToLocations)
+        playback(0, flyToLocations);
+      
+     
+    }); // end compare event listener
+
+    //map.on('click', function (e) {
+    //   var features = map.queryRenderedFeatures(e.point);
+    //   //document.getElementById('features').innerHTML = JSON.stringify(features, null, 2);
+    //   console.log( features[0].properties.COUNTY, features[0].properties.class, features[0].properties.name, typeof features);
+    //   //if (features.properties.NAME)
+    //   //document.getElementById('features').innerHTML = JSON.stringify(features.properties.NAME, null, 2);
+    //   console.log('zoomend');
+    //   // Change the cursor style as a UI indicator.
+    //   map.getCanvas().style.cursor = 'pointer';
+       
+    //   // Single out the first found feature.
+    //   if (features[0].properties.COUNTY) {
+    //     //var feature = e.features[0];
+    //     ///console.log('e.features[0] = ', feature)
+         
+    //       // Query the counties layer visible in the map. Use the filter
+    //   // param to only collect results that share the same county name.
+    //   var relatedFeatures = map.querySourceFeatures('counties', {
+    //   sourceLayer: 'original',
+    //   filter: ['in', 'COUNTY', features[0].properties.COUNTY]
+    //   });
+    //   console.log('related features =', relatedFeatures, relatedFeatures[0].properties)
+    //   }//endif
+
+    //   //let bum = Math.floor(Math.random()*2)
+    //   if( features[0].properties.COUNTY ){
+    //       // Display a popup with the name of the county
+    //     countyPopup.setLngLat(e.lngLat)
+    //     .setText(features[0].properties.COUNTY)
+    //     .addTo(map);
+    //   }// } else if (features[0].properties.COUNTY && bum === 0)
+    //   //   map.remove(countyPopup);
+      
+    
+    // }); //end map.on(click)
+
+    var locations = [{
+      "id": "1",
+      "title": "Manhattan",
+      "description": "Even if you think you know Manhattan—its world-class museums, fine dining and unforgettable views—the borough always has something new and exciting in store.",
+      "camera": {
+      center: [-74.0070, 40.7437],
+      bearing: 25.3,
+      zoom: 11.5
+      }
+      }, {
+      "id": "4",
+      "title": "Queens",
+      "description": "Taste food from around the globe, watch Mets baseball and US Open tennis, see cutting-edge art and more in one of the world's most diverse places.",
+      "camera": {
+      center: [-73.8432, 40.6923],
+      bearing: 36,
+      zoom: 11.37
+      }
+      }, {
+      "title": "Boroughs of new york",
+      "description": "New York City is made up of five boroughs: the Bronx, Brooklyn, Manhattan, Queens and Staten Island. Each one has enough attractions—and enough personality—to be a city all its own.",
+      "camera": {
+      center: [-74.0315, 40.6989],
+      zoom: 9.68,
+      bearing: 0,
+      pitch: 0
+      }
+      }];
+    function playback(index, flyToLocations) {
+      //title.textContent = locations[index].title;
+      //description.textContent = locations[index].description;
+
+
+      // map.addLayer({
+      //   "id": "counties-highlighted",
+      //   "type": "fill",
+      //   "source": "counties",
+      //   "source-layer": "original",
+      //   "paint": {
+      //   "fill-outline-color": "#484896",
+      //   "fill-color": "#6e599f",
+      //   "fill-opacity": 0.75
+      //   },
+      //   "filter": ["in", "COUNTY", ""]
+      //   }, 'settlement-label'); // Place polygon under these labels.
+      // map.addLayer({
+      //   "id": "counties",
+      //   "type": "fill",
+      //   "source": "counties",
+      //   "source-layer": "original",
+      //   "paint": {
+      //   "fill-outline-color": "#2ABB17",
+      //   //"fill-color": "white"
+      //   "fill-opacity": 0.75
+      //   }
+      //   }, 'settlement-label'); // Place polygon under these labels.
+
+
+      console.log('pins from inside playback function ', pins, pins.length);
+
+      // map.addLayer({
+      //   "id": "highlight",
+      //   "type": "fill",
+      //   "source": 'counties',
+      //   "source-layer": "original",
+      //   "paint": {
+      //   "fill-outline-color": "#2ABB17",
+      //   "fill-color": "#fd6b50",
+      //   "fill-opacity": 0.25
+      //   },
+      //  //"filter": ["in", "COUNTY", ""],
+      //  // "filter": ["==", "borocode", ""]
+      //   }, 'settlement-subdivision-label'); // Place polygon under the neighborhood labels.
+
+      //   map.addLayer({
+      //     "id": "highlight-one",
+      //     "type": "fill",
+      //     "source": 'counties',
+      //     "source-layer": "original",
+      //     "paint": {
+      //     "fill-color": "#2ABB17",
+      //     "fill-opacity": 0.25
+      //     },
+      //     "filter": ["==", "borocode", ""]
+      //     }, 'settlement-subdivision-label'); // Place polygon under the neighborhood labels.
+     
+
+      //highlightBorough(locations[index].id ? locations[index].id : '');
+      if (toggler % 2 === 0) {
+        // Animate the map position based on camera properties
+        flyToLocations[index].bearing = Math.floor(Math.random()*70);
+        map.flyTo(flyToLocations[index]);
+
+        map.once('moveend', function() {
+        // Duration the slide is on screen after interaction
+        window.setTimeout(function() {
+        // Increment index
+        index = (index + 1 === flyToLocations.length) ? 0 : index + 1;
+        playback(index, flyToLocations);
+        }, 6000); // After callback, show the location for 6 seconds.
+        });
+      }
+      else {
+        map.flyTo(flyToLocations[0]);
+      }
+
+    }
 
     // Populate pins on map
     // this.props.pins.map(pin => {
