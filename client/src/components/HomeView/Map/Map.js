@@ -51,11 +51,6 @@ mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 
 class Map extends Component {
-<<<<<<< HEAD
-
-  map;
-=======
->>>>>>> 4506f709ff15796928462fe42da5a193686c3e14
   state = {
     zoom: 3.1,
     minZoom: 2,
@@ -66,13 +61,8 @@ class Map extends Component {
       endyear: 2019
     },
     pins: this.props.pins,
-<<<<<<< HEAD
     style: "mapbox://styles/livesafe/cjvodc5af09t31dm8u2qhri51",
     toggler: true
-=======
-    //Outside Map from LiveSafe Mapbox studio
-    style: "mapbox://styles/livesafe/cjvodc5af09t31dm8u2qhri51"
->>>>>>> 4506f709ff15796928462fe42da5a193686c3e14
   };
 
   render() {
@@ -112,26 +102,6 @@ class Map extends Component {
     //  }
   }
 
-<<<<<<< HEAD
-  pastMode = () => {
-    this.props.fetchHistoricalData(this.state.historySelections);
-  };
-
-  // compare = (e) => {
-  //   console.log('pins from state : ', this.state.pins)
-  //     var features = map.queryRenderedFeatures(e.point, {
-  //       layers: ['counties']
-  //     });
-  //     console.log('got back features = ', e);
-  //     let target = [-73.8709, 40.8255];
-  //     var end = [74.50, 40];
-  //     toggler++;
-  //     playback(0);
-    
-  // }
-
-=======
->>>>>>> 4506f709ff15796928462fe42da5a193686c3e14
   initMap = () => {
     // create map with state values
     const { zoom, minZoom } = this.state;
@@ -150,14 +120,11 @@ class Map extends Component {
     // load layers
     map.on("load", () => {
 
-<<<<<<< HEAD
       map.addSource('counties', {
         "type": "vector",
         "url": "mapbox://mapbox.82pkq93d"
         });
 
-=======
->>>>>>> 4506f709ff15796928462fe42da5a193686c3e14
       map.addLayer({
         id: "Counties",
         type: "line",
@@ -334,11 +301,7 @@ class Map extends Component {
         "Quake Risk",
         "Quake Heat Map",
         "San Andreas Fault",
-<<<<<<< HEAD
-       // "Compare Counties"
-=======
         "Sea Levels"
->>>>>>> 4506f709ff15796928462fe42da5a193686c3e14
       ];
       // const toggleableLayers = ["Quakes"];
 
@@ -354,17 +317,12 @@ class Map extends Component {
         map.setLayoutProperty("Quake Events", "visibility", "none");
         map.setLayoutProperty("Quake Heat Map", "visibility", "none");
         map.setLayoutProperty("San Andreas Fault", "visibility", "none");
-<<<<<<< HEAD
-        //map.setLayoutProperty("Compare Counties", "visibility", "none");
-
-=======
         map.setLayoutProperty("Sea Levels", "visibility", "none");
         map.setLayoutProperty("Risk by County", "visibility", "none");
         map.setLayoutProperty("Flood Events", "visibility", "none");
         map.setLayoutProperty("Tornado Events", "visibility", "none");
         map.setLayoutProperty("Major Storm Events", "visibility", "none");
         
->>>>>>> 4506f709ff15796928462fe42da5a193686c3e14
         link.onclick = function(e) {
           // toggle layer
           const clickedLayer = this.textContent;
