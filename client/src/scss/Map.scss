@@ -25,7 +25,6 @@
 #menu-a {
   background: #fff;
   position: absolute;
-  font-size: px;
   z-index: 1;
   top: 10px;
   left: 10px;
@@ -44,8 +43,9 @@
   //   flex-direction: column;
   // }
   a {
+    font-weight: bolder;
     border: 1px solid black;
-    font-size: 14px;
+    font-size: 12px;
     text-decoration: none;
     color: rgba(0, 0, 0, 0.75);
     display: block;

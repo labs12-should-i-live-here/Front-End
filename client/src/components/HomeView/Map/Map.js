@@ -11,6 +11,7 @@ import "../../../scss/Map.scss";
 import axios from "axios";
 import styled from "styled-components";
 import { Pulse } from "styled-icons/boxicons-regular/Pulse";
+
 const RedQuake = styled(Pulse)`
   color: red;
   height: 35px;
@@ -37,7 +38,7 @@ class Map extends Component {
   render() {
     return (
       <div id="map" ref={el => (this.mapContainer = el)} className="map">
-        <div id="menu-a"> Layers</div>
+        <div id="menu-a">Map Layers</div>
         </div>
     );
   }
@@ -126,7 +127,33 @@ class Map extends Component {
           type: "vector",
           url: "mapbox://livesafe.cjvn8h2c30bcw2xmja9dpoaq7-7iwaw"
         },
-        "source-layer": "quakes1"
+        "source-layer": "quakes1",
+        paint:{
+          "heatmap-intensity": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            0, 1,
+            9, 3
+            ],"heatmap-color": [
+              "interpolate",
+              ["linear"],
+              ["heatmap-density"],
+              0, "rgba(33,102,172,0)",
+              0.1, "rgb(103,169,207)",
+              0.2, "rgb(209,229,240)",
+              0.4, "#fbec57",
+              0.8, "#fbc457",
+              1, "#fb5757"
+              ],
+              "heatmap-radius": [
+                "interpolate",
+                ["linear"],
+                ["zoom"],
+                0, 2,
+                9, 20
+                ]
+        }
       });
 
       map.addLayer({
@@ -138,7 +165,7 @@ class Map extends Component {
         },
         "source-layer": "quakes1-1p0ws7",
         paint: {
-          "circle-color": "purple"
+          "circle-color": "red"
         }
       });
 
@@ -151,7 +178,8 @@ class Map extends Component {
         },
         "source-layer": "fl",
         paint: {
-          "line-color": "red"
+          "line-color": "black","circle-stroke-color": "white",
+          "circle-stroke-width": 1
         }
       });
       
@@ -194,14 +222,38 @@ class Map extends Component {
 
           map.addLayer({
             id: "Major Storm Events",
-            type: "circle",
+            type: "heatmap",
             source: {
               type: "vector",
               url: "mapbox://livesafe.dnwen5g1"
             },
             "source-layer": "storms-91hh4e",
-            paint: {
-              "circle-color": "#909090"
+            paint:{
+              "heatmap-intensity": [
+                "interpolate",
+                ["linear"],
+                ["zoom"],
+                0, 1,
+                9, 3
+                ],"heatmap-color": [
+                  "interpolate",
+                  ["linear"],
+                  ["heatmap-density"],
+                  0, "rgba(33,102,172,0)",
+                  0.1, "rgb(103,169,207)",
+                  0.2, "rgb(209,229,240)",
+                  0.4, "#fbec57",
+                  0.8, "#fbc457",
+                  1, "#fb5757"
+                  ],
+                  "heatmap-radius": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    0, 2,
+                    9, 5
+                    ],
+
             }
             },);
 
@@ -233,13 +285,13 @@ class Map extends Component {
       });
 
       const toggleableLayers = [
-        "Quake Events",
         "Quake Risk",
         "Quake Heat Map",
+        "Quake Events",
         "Tornado Events",
         "Flood Events",
+        // "Major Storm Events",
         "San Andreas Fault",
-        "Sea Levels"
       ];
       // const toggleableLayers = ["Quakes"];
 
@@ -258,6 +310,7 @@ class Map extends Component {
         map.setLayoutProperty("Sea Levels", "visibility", "none");
         map.setLayoutProperty("Flood Events", "visibility", "none");
         map.setLayoutProperty("Tornado Events", "visibility", "none");
+        map.setLayoutProperty("Major Storm Events", "visibility", "none");
         
         link.onclick = function(e) {
           // toggle layer
