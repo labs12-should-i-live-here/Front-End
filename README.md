@@ -1,4 +1,4 @@
-# Front-End (Insert Official Name)
+# Live Safe
 
 Deployed Site: https://livesafe.netlify.com/
 
