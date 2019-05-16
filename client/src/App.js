@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Router} from "react-router-dom";
+import { Route, Router } from "react-router-dom";
 import "./scss/App.scss";
 import Home2 from "./views/App/Home2.js";
 import Profile from "./views/App/Profile";
@@ -11,6 +11,7 @@ import Landing from "./views/App/Landing";
 import Pricing from "./views/App/Pricing.js";
 // import Email from "./components/SendGrid/Email";
 //stripe
+import HomeAuthed from "./views/App/HomeAuthed.js";
 import StripePayment from "./components/StripePayments/StripePayment";
 import { UnpaidPrime } from "./views/App/UnpaidPrime";
 import Auth from "./Auth0/Auth.js";
@@ -29,9 +30,16 @@ function App() {
   return (
     <Router history={history} component={Login}>
       <>
-        <Route exact path="/" component={Home2} />
+        {/* <Route
+          exact
+          path="/"
+          render={() =>
+            localStorage.getItem("isLoggedIn") ? <HomeAuthed /> : <Home2 />
+          }
+        /> */}
+        <Route exact path="/" exact path="/" component={Home2} />
         <Route exact path="/pricing" component={Pricing} />
-        <Route exact path="/home" component={Home2} />
+        <Route exact path="/home" component={HomeAuthed} />
         <Route path="/landing" component={Landing} />
         <Route path="/register" component={SignUp} />
         <Route path="/login" component={Login} />

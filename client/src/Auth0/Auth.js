@@ -33,7 +33,7 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: "dev-sz7on0tz.auth0.com",
     clientID: "tNlC3QYcN3D0WbM0d3SKvxKHXXQJxUZv",
-    redirectUri: "https://livesafe.netlify.com/callback", //'https://livesafe.netlify.com/callback', //'http://localhost:3000/callback',  //'https://livesafe.netlify.com/callback',
+    redirectUri: "http://localhost:3000/callback", //'https://livesafe.netlify.com/callback', //'http://localhost:3000/callback',  //'https://livesafe.netlify.com/callback',
     responseType: "token id_token",
     scope: "openid profile"
   });
@@ -76,7 +76,9 @@ export default class Auth {
           const userid = user.sub;
           localStorage.setItem("userId", userid);
           axios
-            .post(`${API_URL}/register`, { userid: userid })
+            .post(`${API_URL}/register`, {
+              userid: userid
+            })
             .then(response => console.log(response))
             .catch(error => console.log(error));
         });
@@ -147,6 +149,7 @@ export default class Auth {
     // Remove isLoggedIn flag from localStorage
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("username");
+    localStorage.removeItem("userId");
 
     console.log(window.location.origin);
     this.auth0.logout({
