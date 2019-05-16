@@ -38,6 +38,7 @@ class Map extends Component {
     return (
       <div id="map" ref={el => (this.mapContainer = el)} className="map">
         <div id="menu-a">Map Layers</div>
+        <div id="slider">Slider</div>
       </div>
     );
   }
