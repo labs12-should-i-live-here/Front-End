@@ -51,8 +51,11 @@ mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 
 class Map extends Component {
+<<<<<<< HEAD
 
   map;
+=======
+>>>>>>> 4506f709ff15796928462fe42da5a193686c3e14
   state = {
     zoom: 3.1,
     minZoom: 2,
@@ -60,11 +63,16 @@ class Map extends Component {
     historySelections: {
       fipscode: 17033,
       startyear: 1990,
-      endyear: 2014
+      endyear: 2019
     },
     pins: this.props.pins,
+<<<<<<< HEAD
     style: "mapbox://styles/livesafe/cjvodc5af09t31dm8u2qhri51",
     toggler: true
+=======
+    //Outside Map from LiveSafe Mapbox studio
+    style: "mapbox://styles/livesafe/cjvodc5af09t31dm8u2qhri51"
+>>>>>>> 4506f709ff15796928462fe42da5a193686c3e14
   };
 
   render() {
@@ -104,6 +112,7 @@ class Map extends Component {
     //  }
   }
 
+<<<<<<< HEAD
   pastMode = () => {
     this.props.fetchHistoricalData(this.state.historySelections);
   };
@@ -121,6 +130,8 @@ class Map extends Component {
     
   // }
 
+=======
+>>>>>>> 4506f709ff15796928462fe42da5a193686c3e14
   initMap = () => {
     // create map with state values
     const { zoom, minZoom } = this.state;
@@ -133,14 +144,20 @@ class Map extends Component {
       minZoom
     });
 
+
+    //connect to menu-b to test it
+
     // load layers
     map.on("load", () => {
 
+<<<<<<< HEAD
       map.addSource('counties', {
         "type": "vector",
         "url": "mapbox://mapbox.82pkq93d"
         });
 
+=======
+>>>>>>> 4506f709ff15796928462fe42da5a193686c3e14
       map.addLayer({
         id: "Counties",
         type: "line",
@@ -200,9 +217,9 @@ class Map extends Component {
         },
         "source-layer": "quakes1"
       });
-      
+
       map.addLayer({
-        id: "Quakes",
+        id: "Quake Events",
         type: "circle",
         source: {
           type: "vector",
@@ -221,9 +238,82 @@ class Map extends Component {
           type: "vector",
           url: "mapbox://livesafe.cjvnzaaao06dg2ypfj08fw02n-2td4t"
         },
-        "source-layer": "fl"
+        "source-layer": "fl",
+        paint: {
+          "line-color": "red"
+        }
       });
 
+      map.addLayer({
+        id: "Sea Levels",
+        type: "fill",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.3lxztgam"
+        },
+        "source-layer": "sea_level-6ugk2j",
+        paint: {
+          "fill-color": "#75cff0"
+        }
+        // filter: [1,2,3,4,5,7,6,8,14,16,17,18,133]
+      });
+      
+      map.addLayer({
+        id: "Risk by County",
+        type: "fill",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.ctlgoa5o"
+        },
+        "source-layer": "danger-8xjejj",
+        paint:{
+        "fill-color": ["interpolate",["linear"],["heatmap-density"],
+        3544, 'f0334c', 
+        625, '#f5c170',
+        0,"#82f570"],
+          'fill-opacity': 0.75}
+        },
+      );
+      
+      map.addLayer({
+        id: "Flood Events",
+        type: "circle",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.6j9dlgvl"
+        },
+        "source-layer": "floods-4gxba6",
+        paint: {
+          "circle-color": "#4c59f3"
+        }
+        },);
+
+        map.addLayer({
+          id: "Tornado Events",
+          type: "circle",
+          source: {
+            type: "vector",
+            url: "mapbox://livesafe.81a8t1f6"
+          },
+          "source-layer": "tornadoes-3kygrw",
+          paint: {
+            "circle-color": "#909090"
+          }
+          },);
+
+          map.addLayer({
+            id: "Major Storm Events",
+            type: "circle",
+            source: {
+              type: "vector",
+              url: "mapbox://livesafe.dnwen5g1"
+            },
+            "source-layer": "storms-91hh4e",
+            paint: {
+              "circle-color": "#f6a80e"
+            }
+            },);
+      
       map.on("click,", "Counties", e => {
         new mapboxgl.Popup()
           .setLngLat(e.lngLat)
@@ -235,12 +325,20 @@ class Map extends Component {
       });
 
       const toggleableLayers = [
-        "Quake Risk",
         "Counties",
-        "Quakes",
+        "Risk by County",
+        "Tornado Events",
+        "Flood Events",
+        "Major Storm Events",
+        "Quake Events",
+        "Quake Risk",
         "Quake Heat Map",
         "San Andreas Fault",
+<<<<<<< HEAD
        // "Compare Counties"
+=======
+        "Sea Levels"
+>>>>>>> 4506f709ff15796928462fe42da5a193686c3e14
       ];
       // const toggleableLayers = ["Quakes"];
 
@@ -253,11 +351,20 @@ class Map extends Component {
         map.setLayoutProperty("Quake Risk", "visibility", "none");
         map.setLayoutProperty("Counties", "visibility", "none");
         map.setLayoutProperty("Counties Highlighted", "visibility", "none");
-        map.setLayoutProperty("Quakes", "visibility", "none");
+        map.setLayoutProperty("Quake Events", "visibility", "none");
         map.setLayoutProperty("Quake Heat Map", "visibility", "none");
         map.setLayoutProperty("San Andreas Fault", "visibility", "none");
+<<<<<<< HEAD
         //map.setLayoutProperty("Compare Counties", "visibility", "none");
 
+=======
+        map.setLayoutProperty("Sea Levels", "visibility", "none");
+        map.setLayoutProperty("Risk by County", "visibility", "none");
+        map.setLayoutProperty("Flood Events", "visibility", "none");
+        map.setLayoutProperty("Tornado Events", "visibility", "none");
+        map.setLayoutProperty("Major Storm Events", "visibility", "none");
+        
+>>>>>>> 4506f709ff15796928462fe42da5a193686c3e14
         link.onclick = function(e) {
           // toggle layer
           const clickedLayer = this.textContent;
@@ -278,7 +385,7 @@ class Map extends Component {
             map.setLayoutProperty(clickedLayer, "visibility", "visible");
           }
         };
-
+        // Where the data is coming into from the FLASK app
         const layers = document.getElementById("menu-a");
         return layers.appendChild(link);
       });
@@ -301,6 +408,7 @@ class Map extends Component {
       this.props.savePin(pin);
 
       console.log(this.state.coordinates);
+      this.props.fetchHistoricalData(this.state.historySelections);
       this.props.fetchPredictionData({
         latitude: pin.LATITUDE,
         longitude: pin.LONGITUDE
@@ -312,6 +420,7 @@ class Map extends Component {
       },${pin.LATITUDE}.json?access_token=${
         process.env.REACT_APP_MAPBOX_TOKEN
       }`;
+
       axios
         .get(URL)
         .then(res => {
