@@ -37,9 +37,7 @@ class Map extends Component {
   render() {
     return (
       <div id="map" ref={el => (this.mapContainer = el)} className="map">
-        <div id="menu-a">
-          <a href="#3">Compare</a>
-        </div>
+        <div id="menu-a" />
       </div>
     );
   }
