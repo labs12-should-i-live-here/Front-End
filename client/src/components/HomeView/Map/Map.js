@@ -290,7 +290,7 @@ class Map extends Component {
         "Quake Events",
         "Tornado Events",
         "Flood Events",
-        // "Major Storm Events",
+        "Major Storm Events",
         "San Andreas Fault",
       ];
       // const toggleableLayers = ["Quakes"];
