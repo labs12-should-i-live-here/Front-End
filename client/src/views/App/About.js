@@ -14,10 +14,12 @@ class Landing extends Component {
     render() {
         return (
             <div>
-                <div style={{ display: "none" }}>
-                    <Map />
+                <NavBarB /> 
+                    <div style={{ display: "none" }}>
+                        <Map />
+                    </div>
                 </div>
-            </div>
+            // </div>
         )
     }
 }
