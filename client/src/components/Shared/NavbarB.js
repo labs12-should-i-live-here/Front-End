@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { Route, NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 import "../../scss/NavbarB.scss";
 import { Home } from "styled-icons/boxicons-regular/Home";
@@ -93,6 +93,8 @@ class NavbarB extends Component {
             <NavLink exact to="/login" activeClassName="activeA">
               Log in
             </NavLink>
+            {/* <NavLink exact to="/about"> About </NavLink> */}
+            <a href="https://labs12-should-i-live-here.github.io/about/" target="_blank">About</a>
 
             <span onClick={this.mode}>
               <button className="icons">

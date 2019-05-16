@@ -4,7 +4,7 @@ import Suggestions from './Suggestions';
 import '../../scss/Landing.scss';
 
 const { API_KEY } = process.env
-const API_URL = 'http://api.musicgraph.com/api/v2/artist/suggest'
+const API_URL = 'API_URL'
 
 class Search extends Component {
   state = {
