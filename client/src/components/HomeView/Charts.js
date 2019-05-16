@@ -100,11 +100,7 @@ class Charts extends Component {
 
           {this.props.fipsCodePredictions.count ? (
             <div className="center-time-controls">
-              {this.props.timeMode ? (
-                <h3>Future Data</h3>
-              ) : (
-                <h3>Historical Data</h3>
-              )}
+              {this.props.timeMode ? <h3>Predictions</h3> : <h3>History</h3>}
             </div>
           ) : (
             <p> </p>
@@ -112,9 +108,9 @@ class Charts extends Component {
 
           <div className="toggle">
             {this.props.timeMode ? (
-              <p onClick={this.changeMode}>Toggle Future</p>
+              <p onClick={this.changeMode}>See History</p>
             ) : (
-              <p onClick={this.changeMode}>Toggle Past</p>
+              <p onClick={this.changeMode}>See Predictions</p>
             )}
             <div>
               <BlackLeft onClick={this.leftClick} />

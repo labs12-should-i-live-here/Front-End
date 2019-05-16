@@ -21,12 +21,21 @@
   .mapboxgl-ctrl-geocoder.mapboxgl-ctrl {
     width: 100%;
     box-shadow: none;
-    border-radius: 22px;
-    background: rgba(0, 0, 0, 0.05);
+
+    background: rgba(0, 0, 0, 0.1);
     margin-right: 0;
     @media (min-width: 640px) {
       max-width: 98.5%;
     }
+    :focus {
+      border: 1px solid rgba(82, 82, 82, 0.15);
+      border-radius: 22px;
+    }
+
+    border-radius: 22px;
+  }
+  .mapboxgl-ctrl-geocoder.mapboxgl-ctrl:hover {
+    background: rgba(0, 0, 0, 0.12);
   }
   .geocoder {
     width: 100%;

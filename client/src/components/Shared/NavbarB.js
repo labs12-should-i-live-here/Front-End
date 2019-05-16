@@ -87,7 +87,7 @@ class NavbarB extends Component {
             <NavLink exact to="/pricing" activeClassName="activeA">
               Pricing
             </NavLink>
-            <NavLink exact to="/register" activeClassName="activeA">
+            <NavLink exact to="/login" activeClassName="activeA">
               Sign up
             </NavLink>
             <NavLink exact to="/login" activeClassName="activeA">
