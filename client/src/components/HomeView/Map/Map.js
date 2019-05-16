@@ -38,7 +38,9 @@ class Map extends Component {
     return (
       <div id="map" ref={el => (this.mapContainer = el)} className="map">
         <div id="menu-a">Map Layers</div>
-        <div id="slider">Slider</div>
+        <div id="menu-b">
+        <input id="slider" type="range" min="2010" max="2220" step="10"/>
+        </div>
       </div>
     );
   }
@@ -155,20 +157,6 @@ class Map extends Component {
           "line-color": "red"
         }
       });
-
-      map.addLayer({
-        id: "Sea Levels",
-        type: "fill",
-        source: {
-          type: "vector",
-          url: "mapbox://livesafe.3lxztgam"
-        },
-        "source-layer": "sea_level-6ugk2j",
-        paint: {
-          "fill-color": "#75cff0"
-        }
-        // filter: [1,2,3,4,5,7,6,8,14,16,17,18,133]
-      });
       
       // map.addLayer({
       //   id: "Risk by County",
@@ -228,7 +216,7 @@ class Map extends Component {
               "circle-color": "#f6a80e"
             }
             },);
-      
+
       map.on("click,", "Counties", e => {
         new mapboxgl.Popup()
           .setLngLat(e.lngLat)
@@ -292,7 +280,51 @@ class Map extends Component {
         const layers = document.getElementById("menu-a");
         return layers.appendChild(link);
       });
+      // sea level rise by year
+          const years =[
+            '2010',
+            '2020',
+            '2030',
+            '2040',
+            '2050',
+            '2060',
+            '2070',
+            '2080',
+            '2090',
+            '2100',
+            '2150',
+            '2200'
+          ]
+
+          map.addLayer({
+            id: "Sea Levels",
+            type: "fill",
+            source: {
+              type: "vector",
+              url: "mapbox://livesafe.3lxztgam"
+            },
+            "source-layer": "sea_level-6ugk2j",
+            paint: {
+              "fill-color": "#75cff0"
+            }
+          });
+
+          function filterBy(year) {
+      
+            var filters = ['==', 'year', year];
+            map.setFilter('year', filters);
+      
+            document.getElementById('slider').textContent = years[year];
+            }
+            filterBy(0);
+
+  document.getElementById('slider').addEventListener('input', function(e) {
+  var month = parseInt(e.target.value, 10);
+  filterBy(month);})
     });
+
+
+    
 
     map.doubleClickZoom.disable();
 
