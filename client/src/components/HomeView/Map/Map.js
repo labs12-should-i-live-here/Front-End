@@ -70,10 +70,9 @@ class Map extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
       
       <div id="map" ref={el => (this.mapContainer = el)} className="map"> 
-        <div id="menu-a" />
+        <div id="menu-a">Map Layers</div>
         <pre id='features'></pre>
         <CompareNav>
           <Button id='compare'>{(this.state.toggler) ? 'Compare' : 'Return'}</Button>
@@ -94,11 +93,6 @@ class Map extends Component {
           <button id='fly'>Browse</button>
         </div> */}
       </div>
-=======
-      <div id="map" ref={el => (this.mapContainer = el)} className="map">
-        <div id="menu-a">Map Layers</div>
-        </div>
->>>>>>> d7220ed5b9b4818a80a6958ab1448905d4a9454a
     );
   }
 
