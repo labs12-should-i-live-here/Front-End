@@ -31,6 +31,9 @@ class Home2 extends Component {
           </div>
 
           <div className="right-pane">
+            <div className="right-bottom">
+              <Compare2 />
+            </div>
             <div className="right-middle">
               <Charts2 />
             </div>
@@ -38,9 +41,6 @@ class Home2 extends Component {
               <Charts />
             </div>
 
-            <div className="right-bottom">
-              <Compare2 />
-            </div>
             <div className="three" />
             <div className="right-compare">
               <Compare3 />
