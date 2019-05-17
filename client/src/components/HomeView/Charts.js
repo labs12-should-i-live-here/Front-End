@@ -50,7 +50,7 @@ const BlackRight = styled(NavigateNext)`
 `;
 
 const BarChartYellow = styled(BarChart)`
-  color: #2e64ab9c;
+  color: rgba(217, 49, 37, 0.61);
   height: 90px;
   width: 90px;
 `;

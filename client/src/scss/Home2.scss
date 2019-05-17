@@ -104,6 +104,9 @@
       margin-top: 1vh;
       min-height: 420px;
       background-color: #fff;
+      h2 {
+        background: rgb(217, 49, 37);
+      }
 
       .center-time-controls {
         display: flex;
@@ -137,6 +140,11 @@
           padding-top: 30%;
           padding-left: 45%;
         }
+      }
+    }
+    .right-compare {
+      h2 {
+        background: #2eab6d;
       }
     }
     .right-bottom,
