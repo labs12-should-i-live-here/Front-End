@@ -93,25 +93,7 @@ class Compare3 extends Component {
     return (
       <>
         <header>
-          <h2>Pins</h2>
-          <div>
-            {this.props.pinAddresses[1] ? (
-              <>
-                <PlayGreen onClick={this.tour} />
-              </>
-            ) : (
-              <>
-                {/* <span className="popup show">
-                  You must have at least 2 pins to be be able to fly through
-                  them. Add some, we promise it's cool!
-                </span> */}
-                <PlayGreenDisabled />
-              </>
-            )}
-            <Link exact to="/comparison">
-              compare <ArrowBlack />
-            </Link>
-          </div>
+          <h2>Locations</h2>
         </header>
 
         <div className="main-compare-card">
