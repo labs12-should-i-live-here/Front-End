@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, NavLink, Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 import "../../scss/NavbarB.scss";
 import { Home } from "styled-icons/boxicons-regular/Home";
@@ -57,6 +57,10 @@ class NavbarB extends Component {
     darkmode: false
   };
 
+  logout = () => {
+    localStorage.removeItem("userId");
+  };
+
   mode = () => {
     this.setState({ darkmode: !this.state.darkmode });
     this.props.flipMode();
@@ -85,16 +89,19 @@ class NavbarB extends Component {
           </div>
           <div className="right">
             <NavLink exact to="/pricing" activeClassName="activeA">
-              Pricing
+              Pro
             </NavLink>
-            <NavLink exact to="/login" activeClassName="activeA">
-              Sign up
+            <NavLink
+              exact
+              to="/logout"
+              onClick={this.logout}
+              activeClassName="activeA"
+            >
+              Logout
             </NavLink>
-            <NavLink exact to="/login" activeClassName="activeA">
-              Log in
+            <NavLink exact to="/profile" activeClassName="activeA">
+              Profile
             </NavLink>
-            {/* <NavLink exact to="/about"> About </NavLink> */}
-            <a href="https://labs12-should-i-live-here.github.io/about/" target="_blank">About</a>
 
             <span onClick={this.mode}>
               <button className="icons">
