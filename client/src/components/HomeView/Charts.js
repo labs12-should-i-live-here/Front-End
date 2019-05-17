@@ -95,10 +95,10 @@ class Charts extends Component {
         <header>
           <div className="chart-title">
             <h2>Charts</h2>
-            <InfoDark />
+            {/* <InfoDark /> */}
           </div>
 
-          {this.props.fipsCodePredictions.count ? (
+          {/* {this.props.fipsCodePredictions.count ? (
             <div className="center-time-controls">
               {this.props.timeMode ? (
                 <h3>Predicted Extreme Events</h3>
@@ -108,7 +108,7 @@ class Charts extends Component {
             </div>
           ) : (
             <p> </p>
-          )}
+          )} */}
 
           <div className="toggle">
             {this.props.timeMode ? (
@@ -131,7 +131,14 @@ class Charts extends Component {
             </p>
           ) : this.props.fipsCodePredictions.count &&
             this.props.coordinatePredictions ? (
-            <Chart graphs={this.state.graphs} index={this.state.index} />
+            <>
+              <h3>
+                {this.props.timeMode
+                  ? "Predicted Extreme Events"
+                  : "Past Extreme Events"}
+              </h3>
+              <Chart graphs={this.state.graphs} index={this.state.index} />
+            </>
           ) : (
             <div className="middle">
               <p>

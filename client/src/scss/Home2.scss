@@ -116,6 +116,10 @@
       }
       .chart {
         position: relative;
+        h3 {
+          text-align: center;
+          padding: 10px 0 10px 0;
+        }
         .middle {
           display: flex;
           flex-direction: column;
@@ -243,7 +247,7 @@
           padding: 5px;
         }
         .loader {
-          padding-top: 22.5%;
+          padding-top: 12%;
           padding-left: 45%;
         }
         .msg {

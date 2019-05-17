@@ -20,23 +20,30 @@ class Chart extends Component {
       scales: {
         xAxes: [
           {
-            stacked: true
+            scaleLabel: {
+              display: true,
+              labelString: "Number of events"
+            }
           }
         ],
         yAxes: [
           {
-            stacked: true
+            scaleLabel: {
+              display: true,
+              labelString: "Year"
+            }
           }
         ]
       }
     };
 
+    console.log(this.state);
     // renders graph  "cards"
     if (this.props.graphs[this.props.index] === "Bar") {
       return (
         <Bar
           height={325}
-          width={400}
+          width={325}
           data={this.props.timeMode ? this.state.data : this.state.data2}
           options={options}
         />
@@ -46,9 +53,9 @@ class Chart extends Component {
         <Line
           options={{ responsive: true }}
           height={325}
-          width={400}
+          width={325}
           data={this.props.timeMode ? this.state.data : this.state.data2}
-          options={options}
+          // options={options}
         />
       );
     }
