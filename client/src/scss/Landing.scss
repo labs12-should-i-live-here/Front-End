@@ -11,6 +11,7 @@ $break-mobile: 500px;
   background-size: 100%;
   display: flex;
   justify-content: center;
+  height: 800px;
   @media screen and (max-width: $break-tablet) {
     max-width: 100%;
 }
@@ -114,7 +115,7 @@ $break-mobile: 500px;
         flex-direction: row;
         justify-content: center;
         align-content: center;
-        margin: 5% 0 0 0;
+        margin: 1% 0 0 0;
         @media screen and (max-width: $break-tablet) {
             
         }

@@ -23,16 +23,15 @@ class Landing extends Component {
                                 We'll help you find a safe home
                             </div>
 
-                            <button className='topBtn'>Learn More</button>
+                            <a href="#learnMore"><button className='topBtn'>Learn More</button></a>
                             <div id="geocoder" className='landingSearchBar'></div>
                         </div>
 
                     </div>
                     {/* <Suggestions /> */}
                 </div>
-                <div className="marketingTitleBox">
+                <div id="learnMore" className="marketingTitleBox">
                     <div className="infoTitle">
-                        We have all the stats on weather threats across the US. <br />
                         You'll never have to live in fear.
                     </div>
 
