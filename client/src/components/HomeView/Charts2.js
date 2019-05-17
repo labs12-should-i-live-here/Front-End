@@ -8,7 +8,7 @@ import { NavigateNext } from "styled-icons/material/NavigateNext";
 import { Info } from "styled-icons/octicons/Info";
 import { changeTimeMode } from "../../actions";
 import "../../scss/Home2.scss";
-import Chart from "./Chart.js";
+import Chart2 from "./Chart2.js";
 
 const InfoDark = styled(Info)`
   color: rgba(0, 0, 0, 0.5);
@@ -94,7 +94,7 @@ class Charts extends Component {
       <>
         <header>
           <div className="chart-title">
-            <h2>Predicted Events</h2>
+            <h2>Past Events</h2>
             {/* <InfoDark /> */}
           </div>
 
@@ -119,14 +119,14 @@ class Charts extends Component {
         </header>
 
         <div className="chart">
-          {this.props.fetchingPredictionData ? (
+          {this.props.fetchingHistoricalData ? (
             <p className="loader">
               <Loader type="Oval" color="#2e64ab" height="40" width="40" />
             </p>
-          ) : this.props.coordinatePredictions[0] ? (
+          ) : this.props.fipsCodePredictions.count ? (
             <>
-              <h3>Predicted Extreme Events</h3>
-              <Chart graphs={this.state.graphs} index={this.state.index} />
+              <h3>Past Extreme Events</h3>
+              <Chart2 graphs={this.state.graphs} index={this.state.index} />
             </>
           ) : (
             <div className="middle">
@@ -143,11 +143,13 @@ class Charts extends Component {
 }
 
 const mapStateToProps = ({
+  fetchingHistoricalData,
   fetchingPredictionData,
   coordinatePredictions,
   fipsCodePredictions,
   timeMode
 }) => ({
+  fetchingHistoricalData,
   fetchingPredictionData,
   coordinatePredictions,
   fipsCodePredictions,
