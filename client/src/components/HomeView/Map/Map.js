@@ -63,6 +63,15 @@ class Map extends Component {
     toggler: true
   };
   //TODO: link this link with the fly-in
+
+
+    scroll = () => {
+      document.querySelector(".three").scrollIntoView({
+        behavior: "smooth"
+      });
+    };
+  
+
   render() {
     return (
       <div id="map" ref={el => (this.mapContainer = el)} className="map">
@@ -73,7 +82,9 @@ class Map extends Component {
             {this.state.toggler ? "Compare" : "Return"}
           </Button>
           <Button id="browse">Browse</Button>
+          <Button onClick={() => this.scroll()}>Scroll to Compare</Button>
         </CompareNav>
+
         {/* {( this.state.pins.length < 2) ? 
         (<div><Button id='compare' style={{display: 'none'}}  >{(this.state.toggler % 2 === 0) ? 'Compare' : 'Return'}</Button>
          <Button id='browse' style={{display: 'none'}} >Browse</Button></div>): 

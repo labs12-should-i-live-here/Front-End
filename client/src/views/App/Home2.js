@@ -29,13 +29,13 @@ class Home2 extends Component {
             <Map />
           </div>
           <div className="right-pane">
-            <div id="1" className="right-top">
+            <div className="right-top">
               <Charts />
             </div>
-            <div id="2" className="right-bottom">
+            <div className="right-bottom">
               <Compare2 />
             </div>
-            <div id="3" />
+            <div className="three" />
             <div className="right-compare">
               <Compare3 />
             </div>
