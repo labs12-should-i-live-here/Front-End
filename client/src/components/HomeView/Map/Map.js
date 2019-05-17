@@ -365,7 +365,6 @@ class Map extends Component {
       const toggleableLayers = [
         "Quake Risk",
         "Quake Heat Map",
-        "Quake Events",
         "Tornado Events",
         "Flood Events",
         "Major Storm Events",
