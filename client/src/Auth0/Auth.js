@@ -2,7 +2,8 @@ import auth0 from "auth0-js";
 import history from "./History";
 // import { AUTH_CONFIG } from "./auth0-variables";
 import axios from "axios";
-
+import connect from "react-redux";
+import { setLoginVars } from "../actions";
 // // ...
 // class Ping extends Component {
 // 	// ...
@@ -58,7 +59,8 @@ export default class Auth {
   handleAuthentication() {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
-        console.log(authResult);
+        // this.props.setLoginVars(authResult.idTokenPayload);
+        console.log(authResult.idTokenPayload);
         //   this.auth0.client.getUserCountry(authResult.accessToken, function(err, country) {
         //     // This method will make a request to the /userinfo endpoint
         //     // and return the user object, which contains the user's information,
@@ -76,7 +78,9 @@ export default class Auth {
           const userid = user.sub;
           localStorage.setItem("userId", userid);
           axios
-            .post(`${API_URL}/register`, { userid: userid })
+            .post(`${API_URL}/register`, {
+              userid: userid
+            })
             .then(response => console.log(response))
             .catch(error => console.log(error));
         });
@@ -112,12 +116,12 @@ export default class Auth {
     this.accessToken = authResult.accessToken;
     this.idToken = authResult.idToken;
     this.expiresAt = expiresAt;
-    console.log(
-      "session set, ",
-      this.accessToken,
-      this.idToken,
-      this.expiresAt
-    );
+    // console.log(
+    //   "session set, ",
+    //   this.accessToken,
+    //   this.idToken,
+    //   this.expiresAt
+    // );
 
     // navigate to the home route
     history.replace("/home");
@@ -147,6 +151,7 @@ export default class Auth {
     // Remove isLoggedIn flag from localStorage
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("username");
+    localStorage.removeItem("userId");
 
     console.log(window.location.origin);
     this.auth0.logout({

@@ -55,7 +55,7 @@ var GitLogo = styled.a`
           </Inform>
           <Foot>
         
-              Meet The Team
+              <a href="to about page">About Us</a>
               <div>&copy; LiveSafe</div>
               sitemap
               <GitLogo href='https://github.com/labs12-should-i-live-here/Front-End'>
