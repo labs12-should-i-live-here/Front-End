@@ -246,6 +246,7 @@ $break-mobile: 500px;
                 }
                 @media screen and (max-width: $break-mobile) {
                     // margin: 0 0 30% 0;
+                    display: none;
                 }
             }
         
