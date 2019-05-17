@@ -170,7 +170,7 @@ class Map extends Component {
       });
 
       map.addLayer({
-        id: "Quake Risk",
+        id: "Earthquake Zone",
         type: "line",
         source: {
           type: "vector",
@@ -188,7 +188,7 @@ class Map extends Component {
       });
 
       map.addLayer({
-        id: "Quake Heat Map",
+        id: "Earthquakes",
         type: "heatmap",
         source: {
           type: "vector",
@@ -267,28 +267,67 @@ class Map extends Component {
 
       map.addLayer({
         id: "Flood Events",
-        type: "circle",
+        type: "heatmap",
         source: {
           type: "vector",
           url: "mapbox://livesafe.6j9dlgvl"
         },
         "source-layer": "floods-4gxba6",
-        paint: {
-          "circle-color": "#4c59f3"
+        paint:{
+          "heatmap-intensity": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            0, 1,
+            9, 3
+            ],"heatmap-color": [
+              "interpolate",
+              ["linear"],
+              ["heatmap-density"],
+              0, "rgba(33,102,172,0)",
+              0.4, "rgba(33,102,172,0.2)",
+              1, "rgba(37,102,172,0.5)"
+              ],
+              "heatmap-radius": [
+                "interpolate",
+                ["linear"],
+                ["zoom"],
+                0, 2,
+                9, 20
+                ]
         }
       });
 
       map.addLayer({
         id: "Tornado Events",
-        type: "circle",
+        type: "heatmap",
         source: {
           type: "vector",
           url: "mapbox://livesafe.81a8t1f6"
         },
         "source-layer": "tornadoes-3kygrw",
-        paint: {
-          "circle-color": "#909090"
-        }
+        paint:{
+          "heatmap-intensity": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            0, 1,
+            9, 3
+            ],"heatmap-color": [
+              "interpolate",
+              ["linear"],
+              ["heatmap-density"],
+              0, "rgba(33,102,172,0)",
+              0.4, "rgba(240, 234, 31,0.2)",
+              1, "rgba(40, 175, 0,0.5)"
+              ],
+              "heatmap-radius": [
+                "interpolate",
+                ["linear"],
+                ["zoom"],
+                0, 2,
+                9, 20
+                ]}
       });
 
       map.addLayer({
@@ -363,8 +402,8 @@ class Map extends Component {
       });
 
       const toggleableLayers = [
-        "Quake Risk",
-        "Quake Heat Map",
+        "Earthquake Zone",
+        "Earthquakes",
         "Tornado Events",
         "Flood Events",
         "Major Storm Events",
@@ -378,11 +417,11 @@ class Map extends Component {
         link.href = "#";
         // link.className = "active";
         link.textContent = id;
-        map.setLayoutProperty("Quake Risk", "visibility", "none");
+        map.setLayoutProperty("Earthquake Zone", "visibility", "none");
         map.setLayoutProperty("Counties", "visibility", "none");
         map.setLayoutProperty("Counties Highlighted", "visibility", "none");
         map.setLayoutProperty("Quake Events", "visibility", "none");
-        map.setLayoutProperty("Quake Heat Map", "visibility", "none");
+        map.setLayoutProperty("Earthquakes", "visibility", "none");
         map.setLayoutProperty("San Andreas Fault", "visibility", "none");
         map.setLayoutProperty("Sea Levels", "visibility", "none");
         map.setLayoutProperty("Flood Events", "visibility", "none");
