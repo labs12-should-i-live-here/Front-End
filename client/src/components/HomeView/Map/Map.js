@@ -76,7 +76,7 @@ class Map extends Component {
         <pre id='features'></pre>
         <CompareNav>
           <Button id='compare'>{(this.state.toggler) ? 'Compare' : 'Return'}</Button>
-          <Button id='browse'><a href = 'https://2356zvxrmp.codesandbox.io/'>Browse</a></Button>
+          <Button id='browse'><a href = 'https://loving-brown-ae4f7d.netlify.com'>Browse</a></Button>
         </CompareNav>
        {/* {( this.state.pins.length < 2) ? 
         (<div><Button id='compare' style={{display: 'none'}}  >{(this.state.toggler % 2 === 0) ? 'Compare' : 'Return'}</Button>
@@ -682,8 +682,8 @@ class Map extends Component {
         property: 'danger' 
        , stops: [
             [0, '#F0334C'],
-            [500, '#FB1'],
-            [1000, '#82F570'],
+            [600, '#FB1'],
+            [3000, '#82F570'],
         ]
     },
     'fill-opacity': 0.35
