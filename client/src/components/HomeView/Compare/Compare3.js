@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-
-import Loader from "react-loader-spinner";
+import { connect } from "react-redux";
 import { Compare } from "styled-icons/material/Compare";
 import styled from "styled-components";
 
@@ -30,12 +29,30 @@ class Compare3 extends Component {
         </header>
 
         <div className="main-compare-card locations">
-          <div className="top">
-            <CompareGreen />
+          <div className="locations-top">
+            {this.props.coordinatePredictions[1] ? (
+              <p>comparisons comming soon!</p>
+            ) : (
+              <>
+                <CompareGreen /> <p>Add two pins to compare</p>
+              </>
+            )}
           </div>
         </div>
       </>
     );
   }
 }
-export default Compare3;
+const mapStateToProps = ({
+  fetchingPredictionData,
+  coordinatePredictions,
+  fipsCodePredictions,
+  timeMode
+}) => ({
+  fetchingPredictionData,
+  coordinatePredictions,
+  fipsCodePredictions,
+  timeMode
+});
+
+export default connect(mapStateToProps)(Compare3);

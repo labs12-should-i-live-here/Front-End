@@ -1,14 +1,14 @@
 import React, { Component } from "react";
+import Loader from "react-loader-spinner";
+import { connect } from "react-redux";
 import styled from "styled-components";
+import { BarChart } from "styled-icons/boxicons-regular/BarChart";
 import { NavigateBefore } from "styled-icons/material/NavigateBefore";
 import { NavigateNext } from "styled-icons/material/NavigateNext";
+import { Info } from "styled-icons/octicons/Info";
+import { changeTimeMode } from "../../actions";
 import "../../scss/Home2.scss";
 import Chart from "./Chart.js";
-import { connect } from "react-redux";
-import Loader from "react-loader-spinner";
-import { BarChart } from "styled-icons/boxicons-regular/BarChart";
-import { changeTimeMode } from "../../actions";
-import { Info } from "styled-icons/octicons/Info";
 
 const InfoDark = styled(Info)`
   color: rgba(0, 0, 0, 0.5);
