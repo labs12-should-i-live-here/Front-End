@@ -22,9 +22,8 @@ class Landing extends Component {
                             <div className='subtagline'>
                                 We'll help you find a safe home
                             </div>
-                            <div className='btnBox'>
-                            <button className='btn'>Counties</button>
-                        </div>   
+                           
+                            <button className='topBtn'>Learn More</button>
                             <div id="geocoder" className='landingSearchBar'></div>
                         </div>
 
