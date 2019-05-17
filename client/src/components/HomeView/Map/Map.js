@@ -248,9 +248,7 @@ class Map extends Component {
         },
         "source-layer": "fl",
         paint: {
-          "line-color": "black",
-          "circle-stroke-color": "white",
-          "circle-stroke-width": 1
+          "line-color": "black"
         }
       });
 
