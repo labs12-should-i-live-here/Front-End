@@ -76,7 +76,7 @@ class Map extends Component {
         <pre id='features'></pre>
         <CompareNav>
           <Button id='compare'>{(this.state.toggler) ? 'Compare' : 'Return'}</Button>
-          <Button id='browse'>Browse</Button>
+          <Button id='browse'><a href = 'https://2356zvxrmp.codesandbox.io/'>Browse</a></Button>
         </CompareNav>
        {/* {( this.state.pins.length < 2) ? 
         (<div><Button id='compare' style={{display: 'none'}}  >{(this.state.toggler % 2 === 0) ? 'Compare' : 'Return'}</Button>
@@ -126,6 +126,11 @@ class Map extends Component {
       map.addSource('counties', {
         "type": "vector",
         "url": "mapbox://mapbox.82pkq93d"
+        });
+
+      map.addSource('totalrisk', {
+        "type": "vector",
+        "url": "mapbox://livesafe.ctlgoa5o"
         });
 
       map.addLayer({
@@ -557,7 +562,7 @@ class Map extends Component {
           //let center = [latitude, longitude];
           camera = {
             center: [LONGITUDE, LATITUDE],
-            zoom: 12.68,
+            zoom: 11.68,
             bearing: Math.floor(Math.random()*80),
             pitch: 80, 
             speed: 0.75, // make the flying slow
@@ -658,17 +663,45 @@ class Map extends Component {
       //   },
       //   "filter": ["in", "COUNTY", ""]
       //   }, 'settlement-label'); // Place polygon under these labels.
-      // map.addLayer({
-      //   "id": "counties",
-      //   "type": "fill",
-      //   "source": "counties",
-      //   "source-layer": "original",
-      //   "paint": {
-      //   "fill-outline-color": "#2ABB17",
-      //   //"fill-color": "white"
-      //   "fill-opacity": 0.75
-      //   }
-      //   }, 'settlement-label'); // Place polygon under these labels.
+      map.addLayer({
+        "id": "total-risk",
+        "type": "fill",
+        "source": "totalrisk",
+        "source-layer": "danger-8xjejj",
+        
+//         "interpolate",
+// ["exponential", 0.5],
+// ["zoom"],
+// 15,
+// "#e2714b",
+// 22,
+// "#eee695"
+      //'filter': ['==', 'isCounty', true],
+      'paint': {
+      'fill-color': {
+        property: 'danger' 
+       , stops: [
+            [0, '#F0334C'],
+            [500, '#FB1'],
+            [1000, '#82F570'],
+        ]
+    },
+    'fill-opacity': 0.35
+      },
+        // "paint": {
+        //   'paint': {
+        //     'fill-color': [
+        //     'interpolate',
+        //     ['linear'],
+        //     ['get', 'danger'],
+        //     0, '#F2F12D',
+        //     250, '#EED322',
+        //     450, '#E6B71E',
+        //     ],
+        //     'fill-opacity': 0.75
+        //     }
+        // }
+        }, 'settlement-label'); // Place polygon under these labels.
 
 
       console.log('pins from inside playback function ', pins, pins.length);
@@ -684,20 +717,21 @@ class Map extends Component {
       //   "fill-opacity": 0.25
       //   },
       //  //"filter": ["in", "COUNTY", ""],
-      //  // "filter": ["==", "borocode", ""]
+      //  "filter": ["==", "COUNTY", ""]
       //   }, 'settlement-subdivision-label'); // Place polygon under the neighborhood labels.
 
-      //   map.addLayer({
-      //     "id": "highlight-one",
-      //     "type": "fill",
-      //     "source": 'counties',
-      //     "source-layer": "original",
-      //     "paint": {
-      //     "fill-color": "#2ABB17",
-      //     "fill-opacity": 0.25
-      //     },
-      //     "filter": ["==", "borocode", ""]
-      //     }, 'settlement-subdivision-label'); // Place polygon under the neighborhood labels.
+        map.addLayer({
+          "id": "county-lines",
+          "type": "line",
+          "source": 'counties',
+          "source-layer": "original",
+          "paint": {
+          "line-color": "#2ABB17",
+          'line-width':3
+          //"fill-opacity": 0.25
+          },
+          //"filter": ["==", "borocode", ""]
+          }, 'settlement-subdivision-label'); // Place polygon under the neighborhood labels.
      
 
       //highlightBorough(locations[index].id ? locations[index].id : '');
@@ -716,6 +750,8 @@ class Map extends Component {
         });
       }
       else {
+        map.removeLayer('total-risk');
+        map.removeLayer('county-lines');
         map.flyTo(flyToLocations[0]);
       }
 
