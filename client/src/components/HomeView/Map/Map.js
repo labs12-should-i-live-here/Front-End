@@ -76,7 +76,7 @@ class Map extends Component {
         <pre id='features'></pre>
         <CompareNav>
           <Button id='compare'>{(this.state.toggler) ? 'Compare' : 'Return'}</Button>
-          <Button id='browse'>Browse</Button>
+          <Button id='browse'><a href = 'https://2356zvxrmp.codesandbox.io/'>Browse</a></Button>
         </CompareNav>
        {/* {( this.state.pins.length < 2) ? 
         (<div><Button id='compare' style={{display: 'none'}}  >{(this.state.toggler % 2 === 0) ? 'Compare' : 'Return'}</Button>
@@ -128,6 +128,11 @@ class Map extends Component {
         "url": "mapbox://mapbox.82pkq93d"
         });
 
+      map.addSource('totalrisk', {
+        "type": "vector",
+        "url": "mapbox://livesafe.ctlgoa5o"
+        });
+
       map.addLayer({
         id: "Counties",
         type: "line",
@@ -161,7 +166,7 @@ class Map extends Component {
       });
 
       map.addLayer({
-        id: "Earthquake Risk",
+        id: "Quake Risk",
         type: "line",
         source: {
           type: "vector",
@@ -179,7 +184,7 @@ class Map extends Component {
       });
 
       map.addLayer({
-        id: "Earthquakes",
+        id: "Quake Heat Map",
         type: "heatmap",
         source: {
           type: "vector",
@@ -219,9 +224,9 @@ class Map extends Component {
         type: "circle",
         source: {
           type: "vector",
-          url: "mapbox://livesafe.cjvn8h2c30bcw2xmja9dpoaq7-7iwaw"
+          url: "mapbox://brilles.2xbld1lx"
         },
-        "source-layer": "quakes1",
+        "source-layer": "quakes1-1p0ws7",
         paint: {
           "circle-color": "red"
         }
@@ -236,7 +241,8 @@ class Map extends Component {
         },
         "source-layer": "fl",
         paint: {
-          "line-color": "black",
+          "line-color": "black","circle-stroke-color": "white",
+          "circle-stroke-width": 1
         }
       });
       
@@ -253,67 +259,27 @@ class Map extends Component {
       
       map.addLayer({
         id: "Flood Events",
-        type: "heatmap",
+        type: "circle",
         source: {
           type: "vector",
           url: "mapbox://livesafe.6j9dlgvl"
         },
         "source-layer": "floods-4gxba6",
-        paint:{
-          "heatmap-intensity": [
-            "interpolate",
-            ["linear"],
-            ["zoom"],
-            0, 1,
-            9, 3
-            ],"heatmap-color": [
-              "interpolate",
-              ["linear"],
-              ["heatmap-density"],
-              0, "rgba(33,102,172,0)",
-              0.4, "rgba(33,102,172,0.2)",
-              1, "rgba(37,102,172,0.5)"
-              ],
-              "heatmap-radius": [
-                "interpolate",
-                ["linear"],
-                ["zoom"],
-                0, 2,
-                9, 20
-                ]
+        paint: {
+          "circle-color": "#4c59f3"
         }
         },);
 
         map.addLayer({
           id: "Tornado Events",
-          type: "heatmap",
+          type: "circle",
           source: {
             type: "vector",
             url: "mapbox://livesafe.81a8t1f6"
           },
           "source-layer": "tornadoes-3kygrw",
-          paint:{
-            "heatmap-intensity": [
-              "interpolate",
-              ["linear"],
-              ["zoom"],
-              0, 1,
-              9, 3
-              ],"heatmap-color": [
-                "interpolate",
-                ["linear"],
-                ["heatmap-density"],
-                0, "rgba(33,102,172,0)",
-                0.4, "rgba(240, 234, 31,0.2)",
-                1, "rgba(40, 175, 0,0.5)"
-                ],
-                "heatmap-radius": [
-                  "interpolate",
-                  ["linear"],
-                  ["zoom"],
-                  0, 2,
-                  9, 20
-                  ]
+          paint: {
+            "circle-color": "#909090"
           }
           },);
 
@@ -382,8 +348,9 @@ class Map extends Component {
       });
 
       const toggleableLayers = [
-        "Earthquake Risk",
-        "Earthquakes",
+        "Quake Risk",
+        "Quake Heat Map",
+        "Quake Events",
         "Tornado Events",
         "Flood Events",
         "Major Storm Events",
@@ -397,11 +364,11 @@ class Map extends Component {
         link.href = "#";
         // link.className = "active";
         link.textContent = id;
-        map.setLayoutProperty("Earthquake Risk", "visibility", "none");
+        map.setLayoutProperty("Quake Risk", "visibility", "none");
         map.setLayoutProperty("Counties", "visibility", "none");
         map.setLayoutProperty("Counties Highlighted", "visibility", "none");
         map.setLayoutProperty("Quake Events", "visibility", "none");
-        map.setLayoutProperty("Earthquakes", "visibility", "none");
+        map.setLayoutProperty("Quake Heat Map", "visibility", "none");
         map.setLayoutProperty("San Andreas Fault", "visibility", "none");
         map.setLayoutProperty("Sea Levels", "visibility", "none");
         map.setLayoutProperty("Flood Events", "visibility", "none");
@@ -595,7 +562,7 @@ class Map extends Component {
           //let center = [latitude, longitude];
           camera = {
             center: [LONGITUDE, LATITUDE],
-            zoom: 12.68,
+            zoom: 11.68,
             bearing: Math.floor(Math.random()*80),
             pitch: 80, 
             speed: 0.75, // make the flying slow
@@ -615,7 +582,7 @@ class Map extends Component {
      
     }); // end compare event listener
 
-    //map.on('click', function (e) {
+    // map.on('mouseenter', 'county-lines', function (e) {
     //   var features = map.queryRenderedFeatures(e.point);
     //   //document.getElementById('features').innerHTML = JSON.stringify(features, null, 2);
     //   console.log( features[0].properties.COUNTY, features[0].properties.class, features[0].properties.name, typeof features);
@@ -696,17 +663,45 @@ class Map extends Component {
       //   },
       //   "filter": ["in", "COUNTY", ""]
       //   }, 'settlement-label'); // Place polygon under these labels.
-      // map.addLayer({
-      //   "id": "counties",
-      //   "type": "fill",
-      //   "source": "counties",
-      //   "source-layer": "original",
-      //   "paint": {
-      //   "fill-outline-color": "#2ABB17",
-      //   //"fill-color": "white"
-      //   "fill-opacity": 0.75
-      //   }
-      //   }, 'settlement-label'); // Place polygon under these labels.
+      map.addLayer({
+        "id": "total-risk",
+        "type": "fill",
+        "source": "totalrisk",
+        "source-layer": "danger-8xjejj",
+        
+//         "interpolate",
+// ["exponential", 0.5],
+// ["zoom"],
+// 15,
+// "#e2714b",
+// 22,
+// "#eee695"
+      //'filter': ['==', 'isCounty', true],
+      'paint': {
+      'fill-color': {
+        property: 'danger' 
+       , stops: [
+            [0, '#F0334C'],
+            [500, '#FB1'],
+            [1000, '#82F570'],
+        ]
+    },
+    'fill-opacity': 0.35
+      },
+        // "paint": {
+        //   'paint': {
+        //     'fill-color': [
+        //     'interpolate',
+        //     ['linear'],
+        //     ['get', 'danger'],
+        //     0, '#F2F12D',
+        //     250, '#EED322',
+        //     450, '#E6B71E',
+        //     ],
+        //     'fill-opacity': 0.75
+        //     }
+        // }
+        }, 'settlement-label'); // Place polygon under these labels.
 
 
       console.log('pins from inside playback function ', pins, pins.length);
@@ -722,20 +717,21 @@ class Map extends Component {
       //   "fill-opacity": 0.25
       //   },
       //  //"filter": ["in", "COUNTY", ""],
-      //  // "filter": ["==", "borocode", ""]
+      //  "filter": ["==", "COUNTY", ""]
       //   }, 'settlement-subdivision-label'); // Place polygon under the neighborhood labels.
 
-      //   map.addLayer({
-      //     "id": "highlight-one",
-      //     "type": "fill",
-      //     "source": 'counties',
-      //     "source-layer": "original",
-      //     "paint": {
-      //     "fill-color": "#2ABB17",
-      //     "fill-opacity": 0.25
-      //     },
-      //     "filter": ["==", "borocode", ""]
-      //     }, 'settlement-subdivision-label'); // Place polygon under the neighborhood labels.
+        map.addLayer({
+          "id": "county-lines",
+          "type": "line",
+          "source": 'counties',
+          "source-layer": "original",
+          "paint": {
+          "line-color": "#2ABB17",
+          'line-width':3
+          //"fill-opacity": 0.25
+          },
+          //"filter": ["==", "borocode", ""]
+          }, 'settlement-subdivision-label'); // Place polygon under the neighborhood labels.
      
 
       //highlightBorough(locations[index].id ? locations[index].id : '');
@@ -754,6 +750,8 @@ class Map extends Component {
         });
       }
       else {
+        map.removeLayer('total-risk');
+        map.removeLayer('county-lines');
         map.flyTo(flyToLocations[0]);
       }
 
