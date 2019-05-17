@@ -80,7 +80,7 @@ class Map extends Component {
             {this.state.toggler ? "Compare" : "Return"}
           </Button>
           <Button id="browse">
-            <a href="https://2356zvxrmp.codesandbox.io/">Browse</a>
+            <a href="https://loving-brown-ae4f7d.netlify.com">Browse</a>
           </Button>
         </CompareNav>
 
@@ -713,6 +713,50 @@ class Map extends Component {
       //   },
       //   "filter": ["in", "COUNTY", ""]
       //   }, 'settlement-label'); // Place polygon under these labels.
+<<<<<<< HEAD
+      map.addLayer({
+        "id": "total-risk",
+        "type": "fill",
+        "source": "totalrisk",
+        "source-layer": "danger-8xjejj",
+        
+//         "interpolate",
+// ["exponential", 0.5],
+// ["zoom"],
+// 15,
+// "#e2714b",
+// 22,
+// "#eee695"
+      //'filter': ['==', 'isCounty', true],
+      'paint': {
+      'fill-color': {
+        property: 'danger' 
+       , stops: [
+            [0, '#F0334C'],
+            [600, '#FB1'],
+            [3000, '#82F570'],
+        ]
+    },
+    'fill-opacity': 0.35
+      },
+        // "paint": {
+        //   'paint': {
+        //     'fill-color': [
+        //     'interpolate',
+        //     ['linear'],
+        //     ['get', 'danger'],
+        //     0, '#F2F12D',
+        //     250, '#EED322',
+        //     450, '#E6B71E',
+        //     ],
+        //     'fill-opacity': 0.75
+        //     }
+        // }
+        }, 'settlement-label'); // Place polygon under these labels.
+
+
+      console.log('pins from inside playback function ', pins, pins.length);
+=======
       map.addLayer(
         {
           id: "total-risk",
@@ -753,6 +797,7 @@ class Map extends Component {
       ); // Place polygon under these labels.
 
       console.log("pins from inside playback function ", pins, pins.length);
+>>>>>>> 91cd0606688709c389f36ef3a610cd98bfa86126
 
       // map.addLayer({
       //   "id": "highlight",
