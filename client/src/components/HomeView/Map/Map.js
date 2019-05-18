@@ -248,9 +248,7 @@ class Map extends Component {
         },
         "source-layer": "fl",
         paint: {
-          "line-color": "black",
-          "circle-stroke-color": "white",
-          "circle-stroke-width": 1
+          "line-color": "black"
         }
       });
 
@@ -370,6 +368,198 @@ class Map extends Component {
       });
 
       map.addLayer({
+        id: "Hurricane Risk",
+        type: "fill",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.9fbdath3"
+        },
+        "source-layer": "log_noaa_by_county-crdhqa",
+        paint: {
+          "fill-color": 
+            ["interpolate",
+            ["linear"],
+            ["get", "Hurricane"],
+            0,
+            "rgba(72,253,48,0.5)",
+            0.5,
+            "rgba(250, 253, 48,0.5)",
+            3.6,
+            "rgba(253,50,48,0.5)"
+            
+          ],
+        }
+      });
+
+      map.addLayer({
+        id: "Drought Risk",
+        type: "fill",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.9fbdath3"
+        },
+        "source-layer": "log_noaa_by_county-crdhqa",
+        paint: {
+          "fill-color": 
+            ["interpolate",
+            ["linear"],
+            ["get", "Drought"],
+            0,
+            "rgba(72,253,48,0.5)",
+            2,
+            "rgba(250, 253, 48,0.5)",
+            6.677083461247136,
+            "rgba(253,50,48,0.5)"
+            
+          ],
+        }
+      });
+
+      map.addLayer({
+        id: "Fire Risk",
+        type: "fill",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.9fbdath3"
+        },
+        "source-layer": "log_noaa_by_county-crdhqa",
+        paint: {
+          "fill-color": 
+            ["interpolate",
+            ["linear"],
+            ["get", "Fire"],
+            0,
+            "rgba(72,253,48,0.5)",
+            2,
+            "rgba(250, 253, 48,0.5)",
+            5.209486152841421,
+            "rgba(253,50,48,0.5)"
+            
+          ],
+        }
+      });
+
+      map.addLayer({
+        id: "Heat Wave Risk",
+        type: "fill",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.9fbdath3"
+        },
+        "source-layer": "log_noaa_by_county-crdhqa",
+        paint: {
+          "fill-color": 
+            ["interpolate",
+            ["linear"],
+            ["get", "Heat"],
+            0,
+            "rgba(72,253,48,0.5)",
+            1,
+            "rgba(250, 253, 48,0.5)",
+            5.181783550292085,
+            "rgba(253,50,48,0.5)"
+            
+          ],
+        }
+      });
+
+      map.addLayer({
+        id: "Cold Snap Risk",
+        type: "fill",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.9fbdath3"
+        },
+        "source-layer": "log_noaa_by_county-crdhqa",
+        paint: {
+          "fill-color": 
+            ["interpolate",
+            ["linear"],
+            ["get", "Winter Weather"],
+            0,
+            "rgba(72,253,48,0.5)",
+            3,
+            "rgba(250, 253, 48,0.5)",
+            7.817222785508166,
+            "rgba(253,50,48,0.5)"
+            
+          ],
+        }
+      });
+
+      map.addLayer({
+        id: "Tornado Risk",
+        type: "fill",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.9fbdath3"
+        },
+        "source-layer": "log_noaa_by_county-crdhqa",
+        paint: {
+          "fill-color": 
+            ["interpolate",
+            ["linear"],
+            ["get", "Tornado"],
+            0,
+            "rgba(72,253,48,0.5)",
+            1,
+            "rgba(250, 253, 48,0.5)",
+            4.663439094112067,
+            "rgba(253,50,48,0.5)"
+            
+          ],
+        }
+      });
+
+      map.addLayer({
+        id: "Damages caused by disasters",
+        type: "fill",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.drz5efzq"
+        },
+        "source-layer": "damages_by_county-c0mvgf",
+        paint: {
+          "fill-color": 
+            ["interpolate",
+            ["linear"],
+            ["get", "damage"],
+            0,
+            "rgba(72,253,48,0.5)",
+            5,
+            "rgba(250, 253, 48,0.5)",
+            10,
+            "rgba(253,50,48,0.5)"
+            
+          ],
+        }
+      });
+
+      map.addLayer({
+        id: "Deaths caused by disasters",
+        type: "fill",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.drz5efzq"
+        },
+        "source-layer": "damages_by_county-c0mvgf",
+        paint: {
+          "fill-color": 
+            ["interpolate",
+            ["linear"],
+            ["get", "deaths"],
+            0,
+            "rgba(72,253,48,0.5)",
+            1.5,
+            "rgba(250, 253, 48,0.5)",
+            3.1126050015345745,
+            "rgba(253,50,48,0.5)"
+            
+          ],
+        }
+      });
+
+      map.addLayer({
         id: "Sea Levels",
         type: "fill",
         source: {
@@ -407,7 +597,15 @@ class Map extends Component {
         "Tornado Events",
         "Flood Events",
         "Major Storm Events",
-        "San Andreas Fault"
+        "San Andreas Fault",
+        "Hurricane Risk",
+        "Drought Risk",
+        "Fire Risk",
+        "Heat Wave Risk",
+        "Cold Snap Risk",
+        "Tornado Risk",
+        "Damages caused by disasters",
+        "Deaths caused by disasters"
       ];
       // const toggleableLayers = ["Quakes"];
 
@@ -427,6 +625,14 @@ class Map extends Component {
         map.setLayoutProperty("Flood Events", "visibility", "none");
         map.setLayoutProperty("Tornado Events", "visibility", "none");
         map.setLayoutProperty("Major Storm Events", "visibility", "none");
+        map.setLayoutProperty("Hurricane Risk", "visibility", "none");
+        map.setLayoutProperty("Drought Risk", "visibility", "none");
+        map.setLayoutProperty("Fire Risk", "visibility", "none");
+        map.setLayoutProperty("Heat Wave Risk", "visibility", "none");
+        map.setLayoutProperty("Cold Snap Risk", "visibility", "none");
+        map.setLayoutProperty("Tornado Risk", "visibility", "none");
+        map.setLayoutProperty("Damages caused by disasters", "visibility", "none");
+        map.setLayoutProperty("Deaths caused by disasters", "visibility", "none");
 
         link.onclick = function(e) {
           // toggle layer
