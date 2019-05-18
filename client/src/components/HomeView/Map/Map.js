@@ -440,6 +440,30 @@ class Map extends Component {
       });
 
       map.addLayer({
+        id: "Heat Wave Risk",
+        type: "fill",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.9fbdath3"
+        },
+        "source-layer": "log_noaa_by_county-crdhqa",
+        paint: {
+          "fill-color": 
+            ["interpolate",
+            ["linear"],
+            ["get", "Heat"],
+            0,
+            "rgba(72,253,48,0.5)",
+            0.5,
+            "rgba(250, 253, 48,0.5)",
+            3.6,
+            "rgba(253,50,48,0.5)"
+            
+          ],
+        }
+      });
+
+      map.addLayer({
         id: "Sea Levels",
         type: "fill",
         source: {
@@ -480,7 +504,8 @@ class Map extends Component {
         "San Andreas Fault",
         "Hurricane Risk",
         "Drought Risk",
-        "Fire Risk"
+        "Fire Risk",
+        "Heat Wave Risk"
       ];
       // const toggleableLayers = ["Quakes"];
 
@@ -503,6 +528,7 @@ class Map extends Component {
         map.setLayoutProperty("Hurricane Risk", "visibility", "none");
         map.setLayoutProperty("Drought Risk", "visibility", "none");
         map.setLayoutProperty("Fire Risk", "visibility", "none");
+        map.setLayoutProperty("Heat Wave Risk", "visibility", "none");
 
 
         link.onclick = function(e) {
