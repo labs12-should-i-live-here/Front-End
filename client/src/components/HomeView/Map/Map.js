@@ -464,6 +464,30 @@ class Map extends Component {
       });
 
       map.addLayer({
+        id: "Cold Snap Risk",
+        type: "fill",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.9fbdath3"
+        },
+        "source-layer": "log_noaa_by_county-crdhqa",
+        paint: {
+          "fill-color": 
+            ["interpolate",
+            ["linear"],
+            ["get", "Winter Weather"],
+            0,
+            "rgba(72,253,48,0.5)",
+            0.5,
+            "rgba(250, 253, 48,0.5)",
+            3.6,
+            "rgba(253,50,48,0.5)"
+            
+          ],
+        }
+      });
+
+      map.addLayer({
         id: "Tornado Risk",
         type: "fill",
         source: {
@@ -530,6 +554,7 @@ class Map extends Component {
         "Drought Risk",
         "Fire Risk",
         "Heat Wave Risk",
+        "Cold Snap Risk",
         "Tornado Risk"
       ];
       // const toggleableLayers = ["Quakes"];
@@ -554,6 +579,7 @@ class Map extends Component {
         map.setLayoutProperty("Drought Risk", "visibility", "none");
         map.setLayoutProperty("Fire Risk", "visibility", "none");
         map.setLayoutProperty("Heat Wave Risk", "visibility", "none");
+        map.setLayoutProperty("Cold Snap Risk", "visibility", "none");
         map.setLayoutProperty("Tornado Risk", "visibility", "none");
 
 
