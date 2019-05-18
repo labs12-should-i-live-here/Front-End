@@ -368,6 +368,30 @@ class Map extends Component {
       });
 
       map.addLayer({
+        id: "Hurricane Risk",
+        type: "fill",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.9fbdath3"
+        },
+        "source-layer": "log_noaa_by_county-crdhqa",
+        paint: {
+          "fill-color": 
+            ["interpolate",
+            ["linear"],
+            ["get", "Hurricane"],
+            0,
+            "rgba(72,253,48,0.5)",
+            2,
+            "rgba(253,50,48,0.5)"
+          ],
+          
+          
+
+        }
+      });
+
+      map.addLayer({
         id: "Sea Levels",
         type: "fill",
         source: {
@@ -405,7 +429,8 @@ class Map extends Component {
         "Tornado Events",
         "Flood Events",
         "Major Storm Events",
-        "San Andreas Fault"
+        "San Andreas Fault",
+        "Hurricane Risk"
       ];
       // const toggleableLayers = ["Quakes"];
 
@@ -425,6 +450,7 @@ class Map extends Component {
         map.setLayoutProperty("Flood Events", "visibility", "none");
         map.setLayoutProperty("Tornado Events", "visibility", "none");
         map.setLayoutProperty("Major Storm Events", "visibility", "none");
+        map.setLayoutProperty("Hurricane Risk", "visibility", "none");
 
         link.onclick = function(e) {
           // toggle layer
@@ -713,50 +739,6 @@ class Map extends Component {
       //   },
       //   "filter": ["in", "COUNTY", ""]
       //   }, 'settlement-label'); // Place polygon under these labels.
-<<<<<<< HEAD
-      map.addLayer({
-        "id": "total-risk",
-        "type": "fill",
-        "source": "totalrisk",
-        "source-layer": "danger-8xjejj",
-        
-//         "interpolate",
-// ["exponential", 0.5],
-// ["zoom"],
-// 15,
-// "#e2714b",
-// 22,
-// "#eee695"
-      //'filter': ['==', 'isCounty', true],
-      'paint': {
-      'fill-color': {
-        property: 'danger' 
-       , stops: [
-            [0, '#F0334C'],
-            [600, '#FB1'],
-            [3000, '#82F570'],
-        ]
-    },
-    'fill-opacity': 0.35
-      },
-        // "paint": {
-        //   'paint': {
-        //     'fill-color': [
-        //     'interpolate',
-        //     ['linear'],
-        //     ['get', 'danger'],
-        //     0, '#F2F12D',
-        //     250, '#EED322',
-        //     450, '#E6B71E',
-        //     ],
-        //     'fill-opacity': 0.75
-        //     }
-        // }
-        }, 'settlement-label'); // Place polygon under these labels.
-
-
-      console.log('pins from inside playback function ', pins, pins.length);
-=======
       map.addLayer(
         {
           id: "total-risk",
@@ -797,7 +779,6 @@ class Map extends Component {
       ); // Place polygon under these labels.
 
       console.log("pins from inside playback function ", pins, pins.length);
->>>>>>> 91cd0606688709c389f36ef3a610cd98bfa86126
 
       // map.addLayer({
       //   "id": "highlight",
