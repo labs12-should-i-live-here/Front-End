@@ -512,6 +512,30 @@ class Map extends Component {
       });
 
       map.addLayer({
+        id: "Damages caused by disasters",
+        type: "fill",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.drz5efzq"
+        },
+        "source-layer": "damages_by_county-c0mvgf",
+        paint: {
+          "fill-color": 
+            ["interpolate",
+            ["linear"],
+            ["get", "damage"],
+            0,
+            "rgba(72,253,48,0.5)",
+            5,
+            "rgba(250, 253, 48,0.5)",
+            10,
+            "rgba(253,50,48,0.5)"
+            
+          ],
+        }
+      });
+
+      map.addLayer({
         id: "Sea Levels",
         type: "fill",
         source: {
@@ -555,7 +579,8 @@ class Map extends Component {
         "Fire Risk",
         "Heat Wave Risk",
         "Cold Snap Risk",
-        "Tornado Risk"
+        "Tornado Risk",
+        "Damages caused by disasters"
       ];
       // const toggleableLayers = ["Quakes"];
 
@@ -581,7 +606,7 @@ class Map extends Component {
         map.setLayoutProperty("Heat Wave Risk", "visibility", "none");
         map.setLayoutProperty("Cold Snap Risk", "visibility", "none");
         map.setLayoutProperty("Tornado Risk", "visibility", "none");
-
+        map.setLayoutProperty("Damages caused by disasters", "visibility", "none");
 
 
         link.onclick = function(e) {
