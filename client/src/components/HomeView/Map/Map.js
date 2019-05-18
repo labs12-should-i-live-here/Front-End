@@ -406,9 +406,9 @@ class Map extends Component {
             ["get", "Drought"],
             0,
             "rgba(72,253,48,0.5)",
-            0.5,
+            2,
             "rgba(250, 253, 48,0.5)",
-            3.6,
+            6.677083461247136,
             "rgba(253,50,48,0.5)"
             
           ],
@@ -430,9 +430,9 @@ class Map extends Component {
             ["get", "Fire"],
             0,
             "rgba(72,253,48,0.5)",
-            0.5,
+            2,
             "rgba(250, 253, 48,0.5)",
-            3.6,
+            5.209486152841421,
             "rgba(253,50,48,0.5)"
             
           ],
@@ -454,9 +454,9 @@ class Map extends Component {
             ["get", "Heat"],
             0,
             "rgba(72,253,48,0.5)",
-            0.5,
+            1,
             "rgba(250, 253, 48,0.5)",
-            3.6,
+            5.181783550292085,
             "rgba(253,50,48,0.5)"
             
           ],
@@ -478,9 +478,9 @@ class Map extends Component {
             ["get", "Winter Weather"],
             0,
             "rgba(72,253,48,0.5)",
-            0.5,
+            3,
             "rgba(250, 253, 48,0.5)",
-            3.6,
+            7.817222785508166,
             "rgba(253,50,48,0.5)"
             
           ],
@@ -502,9 +502,9 @@ class Map extends Component {
             ["get", "Tornado"],
             0,
             "rgba(72,253,48,0.5)",
-            0.5,
+            1,
             "rgba(250, 253, 48,0.5)",
-            3.6,
+            4.663439094112067,
             "rgba(253,50,48,0.5)"
             
           ],
@@ -529,6 +529,30 @@ class Map extends Component {
             5,
             "rgba(250, 253, 48,0.5)",
             10,
+            "rgba(253,50,48,0.5)"
+            
+          ],
+        }
+      });
+
+      map.addLayer({
+        id: "Deaths caused by disasters",
+        type: "fill",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.drz5efzq"
+        },
+        "source-layer": "damages_by_county-c0mvgf",
+        paint: {
+          "fill-color": 
+            ["interpolate",
+            ["linear"],
+            ["get", "deaths"],
+            0,
+            "rgba(72,253,48,0.5)",
+            1.5,
+            "rgba(250, 253, 48,0.5)",
+            3.1126050015345745,
             "rgba(253,50,48,0.5)"
             
           ],
@@ -580,7 +604,8 @@ class Map extends Component {
         "Heat Wave Risk",
         "Cold Snap Risk",
         "Tornado Risk",
-        "Damages caused by disasters"
+        "Damages caused by disasters",
+        "Deaths caused by disasters"
       ];
       // const toggleableLayers = ["Quakes"];
 
@@ -607,7 +632,7 @@ class Map extends Component {
         map.setLayoutProperty("Cold Snap Risk", "visibility", "none");
         map.setLayoutProperty("Tornado Risk", "visibility", "none");
         map.setLayoutProperty("Damages caused by disasters", "visibility", "none");
-
+        map.setLayoutProperty("Deaths caused by disasters", "visibility", "none");
 
         link.onclick = function(e) {
           // toggle layer
