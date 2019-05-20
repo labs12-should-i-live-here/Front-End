@@ -294,34 +294,48 @@ class Map extends Component {
 
       map.addLayer({
         id: "Tornado Events",
-        type: "heatmap",
+        type: "circle",
         source: {
           type: "vector",
           url: "mapbox://livesafe.81a8t1f6"
         },
         "source-layer": "tornadoes-3kygrw",
         paint: {
-          "heatmap-intensity": [
+          "circle-color": [
             "interpolate",
             ["linear"],
-            ["zoom"],
+            ["get", "intensity"],
             0,
+            "hsla(0, 53%, 59%, 0)",
             1,
-            9,
-            3
+            "hsla(96, 100%, 49%, 0.63)",
+            2,
+            "hsl(120, 100%, 49%)",
+            3,
+            "hsl(51, 100%, 53%)",
+            4,
+            "hsl(25, 100%, 49%)",
+            5,
+            "hsl(0, 100%, 49%)"
           ],
-          "heatmap-color": [
+          "circle-radius": ["interpolate", ["linear"], ["zoom"], 0, 1, 2, 3],
+          "circle-radius": [
             "interpolate",
             ["linear"],
-            ["heatmap-density"],
+            ["get", "intensity"],
             0,
-            "rgba(33,102,172,0)",
-            0.4,
-            "rgba(240, 234, 31,0.2)",
+            0,
             1,
-            "rgba(40, 175, 0,0.5)"
-          ],
-          "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 0, 2, 9, 20]
+            1,
+            2,
+            3,
+            3,
+            3,
+            4,
+            4,
+            5,
+            5
+          ]
         }
       });
 
