@@ -122,7 +122,7 @@ class Charts extends Component {
             <>
               <h3>
                 Predicted Extreme Events for <br /> <br />
-                <span className="county">
+                <span className="address">
                   {this.props.pinAddresses[this.props.selectedPinIndex]}
                 </span>{" "}
               </h3>
