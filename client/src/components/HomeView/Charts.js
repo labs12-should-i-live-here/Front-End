@@ -57,7 +57,18 @@ const BarChartYellow = styled(BarChart)`
 
 class Charts extends Component {
   state = {
-    graphs: ["Bar", "Line"],
+    graphs: [
+      "BarAll",
+      "BarDrought",
+      "BarEarthquake",
+      "BarFire",
+      "BarFlood",
+      "BarHeat",
+      "BarHurricane",
+      "BarStorm",
+      "BarTornado",
+      "BarWinter"
+    ],
     index: 0
   };
 
@@ -98,18 +109,6 @@ class Charts extends Component {
             {/* <InfoDark /> */}
           </div>
 
-          {/* {this.props.fipsCodePredictions.count ? (
-            <div className="center-time-controls">
-              {this.props.timeMode ? (
-                <h3>Predicted Extreme Events</h3>
-              ) : (
-                <h3>Past Extreme Events</h3>
-              )}
-            </div>
-          ) : (
-            <p> </p>
-          )} */}
-
           <div className="toggle">
             <div>
               <BlackLeft onClick={this.leftClick} />
@@ -133,7 +132,9 @@ class Charts extends Component {
               <p>
                 <BarChartYellow />
               </p>
-              <p className="msg">No Pin selected... double click map to add</p>
+              <p className="msg">
+                No Location selected... double click map to add one
+              </p>
             </div>
           )}
         </div>

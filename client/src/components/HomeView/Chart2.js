@@ -5,8 +5,44 @@ import { connect } from "react-redux";
 class Chart2 extends Component {
   state = {
     // historical data
-    data2: {
-      labels: [...Object.keys(this.props.fipsCodePredictions.history)],
+    dataAll: {
+      labels: [],
+      datasets: []
+    },
+    dataDrought: {
+      labels: [],
+      datasets: []
+    },
+    dataEarthquake: {
+      labels: [],
+      datasets: []
+    },
+    dataFire: {
+      labels: [],
+      datasets: []
+    },
+    dataFlood: {
+      labels: [],
+      datasets: []
+    },
+    dataHeat: {
+      labels: [],
+      datasets: []
+    },
+    dataHurricane: {
+      labels: [],
+      datasets: []
+    },
+    dataStorm: {
+      labels: [],
+      datasets: []
+    },
+    dataTornado: {
+      labels: [],
+      datasets: []
+    },
+    dataWinter: {
+      labels: [],
       datasets: []
     }
   };
@@ -36,23 +72,120 @@ class Chart2 extends Component {
       }
     };
 
-    console.log("state of graph", this.state);
-    // renders graph  "cards"
-    if (this.props.graphs[this.props.index] === "Bar") {
+    const options2 = {
+      scales: {
+        xAxes: [
+          {
+            stacked: true,
+            scaleLabel: {
+              display: true,
+              labelString: "Year",
+              fontSize: 20
+            }
+          }
+        ],
+        yAxes: [
+          {
+            stacked: true,
+            scaleLabel: {
+              display: true,
+              labelString: "Number of Events",
+              fontSize: 20
+            }
+          }
+        ]
+      }
+    };
+
+    console.log(this.state);
+    // can optimize
+    if (this.props.graphs[this.props.index] === "BarAll") {
       return (
         <Bar
           height={"225"}
           width={"225"}
-          data={this.state.data2}
+          data={this.state.dataAll}
+          options={options2}
+        />
+      );
+    } else if (this.props.graphs[this.props.index] === "BarDrought") {
+      return (
+        <Bar
+          height={"225"}
+          width={"225"}
+          data={this.state.dataDrought}
           options={options}
         />
       );
-    } else if (this.props.graphs[this.props.index] === "Line") {
+    } else if (this.props.graphs[this.props.index] === "BarEarthquake") {
       return (
-        <Line
-          height={225}
-          width={225}
-          data={this.state.data2}
+        <Bar
+          height={"225"}
+          width={"225"}
+          data={this.state.dataEarthquake}
+          options={options}
+        />
+      );
+    } else if (this.props.graphs[this.props.index] === "BarFire") {
+      return (
+        <Bar
+          height={"225"}
+          width={"225"}
+          data={this.state.dataFire}
+          options={options}
+        />
+      );
+    } else if (this.props.graphs[this.props.index] === "BarFlood") {
+      return (
+        <Bar
+          height={"225"}
+          width={"225"}
+          data={this.state.dataFlood}
+          options={options}
+        />
+      );
+    } else if (this.props.graphs[this.props.index] === "BarHeat") {
+      return (
+        <Bar
+          height={"225"}
+          width={"225"}
+          data={this.state.dataHeat}
+          options={options}
+        />
+      );
+    } else if (this.props.graphs[this.props.index] === "BarHurricane") {
+      return (
+        <Bar
+          height={"225"}
+          width={"225"}
+          data={this.state.dataHurricane}
+          options={options}
+        />
+      );
+    } else if (this.props.graphs[this.props.index] === "BarStorm") {
+      return (
+        <Bar
+          height={"225"}
+          width={"225"}
+          data={this.state.dataStorm}
+          options={options}
+        />
+      );
+    } else if (this.props.graphs[this.props.index] === "BarTornado") {
+      return (
+        <Bar
+          height={"225"}
+          width={"225"}
+          data={this.state.dataTornado}
+          options={options}
+        />
+      );
+    } else if (this.props.graphs[this.props.index] === "BarWinter") {
+      return (
+        <Bar
+          height={"225"}
+          width={"225"}
+          data={this.state.dataWinter}
           options={options}
         />
       );
@@ -100,7 +233,7 @@ class Chart2 extends Component {
 
       // setting the retrieved data to state & therefore view
       this.setState({
-        data2: {
+        dataAll: {
           labels: [...Object.keys(this.props.fipsCodePredictions.history)],
           datasets: [
             {
@@ -147,6 +280,96 @@ class Chart2 extends Component {
               label: "Winter Weather",
               data: [...winterweather],
               backgroundColor: "rgba(15, 199, 132, 0.65)"
+            }
+          ]
+        },
+        dataDrought: {
+          labels: [...Object.keys(this.props.fipsCodePredictions.history)],
+          datasets: [
+            {
+              label: "Drought",
+              data: [...drought],
+              backgroundColor: "rgba(255, 99, 132, 0.65)"
+            }
+          ]
+        },
+        dataEarthquake: {
+          labels: [...Object.keys(this.props.fipsCodePredictions.history)],
+          datasets: [
+            {
+              label: "Earthquake",
+              data: [...earthquake],
+              backgroundColor: "rgba(255, 99, 132, 0.65)"
+            }
+          ]
+        },
+        dataFire: {
+          labels: [...Object.keys(this.props.fipsCodePredictions.history)],
+          datasets: [
+            {
+              label: "Fire",
+              data: [...fire],
+              backgroundColor: "rgba(255, 99, 132, 0.65)"
+            }
+          ]
+        },
+        dataFlood: {
+          labels: [...Object.keys(this.props.fipsCodePredictions.history)],
+          datasets: [
+            {
+              label: "Flood",
+              data: [...flood],
+              backgroundColor: "rgba(255, 99, 132, 0.65)"
+            }
+          ]
+        },
+        dataHeat: {
+          labels: [...Object.keys(this.props.fipsCodePredictions.history)],
+          datasets: [
+            {
+              label: "Heat",
+              data: [...heat],
+              backgroundColor: "rgba(255, 99, 132, 0.65)"
+            }
+          ]
+        },
+        dataHurricane: {
+          labels: [...Object.keys(this.props.fipsCodePredictions.history)],
+          datasets: [
+            {
+              label: "Hurricane",
+              data: [...hurricane],
+              backgroundColor: "rgba(255, 99, 132, 0.65)"
+            }
+          ]
+        },
+        dataStorm: {
+          labels: [...Object.keys(this.props.fipsCodePredictions.history)],
+          datasets: [
+            {
+              label: "Storm",
+              data: [...storm],
+              backgroundColor: "rgba(255, 99, 132, 0.65)"
+            }
+          ]
+        },
+        dataTornado: {
+          labels: [...Object.keys(this.props.fipsCodePredictions.history)],
+          datasets: [
+            {
+              label: "Tornado",
+              data: [...tornado],
+              backgroundColor: "rgba(255, 99, 132, 0.65)"
+            }
+          ]
+        },
+        dataWinter: {
+          labels: [...Object.keys(this.props.fipsCodePredictions.history)],
+          datasets: [
+            {
+              label: "Winter Weather",
+              data: [...winterweather],
+              backgroundColor: "rgba(255, 99, 132, 0.65)"
             }
           ]
         }

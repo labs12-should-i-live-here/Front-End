@@ -57,7 +57,18 @@ const BarChartYellow = styled(BarChart)`
 
 class Charts extends Component {
   state = {
-    graphs: ["Bar", "Line"],
+    graphs: [
+      "BarAll",
+      "BarDrought",
+      "BarEarthquake",
+      "BarFire",
+      "BarFlood",
+      "BarHeat",
+      "BarHurricane",
+      "BarStorm",
+      "BarTornado",
+      "BarWinter"
+    ],
     index: 0
   };
 
@@ -133,7 +144,9 @@ class Charts extends Component {
               <p>
                 <BarChartYellow />
               </p>
-              <p className="msg">No Pin selected... double click map to add</p>
+              <p className="msg">
+                No Location selected... double click map to add one
+              </p>
             </div>
           )}
         </div>
