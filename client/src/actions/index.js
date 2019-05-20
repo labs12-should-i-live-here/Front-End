@@ -7,8 +7,7 @@ export const FETCH_PREDICTION_DATA_FAILURE = "FETCH_PREDICTION_DATA_FAILURE";
 
 export const fetchPredictionData = coordinates => dispatch => {
   dispatch({ type: FETCH_PREDICTION_DATA_START });
-  const URL =
-    "http://flask-env.ye8czngppq.us-east-2.elasticbeanstalk.com/allpredictions";
+  const URL = "https://d2drg1tc2gs4lr.cloudfront.net/allpredictions";
 
   //http://flask-env.ye8czngppq.us-east-2.elasticbeanstalk.com/allpredictions
   // http://flask-env.ye8czngppq.us-east-2.elasticbeanstalk.com/prediction
