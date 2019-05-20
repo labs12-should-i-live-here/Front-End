@@ -159,8 +159,8 @@ class Map extends Component {
           data: counties
         },
         paint: {
-          "fill-outline-color": "rgb(204, 0, 255)",
-          "fill-color": "rgba(204, 0, 255, .10)"
+          "fill-outline-color": "rgb(255, 115, 0)",
+          "fill-color": "rgba(255, 115, 0, .1)"
         },
         filter: ["in", "FIPS", ""]
       });
