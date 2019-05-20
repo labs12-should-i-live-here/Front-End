@@ -98,11 +98,11 @@ class Compare3 extends Component {
 
         <div className="main-compare-card">
           <div className="top">
-            {this.props.fetchingPredictionData ? (
+            {this.props.fetchingHistoricalData ? (
               <p className="loader">
                 <Loader type="Oval" color="#2e64ab" height="40" width="40" />
               </p>
-            ) : this.props.pinAddresses[0] ? (
+            ) : this.props.pins[0] ? (
               this.props.pinAddresses.map((pin, index) => (
                 <p className="card" key={index}>
                   {
@@ -112,7 +112,7 @@ class Compare3 extends Component {
                           <MapPinGreenSmall />
                           {/* <HomeRed /> */}
                         </div>
-                        {pin}
+                        {pin} ({this.props.pins[index].COUNTY} county)
                         <div className="card-right">
                           <DotsBlack />
                         </div>
@@ -138,9 +138,16 @@ class Compare3 extends Component {
   }
 }
 
-const mapStateToProps = ({ fetchingPredictionData, pinAddresses }) => ({
+const mapStateToProps = ({
+  fetchingHistoricalData,
   fetchingPredictionData,
-  pinAddresses
+  pinAddresses,
+  pins
+}) => ({
+  fetchingHistoricalData,
+  fetchingPredictionData,
+  pinAddresses,
+  pins
 });
 
 export default connect(
