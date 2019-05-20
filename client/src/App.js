@@ -9,6 +9,7 @@ import Logout from "./views/App/Logout.js";
 import Compare from "./views/App/Compare.js";
 import Landing from "./views/App/Landing";
 import Pricing from "./views/App/Pricing.js";
+import About from "./views/App/About/About.js";
 // import Email from "./components/SendGrid/Email";
 //stripe
 import HomeAuthed from "./views/App/HomeAuthed.js";
@@ -39,6 +40,7 @@ function App() {
         <Route exact path="/" component={Home2} />
         <Route exact path="/pricing" component={Pricing} />
         <Route path="/home" component={HomeAuthed} />
+        <Route path="/about" component={About} />
         <Route path="/landing" component={Landing} />
         <Route path="/register" component={SignUp} />
         <Route path="/login" component={Login} />
@@ -52,9 +54,9 @@ function App() {
             handleAuthentication(props);
             return <Callback {...props} />;
           }}
-        />
-        <Route path="/payment" component={StripePayment} />
-        <Route path="/primeaccess" component={UnpaidPrime} />
+        />  
+        <Route path="/payment" component={StripePayment} />{/* Stripe */}
+        <Route path="/primeaccess" component={UnpaidPrime} />{/* Stripe */}
       </>
     </Router>
   );
