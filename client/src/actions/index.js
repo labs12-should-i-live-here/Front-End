@@ -10,13 +10,24 @@ export const fetchPredictionData = coordinates => dispatch => {
   const URL =
     "http://flask-env.ye8czngppq.us-east-2.elasticbeanstalk.com/allpredictions";
 
+  //http://flask-env.ye8czngppq.us-east-2.elasticbeanstalk.com/allpredictions
+  // http://flask-env.ye8czngppq.us-east-2.elasticbeanstalk.com/prediction
+
   let { latitude, longitude } = coordinates;
 
   let request = {
     latitude: latitude,
     longitude: longitude,
-    years: 10
+    years: 20
   };
+
+  // let request = {
+  //   latitude: 40.764444,
+  //   longitude: -74.083562,
+  //   years: 20,
+  //   indicator: "heat_wave_incidents"
+  // };
+
   axios
     .post(URL, request)
     .then(res =>
