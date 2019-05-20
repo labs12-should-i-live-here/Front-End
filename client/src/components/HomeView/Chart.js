@@ -6,26 +6,57 @@ class Chart extends Component {
   state = {
     // prediction data
     data: {},
-
-    // historical data
-    data2: {
-      labels: [...Object.keys(this.props.fipsCodePredictions.history)],
-      datasets: []
-    }
+    dataHeat: {},
+    dataRain: {},
+    dataHeatWave: {},
+    dataDrySpells: {},
+    dataCold: {}
   };
 
   selectedGraph = () => {
     // makes graph items stacked
     const options = {
       scales: {
+        yAxes: [
+          {
+            scaleLabel: {
+              display: true,
+              labelString: "Number of events",
+              fontSize: 20
+            }
+          }
+        ],
         xAxes: [
           {
-            stacked: true
+            scaleLabel: {
+              display: true,
+              labelString: "Year",
+              fontSize: 20
+            }
+          }
+        ]
+      }
+    };
+    const options2 = {
+      scales: {
+        xAxes: [
+          {
+            stacked: true,
+            scaleLabel: {
+              display: true,
+              labelString: "Year",
+              fontSize: 20
+            }
           }
         ],
         yAxes: [
           {
-            stacked: true
+            stacked: true,
+            scaleLabel: {
+              display: true,
+              labelString: "Number of Events",
+              fontSize: 20
+            }
           }
         ]
       }
@@ -35,19 +66,54 @@ class Chart extends Component {
     if (this.props.graphs[this.props.index] === "Bar") {
       return (
         <Bar
-          height={325}
-          width={400}
-          data={this.props.timeMode ? this.state.data : this.state.data2}
+          height={"225"}
+          width={"225"}
+          data={this.state.data}
+          options={options2}
+        />
+      );
+    } else if (this.props.graphs[this.props.index] === "HeatBar") {
+      return (
+        <Bar
+          height={"225"}
+          width={"225"}
+          data={this.state.dataHeat}
           options={options}
         />
       );
-    } else if (this.props.graphs[this.props.index] === "Line") {
+    } else if (this.props.graphs[this.props.index] === "RainBar") {
       return (
-        <Line
-          options={{ responsive: true }}
-          height={325}
-          width={400}
-          data={this.props.timeMode ? this.state.data : this.state.data2}
+        <Bar
+          height={"225"}
+          width={"225"}
+          data={this.state.dataRain}
+          options={options}
+        />
+      );
+    } else if (this.props.graphs[this.props.index] === "HeatWaveBar") {
+      return (
+        <Bar
+          height={"225"}
+          width={"225"}
+          data={this.state.dataHeatWave}
+          options={options}
+        />
+      );
+    } else if (this.props.graphs[this.props.index] === "DrySpellsBar") {
+      return (
+        <Bar
+          height={"225"}
+          width={"225"}
+          data={this.state.dataDrySpells}
+          options={options}
+        />
+      );
+    } else if (this.props.graphs[this.props.index] === "ColdBar") {
+      return (
+        <Bar
+          height={"225"}
+          width={"225"}
+          data={this.state.dataCold}
           options={options}
         />
       );
@@ -117,97 +183,74 @@ class Chart extends Component {
               backgroundColor: "rgba(153, 102, 255, 0.65)"
             }
           ]
-        }
-      });
-    }
-
-    // Retrieving historical data from store after the request is successfull
-    if (this.props.fipsCodePredictions.count !== undefined || null) {
-      const drought = Object.values(this.props.fipsCodePredictions.history).map(
-        val => val.drought
-      );
-
-      const earthquake = Object.values(
-        this.props.fipsCodePredictions.history
-      ).map(val => val.earthquake);
-
-      const fire = Object.values(this.props.fipsCodePredictions.history).map(
-        val => val.fire
-      );
-
-      const flood = Object.values(this.props.fipsCodePredictions.history).map(
-        val => val.flood
-      );
-
-      const heat = Object.values(this.props.fipsCodePredictions.history).map(
-        val => val.heat
-      );
-
-      const hurricane = Object.values(
-        this.props.fipsCodePredictions.history
-      ).map(val => val.hurricane);
-
-      const storm = Object.values(this.props.fipsCodePredictions.history).map(
-        val => val.storm
-      );
-
-      const tornado = Object.values(this.props.fipsCodePredictions.history).map(
-        val => val.tornado
-      );
-
-      const winterweather = Object.values(
-        this.props.fipsCodePredictions.history
-      ).map(val => val.winterweather);
-
-      // setting the retrieved data to state & therefore view
-      this.setState({
-        data2: {
-          labels: [...Object.keys(this.props.fipsCodePredictions.history)],
+        },
+        dataHeat: {
+          labels: [
+            ...Object.keys(
+              this.props.coordinatePredictions[0].prediction.dry_spells
+            )
+          ],
           datasets: [
             {
-              label: "Drought",
-              data: [...drought],
+              label: "Extreme Heat Events",
+              data: [...extreme_heat_events_array],
               backgroundColor: "rgba(255, 99, 132, 0.65)"
-            },
+            }
+          ]
+        },
+        dataRain: {
+          labels: [
+            ...Object.keys(
+              this.props.coordinatePredictions[0].prediction.dry_spells
+            )
+          ],
+          datasets: [
             {
-              label: "Earthquake",
-              data: [...earthquake],
-              backgroundColor: "rgba(255, 159, 64, 0.65)"
-            },
-            {
-              label: "Fire",
-              data: [...fire],
-              backgroundColor: "rgba(153, 102, 255, 0.65)"
-            },
-            {
-              label: "Flood",
-              data: [...flood],
-              backgroundColor: "rgba(75, 192, 192, 0.65)"
-            },
-            {
-              label: "Heat",
-              data: [...heat],
-              backgroundColor: "rgba(255, 206, 86, 0.65)"
-            },
-            {
-              label: "Hurricane",
-              data: [...hurricane],
+              label: "Extreme Rain Events",
+              data: [...extreme_precipitation_events_array],
               backgroundColor: "rgba(54, 162, 235, 0.65)"
-            },
+            }
+          ]
+        },
+        dataHeatWave: {
+          labels: [
+            ...Object.keys(
+              this.props.coordinatePredictions[0].prediction.dry_spells
+            )
+          ],
+          datasets: [
             {
-              label: "Storm",
-              data: [...storm],
-              backgroundColor: "rgba(255, 99, 132, 0.65)"
-            },
+              label: "Heat Wave Incidents",
+              data: [...heat_wave_incidents_array],
+              backgroundColor: "rgba(75, 192, 192, 0.65)"
+            }
+          ]
+        },
+        dataDrySpells: {
+          labels: [
+            ...Object.keys(
+              this.props.coordinatePredictions[0].prediction.dry_spells
+            )
+          ],
+          datasets: [
             {
-              label: "Tornado",
-              data: [...tornado],
-              backgroundColor: "rgba(214, 162, 235, 0.65)"
-            },
+              label: "Dry Spells",
+              data: [...dry_spells_array],
+              backgroundColor: "rgba(255, 206, 86, 0.65)"
+            }
+          ]
+        },
+        dataCold: {
+          labels: [
+            ...Object.keys(
+              this.props.coordinatePredictions[0].prediction.dry_spells
+            )
+          ],
+          datasets: [
             {
-              label: "Winter Weather",
-              data: [...winterweather],
-              backgroundColor: "rgba(15, 199, 132, 0.65)"
+              label: "Extreme Cold Events",
+              data: [...extreme_cold_events_array],
+              backgroundColor: "rgba(153, 102, 255, 0.65)"
             }
           ]
         }
@@ -227,15 +270,11 @@ class Chart extends Component {
 const mapStateToProps = ({
   fetchingPredictionData,
   coordinatePredictions,
-  fipsCodePredictions,
-  selectedPinIndex,
-  timeMode
+  selectedPinIndex
 }) => ({
   fetchingPredictionData,
   coordinatePredictions,
-  fipsCodePredictions,
-  selectedPinIndex,
-  timeMode
+  selectedPinIndex
 });
 
 export default connect(mapStateToProps)(Chart);

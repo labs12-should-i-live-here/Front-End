@@ -8,7 +8,7 @@ import { NavigateNext } from "styled-icons/material/NavigateNext";
 import { Info } from "styled-icons/octicons/Info";
 import { changeTimeMode } from "../../actions";
 import "../../scss/Home2.scss";
-import Chart from "./Chart.js";
+import Chart2 from "./Chart2.js";
 
 const InfoDark = styled(Info)`
   color: rgba(0, 0, 0, 0.5);
@@ -58,12 +58,16 @@ const BarChartYellow = styled(BarChart)`
 class Charts extends Component {
   state = {
     graphs: [
-      "Bar",
-      "HeatBar",
-      "RainBar",
-      "HeatWaveBar",
-      "DrySpellsBar",
-      "ColdBar"
+      "BarAll",
+      "BarDrought",
+      "BarEarthquake",
+      "BarFire",
+      "BarFlood",
+      "BarHeat",
+      "BarHurricane",
+      "BarStorm",
+      "BarTornado",
+      "BarWinter"
     ],
     index: 0
   };
@@ -101,9 +105,21 @@ class Charts extends Component {
       <>
         <header>
           <div className="chart-title">
-            <h2>Predicted Events</h2>
+            <h2>Past Events</h2>
             {/* <InfoDark /> */}
           </div>
+
+          {/* {this.props.fipsCodePredictions.count ? (
+            <div className="center-time-controls">
+              {this.props.timeMode ? (
+                <h3>Predicted Extreme Events</h3>
+              ) : (
+                <h3>Past Extreme Events</h3>
+              )}
+            </div>
+          ) : (
+            <p> </p>
+          )} */}
 
           <div className="toggle">
             <div>
@@ -114,19 +130,20 @@ class Charts extends Component {
         </header>
 
         <div className="chart">
-          {this.props.fetchingPredictionData ? (
+          {this.props.fetchingHistoricalData ? (
             <p className="loader">
               <Loader type="Oval" color="#2e64ab" height="40" width="40" />
             </p>
-          ) : this.props.coordinatePredictions[0] ? (
+          ) : this.props.fipsCodePredictions.count ? (
             <>
               <h3>
-                Predicted Extreme Events for <br /> <br />
-                <span className="address">
-                  {this.props.pinAddresses[this.props.selectedPinIndex]}
+                Past Extreme Events for{" "}
+                <span className="county">
+                  {this.props.pins[this.props.selectedPinIndex].COUNTY}
                 </span>{" "}
+                county
               </h3>
-              <Chart graphs={this.state.graphs} index={this.state.index} />
+              <Chart2 graphs={this.state.graphs} index={this.state.index} />
             </>
           ) : (
             <div className="middle">
@@ -145,21 +162,21 @@ class Charts extends Component {
 }
 
 const mapStateToProps = ({
+  fetchingHistoricalData,
   fetchingPredictionData,
   coordinatePredictions,
   fipsCodePredictions,
   timeMode,
   pins,
-  selectedPinIndex,
-  pinAddresses
+  selectedPinIndex
 }) => ({
+  fetchingHistoricalData,
   fetchingPredictionData,
   coordinatePredictions,
   fipsCodePredictions,
   timeMode,
   pins,
-  selectedPinIndex,
-  pinAddresses
+  selectedPinIndex
 });
 
 export default connect(

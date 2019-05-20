@@ -1,6 +1,13 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Compare } from "styled-icons/material/Compare";
+import styled from "styled-components";
 
-import Loader from "react-loader-spinner";
+const CompareGreen = styled(Compare)`
+  color: #2eab6d88;
+  height: 90px;
+  width: 90px;
+`;
 
 class Compare3 extends Component {
   //pulsing icon when addresses on store, change ket to uuid
@@ -22,10 +29,30 @@ class Compare3 extends Component {
         </header>
 
         <div className="main-compare-card locations">
-          <div className="top">To be completed</div>
+          <div className="locations-top">
+            {this.props.coordinatePredictions[1] ? (
+              <p>comparisons comming soon!</p>
+            ) : (
+              <>
+                <CompareGreen /> <p>Add two locations to compare</p>
+              </>
+            )}
+          </div>
         </div>
       </>
     );
   }
 }
-export default Compare3;
+const mapStateToProps = ({
+  fetchingPredictionData,
+  coordinatePredictions,
+  fipsCodePredictions,
+  timeMode
+}) => ({
+  fetchingPredictionData,
+  coordinatePredictions,
+  fipsCodePredictions,
+  timeMode
+});
+
+export default connect(mapStateToProps)(Compare3);

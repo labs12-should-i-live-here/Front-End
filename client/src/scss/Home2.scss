@@ -20,7 +20,7 @@
   .left-pane {
     padding: 1vh;
     height: 90vh;
-    width: 65%;
+    width: 67.5%;
     @media (max-width: 800px) {
       width: 100%;
       height: 60vh;
@@ -29,7 +29,7 @@
   }
   .right-pane {
     overflow-y: scroll;
-    width: 35%;
+    width: 32.5%;
     height: 92.9vh;
     padding-right: 3px;
     // padding-left: 3px;
@@ -44,10 +44,11 @@
     header {
       display: flex;
       justify-content: space-between;
-      height: 40px;
+      height: 30px;
       border-bottom: 1px solid black;
       align-items: center;
-      padding: 2px;
+      padding: 5px;
+      padding-left: 0;
       padding-left: 2px;
       border-radius: 6px 6px 0 0;
       background: #ffffffb9;
@@ -97,13 +98,17 @@
       }
     }
 
-    .right-top {
+    .right-top,
+    .right-middle {
       box-shadow: 0px 0px 3px 2px rgb(235, 235, 235);
       border-radius: 6px;
       margin: 5px;
       margin-top: 1vh;
-      min-height: 420px;
-      background-color: #fff;
+      min-height: 400px;
+
+      h2 {
+        background: rgb(217, 49, 37);
+      }
 
       .center-time-controls {
         display: flex;
@@ -113,6 +118,10 @@
       }
       .chart {
         position: relative;
+        h3 {
+          text-align: center;
+          padding: 10px 0 10px 0;
+        }
         .middle {
           display: flex;
           flex-direction: column;
@@ -120,6 +129,14 @@
           align-items: center;
           margin-top: 10%;
           height: 200px;
+        }
+        .county {
+          font-weight: bold;
+          color: rgb(255, 115, 0);
+        }
+        .address {
+          font-weight: bold;
+          color: #2e64ab;
         }
         p {
           color: rgb(87, 87, 87);
@@ -134,9 +151,23 @@
           width: 100%;
         }
         .loader {
-          padding-top: 30%;
+          padding-top: 20%;
           padding-left: 45%;
         }
+      }
+    }
+    .right-top {
+      margin-top: 1.5vh;
+    }
+    .right-middle {
+      margin-top: 1.5vh;
+      h2 {
+        background: rgb(217, 49, 37);
+      }
+    }
+    .right-compare {
+      h2 {
+        background: #2eab6d;
       }
     }
     .right-bottom,
@@ -145,7 +176,7 @@
       margin: 5px;
       box-shadow: 0px 0px 3px 2px rgb(235, 235, 235);
       border-radius: 6px;
-      margin-top: 1.75vh;
+      margin-top: 1.5vh;
       min-height: 100px;
       background-color: #fff;
       header {
@@ -168,7 +199,21 @@
         }
       }
       .locations {
-        height: 800px;
+        height: 400px;
+
+        .locations-top {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        p {
+          color: rgb(87, 87, 87);
+          padding: 5px;
+          margin-top: 20px;
+          background: rgba(0, 0, 0, 0.05);
+          border-radius: 4px;
+        }
       }
 
       .main-compare-card {
@@ -185,7 +230,7 @@
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          margin-top: 5%;
+          margin: 5%;
           height: 150px;
         }
         .card {
@@ -221,7 +266,7 @@
           padding: 5px;
         }
         .loader {
-          padding-top: 22.5%;
+          padding-top: 12%;
           padding-left: 45%;
         }
         .msg {
@@ -232,9 +277,8 @@
     }
     .footer {
       height: 12em;
-      margin: 15px 2px 5px 5px;
       height: 10em;
-      margin: 30px 2px 5px 5px;
+      margin: 1.5vh 5px 5px 5px;
       padding: 5px;
       background-color: rgb(25, 25, 25);
       border-radius: 6px;

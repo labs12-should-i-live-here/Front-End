@@ -126,7 +126,9 @@ class Compare3 extends Component {
                 <p>
                   <MapPinGreen />
                 </p>
-                <p className="msg">No pins... double click map to add</p>
+                <p className="msg">
+                  No Locations... double click map to add one
+                </p>
               </div>
             )}
           </div>
