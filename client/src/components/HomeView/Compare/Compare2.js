@@ -59,6 +59,7 @@ const MapPinGreen = styled(MapMarkerAlt)`
   height: 75px;
   width: 75px;
   margin-bottom: 15px;
+  cursor: pointer;
 `;
 
 const MapPinGreenSmall = styled(MapMarkerAlt)`
@@ -66,14 +67,6 @@ const MapPinGreenSmall = styled(MapMarkerAlt)`
   height: 15px;
   width: 15px;
   padding-right: 5px;
-`;
-
-const ArrowBlack = styled(ArrowRight2)`
-  color: black;
-  height: 20px;
-  width: 20px;
-  border-radius: 6px;
-  padding-left: 5px;
   cursor: pointer;
 `;
 
@@ -98,21 +91,25 @@ class Compare3 extends Component {
 
         <div className="main-compare-card">
           <div className="top">
-            {this.props.fetchingPredictionData ? (
+            {this.props.fetchingHistoricalData ? (
               <p className="loader">
                 <Loader type="Oval" color="#2e64ab" height="40" width="40" />
               </p>
-            ) : this.props.pinAddresses[0] ? (
+            ) : this.props.pins[0] ? (
               this.props.pinAddresses.map((pin, index) => (
-                <p className="card" key={index}>
+                <p
+                  className="card"
+                  onClick={() => this.sendPinIndex(index)}
+                  key={index}
+                >
                   {
                     <>
-                      <button onClick={this.sendPinIndex(index)}>
+                      <button>
                         <div className="card-left">
                           <MapPinGreenSmall />
                           {/* <HomeRed /> */}
                         </div>
-                        {pin}
+                        {pin} ({this.props.pins[index].COUNTY} county)
                         <div className="card-right">
                           <DotsBlack />
                         </div>
@@ -138,9 +135,16 @@ class Compare3 extends Component {
   }
 }
 
-const mapStateToProps = ({ fetchingPredictionData, pinAddresses }) => ({
+const mapStateToProps = ({
+  fetchingHistoricalData,
   fetchingPredictionData,
-  pinAddresses
+  pinAddresses,
+  pins
+}) => ({
+  fetchingHistoricalData,
+  fetchingPredictionData,
+  pinAddresses,
+  pins
 });
 
 export default connect(
