@@ -136,7 +136,13 @@ class Charts extends Component {
             </p>
           ) : this.props.fipsCodePredictions.count ? (
             <>
-              <h3>Past Extreme Events</h3>
+              <h3>
+                Past Extreme Events for{" "}
+                <span className="county">
+                  {this.props.pins[this.props.selectedPinIndex].COUNTY}
+                </span>{" "}
+                county
+              </h3>
               <Chart2 graphs={this.state.graphs} index={this.state.index} />
             </>
           ) : (
@@ -160,13 +166,17 @@ const mapStateToProps = ({
   fetchingPredictionData,
   coordinatePredictions,
   fipsCodePredictions,
-  timeMode
+  timeMode,
+  pins,
+  selectedPinIndex
 }) => ({
   fetchingHistoricalData,
   fetchingPredictionData,
   coordinatePredictions,
   fipsCodePredictions,
-  timeMode
+  timeMode,
+  pins,
+  selectedPinIndex
 });
 
 export default connect(

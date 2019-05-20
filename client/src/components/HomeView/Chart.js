@@ -62,7 +62,6 @@ class Chart extends Component {
       }
     };
 
-    console.log(this.state);
     // renders graph  "cards"
     if (this.props.graphs[this.props.index] === "Bar") {
       return (

@@ -11,6 +11,7 @@ import "../../../scss/Map.scss";
 import axios from "axios";
 import styled from "styled-components";
 import { Pulse } from "styled-icons/boxicons-regular/Pulse";
+import counties from "./counties2.json";
 
 const RedQuake = styled(Pulse)`
   color: red;
@@ -127,10 +128,10 @@ class Map extends Component {
 
     // load layers
     map.on("load", () => {
-      map.addSource("counties", {
-        type: "vector",
-        url: "mapbox://mapbox.82pkq93d"
-      });
+      // map.addSource("counties", {
+      //   type: "vector",
+      //   url: "mapbox://mapbox.82pkq93d"
+      // });
 
       map.addSource("totalrisk", {
         type: "vector",
@@ -139,19 +140,14 @@ class Map extends Component {
 
       map.addLayer({
         id: "Counties",
-        type: "line",
+        type: "fill",
         source: {
-          type: "vector",
-          url: "mapbox://brilles.8m1jc8xq"
-        },
-        "source-layer": "2__quake_county-6aj5at",
-        layout: {
-          "line-join": "round",
-          "line-cap": "round"
+          type: "geojson",
+          data: counties
         },
         paint: {
-          "line-color": "rgba(0, 132, 255, 1)",
-          "line-width": 1
+          "fill-outline-color": "rgba(0,0,0,0)",
+          "fill-color": "rgba(0,0,0,0)"
         }
       });
 
@@ -159,12 +155,12 @@ class Map extends Component {
         id: "Counties Highlighted",
         type: "fill",
         source: {
-          type: "vector",
-          url: "mapbox://brilles.8m1jc8xq"
+          type: "geojson",
+          data: counties
         },
-        "source-layer": "2__quake_county-6aj5at",
         paint: {
-          "fill-color": "rgba(0, 132, 255, 0.247)"
+          "fill-outline-color": "rgb(255, 51, 0)",
+          "fill-color": "rgba(255, 51, 0, .15)"
         },
         filter: ["in", "FIPS", ""]
       });
@@ -271,28 +267,28 @@ class Map extends Component {
           url: "mapbox://livesafe.6j9dlgvl"
         },
         "source-layer": "floods-4gxba6",
-        paint:{
+        paint: {
           "heatmap-intensity": [
             "interpolate",
             ["linear"],
             ["zoom"],
-            0, 1,
-            9, 3
-            ],"heatmap-color": [
-              "interpolate",
-              ["linear"],
-              ["heatmap-density"],
-              0, "rgba(33,102,172,0)",
-              0.4, "rgba(33,102,172,0.2)",
-              1, "rgba(37,102,172,0.5)"
-              ],
-              "heatmap-radius": [
-                "interpolate",
-                ["linear"],
-                ["zoom"],
-                0, 2,
-                9, 20
-                ]
+            0,
+            1,
+            9,
+            3
+          ],
+          "heatmap-color": [
+            "interpolate",
+            ["linear"],
+            ["heatmap-density"],
+            0,
+            "rgba(33,102,172,0)",
+            0.4,
+            "rgba(33,102,172,0.2)",
+            1,
+            "rgba(37,102,172,0.5)"
+          ],
+          "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 0, 2, 9, 20]
         }
       });
 
@@ -304,28 +300,29 @@ class Map extends Component {
           url: "mapbox://livesafe.81a8t1f6"
         },
         "source-layer": "tornadoes-3kygrw",
-        paint:{
+        paint: {
           "heatmap-intensity": [
             "interpolate",
             ["linear"],
             ["zoom"],
-            0, 1,
-            9, 3
-            ],"heatmap-color": [
-              "interpolate",
-              ["linear"],
-              ["heatmap-density"],
-              0, "rgba(33,102,172,0)",
-              0.4, "rgba(240, 234, 31,0.2)",
-              1, "rgba(40, 175, 0,0.5)"
-              ],
-              "heatmap-radius": [
-                "interpolate",
-                ["linear"],
-                ["zoom"],
-                0, 2,
-                9, 20
-                ]}
+            0,
+            1,
+            9,
+            3
+          ],
+          "heatmap-color": [
+            "interpolate",
+            ["linear"],
+            ["heatmap-density"],
+            0,
+            "rgba(33,102,172,0)",
+            0.4,
+            "rgba(240, 234, 31,0.2)",
+            1,
+            "rgba(40, 175, 0,0.5)"
+          ],
+          "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 0, 2, 9, 20]
+        }
       });
 
       map.addLayer({
@@ -376,8 +373,8 @@ class Map extends Component {
         },
         "source-layer": "log_noaa_by_county-crdhqa",
         paint: {
-          "fill-color": 
-            ["interpolate",
+          "fill-color": [
+            "interpolate",
             ["linear"],
             ["get", "Hurricane"],
             0,
@@ -386,8 +383,7 @@ class Map extends Component {
             "rgba(250, 253, 48,0.5)",
             3.6,
             "rgba(253,50,48,0.5)"
-            
-          ],
+          ]
         }
       });
 
@@ -400,8 +396,8 @@ class Map extends Component {
         },
         "source-layer": "log_noaa_by_county-crdhqa",
         paint: {
-          "fill-color": 
-            ["interpolate",
+          "fill-color": [
+            "interpolate",
             ["linear"],
             ["get", "Drought"],
             0,
@@ -410,8 +406,7 @@ class Map extends Component {
             "rgba(250, 253, 48,0.5)",
             6.677083461247136,
             "rgba(253,50,48,0.5)"
-            
-          ],
+          ]
         }
       });
 
@@ -424,8 +419,8 @@ class Map extends Component {
         },
         "source-layer": "log_noaa_by_county-crdhqa",
         paint: {
-          "fill-color": 
-            ["interpolate",
+          "fill-color": [
+            "interpolate",
             ["linear"],
             ["get", "Fire"],
             0,
@@ -434,8 +429,7 @@ class Map extends Component {
             "rgba(250, 253, 48,0.5)",
             5.209486152841421,
             "rgba(253,50,48,0.5)"
-            
-          ],
+          ]
         }
       });
 
@@ -448,8 +442,8 @@ class Map extends Component {
         },
         "source-layer": "log_noaa_by_county-crdhqa",
         paint: {
-          "fill-color": 
-            ["interpolate",
+          "fill-color": [
+            "interpolate",
             ["linear"],
             ["get", "Heat"],
             0,
@@ -458,8 +452,7 @@ class Map extends Component {
             "rgba(250, 253, 48,0.5)",
             5.181783550292085,
             "rgba(253,50,48,0.5)"
-            
-          ],
+          ]
         }
       });
 
@@ -472,8 +465,8 @@ class Map extends Component {
         },
         "source-layer": "log_noaa_by_county-crdhqa",
         paint: {
-          "fill-color": 
-            ["interpolate",
+          "fill-color": [
+            "interpolate",
             ["linear"],
             ["get", "Winter Weather"],
             0,
@@ -482,8 +475,7 @@ class Map extends Component {
             "rgba(250, 253, 48,0.5)",
             7.817222785508166,
             "rgba(253,50,48,0.5)"
-            
-          ],
+          ]
         }
       });
 
@@ -496,8 +488,8 @@ class Map extends Component {
         },
         "source-layer": "log_noaa_by_county-crdhqa",
         paint: {
-          "fill-color": 
-            ["interpolate",
+          "fill-color": [
+            "interpolate",
             ["linear"],
             ["get", "Tornado"],
             0,
@@ -506,8 +498,7 @@ class Map extends Component {
             "rgba(250, 253, 48,0.5)",
             4.663439094112067,
             "rgba(253,50,48,0.5)"
-            
-          ],
+          ]
         }
       });
 
@@ -520,8 +511,8 @@ class Map extends Component {
         },
         "source-layer": "damages_by_county-c0mvgf",
         paint: {
-          "fill-color": 
-            ["interpolate",
+          "fill-color": [
+            "interpolate",
             ["linear"],
             ["get", "damage"],
             0,
@@ -530,8 +521,7 @@ class Map extends Component {
             "rgba(250, 253, 48,0.5)",
             10,
             "rgba(253,50,48,0.5)"
-            
-          ],
+          ]
         }
       });
 
@@ -544,8 +534,8 @@ class Map extends Component {
         },
         "source-layer": "damages_by_county-c0mvgf",
         paint: {
-          "fill-color": 
-            ["interpolate",
+          "fill-color": [
+            "interpolate",
             ["linear"],
             ["get", "deaths"],
             0,
@@ -554,8 +544,7 @@ class Map extends Component {
             "rgba(250, 253, 48,0.5)",
             3.1126050015345745,
             "rgba(253,50,48,0.5)"
-            
-          ],
+          ]
         }
       });
 
@@ -579,16 +568,6 @@ class Map extends Component {
               "#75CFF0"
             ] && "#75CFF0"
         }
-      });
-
-      map.on("click,", "Counties", e => {
-        new mapboxgl.Popup()
-          .setLngLat(e.lngLat)
-          .setHTML(`${e.features[0].properties.NAME} County`)
-          .addTo(map);
-
-        const filter = ["in", "FIPS", e.features[0].properties.FIPS];
-        map.setFilter("Counties Highlighted", filter);
       });
 
       const toggleableLayers = [
@@ -615,9 +594,9 @@ class Map extends Component {
         link.href = "#";
         // link.className = "active";
         link.textContent = id;
+        map.setLayoutProperty("Counties", "visibility", "visible");
+        map.setLayoutProperty("Counties Highlighted", "visibility", "visible");
         map.setLayoutProperty("Earthquake Zone", "visibility", "none");
-        map.setLayoutProperty("Counties", "visibility", "none");
-        map.setLayoutProperty("Counties Highlighted", "visibility", "none");
         map.setLayoutProperty("Quake Events", "visibility", "none");
         map.setLayoutProperty("Earthquakes", "visibility", "none");
         map.setLayoutProperty("San Andreas Fault", "visibility", "none");
@@ -631,8 +610,16 @@ class Map extends Component {
         map.setLayoutProperty("Heat Wave Risk", "visibility", "none");
         map.setLayoutProperty("Cold Snap Risk", "visibility", "none");
         map.setLayoutProperty("Tornado Risk", "visibility", "none");
-        map.setLayoutProperty("Damages caused by disasters", "visibility", "none");
-        map.setLayoutProperty("Deaths caused by disasters", "visibility", "none");
+        map.setLayoutProperty(
+          "Damages caused by disasters",
+          "visibility",
+          "none"
+        );
+        map.setLayoutProperty(
+          "Deaths caused by disasters",
+          "visibility",
+          "none"
+        );
 
         link.onclick = function(e) {
           // toggle layer
@@ -690,12 +677,26 @@ class Map extends Component {
 
     map.doubleClickZoom.disable();
 
-    map.on("dblclick", e => {
+    map.on("click,", "Counties", e => {
+      console.log(e.lngLat);
+      new mapboxgl.Popup()
+        .setLngLat(e.lngLat)
+        .setHTML(`${e.features[0].properties.NAME} County`)
+        .addTo(map);
+
+      const filter = ["in", "FIPS", e.features[0].properties.FIPS];
+      map.setFilter("Counties Highlighted", filter);
+    });
+
+    map.on("dblclick", "Counties", e => {
       const userId = this.props.userId;
+      const filter = ["in", "FIPS", e.features[0].properties.FIPS];
+      map.setFilter("Counties Highlighted", filter);
       const pin = {
         userId: this.props.userId,
         LATITUDE: e.lngLat.lat,
         LONGITUDE: e.lngLat.lng,
+        COUNTY: e.features[0].properties.NAME,
         notes: "Is this working?",
         home: 0
       }; // refactor to native format
@@ -704,8 +705,12 @@ class Map extends Component {
       this.props.pins.push(pin);
       this.props.savePin(pin);
 
-      console.log(this.state.coordinates);
-      this.props.fetchHistoricalData(this.state.historySelections);
+      this.props.fetchHistoricalData({
+        fipscode: e.features[0].properties.FIPS,
+        startyear: 1990,
+        endyear: 2019
+      });
+
       this.props.fetchPredictionData({
         latitude: pin.LATITUDE,
         longitude: pin.LONGITUDE
@@ -726,7 +731,7 @@ class Map extends Component {
           const id = this.props.pins.length - 1;
           let popupContent = `<div class="address"><h3>Address:</h3> <p>${
             this.props.pinAddresses[id]
-          }</p></div>`;
+          }</p><h3>County:</h3><p> ${this.props.pins[id].COUNTY}</p></div>`;
 
           let popup = new mapboxgl.Popup({
             className: "popup"
@@ -921,48 +926,46 @@ class Map extends Component {
       //   },
       //   "filter": ["in", "COUNTY", ""]
       //   }, 'settlement-label'); // Place polygon under these labels.
-      map.addLayer({
-        "id": "total-risk",
-        "type": "fill",
-        "source": "totalrisk",
-        "source-layer": "danger-8xjejj",
-        
-//         "interpolate",
-// ["exponential", 0.5],
-// ["zoom"],
-// 15,
-// "#e2714b",
-// 22,
-// "#eee695"
-      //'filter': ['==', 'isCounty', true],
-      'paint': {
-      'fill-color': {
-        property: 'danger' 
-       , stops: [
-            [0, '#F0334C'],
-            [600, '#FB1'],
-            [3000, '#82F570'],
-        ]
-    },
-    'fill-opacity': 0.35
-      },
-        // "paint": {
-        //   'paint': {
-        //     'fill-color': [
-        //     'interpolate',
-        //     ['linear'],
-        //     ['get', 'danger'],
-        //     0, '#F2F12D',
-        //     250, '#EED322',
-        //     450, '#E6B71E',
-        //     ],
-        //     'fill-opacity': 0.75
-        //     }
-        // }
-        }, 'settlement-label'); // Place polygon under these labels.
+      map.addLayer(
+        {
+          id: "total-risk",
+          type: "fill",
+          source: "totalrisk",
+          "source-layer": "danger-8xjejj",
 
+          //         "interpolate",
+          // ["exponential", 0.5],
+          // ["zoom"],
+          // 15,
+          // "#e2714b",
+          // 22,
+          // "#eee695"
+          //'filter': ['==', 'isCounty', true],
+          paint: {
+            "fill-color": {
+              property: "danger",
+              stops: [[0, "#F0334C"], [600, "#FB1"], [3000, "#82F570"]]
+            },
+            "fill-opacity": 0.35
+          }
+          // "paint": {
+          //   'paint': {
+          //     'fill-color': [
+          //     'interpolate',
+          //     ['linear'],
+          //     ['get', 'danger'],
+          //     0, '#F2F12D',
+          //     250, '#EED322',
+          //     450, '#E6B71E',
+          //     ],
+          //     'fill-opacity': 0.75
+          //     }
+          // }
+        },
+        "settlement-label"
+      ); // Place polygon under these labels.
 
-      console.log('pins from inside playback function ', pins, pins.length);
+      console.log("pins from inside playback function ", pins, pins.length);
 
       // map.addLayer({
       //   "id": "highlight",
