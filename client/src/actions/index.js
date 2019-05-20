@@ -9,14 +9,24 @@ export const fetchPredictionData = coordinates => dispatch => {
   dispatch({ type: FETCH_PREDICTION_DATA_START });
   const URL = "https://d2drg1tc2gs4lr.cloudfront.net/allpredictions";
 
-  console.log("coordinates are --------->", coordinates);
+  //http://flask-env.ye8czngppq.us-east-2.elasticbeanstalk.com/allpredictions
+  // http://flask-env.ye8czngppq.us-east-2.elasticbeanstalk.com/prediction
+
   let { latitude, longitude } = coordinates;
 
   let request = {
     latitude: latitude,
     longitude: longitude,
-    years: 25
+    years: 20
   };
+
+  // let request = {
+  //   latitude: 40.764444,
+  //   longitude: -74.083562,
+  //   years: 20,
+  //   indicator: "heat_wave_incidents"
+  // };
+
   axios
     .post(URL, request)
     .then(res =>

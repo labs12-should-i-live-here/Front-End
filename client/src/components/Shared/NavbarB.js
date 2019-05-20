@@ -93,8 +93,8 @@ class NavbarB extends Component {
             <NavLink exact to="/login" activeClassName="activeA">
               Log in
             </NavLink>
-            {/* <NavLink exact to="/about"> About </NavLink> */}
-            <a href="https://labs12-should-i-live-here.github.io/about/" target="_blank">About</a>
+            <NavLink exact to="/about"> About </NavLink>
+            {/* <a href="https://labs12-should-i-live-here.github.io/about/" target="_blank">About</a> */}
 
             <span onClick={this.mode}>
               <button className="icons">

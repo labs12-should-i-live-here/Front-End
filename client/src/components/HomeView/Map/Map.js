@@ -780,7 +780,7 @@ class Map extends Component {
 
       this.props.fetchHistoricalData({
         fipscode: e.features[0].properties.FIPS,
-        startyear: 1990,
+        startyear: 1998,
         endyear: 2019
       });
 
