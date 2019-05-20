@@ -8,6 +8,7 @@ import { Moon as MoonLight } from "styled-icons/boxicons-regular/Moon";
 import { Moon as MoonDark } from "styled-icons/boxicons-solid/Moon";
 import { connect } from "react-redux";
 import { flipMode } from "../../actions";
+import "animate.css";
 
 const RedHome = styled(Home)`
   color: #f24236;
@@ -84,9 +85,9 @@ class NavbarB extends Component {
             <div id="geocoder" class="geocoder" />
           </div>
           <div className="right">
-            <NavLink exact to="/pricing" activeClassName="activeA">
+            {/* <NavLink exact to="/pricing" activeClassName="activeA">
               Pro
-            </NavLink>
+            </NavLink> */}
 
             {/* <NavLink exact to="/about"> About </NavLink> */}
             {/* <a
@@ -98,22 +99,22 @@ class NavbarB extends Component {
             <NavLink
               exact
               to="/profile"
-              className="profile-link"
-              activeClassName="activeA"
+              className="profile-link animated bounceInRight"
+              activeClassName="activeB "
             >
+              {this.props.userInfo.name}
               <img
                 className="user-image"
                 src={this.props.userInfo.userPic}
                 alt="user image"
               />
-              {this.props.userInfo.name}
             </NavLink>
 
-            <span onClick={this.mode}>
+            {/* <span onClick={this.mode}>
               <button className="icons">
                 {darkmode ? <MoonDarkA /> : <MoonLightA />}
               </button>
-            </span>
+            </span> */}
           </div>
         </div>
       </div>

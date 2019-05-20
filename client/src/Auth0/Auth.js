@@ -78,7 +78,10 @@ export default class Auth {
           const userid = user.sub;
           localStorage.setItem("userId", userid);
           localStorage.setItem("userPic", user.picture);
-          localStorage.setItem("Name", user.given_name);
+          localStorage.setItem(
+            "Name",
+            user.given_name + " " + user.family_name
+          );
           axios
             .post(`${API_URL}/register`, {
               userid: userid
@@ -135,11 +138,11 @@ export default class Auth {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
       } else if (err) {
-        this.logout();
-        console.log(err);
-        alert(
-          `Could not get a new token (${err.error}: ${err.error_description}).`
-        );
+        // this.logout();
+        // console.log(err);
+        // alert(
+        //   `Could not get a new token (${err.error}: ${err.error_description}).`
+        // );
       }
     });
   }
