@@ -294,75 +294,89 @@ class Map extends Component {
 
       map.addLayer({
         id: "Tornado Events",
-        type: "heatmap",
+        type: "circle",
         source: {
           type: "vector",
           url: "mapbox://livesafe.81a8t1f6"
         },
         "source-layer": "tornadoes-3kygrw",
         paint: {
-          "heatmap-intensity": [
+          "circle-color": [
             "interpolate",
             ["linear"],
-            ["zoom"],
+            ["get", "intensity"],
             0,
+            "hsla(0, 53%, 59%, 0)",
             1,
-            9,
-            3
+            "hsla(96, 100%, 49%, 0.63)",
+            2,
+            "hsl(120, 100%, 49%)",
+            3,
+            "hsl(51, 100%, 53%)",
+            4,
+            "hsl(25, 100%, 49%)",
+            5,
+            "hsl(0, 100%, 49%)"
           ],
-          "heatmap-color": [
+          "circle-radius": ["interpolate", ["linear"], ["zoom"], 0, 1, 2, 3],
+          "circle-radius": [
             "interpolate",
             ["linear"],
-            ["heatmap-density"],
+            ["get", "intensity"],
             0,
-            "rgba(33,102,172,0)",
-            0.4,
-            "rgba(240, 234, 31,0.2)",
+            0,
             1,
-            "rgba(40, 175, 0,0.5)"
-          ],
-          "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 0, 2, 9, 20]
+            1,
+            2,
+            3,
+            3,
+            3,
+            4,
+            4,
+            5,
+            5
+          ]
         }
       });
 
-      map.addLayer({
-        id: "Major Storm Events",
-        type: "heatmap",
-        source: {
-          type: "vector",
-          url: "mapbox://livesafe.dnwen5g1"
-        },
-        "source-layer": "storms-91hh4e",
-        paint: {
-          "heatmap-intensity": [
-            "interpolate",
-            ["linear"],
-            ["zoom"],
-            0,
-            1,
-            9,
-            3
-          ],
-          "heatmap-color": [
-            "interpolate",
-            ["linear"],
-            ["heatmap-density"],
-            0,
-            "rgba(33,102,172,0)",
-            0.1,
-            "rgb(103,169,207)",
-            0.2,
-            "rgb(209,229,240)",
-            0.4,
-            "#fbec57",
-            0.8,
-            "#fbc457",
-            1,
-            "#fb5757"
-          ],
-          "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 0, 2, 9, 5]
-        }
-      });
+      // map.addLayer({
+      //   id: "Major Storm Events",
+      //   type: "heatmap",
+      //   source: {
+      //     type: "vector",
+      //     url: "mapbox://livesafe.dnwen5g1"
+      //   },
+      //   "source-layer": "storms-91hh4e",
+      //   paint: {
+      //     "heatmap-intensity": [
+      //       "interpolate",
+      //       ["linear"],
+      //       ["zoom"],
+      //       0,
+      //       1,
+      //       9,
+      //       3
+      //     ],
+      //     "heatmap-color": [
+      //       "interpolate",
+      //       ["linear"],
+      //       ["heatmap-density"],
+      //       0,
+      //       "rgba(33,102,172,0)",
+      //       0.1,
+      //       "rgb(103,169,207)",
+      //       0.2,
+      //       "rgb(209,229,240)",
+      //       0.4,
+      //       "#fbec57",
+      //       0.8,
+      //       "#fbc457",
+      //       1,
+      //       "#fb5757"
+      //     ],
+      //     "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 0, 2, 9, 5]
+      //   }
+      // });
 
       map.addLayer({
         id: "Hurricane Risk",
@@ -503,6 +517,29 @@ class Map extends Component {
       });
 
       map.addLayer({
+        id: "Major Storm Risk",
+        type: "fill",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.9fbdath3"
+        },
+        "source-layer": "log_noaa_by_county-crdhqa",
+        paint: {
+          "fill-color": [
+            "interpolate",
+            ["linear"],
+            ["get", "Storm"],
+            0,
+            "rgba(72,253,48,0.5)",
+            4,
+            "rgba(250, 253, 48,0.5)",
+            8.19478163844336,
+            "rgba(253,50,48,0.5)"
+          ]
+        }
+      });
+
+      map.addLayer({
         id: "Damages caused by disasters",
         type: "fill",
         source: {
@@ -575,8 +612,8 @@ class Map extends Component {
         "Earthquakes",
         "Tornado Events",
         "Flood Events",
-        "Major Storm Events",
         "San Andreas Fault",
+        "Major Storm Risk",
         "Hurricane Risk",
         "Drought Risk",
         "Fire Risk",
@@ -610,6 +647,7 @@ class Map extends Component {
         map.setLayoutProperty("Heat Wave Risk", "visibility", "none");
         map.setLayoutProperty("Cold Snap Risk", "visibility", "none");
         map.setLayoutProperty("Tornado Risk", "visibility", "none");
+        map.setLayoutProperty("Major Storm Risk", "visibility", "none");
         map.setLayoutProperty(
           "Damages caused by disasters",
           "visibility",
