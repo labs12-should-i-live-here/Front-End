@@ -34,7 +34,7 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: "dev-sz7on0tz.auth0.com",
     clientID: "tNlC3QYcN3D0WbM0d3SKvxKHXXQJxUZv",
-    redirectUri: "https://livesafe.netlify.com/callback", //'https://livesafe.netlify.com/callback', //'http://localhost:3000/callback',  //'https://livesafe.netlify.com/callback',
+    redirectUri: "http://localhost:3000/callback", //'https://livesafe.netlify.com/callback', //'http://localhost:3000/callback',  //'https://livesafe.netlify.com/callback',
     responseType: "token id_token",
     scope: "openid profile"
   });
@@ -77,6 +77,8 @@ export default class Auth {
           const API_URL = "https://labs12.herokuapp.com"; //http://localhost:3000
           const userid = user.sub;
           localStorage.setItem("userId", userid);
+          localStorage.setItem("userPic", user.picture);
+          localStorage.setItem("Name", user.given_name);
           axios
             .post(`${API_URL}/register`, {
               userid: userid
@@ -152,7 +154,8 @@ export default class Auth {
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("username");
     localStorage.removeItem("userId");
-
+    localStorage.removeItem("userPic");
+    localStorage.removeItem("Name");
     console.log(window.location.origin);
     this.auth0.logout({
       returnTo: window.location.origin

@@ -51,6 +51,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    .user-image {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+    }
     .activeA {
       border-bottom: 2px solid #f24236;
       color: #000;

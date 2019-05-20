@@ -85,16 +85,29 @@ class NavbarB extends Component {
           </div>
           <div className="right">
             <NavLink exact to="/pricing" activeClassName="activeA">
-              Pricing
+              Pro
             </NavLink>
-            <NavLink exact to="/login" activeClassName="activeA">
-              Sign up
-            </NavLink>
-            <NavLink exact to="/login" activeClassName="activeA">
-              Log in
-            </NavLink>
+
             {/* <NavLink exact to="/about"> About </NavLink> */}
-            <a href="https://labs12-should-i-live-here.github.io/about/" target="_blank">About</a>
+            {/* <a
+              href="https://labs12-should-i-live-here.github.io/about/"
+              target="_blank"
+            >
+              About
+            </a> */}
+            <NavLink
+              exact
+              to="/profile"
+              className="profile-link"
+              activeClassName="activeA"
+            >
+              <img
+                className="user-image"
+                src={this.props.userInfo.userPic}
+                alt="user image"
+              />
+              {this.props.userInfo.name}
+            </NavLink>
 
             <span onClick={this.mode}>
               <button className="icons">
@@ -108,8 +121,9 @@ class NavbarB extends Component {
   }
 }
 
-const mapStateToProps = ({ dark }) => ({
-  dark
+const mapStateToProps = ({ dark, userInfo }) => ({
+  dark,
+  userInfo
 });
 
 export default connect(

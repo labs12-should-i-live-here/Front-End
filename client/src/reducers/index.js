@@ -50,7 +50,11 @@ const initialState = {
   selectedPinIndex: 0,
   selectedData: [],
   timeMode: false,
-  client: ""
+  client: "",
+  userInfo: {
+    userPic: localStorage.getItem("userPic"),
+    name: localStorage.getItem("Name")
+  }
 };
 
 const reducer = (state = initialState, action) => {
