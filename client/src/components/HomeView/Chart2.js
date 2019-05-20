@@ -97,8 +97,6 @@ class Chart2 extends Component {
       }
     };
 
-    console.log(this.state);
-    // can optimize
     if (this.props.graphs[this.props.index] === "BarAll") {
       return (
         <Bar
@@ -153,7 +151,12 @@ class Chart2 extends Component {
           options={options}
         />
       );
-    } else if (this.props.graphs[this.props.index] === "BarHurricane") {
+    } else if (
+      this.props.graphs[this.props.index] === "BarHurricane"
+      // false !== false
+      // this.state.dataHurricane.datasets[0] !== undefined &&
+      // this.state.dataHurricane.datasets[0].data.reduce((a, b) => a + b) !== 0
+    ) {
       return (
         <Bar
           height={"225"}
@@ -299,7 +302,7 @@ class Chart2 extends Component {
             {
               label: "Earthquake",
               data: [...earthquake],
-              backgroundColor: "rgba(255, 99, 132, 0.65)"
+              backgroundColor: "rgba(255, 159, 64, 0.65)"
             }
           ]
         },
@@ -309,7 +312,7 @@ class Chart2 extends Component {
             {
               label: "Fire",
               data: [...fire],
-              backgroundColor: "rgba(255, 99, 132, 0.65)"
+              backgroundColor: "rgba(75, 192, 192, 0.65)"
             }
           ]
         },
@@ -329,7 +332,7 @@ class Chart2 extends Component {
             {
               label: "Heat",
               data: [...heat],
-              backgroundColor: "rgba(255, 99, 132, 0.65)"
+              backgroundColor: "rgba(255, 206, 86, 0.65)"
             }
           ]
         },
@@ -339,7 +342,7 @@ class Chart2 extends Component {
             {
               label: "Hurricane",
               data: [...hurricane],
-              backgroundColor: "rgba(255, 99, 132, 0.65)"
+              backgroundColor: "rgba(54, 162, 235, 0.65)"
             }
           ]
         },
@@ -359,7 +362,7 @@ class Chart2 extends Component {
             {
               label: "Tornado",
               data: [...tornado],
-              backgroundColor: "rgba(255, 99, 132, 0.65)"
+              backgroundColor: "rgba(214, 162, 235, 0.65)"
             }
           ]
         },
@@ -369,7 +372,7 @@ class Chart2 extends Component {
             {
               label: "Winter Weather",
               data: [...winterweather],
-              backgroundColor: "rgba(255, 99, 132, 0.65)"
+              backgroundColor: "rgba(15, 199, 132, 0.65)"
             }
           ]
         }

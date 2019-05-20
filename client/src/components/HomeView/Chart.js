@@ -5,7 +5,12 @@ import { connect } from "react-redux";
 class Chart extends Component {
   state = {
     // prediction data
-    data: {}
+    data: {},
+    dataHeat: {},
+    dataRain: {},
+    dataHeatWave: {},
+    dataDrySpells: {},
+    dataCold: {}
   };
 
   selectedGraph = () => {
@@ -29,8 +34,31 @@ class Chart extends Component {
               fontSize: 20
             }
           }
+        ]
+      }
+    };
+    const options2 = {
+      scales: {
+        xAxes: [
+          {
+            stacked: true,
+            scaleLabel: {
+              display: true,
+              labelString: "Year",
+              fontSize: 20
+            }
+          }
         ],
-        fontSize: 25
+        yAxes: [
+          {
+            stacked: true,
+            scaleLabel: {
+              display: true,
+              labelString: "Number of Events",
+              fontSize: 20
+            }
+          }
+        ]
       }
     };
 
@@ -42,15 +70,51 @@ class Chart extends Component {
           height={"225"}
           width={"225"}
           data={this.state.data}
+          options={options2}
+        />
+      );
+    } else if (this.props.graphs[this.props.index] === "HeatBar") {
+      return (
+        <Bar
+          height={"225"}
+          width={"225"}
+          data={this.state.dataHeat}
           options={options}
         />
       );
-    } else if (this.props.graphs[this.props.index] === "Line") {
+    } else if (this.props.graphs[this.props.index] === "RainBar") {
       return (
-        <Line
-          height={225}
-          width={225}
-          data={this.state.data}
+        <Bar
+          height={"225"}
+          width={"225"}
+          data={this.state.dataRain}
+          options={options}
+        />
+      );
+    } else if (this.props.graphs[this.props.index] === "HeatWaveBar") {
+      return (
+        <Bar
+          height={"225"}
+          width={"225"}
+          data={this.state.dataHeatWave}
+          options={options}
+        />
+      );
+    } else if (this.props.graphs[this.props.index] === "DrySpellsBar") {
+      return (
+        <Bar
+          height={"225"}
+          width={"225"}
+          data={this.state.dataDrySpells}
+          options={options}
+        />
+      );
+    } else if (this.props.graphs[this.props.index] === "ColdBar") {
+      return (
+        <Bar
+          height={"225"}
+          width={"225"}
+          data={this.state.dataCold}
           options={options}
         />
       );
@@ -114,6 +178,76 @@ class Chart extends Component {
               data: [...dry_spells_array],
               backgroundColor: "rgba(255, 206, 86, 0.65)"
             },
+            {
+              label: "Extreme Cold Events",
+              data: [...extreme_cold_events_array],
+              backgroundColor: "rgba(153, 102, 255, 0.65)"
+            }
+          ]
+        },
+        dataHeat: {
+          labels: [
+            ...Object.keys(
+              this.props.coordinatePredictions[0].prediction.dry_spells
+            )
+          ],
+          datasets: [
+            {
+              label: "Extreme Heat Events",
+              data: [...extreme_heat_events_array],
+              backgroundColor: "rgba(255, 99, 132, 0.65)"
+            }
+          ]
+        },
+        dataRain: {
+          labels: [
+            ...Object.keys(
+              this.props.coordinatePredictions[0].prediction.dry_spells
+            )
+          ],
+          datasets: [
+            {
+              label: "Extreme Rain Events",
+              data: [...extreme_precipitation_events_array],
+              backgroundColor: "rgba(54, 162, 235, 0.65)"
+            }
+          ]
+        },
+        dataHeatWave: {
+          labels: [
+            ...Object.keys(
+              this.props.coordinatePredictions[0].prediction.dry_spells
+            )
+          ],
+          datasets: [
+            {
+              label: "Heat Wave Incidents",
+              data: [...heat_wave_incidents_array],
+              backgroundColor: "rgba(75, 192, 192, 0.65)"
+            }
+          ]
+        },
+        dataDrySpells: {
+          labels: [
+            ...Object.keys(
+              this.props.coordinatePredictions[0].prediction.dry_spells
+            )
+          ],
+          datasets: [
+            {
+              label: "Dry Spells",
+              data: [...dry_spells_array],
+              backgroundColor: "rgba(255, 206, 86, 0.65)"
+            }
+          ]
+        },
+        dataCold: {
+          labels: [
+            ...Object.keys(
+              this.props.coordinatePredictions[0].prediction.dry_spells
+            )
+          ],
+          datasets: [
             {
               label: "Extreme Cold Events",
               data: [...extreme_cold_events_array],

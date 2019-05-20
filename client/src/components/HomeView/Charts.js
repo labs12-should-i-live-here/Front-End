@@ -58,16 +58,12 @@ const BarChartYellow = styled(BarChart)`
 class Charts extends Component {
   state = {
     graphs: [
-      "BarAll",
-      "BarDrought",
-      "BarEarthquake",
-      "BarFire",
-      "BarFlood",
-      "BarHeat",
-      "BarHurricane",
-      "BarStorm",
-      "BarTornado",
-      "BarWinter"
+      "Bar",
+      "HeatBar",
+      "RainBar",
+      "HeatWaveBar",
+      "DrySpellsBar",
+      "ColdBar"
     ],
     index: 0
   };

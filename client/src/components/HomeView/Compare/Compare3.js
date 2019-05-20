@@ -34,7 +34,7 @@ class Compare3 extends Component {
               <p>comparisons comming soon!</p>
             ) : (
               <>
-                <CompareGreen /> <p>Add two pins to compare</p>
+                <CompareGreen /> <p>Add two locations to compare</p>
               </>
             )}
           </div>
