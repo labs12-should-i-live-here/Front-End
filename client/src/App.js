@@ -10,6 +10,7 @@ import Compare from "./views/App/Compare.js";
 import Landing from "./views/App/Landing";
 import Pricing from "./views/App/Pricing.js";
 import About from "./views/App/About/About.js";
+import Info from "./views/App/Info.js";
 // import Email from "./components/SendGrid/Email";
 //stripe
 import HomeNotAuthed from "./views/App/HomeNotAuthed.js";
@@ -20,6 +21,7 @@ import Callback from "./Auth0/Callback.js";
 import history from "./Auth0/History";
 import { connect } from "react-redux";
 import { setLoginVars } from "./actions";
+
 
 const auth = new Auth();
 
@@ -53,6 +55,8 @@ class App extends Component {
           <Route path="/profile" component={Profile3} /> {/* NEW! */}
           <Route path="/logout" component={Logout} />
           <Route path="/compare" component={Compare} />
+          <Route path="/info" component={Info} />
+          <Route path="/about" component={About} />
           {/* <Route path="/Email" componet={Email} />  --> potential UI for mass email via SendGrid */}
           <Route
             path="/callback"
