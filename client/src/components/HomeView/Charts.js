@@ -102,7 +102,7 @@ class Charts extends Component {
         <header>
           <div className="chart-title">
             <h2>Predicted Events</h2>
-            {/* <InfoDark /> */}
+            <InfoDark />
           </div>
 
           <div className="toggle">
