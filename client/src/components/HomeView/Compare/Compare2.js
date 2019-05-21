@@ -1,15 +1,13 @@
+import "animate.css";
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { Compare } from "styled-icons/material/Compare";
-import { ArrowRight2 } from "styled-icons/icomoon/ArrowRight2";
-import { connect } from "react-redux";
-import { PlayCircle } from "styled-icons/boxicons-regular/PlayCircle";
-import { changePinIndex } from "../../../actions";
-import { MapMarkerAlt } from "styled-icons/fa-solid/MapMarkerAlt";
-import { BuildingHouse } from "styled-icons/boxicons-solid/BuildingHouse";
-import { DotsVerticalRounded } from "styled-icons/boxicons-regular/DotsVerticalRounded";
 import Loader from "react-loader-spinner";
+import { connect } from "react-redux";
+import styled from "styled-components";
+import { DotsVerticalRounded } from "styled-icons/boxicons-regular/DotsVerticalRounded";
+import { PlayCircle } from "styled-icons/boxicons-regular/PlayCircle";
+import { BuildingHouse } from "styled-icons/boxicons-solid/BuildingHouse";
+import { MapMarkerAlt } from "styled-icons/fa-solid/MapMarkerAlt";
+import { changePinIndex } from "../../../actions";
 
 const PlayGreen = styled(PlayCircle)`
   color: black;
@@ -56,8 +54,8 @@ const HomeRed = styled(BuildingHouse)`
 
 const MapPinGreen = styled(MapMarkerAlt)`
   color: #2e64ab9c;
-  height: 75px;
-  width: 75px;
+  height: 45px;
+  width: 45px;
   margin-bottom: 15px;
   cursor: pointer;
 `;
@@ -72,7 +70,6 @@ const MapPinGreenSmall = styled(MapMarkerAlt)`
 
 class Compare3 extends Component {
   //pulsing icon when addresses on store, change ket to uuid
-
   tour = () => {
     console.log("tour of counties to be implemented on this click!");
   };
@@ -98,22 +95,32 @@ class Compare3 extends Component {
             ) : this.props.pins[0] ? (
               this.props.pinAddresses.map((pin, index) => (
                 <p
-                  className="card"
+                  className="card animated bounceInRight"
                   onClick={() => this.sendPinIndex(index)}
                   key={index}
                 >
                   {
                     <>
-                      <button>
-                        <div className="card-left">
-                          <MapPinGreenSmall />
-                          {/* <HomeRed /> */}
+                      <details>
+                        <summary>
+                          <div className="card-left animated bounceInRight">
+                            <MapPinGreenSmall />
+                            {/* <HomeRed /> */}
+                          </div>
+                          {pin} ({this.props.pins[index].COUNTY} county)
+                        </summary>
+                        <div>
+                          <form>
+                            <h4>Unsaved</h4>
+                            <button>Save</button>
+                            <h4>Not home</h4>
+                            <button>Set Home</button>
+                          </form>
                         </div>
-                        {pin} ({this.props.pins[index].COUNTY} county)
-                        <div className="card-right">
+                        {/* <div className="card-right">
                           <DotsBlack />
-                        </div>
-                      </button>
+                        </div> */}
+                      </details>
                     </>
                   }
                 </p>
@@ -124,7 +131,7 @@ class Compare3 extends Component {
                   <MapPinGreen />
                 </p>
                 <p className="msg">
-                  No Locations... double click map to add one
+                  No Locations. Please double click map to add.
                 </p>
               </div>
             )}

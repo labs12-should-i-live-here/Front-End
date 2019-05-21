@@ -1,66 +1,80 @@
-import React from "react";
+import React, { Component } from "react";
 import { Route, Router } from "react-router-dom";
 import "./scss/App.scss";
-import About from './views/App/About';
-import Home from './views/App/Home';
 import Home2 from "./views/App/Home2.js";
-import Profile from "./views/App/Profile";
+import Profile3 from "./views/App/Profile3";
 import SignUp from "./views/App/SignUp.js";
 import Login from "./views/App/Login.js";
 import Logout from "./views/App/Logout.js";
 import Compare from "./views/App/Compare.js";
 import Landing from "./views/App/Landing";
 import Pricing from "./views/App/Pricing.js";
+import About from "./views/App/About/About.js";
 // import Email from "./components/SendGrid/Email";
 //stripe
-import HomeAuthed from "./views/App/HomeAuthed.js";
+import HomeNotAuthed from "./views/App/HomeAuthed.js";
 import StripePayment from "./components/StripePayments/StripePayment";
 import { UnpaidPrime } from "./views/App/UnpaidPrime";
 import Auth from "./Auth0/Auth.js";
 import Callback from "./Auth0/Callback.js";
 import history from "./Auth0/History";
+import { connect } from "react-redux";
+import { setLoginVars } from "./actions";
 
 const auth = new Auth();
 
-const handleAuthentication = (nextState, replace) => {
-  if (/access_token|id_token|error/.test(nextState.location.hash)) {
-    auth.handleAuthentication();
-  }
-};
+class App extends Component {
+  handleAuthentication = (nextState, replace) => {
+    if (/access_token|id_token|error/.test(nextState.location.hash)) {
+      auth.handleAuthentication();
+    }
+  };
 
-function App() {
-  return (
-    <Router history={history} component={Login}>
-      <>
-        {/* <Route
-          path="/"
-          render={() =>
-            localStorage.getItem("isLoggedIn") ? <HomeAuthed /> : <Home2 />
-          }
-        /> */}
-        <Route exact path="/" component={Home} />
-        <Route path='/about' component={About} />
-        <Route exact path="/pricing" component={Pricing} />
-        <Route path="/home" component={Home} />
-        <Route path="/landing" component={Landing} />
-        <Route path="/register" component={SignUp} />
-        <Route path="/login" component={Login} />
-        <Route path="/profile" component={Profile} /> {/* NEW! */}
-        <Route path="/logout" component={Logout} />
-        <Route path="/compare" component={Compare} />
-        {/* <Route path="/Email" componet={Email} />  --> potential UI for mass email via SendGrid */}
-        <Route
-          path="/callback"
-          render={props => {
-            handleAuthentication(props);
-            return <Callback {...props} />;
-          }}
-        />
-        <Route path="/payment" component={StripePayment} />
-        <Route path="/primeaccess" component={UnpaidPrime} />
-      </>
-    </Router>
-  );
+  componentWillMount() {
+    this.props.setLoginVars();
+  }
+  render() {
+    return (
+      <Router history={history} component={Login}>
+        <>
+          <Route
+            exact
+            path="/"
+            render={() =>
+              localStorage.getItem("isLoggedIn") ? <Home2 /> : <HomeNotAuthed />
+            }
+          />
+          {/* <Route exact path="/" component={Home2} /> */}
+          <Route exact path="/pricing" component={Pricing} />
+          <Route path="/home" component={Home2} />
+          <Route path="/landing" component={Landing} />
+          <Route path="/register" component={SignUp} />
+          <Route path="/login" component={Login} />
+          <Route path="/profile" component={Profile3} /> {/* NEW! */}
+          <Route path="/logout" component={Logout} />
+          <Route path="/compare" component={Compare} />
+          {/* <Route path="/Email" componet={Email} />  --> potential UI for mass email via SendGrid */}
+          <Route
+            path="/callback"
+            render={props => {
+              this.handleAuthentication(props);
+              return <Callback {...props} />;
+            }}
+          />
+          <Route path="/payment" component={StripePayment} />
+          <Route path="/primeaccess" component={UnpaidPrime} />
+        </>
+      </Router>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = ({ client, fetchingInfo }) => ({
+  client,
+  fetchingInfo
+});
+
+export default connect(
+  mapStateToProps,
+  { setLoginVars }
+)(App);
