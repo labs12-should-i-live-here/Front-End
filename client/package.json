@@ -46,6 +46,7 @@
     "react-render-html": "^0.6.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.0",
+    "react-spring": "^8.0.20",
     "react-stripe-checkout": "^2.6.3",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
