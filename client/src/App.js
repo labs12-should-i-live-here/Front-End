@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Route, Router } from "react-router-dom";
 import "./scss/App.scss";
 import Home2 from "./views/App/Home2.js";
-import Profile from "./views/App/Profile";
+import Profile3 from "./views/App/Profile3";
 import SignUp from "./views/App/SignUp.js";
 import Login from "./views/App/Login.js";
 import Logout from "./views/App/Logout.js";
@@ -44,7 +44,7 @@ class App extends Component {
           <Route path="/landing" component={Landing} />
           <Route path="/register" component={SignUp} />
           <Route path="/login" component={Login} />
-          <Route path="/profile" component={Profile} /> {/* NEW! */}
+          <Route path="/profile" component={Profile3} /> {/* NEW! */}
           <Route path="/logout" component={Logout} />
           <Route path="/compare" component={Compare} />
           {/* <Route path="/Email" componet={Email} />  --> potential UI for mass email via SendGrid */}

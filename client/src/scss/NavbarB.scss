@@ -39,11 +39,15 @@
   button {
     background: none;
   }
-  .icons {
-    padding: 3px;
-    border-radius: 50%;
-    border: none;
-    outline: none;
+  button {
+    .icons {
+      cursor: pointer;
+      border: none;
+      outline: none;
+      padding: 4px 10px;
+      transition: background-color 0.5s ease;
+      border-radius: 50px;
+    }
   }
   .nav {
     height: 100%;
@@ -63,19 +67,11 @@
       align-items: center;
     }
 
-    .activeB {
-      border: 2px solid green;
-      background: red;
-    }
-
     .activeA {
       border-bottom: 2px solid #f24236;
-      color: #000;
+      border-bottom: 1px solid #000;
     }
 
-    a {
-      padding: 0 10px;
-    }
     .center {
       width: 40%;
       display: flex;
@@ -103,26 +99,44 @@
       @media (max-width: 800px) {
         display: none;
       }
-      a.profile-link {
+      .profile-outer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 120px;
+
+        span {
+          padding: 0 5px;
+        }
+      }
+      .profile {
+        text-decoration: none;
+        color: black;
+        border: none;
+      }
+      button.profile-link {
+        border: none;
         text-decoration: none;
         font-weight: bold;
-        color: rgb(59, 59, 59);
-        padding: 0;
+        font-size: 14px;
+        padding: 2px;
         margin: 0 15px;
         margin-right: 0;
-        padding: 2px;
-        padding-right: 12.5px;
         border-radius: 50px 0 0 50px;
         transition: background-color 0.5s ease;
         border-right: none;
-        background-color: #2579ff;
-        color: white;
+        background: #4e92ff;
+        color: black;
+        width: 120px;
+        cursor: pointer;
+        outline: none;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
       }
-      a:hover {
-        background-color: #5194ff;
-        border-left: 1px solid #2579ff;
-        border-top: 1px solid #2579ff;
-        border-bottom: 1px solid #2579ff;
+      button:hover {
+        background: #7aadff;
+        box-shadow: 0 0 3px #2579ff;
       }
     }
   }
@@ -151,7 +165,6 @@
         color: rgb(228, 228, 228);
       }
       a:hover {
-        border-bottom: 2px solid #f2433680;
         color: #fff;
       }
     }

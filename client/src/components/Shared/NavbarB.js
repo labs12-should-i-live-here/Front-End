@@ -8,7 +8,31 @@ import { Moon as MoonLight } from "styled-icons/boxicons-regular/Moon";
 import { Moon as MoonDark } from "styled-icons/boxicons-solid/Moon";
 import { connect } from "react-redux";
 import { flipMode } from "../../actions";
+import { KeyboardArrowLeft } from "styled-icons/material/KeyboardArrowLeft";
+import { KeyboardArrowRight } from "styled-icons/material/KeyboardArrowRight";
+import { UserCircle } from "styled-icons/boxicons-regular/UserCircle";
 import "animate.css";
+
+const User = styled(UserCircle)`
+  color: #fff;
+  height: 25px;
+  width: 25px;
+  padding: 0 5px;
+  opacity: 0.6;
+  :hover {
+    opacity: 1;
+  }
+`;
+
+const RightCaret = styled(KeyboardArrowRight)`
+  color: #fff;
+  height: 25px;
+  width: 25px;
+  opacity: 0.6;
+  :hover {
+    opacity: 1;
+  }
+`;
 
 const RedHome = styled(Home)`
   color: #f24236;
@@ -19,34 +43,23 @@ const RedHome = styled(Home)`
   background-color: white;
 `;
 
-const WhiteSearch = styled(Search)`
-  color: white;
-  height: 26px;
-  width: 26px;
-`;
-
 const MoonLightA = styled(MoonLight)`
-  height: 23px;
-  width: 23px;
-  color: black;
-  padding: 3px 5px;
-  background: rgba(0, 0, 0, 0.05);
-  cursor: pointer;
-  border-radius: 6px;
-  opacity: 0.7;
+  height: 25px;
+  width: 25px;
+  color: #fff;
+  padding: 0 5px;
+  opacity: 0.6;
   :hover {
     opacity: 1;
   }
 `;
 
 const MoonDarkA = styled(MoonDark)`
-  height: 23px;
-  width: 23px;
-  padding: 3px 5px;
-  background: rgba(0, 0, 0, 0.05);
-  cursor: pointer;
-  border-radius: 6px;
-  opacity: 0.7;
+  height: 25px;
+  width: 25px;
+  color: black;
+  padding: 0 5px;
+  opacity: 0.6;
   :hover {
     opacity: 1;
   }
@@ -55,13 +68,32 @@ const MoonDarkA = styled(MoonDark)`
 // remove premiuim to after login
 class NavbarB extends Component {
   state = {
-    darkmode: false
+    darkmode: false,
+    open: false,
+    bigNav: false
   };
 
   mode = () => {
     this.setState({ darkmode: !this.state.darkmode });
     this.props.flipMode();
   };
+
+  enter = () => {
+    this.setState({ open: true });
+  };
+
+  leave = () => {
+    if (!this.state.bigNav) {
+      this.setState({ open: false });
+    }
+
+    // this.closeBigNav();
+  };
+
+  toggleBigNav = () => {
+    this.setState({ bigNav: !this.state.bigNav });
+  };
+
   render() {
     const { darkmode } = this.state;
     return (
@@ -97,25 +129,43 @@ class NavbarB extends Component {
               About
             </a> */}
 
-            <NavLink
+            <button
+              onMouseEnter={this.enter}
+              onMouseLeave={this.leave}
+              onClick={this.toggleBigNav}
               exact
               to="/profile"
               className="profile-link animated bounceInRight"
-              activeClassName="activeB "
+              // activeClassName="activeB "
+              style={
+                this.state.open && this.state.bigNav
+                  ? { width: "225px" }
+                  : { width: "130px" }
+              }
             >
-              <img
-                className="user-image"
-                src={this.props.client.userPic}
-                alt="user image"
-              />
-              {this.props.client.name}
-            </NavLink>
+              {this.state.open && this.state.bigNav ? (
+                <>
+                  <RightCaret />
+                  <NavLink className="profile" exact to="/profile">
+                    <User />
+                  </NavLink>
+                  <span onClick={this.mode}>
+                    {darkmode ? <MoonDarkA /> : <MoonLightA />}
+                  </span>
+                </>
+              ) : (
+                ""
+              )}
 
-            {/* <span onClick={this.mode}>
-              <button className="icons">
-                {darkmode ? <MoonDarkA /> : <MoonLightA />}
-              </button>
-            </span> */}
+              <div className="profile-outer">
+                <img
+                  className="user-image"
+                  src={this.props.client.userPic}
+                  alt="user profile image"
+                />
+                <span>{this.props.client.name}</span>
+              </div>
+            </button>
           </div>
         </div>
       </div>
