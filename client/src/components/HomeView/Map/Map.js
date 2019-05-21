@@ -405,7 +405,7 @@ class Map extends Component {
             ["get", "Hurricane"],
             0,
             "rgba(72,253,48,0.5)",
-            0.5,
+            0.2,
             "rgba(250, 253, 48,0.5)",
             3.6,
             "rgba(253,50,48,0.5)"
@@ -451,7 +451,7 @@ class Map extends Component {
             ["get", "Fire"],
             0,
             "rgba(72,253,48,0.5)",
-            2,
+            1.2,
             "rgba(250, 253, 48,0.5)",
             5.209486152841421,
             "rgba(253,50,48,0.5)"
@@ -497,7 +497,7 @@ class Map extends Component {
             ["get", "Winter Weather"],
             0,
             "rgba(72,253,48,0.5)",
-            3,
+            4,
             "rgba(250, 253, 48,0.5)",
             7.817222785508166,
             "rgba(253,50,48,0.5)"
@@ -541,9 +541,9 @@ class Map extends Component {
             "interpolate",
             ["linear"],
             ["get", "Storm"],
-            0,
-            "rgba(72,253,48,0.5)",
-            4,
+            0,"rgba(48, 253, 203,0.5)",
+            4,"rgba(72,253,48,0.5)",
+            5,
             "rgba(250, 253, 48,0.5)",
             8.19478163844336,
             "rgba(253,50,48,0.5)"
@@ -566,7 +566,7 @@ class Map extends Component {
             ["get", "Flood"],
             0,
             "rgba(72,253,48,0.5)",
-            4,
+            3,
             "rgba(250, 253, 48,0.5)",
             6.539585955617669,
             "rgba(253,50,48,0.5)"
@@ -588,8 +588,10 @@ class Map extends Component {
             ["linear"],
             ["get", "damage"],
             0,
-            "rgba(72,253,48,0.5)",
+            "rgba(48, 253, 203,0.5)",
             5,
+            "rgba(72,253,48,0.5)",
+            7,
             "rgba(250, 253, 48,0.5)",
             10,
             "rgba(253,50,48,0.5)"
@@ -612,7 +614,7 @@ class Map extends Component {
             ["get", "deaths"],
             0,
             "rgba(72,253,48,0.5)",
-            1.5,
+            1,
             "rgba(250, 253, 48,0.5)",
             3.1126050015345745,
             "rgba(253,50,48,0.5)"
@@ -649,7 +651,6 @@ class Map extends Component {
         "Flood Risk",
         "Major Storm Risk",
         "Hurricane Risk",
-        "Drought Risk",
         "Fire Risk",
         "Heat Wave Risk",
         "Cold Snap Risk",
