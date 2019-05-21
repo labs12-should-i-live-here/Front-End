@@ -27,6 +27,7 @@ const RightCaret = styled(KeyboardArrowRight)`
   color: #fff;
   height: 25px;
   width: 25px;
+
   opacity: 0.6;
   :hover {
     opacity: 1;
@@ -38,6 +39,7 @@ const RedHome = styled(Home)`
   height: 35px;
   width: 35px;
   padding: 2px;
+  padding-left: 10px;
   border-radius: 50%;
   background-color: white;
 `;
@@ -117,58 +119,62 @@ class NavbarB extends Component {
             </form> */}
             <div id="geocoder" class="geocoder" />
           </div>
-          <div className="right">
-            {/* <NavLink exact to="/pricing" activeClassName="activeA">
+          {localStorage.getItem("isLoggedIn") ? (
+            <div className="right">
+              {/* <NavLink exact to="/pricing" activeClassName="activeA">
               Pro
             </NavLink> */}
 
-            {/* <NavLink exact to="/about"> About </NavLink> */}
-            {/* <a
+              {/* <NavLink exact to="/about"> About </NavLink> */}
+              {/* <a
               href="https://labs12-should-i-live-here.github.io/about/"
               target="_blank"
             >
               About
             </a> */}
 
-            <button
-              onMouseEnter={this.enter}
-              onMouseLeave={this.leave}
-              onClick={this.toggleBigNav}
-              exact
-              to="/profile"
-              className="profile-link animated bounceInRight"
-              // activeClassName="activeB "
-              style={
-                this.state.open && this.state.bigNav
-                  ? { width: "225px" }
-                  : { width: "130px" }
-              }
-            >
-              {this.state.open && this.state.bigNav ? (
-                <>
-                  <RightCaret />
-                  <NavLink className="profile" exact to="/profile">
-                    <User />
-                  </NavLink>
-                  <span onClick={this.mode}>
-                    {darkmode ? <MoonDarkA /> : <MoonLightA />}
-                  </span>
-                </>
-              ) : (
-                ""
-              )}
+              <button
+                onMouseEnter={this.enter}
+                onMouseLeave={this.leave}
+                onClick={this.toggleBigNav}
+                exact
+                to="/profile"
+                className="profile-link animated bounceInRight"
+                // activeClassName="activeB "
+                style={
+                  this.state.open && this.state.bigNav
+                    ? { width: "225px" }
+                    : { width: "130px" }
+                }
+              >
+                {this.state.open && this.state.bigNav ? (
+                  <>
+                    <RightCaret />
+                    <NavLink className="profile" exact to="/profile">
+                      <User />
+                    </NavLink>
+                    <span onClick={this.mode}>
+                      {darkmode ? <MoonDarkA /> : <MoonLightA />}
+                    </span>
+                  </>
+                ) : (
+                  ""
+                )}
 
-              <div className="profile-outer">
-                <img
-                  className="user-image"
-                  src={this.props.client.userPic}
-                  alt="user profile image"
-                />
+                <div className="profile-outer">
+                  <img
+                    className="user-image"
+                    src={this.props.client.userPic}
+                    alt="user profile image"
+                  />
 
-                <span>{this.props.client.name}</span>
-              </div>
-            </button>
-          </div>
+                  <span>{this.props.client.name}</span>
+                </div>
+              </button>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     );

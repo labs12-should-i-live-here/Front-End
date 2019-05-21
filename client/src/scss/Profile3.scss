@@ -6,7 +6,7 @@
   align-items: center;
   margin-top: 100px;
   max-width: 600px;
-  height: 400px;
+  height: 800px;
   font-family: "Montserrat", sans-serif;
   display: flex;
   justify-content: space-around;
@@ -15,6 +15,15 @@
   width: 95%;
   padding: 30px;
   padding-right: 0;
+  .upgrade {
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+    width: 400px;
+    height: 200px;
+    justify-content: space-between;
+    align-items: center;
+  }
   .nav-copy {
     box-sizing: border-box;
     border-radius: 500px 0 0 500px;
@@ -36,8 +45,8 @@
     font-weight: bold;
   }
   img {
-    height: 200px;
-    width: 200px;
+    height: 150px;
+    width: 150px;
     border-radius: 500px;
   }
   a {

@@ -9,7 +9,6 @@ import { DeleteOutline } from "styled-icons/typicons/DeleteOutline";
 import { Blocked } from "styled-icons/icomoon/Blocked";
 import { Link } from "react-router-dom";
 import "animate.css";
-import StripeButton from "../../components/StripePayments/StripeButton.js";
 
 const AccountRed = styled(AccountCircle)`
   color: #f24336;
@@ -120,40 +119,20 @@ export default function Pricing() {
           </div>
         </div>
         <div className="details">
-          <div className="no-account">
-            <h2>
-              <span>None</span>
-              <BlockedWhite />
-            </h2>
-            <div className="label-2">$0 / month</div>
-            <div className="label-2">
-              Unlimited <Link to="/">Continue</Link>
-            </div>
-            <div className="label-2">
-              <BlackCheck />
-            </div>
-            <div className="label-2">2 max</div>
-            <div className="label-2">
-              <BlackDelete />
-            </div>
-            <div className="label-2">0</div>
-            <div className="label-2">
-              <BlackDelete />
-            </div>
-            <div className="label-2">
-              <BlackCheck />
-            </div>
-          </div>
           <div className="free">
             <h2>
               <span>Free</span> <AccountRed />
             </h2>
             <div className="label-2">$0 / month</div>
             <div className="label-2">
-              Unlimited
-              <Link to="/register" className="animated tada">
-                Join now
-              </Link>
+              Unlimited{" "}
+              {localStorage.getItem("isLoggedIn") ? (
+                <p className="plan">Current</p>
+              ) : (
+                <Link to="/login" className="animated tada">
+                  Join now
+                </Link>
+              )}
             </div>
             <div className="label-2">
               <BlackCheck />
@@ -198,7 +177,6 @@ export default function Pricing() {
             </div>
           </div>
         </div>
-        <StripeButton />
       </div>
     </>
   );

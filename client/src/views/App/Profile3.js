@@ -3,7 +3,7 @@ import NavbarB from "../../components/Shared/NavbarB.js";
 import "../../scss/Profile3.scss";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-
+import StripeButton from "../../components/StripePayments/StripeButton.js";
 class Profile3 extends Component {
   render() {
     console.log(this.props.client);
@@ -15,8 +15,15 @@ class Profile3 extends Component {
             <img src={this.props.client.userPic} alt="user profile" />
             <h3>{this.props.client.name}</h3>
           </div>
-          <p>Free account</p>
-          <Link exact to="logout">
+          <div className="upgrade">
+            <p>Free account</p>
+            <Link exact to="/pricing">
+              See Pricing
+            </Link>
+            Upgrade:
+            <StripeButton />
+          </div>
+          <Link exact to="/logout">
             Logout
           </Link>
         </div>
