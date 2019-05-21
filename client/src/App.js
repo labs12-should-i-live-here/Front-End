@@ -1,6 +1,8 @@
 import React from "react";
 import { Route, Router } from "react-router-dom";
 import "./scss/App.scss";
+import About from './views/App/About';
+import Home from './views/App/Home';
 import Home2 from "./views/App/Home2.js";
 import Profile from "./views/App/Profile";
 import SignUp from "./views/App/SignUp.js";
@@ -36,9 +38,10 @@ function App() {
             localStorage.getItem("isLoggedIn") ? <HomeAuthed /> : <Home2 />
           }
         /> */}
-        <Route exact path="/" component={Home2} />
+        <Route exact path="/" component={Home} />
+        <Route path='/about' component={About} />
         <Route exact path="/pricing" component={Pricing} />
-        <Route path="/home" component={HomeAuthed} />
+        <Route path="/home" component={Home} />
         <Route path="/landing" component={Landing} />
         <Route path="/register" component={SignUp} />
         <Route path="/login" component={Login} />

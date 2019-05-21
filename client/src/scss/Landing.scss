@@ -39,6 +39,7 @@ $break-mobile: 500px;
   }
   @media screen and (max-width: $break-mobile) {
       font-size: 50px;
+      padding: 0 0 50% 0;
   }
 }
 
@@ -122,7 +123,7 @@ $break-mobile: 500px;
         @media screen and (max-width: $break-mobile) {
             display: flex;
             flex-direction: column;
-            margin: 200px 0 0 15%;
+            margin: 100px 0 0 15%;
         }
     
     
@@ -141,7 +142,6 @@ $break-mobile: 500px;
                 height: 75%;
             }
             @media screen and (max-width: $break-mobile) {
-                margin: 200px 0 0 0;
 
             }
             
