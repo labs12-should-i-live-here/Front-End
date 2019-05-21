@@ -23,7 +23,9 @@ import {
   FLIP_MODE,
   CHANGE_SELECTED_PIN_INDEX,
   CHANGE_TIME_MODE,
-  SET_DATA
+  SET_DATA_START,
+  SET_DATA,
+  SET_DATA_SUCCESS
 } from "../actions/index";
 
 const initialState = {
@@ -50,7 +52,11 @@ const initialState = {
   selectedPinIndex: 0,
   selectedData: [],
   timeMode: false,
-  client: ""
+  client: {
+    userPic: localStorage.getItem("userPic"),
+    name: localStorage.getItem("Name")
+  },
+  fetchingInfo: true
 };
 
 const reducer = (state = initialState, action) => {
@@ -197,10 +203,18 @@ const reducer = (state = initialState, action) => {
         ...state,
         timeMode: !state.timeMode
       };
+    case SET_DATA_SUCCESS:
+      return {
+        ...state,
+        fetchingInfo: false
+      };
     case SET_DATA:
       return {
         ...state,
-        client: action.payload
+        client: {
+          userPic: localStorage.getItem("userPic"),
+          name: localStorage.getItem("Name")
+        }
       };
     default:
       return state;
