@@ -51,8 +51,8 @@ const BlackRight = styled(NavigateNext)`
 
 const BarChartYellow = styled(BarChart)`
   color: rgba(217, 49, 37, 0.61);
-  height: 90px;
-  width: 90px;
+  height: 50px;
+  width: 50px;
 `;
 
 class Charts extends Component {
@@ -151,7 +151,7 @@ class Charts extends Component {
                 <BarChartYellow />
               </p>
               <p className="msg">
-                No Location selected... double click map to add one
+                No Location selected. Please double click map to add one.
               </p>
             </div>
           )}

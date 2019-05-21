@@ -56,8 +56,8 @@ const HomeRed = styled(BuildingHouse)`
 
 const MapPinGreen = styled(MapMarkerAlt)`
   color: #2e64ab9c;
-  height: 75px;
-  width: 75px;
+  height: 45px;
+  width: 45px;
   margin-bottom: 15px;
   cursor: pointer;
 `;
@@ -124,7 +124,7 @@ class Compare3 extends Component {
                   <MapPinGreen />
                 </p>
                 <p className="msg">
-                  No Locations... double click map to add one
+                  No Locations. Please double click map to add.
                 </p>
               </div>
             )}

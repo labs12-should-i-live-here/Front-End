@@ -5,8 +5,8 @@ import styled from "styled-components";
 
 const CompareGreen = styled(Compare)`
   color: #2eab6d88;
-  height: 90px;
-  width: 90px;
+  height: 45px;
+  width: 45px;
 `;
 
 class Compare3 extends Component {
@@ -34,7 +34,7 @@ class Compare3 extends Component {
               <p>comparisons comming soon!</p>
             ) : (
               <>
-                <CompareGreen /> <p>Add two locations to compare</p>
+                <CompareGreen /> <p>Please add two locations to compare.</p>
               </>
             )}
           </div>
