@@ -70,6 +70,9 @@ const MapPinGreenSmall = styled(MapMarkerAlt)`
 
 class Compare3 extends Component {
   //pulsing icon when addresses on store, change ket to uuid
+  state = {
+    notes: false
+  };
   tour = () => {
     console.log("tour of counties to be implemented on this click!");
   };
@@ -112,10 +115,29 @@ class Compare3 extends Component {
                         {localStorage.getItem("isLoggedIn") ? (
                           <div>
                             <form>
-                              <h4>Unsaved</h4>
-                              <button>Save</button>
-                              <h4>Not home</h4>
-                              <button>Set Home</button>
+                              <div className="options">
+                                <h4>Unsaved</h4>
+                                <button>Save</button>
+                                <h4>Not home</h4>
+                                <button>Set Home</button>
+                              </div>
+
+                              <div className="notes">
+                                <h4>Notes</h4>
+                                {this.state.notes ? (
+                                  <p>some note</p>
+                                ) : (
+                                  <p>No notes</p>
+                                )}
+                                <div>
+                                  <input
+                                    type="text"
+                                    name="note"
+                                    placeholder="Add a note"
+                                  />
+                                  <button>Submit</button>
+                                </div>
+                              </div>
                             </form>
                           </div>
                         ) : (

@@ -249,7 +249,7 @@
             border: none;
             font-size: 13px;
             padding: 1px 5px;
-            margin: 5px auto;
+            margin: 1px auto;
             border-radius: 4px;
             background: rgba(0, 0, 0, 0.05);
             padding: 5px 10px;
@@ -258,13 +258,61 @@
             form {
               border-top: 1px solid rgb(99, 99, 99);
               margin-top: 5px;
-              height: 50px;
+              height: 150px;
               display: flex;
               align-content: center;
               align-items: center;
               justify-content: space-evenly;
+              .options {
+                width: 30%;
+                display: flex;
+                justify-content: space-evenly;
+                flex-direction: column;
+
+                button {
+                  width: 100px;
+                }
+              }
+              .notes {
+                border-left: 1px solid gray;
+                display: flex;
+                justify-content: space-between;
+                flex-direction: column;
+                align-items: flex-start;
+                width: 65%;
+                height: 95%;
+                p {
+                  padding-left: 15px;
+                }
+
+                div {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                }
+                h4 {
+                  padding-bottom: 0;
+                }
+                input {
+                  margin-left: 15px;
+                  padding: 7.5px;
+                  width: 70%;
+                  border-radius: 22px;
+                  border: none;
+                  background-color: #dfdfdf;
+                  outline: none;
+                }
+
+                input:focus {
+                  background: rgb(212, 212, 212);
+                }
+                button {
+                  width: 100px;
+                }
+              }
               h4 {
                 font-weight: bold;
+                padding: 15px;
               }
               button {
                 border: none;
@@ -295,6 +343,9 @@
             .card-left {
               // width: 65px;
               width: 30px;
+              .loggedin {
+                background: red;
+              }
             }
             .card-right {
               width: 15px;
