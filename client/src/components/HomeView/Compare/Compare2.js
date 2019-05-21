@@ -109,14 +109,19 @@ class Compare3 extends Component {
                           </div>
                           {pin} ({this.props.pins[index].COUNTY} county)
                         </summary>
-                        <div>
-                          <form>
-                            <h4>Unsaved</h4>
-                            <button>Save</button>
-                            <h4>Not home</h4>
-                            <button>Set Home</button>
-                          </form>
-                        </div>
+                        {localStorage.getItem("isLoggedIn") ? (
+                          <div>
+                            <form>
+                              <h4>Unsaved</h4>
+                              <button>Save</button>
+                              <h4>Not home</h4>
+                              <button>Set Home</button>
+                            </form>
+                          </div>
+                        ) : (
+                          <p>Please login to access these features</p>
+                        )}
+
                         {/* <div className="card-right">
                           <DotsBlack />
                         </div> */}

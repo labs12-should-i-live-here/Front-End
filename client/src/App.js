@@ -12,7 +12,7 @@ import Pricing from "./views/App/Pricing.js";
 import About from "./views/App/About/About.js";
 // import Email from "./components/SendGrid/Email";
 //stripe
-import HomeNotAuthed from "./views/App/HomeAuthed.js";
+import HomeNotAuthed from "./views/App/HomeNotAuthed.js";
 import StripePayment from "./components/StripePayments/StripePayment";
 import { UnpaidPrime } from "./views/App/UnpaidPrime";
 import Auth from "./Auth0/Auth.js";

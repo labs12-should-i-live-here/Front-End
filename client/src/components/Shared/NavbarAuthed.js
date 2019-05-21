@@ -87,9 +87,17 @@ class NavbarB extends Component {
             </form> */}
             <div id="geocoder" class="geocoder" />
           </div>
-          <div className="right">
+          <div className="right notauth">
             <NavLink exact to="/login" activeClassName="activeA">
-              Login
+              Sign up or Login
+            </NavLink>
+
+            <NavLink exact to="/landing" activeClassName="activeA">
+              Product
+            </NavLink>
+
+            <NavLink exact to="/pricing" activeClassName="activeA">
+              Pricing
             </NavLink>
 
             <span onClick={this.mode}>
