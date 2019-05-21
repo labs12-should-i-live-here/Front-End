@@ -70,7 +70,6 @@ const MapPinGreenSmall = styled(MapMarkerAlt)`
 
 class Compare3 extends Component {
   //pulsing icon when addresses on store, change ket to uuid
-
   tour = () => {
     console.log("tour of counties to be implemented on this click!");
   };
@@ -115,7 +114,7 @@ class Compare3 extends Component {
                             <h4>Unsaved</h4>
                             <button>Save</button>
                             <h4>Not home</h4>
-                            <button>Set as Home</button>
+                            <button>Set Home</button>
                           </form>
                         </div>
                         {/* <div className="card-right">
