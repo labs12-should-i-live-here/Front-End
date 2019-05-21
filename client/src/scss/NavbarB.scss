@@ -96,6 +96,8 @@
     .right {
       display: flex;
       align-items: center;
+      min-width: 250px;
+      justify-content: flex-end;
       @media (max-width: 800px) {
         display: none;
       }
