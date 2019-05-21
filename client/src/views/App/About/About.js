@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import NavBarB from "../../../components/Shared/NavbarB.js";
 import Search from "../../../components/LandingSearch/Search.js";
 import Map from "../../../components/HomeView/Map/Map.js";
-import '../../../css/index.css';
+// import '../../../css/index.css';
 
 class About extends Component {
   render() {
@@ -20,7 +20,7 @@ class About extends Component {
               </h1>
             </div>
           </div>
-
+          <body>
           <div id="main">
             <div className="inner">
               <div className="intro aboutIntro">
@@ -310,6 +310,7 @@ class About extends Component {
               </footer>
             </div>
           </div>
+          </body>
         </div>
       </div>
     );
