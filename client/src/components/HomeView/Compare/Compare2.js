@@ -8,6 +8,8 @@ import { PlayCircle } from "styled-icons/boxicons-regular/PlayCircle";
 import { BuildingHouse } from "styled-icons/boxicons-solid/BuildingHouse";
 import { MapMarkerAlt } from "styled-icons/fa-solid/MapMarkerAlt";
 import { changePinIndex } from "../../../actions";
+import { Notepad } from "styled-icons/boxicons-regular/Notepad";
+import { Save } from "styled-icons/boxicons-regular/Save";
 
 const PlayGreen = styled(PlayCircle)`
   color: black;
@@ -20,6 +22,27 @@ const PlayGreen = styled(PlayCircle)`
   }
   cursor: pointer;
   margin-right: 8px;
+`;
+
+const Saved = styled(Save)`
+  color: gray;
+  height: 20px;
+  width: 20px;
+  margin-left: 5px;
+`;
+
+const Notes = styled(Notepad)`
+  color: gray;
+  height: 20px;
+  width: 20px;
+  margin-left: 5px;
+`;
+
+const Home = styled(BuildingHouse)`
+  color: gray;
+  height: 20px;
+  width: 20px;
+  margin-left: 5px;
 `;
 
 const DotsBlack = styled(DotsVerticalRounded)`
@@ -40,14 +63,6 @@ const PlayGreenDisabled = styled(PlayCircle)`
   color: black;
   height: 35px;
   width: 35px;
-  margin-right: 8px;
-  border-radius: 6px;
-`;
-
-const HomeRed = styled(BuildingHouse)`
-  color: red;
-  height: 16px;
-  width: 16px;
   margin-right: 8px;
   border-radius: 6px;
 `;
@@ -116,14 +131,20 @@ class Compare3 extends Component {
                           <div>
                             <form>
                               <div className="options">
-                                <h4>Unsaved</h4>
+                                <h4>
+                                  Unsaved <Saved />
+                                </h4>
                                 <button>Save</button>
-                                <h4>Not home</h4>
+                                <h4>
+                                  Not home <Home />
+                                </h4>
                                 <button>Set Home</button>
                               </div>
 
                               <div className="notes">
-                                <h4>Notes</h4>
+                                <h4>
+                                  Notes <Notes />
+                                </h4>
                                 {this.state.notes ? (
                                   <p>some note</p>
                                 ) : (
