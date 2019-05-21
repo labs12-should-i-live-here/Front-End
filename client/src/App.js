@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { Route, Router } from "react-router-dom";
 import "./scss/App.scss";
 import Home2 from "./views/App/Home2.js";
@@ -26,38 +26,41 @@ const handleAuthentication = (nextState, replace) => {
   }
 };
 
-function App() {
-  return (
-    <Router history={history} component={Login}>
-      <>
-        {/* <Route
-          path="/"
-          render={() =>
-            localStorage.getItem("isLoggedIn") ? <HomeAuthed /> : <Home2 />
-          }
-        /> */}
-        <Route exact path="/" component={Home2} />
-        <Route exact path="/pricing" component={Pricing} />
-        <Route path="/home" component={HomeAuthed} />
-        <Route path="/landing" component={Landing} />
-        <Route path="/register" component={SignUp} />
-        <Route path="/login" component={Login} />
-        <Route path="/profile" component={Profile} /> {/* NEW! */}
-        <Route path="/logout" component={Logout} />
-        <Route path="/compare" component={Compare} />
-        {/* <Route path="/Email" componet={Email} />  --> potential UI for mass email via SendGrid */}
-        <Route
-          path="/callback"
-          render={props => {
-            handleAuthentication(props);
-            return <Callback {...props} />;
-          }}
-        />
-        <Route path="/payment" component={StripePayment} />
-        <Route path="/primeaccess" component={UnpaidPrime} />
-      </>
-    </Router>
-  );
+class App extends Component {
+  render() {
+    return (
+      <Router history={history} component={Login}>
+        <>
+          <Route
+            exact
+            path="/"
+            render={() =>
+              localStorage.getItem("isLoggedIn") ? <Home2 /> : <Login />
+            }
+          />
+          {/* <Route exact path="/" component={Home2} /> */}
+          <Route exact path="/pricing" component={Pricing} />
+          <Route path="/home" component={Home2} />
+          <Route path="/landing" component={Landing} />
+          <Route path="/register" component={SignUp} />
+          <Route path="/login" component={Login} />
+          <Route path="/profile" component={Profile} /> {/* NEW! */}
+          <Route path="/logout" component={Logout} />
+          <Route path="/compare" component={Compare} />
+          {/* <Route path="/Email" componet={Email} />  --> potential UI for mass email via SendGrid */}
+          <Route
+            path="/callback"
+            render={props => {
+              handleAuthentication(props);
+              return <Callback {...props} />;
+            }}
+          />
+          <Route path="/payment" component={StripePayment} />
+          <Route path="/primeaccess" component={UnpaidPrime} />
+        </>
+      </Router>
+    );
+  }
 }
 
 export default App;

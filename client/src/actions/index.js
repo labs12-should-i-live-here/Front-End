@@ -171,5 +171,6 @@ export const changeTimeMode = () => dispatch => {
 export const SET_DATA = "SET_DATA";
 
 export const setLoginVars = clientInformation => dispatch => {
-  dispatch({ SET_DATA, payload: clientInformation });
+  console.log(clientInformation);
+  dispatch({ type: SET_DATA, payload: clientInformation });
 };

@@ -96,18 +96,19 @@ class NavbarB extends Component {
             >
               About
             </a> */}
+
             <NavLink
               exact
               to="/profile"
               className="profile-link animated bounceInRight"
               activeClassName="activeB "
             >
-              {this.props.userInfo.name}
               <img
                 className="user-image"
-                src={this.props.userInfo.userPic}
+                src={this.props.client.userPic}
                 alt="user image"
               />
+              {this.props.client.name}
             </NavLink>
 
             {/* <span onClick={this.mode}>
@@ -122,9 +123,9 @@ class NavbarB extends Component {
   }
 }
 
-const mapStateToProps = ({ dark, userInfo }) => ({
+const mapStateToProps = ({ dark, client }) => ({
   dark,
-  userInfo
+  client
 });
 
 export default connect(

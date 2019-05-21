@@ -73,11 +73,13 @@ export default class Auth {
           // similar to the response below.
           if (err) console.log("error", err);
           console.log("trying to get userinfo", JSON.stringify(user));
-          localStorage.setItem("username", user.given_name);
+
           const API_URL = "https://labs12.herokuapp.com"; //http://localhost:3000
           const userid = user.sub;
-          localStorage.setItem("userId", userid);
+          localStorage.setItem("username", user.given_name);
           localStorage.setItem("userPic", user.picture);
+          localStorage.setItem("userId", userid);
+
           localStorage.setItem(
             "Name",
             user.given_name + " " + user.family_name
@@ -129,7 +131,7 @@ export default class Auth {
     // );
 
     // navigate to the home route
-    history.replace("/home");
+    history.replace("/");
   }
 
   renewSession() {

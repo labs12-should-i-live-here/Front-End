@@ -103,20 +103,26 @@
       @media (max-width: 800px) {
         display: none;
       }
-      a {
+      a.profile-link {
         text-decoration: none;
         font-weight: bold;
         color: rgb(59, 59, 59);
         padding: 0;
         margin: 0 15px;
         margin-right: 0;
-        padding: 5px;
+        padding: 2px;
+        padding-right: 12.5px;
         border-radius: 50px 0 0 50px;
         transition: background-color 0.5s ease;
+        border-right: none;
+        background-color: #2579ff;
+        color: white;
       }
       a:hover {
-        padding: 5px;
-        background-color: rgba(189, 189, 189, 0.452);
+        background-color: #5194ff;
+        border-left: 1px solid #2579ff;
+        border-top: 1px solid #2579ff;
+        border-bottom: 1px solid #2579ff;
       }
     }
   }

@@ -9,6 +9,7 @@ import Compare2 from "../../components/HomeView/Compare/Compare2.js";
 import Compare3 from "../../components/HomeView/Compare/Compare3.js";
 import Footer from "../../components/HomeView/Footer.js";
 import Auth from "../../Auth0/Auth.js";
+import { setLoginVars } from "../../actions";
 
 const auth = new Auth();
 
@@ -60,4 +61,7 @@ const mapStateToProps = ({ dark, pinAddresses }) => ({
   pinAddresses
 });
 
-export default connect(mapStateToProps)(Home2);
+export default connect(
+  mapStateToProps,
+  { setLoginVars }
+)(Home2);

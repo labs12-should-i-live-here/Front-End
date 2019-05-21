@@ -50,8 +50,7 @@ const initialState = {
   selectedPinIndex: 0,
   selectedData: [],
   timeMode: false,
-  client: "",
-  userInfo: {
+  client: {
     userPic: localStorage.getItem("userPic"),
     name: localStorage.getItem("Name")
   }
