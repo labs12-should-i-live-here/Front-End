@@ -1,0 +1,57 @@
+.profile-page {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  align-items: center;
+  margin-top: 100px;
+  max-width: 600px;
+  height: 400px;
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  justify-content: space-around;
+  box-shadow: 0px 0px 3px 3px rgb(235, 235, 235);
+  border-radius: 6px;
+  width: 95%;
+  padding: 30px;
+  padding-right: 0;
+  .nav-copy {
+    box-sizing: border-box;
+    border-radius: 500px 0 0 500px;
+    transition: background-color 0.5s ease;
+    border-right: none;
+    background: #7aadff;
+    border-right: none;
+    color: black;
+    width: 120px;
+    outline: none;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 20%;
+  }
+  h3 {
+    font-size: 30px;
+    font-weight: bold;
+  }
+  img {
+    height: 200px;
+    width: 200px;
+    border-radius: 500px;
+  }
+  a {
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    background: white;
+    color: black;
+    font-weight: bold;
+    transition: background-color 0.5s ease;
+    border: 1px solid black;
+  }
+  a:hover {
+    color: white;
+    background: black;
+  }
+}

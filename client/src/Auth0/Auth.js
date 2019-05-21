@@ -2,8 +2,9 @@ import auth0 from "auth0-js";
 import history from "./History";
 // import { AUTH_CONFIG } from "./auth0-variables";
 import axios from "axios";
-import connect from "react-redux";
+import { connect } from "react-redux";
 import { setLoginVars } from "../actions";
+
 // // ...
 // class Ping extends Component {
 // 	// ...
@@ -44,7 +45,7 @@ export default class Auth {
   //   redirectUri: AUTH_CONFIG.callbackUrl,
   //   responseType: 'token id_token',
   //   scope: 'openid'
-  // });
+  // })
 
   constructor() {
     this.login = this.login.bind(this);
@@ -76,6 +77,7 @@ export default class Auth {
 
           const API_URL = "https://labs12.herokuapp.com"; //http://localhost:3000
           const userid = user.sub;
+
           localStorage.setItem("username", user.given_name);
           localStorage.setItem("userPic", user.picture);
           localStorage.setItem("userId", userid);
@@ -94,11 +96,12 @@ export default class Auth {
         //console.log(this.name);
 
         this.setSession(authResult);
-      } else if (err) {
-        history.replace("/");
-        console.log(err);
-        alert(`Error: ${err.error}. Check the console for further details.`);
       }
+      // } else if (err) {
+      //   history.replace("/");
+      //   console.log(err);
+      //   alert(`Error: ${err.error}. Check the console for further details.`);
+      // }
     });
   }
 
@@ -116,8 +119,9 @@ export default class Auth {
 
   setSession(authResult) {
     // Set isLoggedIn flag in localStorage
-    localStorage.setItem("isLoggedIn", "true");
 
+    localStorage.setItem("isLoggedIn", "true");
+    console.log(this.user);
     // Set the time that the Access Token will expire at
     let expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
     this.accessToken = authResult.accessToken;

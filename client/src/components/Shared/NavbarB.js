@@ -1,17 +1,16 @@
 import React, { Component } from "react";
-import { Route, NavLink, Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 import "../../scss/NavbarB.scss";
 import { Home } from "styled-icons/boxicons-regular/Home";
-import { Search } from "styled-icons/material/Search";
 import { Moon as MoonLight } from "styled-icons/boxicons-regular/Moon";
 import { Moon as MoonDark } from "styled-icons/boxicons-solid/Moon";
 import { connect } from "react-redux";
 import { flipMode } from "../../actions";
-import { KeyboardArrowLeft } from "styled-icons/material/KeyboardArrowLeft";
 import { KeyboardArrowRight } from "styled-icons/material/KeyboardArrowRight";
 import { UserCircle } from "styled-icons/boxicons-regular/UserCircle";
 import "animate.css";
+import { setLoginVars } from "../../actions";
 
 const User = styled(UserCircle)`
   color: #fff;
@@ -72,6 +71,7 @@ class NavbarB extends Component {
     open: false,
     bigNav: false
   };
+  componentDidMount() {}
 
   mode = () => {
     this.setState({ darkmode: !this.state.darkmode });
@@ -96,6 +96,7 @@ class NavbarB extends Component {
 
   render() {
     const { darkmode } = this.state;
+
     return (
       <div className={"navbarb " + (darkmode ? "dark" : "light")}>
         <div className="nav">
@@ -163,6 +164,7 @@ class NavbarB extends Component {
                   src={this.props.client.userPic}
                   alt="user profile image"
                 />
+
                 <span>{this.props.client.name}</span>
               </div>
             </button>
@@ -173,12 +175,13 @@ class NavbarB extends Component {
   }
 }
 
-const mapStateToProps = ({ dark, client }) => ({
+const mapStateToProps = ({ dark, client, fetchingInfo }) => ({
   dark,
-  client
+  client,
+  fetchingInfo
 });
 
 export default connect(
   mapStateToProps,
-  { flipMode }
+  { flipMode, setLoginVars }
 )(NavbarB);

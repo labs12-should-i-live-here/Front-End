@@ -17,16 +17,21 @@ import { UnpaidPrime } from "./views/App/UnpaidPrime";
 import Auth from "./Auth0/Auth.js";
 import Callback from "./Auth0/Callback.js";
 import history from "./Auth0/History";
+import { connect } from "react-redux";
+import { setLoginVars } from "./actions";
 
 const auth = new Auth();
 
-const handleAuthentication = (nextState, replace) => {
-  if (/access_token|id_token|error/.test(nextState.location.hash)) {
-    auth.handleAuthentication();
-  }
-};
-
 class App extends Component {
+  handleAuthentication = (nextState, replace) => {
+    if (/access_token|id_token|error/.test(nextState.location.hash)) {
+      auth.handleAuthentication();
+    }
+  };
+
+  componentWillMount() {
+    this.props.setLoginVars();
+  }
   render() {
     return (
       <Router history={history} component={Login}>
@@ -51,7 +56,7 @@ class App extends Component {
           <Route
             path="/callback"
             render={props => {
-              handleAuthentication(props);
+              this.handleAuthentication(props);
               return <Callback {...props} />;
             }}
           />
@@ -63,4 +68,12 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = ({ client, fetchingInfo }) => ({
+  client,
+  fetchingInfo
+});
+
+export default connect(
+  mapStateToProps,
+  { setLoginVars }
+)(App);

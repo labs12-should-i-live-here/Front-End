@@ -169,8 +169,16 @@ export const changeTimeMode = () => dispatch => {
 
 //Set client Info
 export const SET_DATA = "SET_DATA";
+export const SET_DATA_START = "SET_DATA_START";
+export const SET_DATA_SUCCESS = "SET_DATA_SUCCESS";
 
 export const setLoginVars = clientInformation => dispatch => {
-  console.log(clientInformation);
-  dispatch({ type: SET_DATA, payload: clientInformation });
+  function wait() {
+    setTimeout(() => {
+      dispatch({ type: SET_DATA, payload: clientInformation });
+      dispatch({ type: SET_DATA_SUCCESS });
+    }, 1000);
+  }
+
+  wait();
 };

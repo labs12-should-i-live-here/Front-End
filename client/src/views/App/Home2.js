@@ -23,6 +23,9 @@ class Home2 extends Component {
   }
 
   render() {
+    // if (this.props.fetchingInfo) {
+    //   return <p>loading</p>;
+    // } else {
     return (
       <>
         <NavbarB />
@@ -56,9 +59,10 @@ class Home2 extends Component {
   }
 }
 
-const mapStateToProps = ({ dark, pinAddresses }) => ({
+const mapStateToProps = ({ dark, pinAddresses, fetchingInfo }) => ({
   dark,
-  pinAddresses
+  pinAddresses,
+  fetchingInfo
 });
 
 export default connect(
