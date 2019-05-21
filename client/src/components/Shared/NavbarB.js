@@ -135,7 +135,6 @@ class NavbarB extends Component {
               <button
                 onMouseEnter={this.enter}
                 onMouseLeave={this.leave}
-                onClick={this.toggleBigNav}
                 exact
                 to="/profile"
                 className="profile-link animated bounceInRight"
@@ -148,7 +147,7 @@ class NavbarB extends Component {
               >
                 {this.state.open && this.state.bigNav ? (
                   <>
-                    <RightCaret />
+                    <RightCaret onClick={this.toggleBigNav} />
                     <NavLink className="profile" exact to="/profile">
                       <User />
                     </NavLink>
@@ -160,7 +159,7 @@ class NavbarB extends Component {
                   ""
                 )}
 
-                <div className="profile-outer">
+                <div className="profile-outer" onClick={this.toggleBigNav}>
                   <img
                     className="user-image"
                     src={this.props.client.userPic}
