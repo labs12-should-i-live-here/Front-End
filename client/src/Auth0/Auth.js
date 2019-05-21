@@ -35,7 +35,7 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: "dev-sz7on0tz.auth0.com",
     clientID: "tNlC3QYcN3D0WbM0d3SKvxKHXXQJxUZv",
-    redirectUri: "http://localhost:3000/callback", //'https://livesafe.netlify.com/callback', //'http://localhost:3000/callback',  //'https://livesafe.netlify.com/callback',
+    redirectUri: "https://livesafe.netlify.com/callback", //'https://livesafe.netlify.com/callback', //'http://localhost:3000/callback',  //'https://livesafe.netlify.com/callback',
     responseType: "token id_token",
     scope: "openid profile"
   });
