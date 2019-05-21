@@ -24,9 +24,9 @@ const User = styled(UserCircle)`
 
 const RightCaret = styled(KeyboardArrowRight)`
   color: #fff;
-  height: 25px;
-  width: 25px;
-
+  height: 26px;
+  width: 26px;
+  padding: 0 5px;
   opacity: 0.6;
   :hover {
     opacity: 1;
@@ -44,8 +44,8 @@ const RedHome = styled(Home)`
 `;
 
 const MoonLightA = styled(MoonLight)`
-  height: 25px;
-  width: 25px;
+  height: 24px;
+  width: 24px;
   color: #fff;
   padding: 0 5px;
   opacity: 0.6;
