@@ -166,7 +166,7 @@ class Map extends Component {
       });
 
       map.addLayer({
-        id: "Earthquake Zone",
+        id: "Earthquake Risk Zone",
         type: "line",
         source: {
           type: "vector",
@@ -178,7 +178,19 @@ class Map extends Component {
           "line-cap": "round"
         },
         paint: {
-          "line-color": "green",
+          "line-color": [ "interpolate",
+          ["linear"],
+          ["get", "pga"],
+          0.5,
+          "hsl(245, 96%, 47%)",
+          1.25,
+          "hsl(120, 100%, 54%)",
+          2,
+          "hsl(64, 100%, 40%)",
+          10.5,
+          "hsl(35, 100%, 40%)",
+          54.5,
+          "hsl(0, 100%, 40%)"],
           "line-width": 1
         }
       });
@@ -393,7 +405,7 @@ class Map extends Component {
             ["get", "Hurricane"],
             0,
             "rgba(72,253,48,0.5)",
-            0.5,
+            0.2,
             "rgba(250, 253, 48,0.5)",
             3.6,
             "rgba(253,50,48,0.5)"
@@ -439,7 +451,7 @@ class Map extends Component {
             ["get", "Fire"],
             0,
             "rgba(72,253,48,0.5)",
-            2,
+            1.2,
             "rgba(250, 253, 48,0.5)",
             5.209486152841421,
             "rgba(253,50,48,0.5)"
@@ -485,7 +497,7 @@ class Map extends Component {
             ["get", "Winter Weather"],
             0,
             "rgba(72,253,48,0.5)",
-            3,
+            4,
             "rgba(250, 253, 48,0.5)",
             7.817222785508166,
             "rgba(253,50,48,0.5)"
@@ -529,11 +541,34 @@ class Map extends Component {
             "interpolate",
             ["linear"],
             ["get", "Storm"],
-            0,
-            "rgba(72,253,48,0.5)",
-            4,
+            0,"rgba(48, 253, 203,0.5)",
+            4,"rgba(72,253,48,0.5)",
+            5,
             "rgba(250, 253, 48,0.5)",
             8.19478163844336,
+            "rgba(253,50,48,0.5)"
+          ]
+        }
+      });
+
+      map.addLayer({
+        id: "Flood Risk",
+        type: "fill",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.9fbdath3"
+        },
+        "source-layer": "log_noaa_by_county-crdhqa",
+        paint: {
+          "fill-color": [
+            "interpolate",
+            ["linear"],
+            ["get", "Flood"],
+            0,
+            "rgba(72,253,48,0.5)",
+            3,
+            "rgba(250, 253, 48,0.5)",
+            6.539585955617669,
             "rgba(253,50,48,0.5)"
           ]
         }
@@ -553,8 +588,10 @@ class Map extends Component {
             ["linear"],
             ["get", "damage"],
             0,
-            "rgba(72,253,48,0.5)",
+            "rgba(48, 253, 203,0.5)",
             5,
+            "rgba(72,253,48,0.5)",
+            7,
             "rgba(250, 253, 48,0.5)",
             10,
             "rgba(253,50,48,0.5)"
@@ -577,7 +614,7 @@ class Map extends Component {
             ["get", "deaths"],
             0,
             "rgba(72,253,48,0.5)",
-            1.5,
+            1,
             "rgba(250, 253, 48,0.5)",
             3.1126050015345745,
             "rgba(253,50,48,0.5)"
@@ -608,14 +645,12 @@ class Map extends Component {
       });
 
       const toggleableLayers = [
-        "Earthquake Zone",
+        "Earthquake Risk Zone",
         "Earthquakes",
         "Tornado Events",
-        "Flood Events",
-        "San Andreas Fault",
+        "Flood Risk",
         "Major Storm Risk",
         "Hurricane Risk",
-        "Drought Risk",
         "Fire Risk",
         "Heat Wave Risk",
         "Cold Snap Risk",
@@ -633,7 +668,7 @@ class Map extends Component {
         link.textContent = id;
         map.setLayoutProperty("Counties", "visibility", "visible");
         map.setLayoutProperty("Counties Highlighted", "visibility", "visible");
-        map.setLayoutProperty("Earthquake Zone", "visibility", "none");
+        map.setLayoutProperty("Earthquake Risk Zone", "visibility", "none");
         map.setLayoutProperty("Quake Events", "visibility", "none");
         map.setLayoutProperty("Earthquakes", "visibility", "none");
         map.setLayoutProperty("San Andreas Fault", "visibility", "none");
@@ -648,6 +683,7 @@ class Map extends Component {
         map.setLayoutProperty("Cold Snap Risk", "visibility", "none");
         map.setLayoutProperty("Tornado Risk", "visibility", "none");
         map.setLayoutProperty("Major Storm Risk", "visibility", "none");
+        map.setLayoutProperty("Flood Risk", "visibility", "none");
         map.setLayoutProperty(
           "Damages caused by disasters",
           "visibility",
