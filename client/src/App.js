@@ -9,6 +9,7 @@ import Logout from "./views/App/Logout.js";
 import Compare from "./views/App/Compare.js";
 import Landing from "./views/App/Landing";
 import Pricing from "./views/App/Pricing.js";
+import About from "./views/App/About/About.js";
 // import Email from "./components/SendGrid/Email";
 //stripe
 import HomeAuthed from "./views/App/HomeAuthed.js";
