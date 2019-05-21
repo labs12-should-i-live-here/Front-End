@@ -12,7 +12,7 @@ import Pricing from "./views/App/Pricing.js";
 import About from "./views/App/About/About.js";
 // import Email from "./components/SendGrid/Email";
 //stripe
-import HomeAuthed from "./views/App/HomeAuthed.js";
+import HomeNotAuthed from "./views/App/HomeAuthed.js";
 import StripePayment from "./components/StripePayments/StripePayment";
 import { UnpaidPrime } from "./views/App/UnpaidPrime";
 import Auth from "./Auth0/Auth.js";
@@ -41,7 +41,7 @@ class App extends Component {
             exact
             path="/"
             render={() =>
-              localStorage.getItem("isLoggedIn") ? <Home2 /> : <Login />
+              localStorage.getItem("isLoggedIn") ? <Home2 /> : <HomeNotAuthed />
             }
           />
           {/* <Route exact path="/" component={Home2} /> */}
