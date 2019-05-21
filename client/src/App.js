@@ -1,8 +1,8 @@
-import React from "react";
+import React, { Component } from "react";
 import { Route, Router } from "react-router-dom";
 import "./scss/App.scss";
 import Home2 from "./views/App/Home2.js";
-import Profile from "./views/App/Profile";
+import Profile3 from "./views/App/Profile3";
 import SignUp from "./views/App/SignUp.js";
 import Login from "./views/App/Login.js";
 import Logout from "./views/App/Logout.js";
@@ -13,21 +13,24 @@ import About from "./views/App/About/About.js";
 import Info from "./views/App/Info.js";
 // import Email from "./components/SendGrid/Email";
 //stripe
-import HomeAuthed from "./views/App/HomeAuthed.js";
+import HomeNotAuthed from "./views/App/HomeNotAuthed.js";
 import StripePayment from "./components/StripePayments/StripePayment";
 import { UnpaidPrime } from "./views/App/UnpaidPrime";
 import Auth from "./Auth0/Auth.js";
 import Callback from "./Auth0/Callback.js";
 import history from "./Auth0/History";
+import { connect } from "react-redux";
+import { setLoginVars } from "./actions";
 
 
 const auth = new Auth();
 
-const handleAuthentication = (nextState, replace) => {
-  if (/access_token|id_token|error/.test(nextState.location.hash)) {
-    auth.handleAuthentication();
-  }
-};
+class App extends Component {
+  handleAuthentication = (nextState, replace) => {
+    if (/access_token|id_token|error/.test(nextState.location.hash)) {
+      auth.handleAuthentication();
+    }
+  };
 
 function App() {
   return (
@@ -65,4 +68,12 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = ({ client, fetchingInfo }) => ({
+  client,
+  fetchingInfo
+});
+
+export default connect(
+  mapStateToProps,
+  { setLoginVars }
+)(App);
