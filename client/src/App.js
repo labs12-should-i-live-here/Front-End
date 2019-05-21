@@ -10,6 +10,7 @@ import Compare from "./views/App/Compare.js";
 import Landing from "./views/App/Landing";
 import Pricing from "./views/App/Pricing.js";
 import About from "./views/App/About/About.js";
+import Info from "./views/App/Info.js";
 // import Email from "./components/SendGrid/Email";
 //stripe
 import HomeAuthed from "./views/App/HomeAuthed.js";
@@ -18,6 +19,7 @@ import { UnpaidPrime } from "./views/App/UnpaidPrime";
 import Auth from "./Auth0/Auth.js";
 import Callback from "./Auth0/Callback.js";
 import history from "./Auth0/History";
+
 
 const auth = new Auth();
 
@@ -41,6 +43,7 @@ function App() {
         <Route exact path="/pricing" component={Pricing} />
         <Route path="/home" component={HomeAuthed} />
         <Route path="/about" component={About} />
+        <Route path="/info" component={Info} />
         <Route path="/landing" component={Landing} />
         <Route path="/register" component={SignUp} />
         <Route path="/login" component={Login} />
