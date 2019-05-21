@@ -23,7 +23,7 @@ class Landing extends Component {
                                 We'll help you find a safe home
                             </div>
 
-                            <a href="#learnMore"><button className='topBtn'>Learn More</button></a>
+                            <a href="/home"><button className='topBtn'>Learn More</button></a>
                             <div id="geocoder" className='landingSearchBar'></div>
                         </div>
 
