@@ -9,6 +9,7 @@ import { PrimitiveDot } from "styled-icons/octicons/PrimitiveDot";
 import { DeleteOutline } from "styled-icons/typicons/DeleteOutline";
 import NavbarB from "../../components/Shared/NavbarB.js";
 import "../../scss/Pricing.scss";
+import NavbarNotAuthed from "../../components/Shared/NavbarAuthed.js";
 
 const AccountRed = styled(AccountCircle)`
   color: #f24336;
@@ -65,7 +66,8 @@ const AccountBlue = styled(AccountCircle)`
 export default function Pricing() {
   return (
     <>
-      <NavbarB />
+      {localStorage.getItem("isLoggedIn") ? <NavbarB /> : <NavbarNotAuthed />}
+
       <h1 className="title">Pricing</h1>
       <div className="main-pricing">
         <div className="left">
@@ -119,6 +121,30 @@ export default function Pricing() {
           </div>
         </div>
         <div className="details">
+          <div className="no-account">
+            <h2>
+              <span>None</span>
+              <BlockedWhite />
+            </h2>
+            <div className="label-2">$0 / month</div>
+            <div className="label-2">
+              Unlimited <Link to="/">Continue</Link>
+            </div>
+            <div className="label-2">
+              <BlackCheck />
+            </div>
+            <div className="label-2">2 max</div>
+            <div className="label-2">
+              <BlackDelete />
+            </div>
+            <div className="label-2">0</div>
+            <div className="label-2">
+              <BlackDelete />
+            </div>
+            <div className="label-2">
+              <BlackCheck />
+            </div>
+          </div>
           <div className="free">
             <h2>
               <span>Free</span> <AccountRed />

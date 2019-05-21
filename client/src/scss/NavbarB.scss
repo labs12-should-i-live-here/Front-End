@@ -13,6 +13,16 @@
   @media (max-width: 800px) {
     height: 54px;
   }
+  .notauth {
+    a {
+      text-decoration: none;
+    }
+    .icons {
+      cursor: pointer;
+      border: none;
+      outline: none;
+    }
+  }
 
   .mapboxgl-ctrl-geocoder .suggestions {
     z-index: 2;
@@ -93,6 +103,26 @@
         padding: 0 3px;
       }
     }
+    .notauth {
+      button {
+        border: none;
+      }
+      button:hover {
+        background: none;
+        box-shadow: none;
+      }
+    }
+    .notauth {
+      a {
+        margin: 20px;
+        padding-bottom: 3px;
+        color: black;
+        font-weight: bold;
+      }
+      a:hover {
+        border-bottom: 2px solid #f24236;
+      }
+    }
     .right {
       display: flex;
       align-items: center;
@@ -101,6 +131,7 @@
       @media (max-width: 800px) {
         display: none;
       }
+
       .profile-outer {
         display: flex;
         align-items: center;
