@@ -4,6 +4,7 @@ import Search from '../../components/LandingSearch/Search.js';
 // import Footer from '../../components/HomeView/Footer';
 import '../../scss/Landing.scss';
 import Map from "../../components/HomeView/Map/Map.js";
+import NavBarLanding from '../../components/Shared/NavBarLanding.js';
 // import Suggestions from '../../components/LandingSearch/Suggestions.js';
 // const { API_KEY } = process.env
 // const API_URL = 'http://api.musicgraph.com/api/v2/artist/suggest'
@@ -14,7 +15,7 @@ class Landing extends Component {
     render() {
         return (
             <div>
-                <NavBarB />
+                <NavBarLanding />
                 <div className='landingPage'>
                     <div className='taglineSearch'>
                         <div className='tagline'>
