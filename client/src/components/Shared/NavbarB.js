@@ -4,9 +4,9 @@ import { connect } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { Home } from "styled-icons/boxicons-regular/Home";
-import { Moon as MoonLight } from "styled-icons/boxicons-regular/Moon";
+import { Moon as MoonLight } from "styled-icons/boxicons-solid/Moon";
 import { UserCircle } from "styled-icons/boxicons-regular/UserCircle";
-import { Moon as MoonDark } from "styled-icons/boxicons-solid/Moon";
+import { AdjustBrightness } from "styled-icons/typicons/AdjustBrightness";
 import { KeyboardArrowRight } from "styled-icons/material/KeyboardArrowRight";
 import { flipMode, setLoginVars } from "../../actions";
 import "../../scss/NavbarB.scss";
@@ -54,10 +54,10 @@ const MoonLightA = styled(MoonLight)`
   }
 `;
 
-const MoonDarkA = styled(MoonDark)`
+const MoonDarkA = styled(AdjustBrightness)`
   height: 25px;
   width: 25px;
-  color: black;
+  color: white;
   padding: 0 5px;
   opacity: 0.6;
   :hover {
