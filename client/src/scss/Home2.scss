@@ -10,7 +10,7 @@
   height: 92.9vh;
   font-family: "Rubik", sans-serif;
   margin: 0 auto;
-  margin-top: 7vh;
+  margin-top: 65px;
   @media (max-width: 800px) {
     flex-direction: column;
     width: 100%;
@@ -152,7 +152,8 @@
         }
         .loader {
           padding-top: 20%;
-          padding-left: 45%;
+          text-align: center;
+          line-height: 2;
         }
       }
     }

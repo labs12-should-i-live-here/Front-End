@@ -51,8 +51,8 @@ const BlackRight = styled(NavigateNext)`
 
 const BarChartYellow = styled(BarChart)`
   color: rgba(217, 49, 37, 0.61);
-  height: 90px;
-  width: 90px;
+  height: 50px;
+  width: 50px;
 `;
 
 class Charts extends Component {
@@ -109,18 +109,6 @@ class Charts extends Component {
             {/* <InfoDark /> */}
           </div>
 
-          {/* {this.props.fipsCodePredictions.count ? (
-            <div className="center-time-controls">
-              {this.props.timeMode ? (
-                <h3>Predicted Extreme Events</h3>
-              ) : (
-                <h3>Past Extreme Events</h3>
-              )}
-            </div>
-          ) : (
-            <p> </p>
-          )} */}
-
           <div className="toggle">
             <div>
               <BlackLeft onClick={this.leftClick} />
@@ -151,7 +139,7 @@ class Charts extends Component {
                 <BarChartYellow />
               </p>
               <p className="msg">
-                No Location selected... double click map to add one
+                No Location selected. Please double click map to add one.
               </p>
             </div>
           )}
