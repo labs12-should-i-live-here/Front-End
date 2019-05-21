@@ -102,16 +102,26 @@ class Compare3 extends Component {
                 >
                   {
                     <>
-                      <button>
-                        <div className="card-left animated bounceInRight">
-                          <MapPinGreenSmall />
-                          {/* <HomeRed /> */}
+                      <details>
+                        <summary>
+                          <div className="card-left animated bounceInRight">
+                            <MapPinGreenSmall />
+                            {/* <HomeRed /> */}
+                          </div>
+                          {pin} ({this.props.pins[index].COUNTY} county)
+                        </summary>
+                        <div>
+                          <form>
+                            <h4>Unsaved</h4>
+                            <button>Save</button>
+                            <h4>Not home</h4>
+                            <button>Set as Home</button>
+                          </form>
                         </div>
-                        {pin} ({this.props.pins[index].COUNTY} county)
-                        <div className="card-right">
+                        {/* <div className="card-right">
                           <DotsBlack />
-                        </div>
-                      </button>
+                        </div> */}
+                      </details>
                     </>
                   }
                 </p>

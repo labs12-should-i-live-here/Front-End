@@ -235,17 +235,57 @@
           height: 150px;
         }
         .card {
-          font-size: 13px;
-          padding: 1px 3px;
-          margin: 5px auto;
-          border-radius: 4px;
-          background: rgba(0, 0, 0, 0.05);
           display: flex;
           align-items: center;
           align-content: center;
-          min-height: 30px;
+          justify-content: flex-start;
+          details {
+            border: none;
+            font-size: 13px;
+            padding: 1px 5px;
+            margin: 5px auto;
+            border-radius: 4px;
+            background: rgba(0, 0, 0, 0.05);
+            padding: 5px 10px;
+
+            form {
+              border-top: 1px solid rgb(99, 99, 99);
+              margin-top: 5px;
+              height: 50px;
+              display: flex;
+              align-content: center;
+              align-items: center;
+              justify-content: space-evenly;
+              h4 {
+                font-weight: bold;
+              }
+              button {
+                border: none;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: 14px;
+                padding: 5px 10px;
+                margin: 0 15px;
+                border-radius: 6px;
+                transition: background-color 0.5s ease;
+                background: #7aadff;
+                cursor: pointer;
+                color: white;
+              }
+              button:hover {
+                box-shadow: 0 0 3px #2579ff;
+              }
+            }
+          }
+          details {
+            box-shadow: 0 0 3px #8f8f8f;
+          }
+          details[open] > summary::before {
+            background: rgba(27, 31, 35, 0.5);
+          }
           cursor: pointer;
-          button {
+          summary {
+            outline: none;
             display: flex;
             align-items: center;
             .card-left {
