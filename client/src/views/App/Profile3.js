@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import NavbarB from "../../components/Shared/NavbarB.js";
-import "../../scss/Profile3.scss";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import NavbarB from "../../components/Shared/NavbarB.js";
 import StripeButton from "../../components/StripePayments/StripeButton.js";
+import "../../scss/Profile3.scss";
+
 class Profile3 extends Component {
   render() {
     console.log(this.props.client);

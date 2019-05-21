@@ -109,18 +109,6 @@ class Charts extends Component {
             {/* <InfoDark /> */}
           </div>
 
-          {/* {this.props.fipsCodePredictions.count ? (
-            <div className="center-time-controls">
-              {this.props.timeMode ? (
-                <h3>Predicted Extreme Events</h3>
-              ) : (
-                <h3>Past Extreme Events</h3>
-              )}
-            </div>
-          ) : (
-            <p> </p>
-          )} */}
-
           <div className="toggle">
             <div>
               <BlackLeft onClick={this.leftClick} />

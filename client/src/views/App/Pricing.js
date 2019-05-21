@@ -1,14 +1,14 @@
+import "animate.css";
 import React from "react";
-import NavbarB from "../../components/Shared/NavbarB.js";
-import "../../scss/Pricing.scss";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { AccountCircle } from "styled-icons/material/AccountCircle";
 import { CheckCircle } from "styled-icons/boxicons-regular/CheckCircle";
+import { Blocked } from "styled-icons/icomoon/Blocked";
+import { AccountCircle } from "styled-icons/material/AccountCircle";
 import { PrimitiveDot } from "styled-icons/octicons/PrimitiveDot";
 import { DeleteOutline } from "styled-icons/typicons/DeleteOutline";
-import { Blocked } from "styled-icons/icomoon/Blocked";
-import { Link } from "react-router-dom";
-import "animate.css";
+import NavbarB from "../../components/Shared/NavbarB.js";
+import "../../scss/Pricing.scss";
 
 const AccountRed = styled(AccountCircle)`
   color: #f24336;

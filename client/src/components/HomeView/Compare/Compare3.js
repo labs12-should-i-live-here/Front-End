@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Compare } from "styled-icons/material/Compare";
 import styled from "styled-components";
+import { Compare } from "styled-icons/material/Compare";
 
 const CompareGreen = styled(Compare)`
   color: #2eab6d88;

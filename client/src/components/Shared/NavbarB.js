@@ -1,16 +1,15 @@
+import "animate.css";
 import React, { Component } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
-import "../../scss/NavbarB.scss";
 import { Home } from "styled-icons/boxicons-regular/Home";
 import { Moon as MoonLight } from "styled-icons/boxicons-regular/Moon";
-import { Moon as MoonDark } from "styled-icons/boxicons-solid/Moon";
-import { connect } from "react-redux";
-import { flipMode } from "../../actions";
-import { KeyboardArrowRight } from "styled-icons/material/KeyboardArrowRight";
 import { UserCircle } from "styled-icons/boxicons-regular/UserCircle";
-import "animate.css";
-import { setLoginVars } from "../../actions";
+import { Moon as MoonDark } from "styled-icons/boxicons-solid/Moon";
+import { KeyboardArrowRight } from "styled-icons/material/KeyboardArrowRight";
+import { flipMode, setLoginVars } from "../../actions";
+import "../../scss/NavbarB.scss";
 
 const User = styled(UserCircle)`
   color: #fff;
