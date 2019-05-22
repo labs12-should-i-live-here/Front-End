@@ -2,8 +2,8 @@ import auth0 from "auth0-js";
 import history from "./History";
 // import { AUTH_CONFIG } from "./auth0-variables";
 import axios from "axios";
-import { connect } from "react-redux";
-import { setLoginVars } from "../actions";
+// import { connect } from "react-redux";
+// import { setLoginVars } from "../actions";
 
 // // ...
 // class Ping extends Component {
