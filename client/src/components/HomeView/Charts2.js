@@ -9,7 +9,7 @@ import { Info } from "styled-icons/octicons/Info";
 import { changeTimeMode } from "../../actions";
 import "../../scss/Home2.scss";
 import Chart2 from "./Chart2.js";
-
+import { fetchRiskData } from "../../actions";
 const InfoDark = styled(Info)`
   color: rgba(0, 0, 0, 0.5);
   height: 17.5px;
@@ -171,5 +171,5 @@ const mapStateToProps = ({
 
 export default connect(
   mapStateToProps,
-  { changeTimeMode }
+  { changeTimeMode, fetchRiskData }
 )(Charts);

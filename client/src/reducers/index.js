@@ -230,7 +230,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingRiskData: false,
-        riskData: action.payload
+        riskData: [...state.riskData, action.payload]
       };
     case FETCH_RISK_DATA_FAILURE:
       return {

@@ -790,15 +790,15 @@ class Map extends Component {
         endyear: 2019
       });
 
+      this.props.fetchRiskData({
+        fipscode: e.features[0].properties.FIPS
+      });
+
       this.props.fetchPredictionData({
         latitude: pin.LATITUDE,
         longitude: pin.LONGITUDE
       });
 
-      if (this.props.fipsCodePredictions[1]) {
-        this.props.fetchRiskData(this.props.fipsCodePredictions.fipsCode[0]);
-        this.props.fetchRiskData(this.props.fipsCodePredictions.fipsCode[1]);
-      }
       console.log("Predictions are ", this.props.coordinatePredictions);
 
       const URL = `https://api.mapbox.com/geocoding/v5/mapbox.places/${

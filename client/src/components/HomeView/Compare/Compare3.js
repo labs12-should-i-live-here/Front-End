@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { Compare } from "styled-icons/material/Compare";
-import { Bar } from "react-chartjs-2";
+
 import { fetchRiskData } from "../../../actions";
+import CompareChart from "./CompareChart.js";
 
 const CompareGreen = styled(Compare)`
   color: #2eab6d88;
@@ -35,10 +36,6 @@ const options = {
 
 class Compare3 extends Component {
   //pulsing icon when addresses on store, change ket to uuid
-  state = {
-    locationA: "",
-    locationB: ""
-  };
 
   tour = () => {
     console.log("tour of counties to be implemented on this click!");
@@ -48,10 +45,6 @@ class Compare3 extends Component {
     console.log("index from ", index);
     this.props.changePinIndex(index);
   };
-
-  // componentDidUpdate() {
-
-  // }
 
   render() {
     return (
@@ -63,13 +56,7 @@ class Compare3 extends Component {
         <div className="main-compare-card locations">
           <div className="locations-top">
             {this.props.riskData[1] ? (
-              // <Bar
-              //   height={"225"}
-              //   width={"225"}
-              //   data={this.props}
-              //   options={options}
-              // />
-              <p>{this.props.riskData}</p>
+              <CompareChart />
             ) : (
               <>
                 <CompareGreen /> <p>Please add two locations to compare.</p>
