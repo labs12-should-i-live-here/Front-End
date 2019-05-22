@@ -37,10 +37,7 @@ export default function Component1() {
 
               <h2 style={hStyle}>Our Team</h2>
               <article style={articleStyle}>
-                Etiam quis viverra lorem, in semper lorem. Sed nisl arcu euismod
-                sit amet nisi euismod sed cursus arcu elementum ipsum arcu
-                vivamus quis venenatis orci lorem ipsum et magna feugiat
-                veroeros aliquam. Lorem ipsum dolor sit amet nullam dolore.
+                  Through the selection process, we chose a big project to tackle. Each of us come from different backgrounds and education. Through hard work and determination we were able to lead eachother to a finished product. We are proud of the work put into this project, and your continue use as a user fulfill our purpose as developers and data scientists.
               </article>
             </div>
           </div>
