@@ -73,6 +73,7 @@ class Charts extends Component {
   };
 
   leftClick = () => {
+    console.log(this.state.index);
     if (this.state.index === 0) {
       this.setState({ index: this.state.graphs.length - 1 });
     } else {
@@ -85,6 +86,7 @@ class Charts extends Component {
   };
 
   rightClick = () => {
+    console.log(this.state.index);
     if (this.state.index === this.state.graphs.length - 1) {
       this.setState({ index: 0 });
     } else {

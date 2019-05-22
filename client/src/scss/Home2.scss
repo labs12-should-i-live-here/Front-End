@@ -225,7 +225,7 @@
         justify-content: center;
         align-content: center;
         box-sizing: border-box;
-        min-height: 150px;
+        min-height: 100px;
         .top {
           width: 95%;
         }
@@ -258,17 +258,16 @@
             form {
               border-top: 1px solid rgb(99, 99, 99);
               margin-top: 5px;
-              height: 150px;
+              height: 165px;
               display: flex;
               align-content: center;
               align-items: center;
               justify-content: space-evenly;
               .options {
-                width: 30%;
+                width: 200px;
                 display: flex;
                 justify-content: space-evenly;
                 flex-direction: column;
-
                 button {
                   width: 100px;
                 }
