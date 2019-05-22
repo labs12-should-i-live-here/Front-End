@@ -96,6 +96,13 @@ class NavbarB extends Component {
               Product
             </NavLink>
 
+            <NavLink exact to="/about" activeClassName="activeA">
+              About
+            </NavLink>
+
+            <NavLink exact to="/info" activeClassName="activeA">
+              Info
+            </NavLink>
             <NavLink exact to="/pricing" activeClassName="activeA">
               Pricing
             </NavLink>
