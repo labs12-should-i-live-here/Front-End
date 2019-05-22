@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { IoLogoGithub } from "react-icons/io";
 import icon from "../../assets/icon.svg";
+import { NavLink } from "react-router-dom";
 
 var Inform = styled.div`
   margin-top: 5px;
@@ -74,7 +75,12 @@ export default class Footer extends Component {
           </Source>
         </Inform>
         <Foot>
-          <a href="to about page">About Us</a>
+          <NavLink exact to="/about">
+            About
+          </NavLink>
+          <NavLink exact to="/info">
+            Info
+          </NavLink>
           <div>&copy; LiveSafe</div>
           sitemap
           <GitLogo href="https://github.com/labs12-should-i-live-here/Front-End">
