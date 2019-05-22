@@ -4,6 +4,7 @@ import Search from '../../components/LandingSearch/Search.js';
 // import Footer from '../../components/HomeView/Footer';
 import '../../scss/Landing.scss';
 import Map from "../../components/HomeView/Map/Map.js";
+import NavBarAuthed from '../../components/Shared/NavbarAuthed';
 import NavBarLanding from '../../components/Shared/NavBarLanding.js';
 // import Suggestions from '../../components/LandingSearch/Suggestions.js';
 // const { API_KEY } = process.env
@@ -15,7 +16,7 @@ class Landing extends Component {
     render() {
         return (
             <div>
-                <NavBarLanding />
+                <NavBarAuthed />
                 <div className='landingPage'>
                     <div className='taglineSearch'>
                         <div className='tagline'>
@@ -38,21 +39,19 @@ class Landing extends Component {
 
                 </div>
                 <div className="infoBoxes">
-                    <div className="infoBox">
+
+                <div className="infoBox">
                         <div className="infoImage">
                             <div className='img1'>
                             </div>
                         </div>
                         <div className="textBox">
-                            Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
-    "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam
-    rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-    Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-                        </div>
+                            <div className='infoTitle'>Risk Data</div>
+                            <div className='infoContent'>Learn the weather risks in your area.</div>
+                            </div>
                         <div className='btnBox'>
-                            <button className='btn'>Heat Maps</button>
+                            <button className='btn'>Risks</button>
                         </div>
-
                     </div>
                     <div className="infoBox">
                         <div className="infoImage">
@@ -60,13 +59,11 @@ class Landing extends Component {
                             </div>
                         </div>
                         <div className="textBox">
-                            1914 translation by H. Rackham
-    "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and
-    I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth,
-    the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure,
-                        </div>
+                            <div className='infoTitle'>Damage Reports</div>
+                            <div className='infoContent'>Discover weather related damage near you.</div>
+                            </div>
                         <div className='btnBox'>
-                            <button className='btn'>Earthquakes</button>
+                            <button className='btn'>Damage</button>
                         </div>
                     </div>
                     <div className="infoBox">
@@ -75,23 +72,18 @@ class Landing extends Component {
                             </div>
                         </div>
                         <div className="textBox">
-                            Section 1.10.33 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
-    "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti
-    quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt
-    mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore,
-                        </div>
+                            <div className='infoTitle'>Death Stats</div>
+                            <div className='infoContent'>Know about dangerous conditions before moving.</div>
+                            </div>
                         <div className='btnBox'>
-                            <button className='btn'>Counties</button>
+                            <button className='btn'>Deaths</button>
                         </div>
-
-
                     </div>
-                </div>
                 <div style={{ display: "none" }}>
                     <Map />
                 </div>
             </div>
-            // </div>
+        </div>
         )
     }
 }
