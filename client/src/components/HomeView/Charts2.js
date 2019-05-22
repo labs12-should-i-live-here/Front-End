@@ -119,9 +119,9 @@ class Charts extends Component {
 
         <div className="chart">
           {this.props.fetchingHistoricalData ? (
-            <p className="loader">
+            <div className="loader">
               <Loader type="Oval" color="#2e64ab" height="40" width="40" />
-            </p>
+            </div>
           ) : this.props.fipsCodePredictions.count ? (
             <>
               <h3>

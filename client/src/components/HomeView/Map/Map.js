@@ -351,44 +351,44 @@ class Map extends Component {
         }
       });
 
-      // map.addLayer({
-      //   id: "Major Storm Events",
-      //   type: "heatmap",
-      //   source: {
-      //     type: "vector",
-      //     url: "mapbox://livesafe.dnwen5g1"
-      //   },
-      //   "source-layer": "storms-91hh4e",
-      //   paint: {
-      //     "heatmap-intensity": [
-      //       "interpolate",
-      //       ["linear"],
-      //       ["zoom"],
-      //       0,
-      //       1,
-      //       9,
-      //       3
-      //     ],
-      //     "heatmap-color": [
-      //       "interpolate",
-      //       ["linear"],
-      //       ["heatmap-density"],
-      //       0,
-      //       "rgba(33,102,172,0)",
-      //       0.1,
-      //       "rgb(103,169,207)",
-      //       0.2,
-      //       "rgb(209,229,240)",
-      //       0.4,
-      //       "#fbec57",
-      //       0.8,
-      //       "#fbc457",
-      //       1,
-      //       "#fb5757"
-      //     ],
-      //     "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 0, 2, 9, 5]
-      //   }
-      // });
+      map.addLayer({
+        id: "Major Storm Events",
+        type: "heatmap",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.dnwen5g1"
+        },
+        "source-layer": "storms-91hh4e",
+        paint: {
+          "heatmap-intensity": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            0,
+            1,
+            9,
+            3
+          ],
+          "heatmap-color": [
+            "interpolate",
+            ["linear"],
+            ["heatmap-density"],
+            0,
+            "rgba(33,102,172,0)",
+            0.1,
+            "rgb(103,169,207)",
+            0.2,
+            "rgb(209,229,240)",
+            0.4,
+            "#fbec57",
+            0.8,
+            "#fbc457",
+            1,
+            "#fb5757"
+          ],
+          "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 0, 2, 9, 5]
+        }
+      });
 
       map.addLayer({
         id: "Hurricane Risk",

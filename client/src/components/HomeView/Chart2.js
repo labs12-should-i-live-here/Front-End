@@ -100,8 +100,8 @@ class Chart2 extends Component {
     if (this.props.graphs[this.props.index] === "BarAll") {
       return (
         <Bar
-          height={"225"}
-          width={"225"}
+          height={225}
+          width={225}
           data={this.state.dataAll}
           options={options2}
         />
@@ -109,8 +109,8 @@ class Chart2 extends Component {
     } else if (this.props.graphs[this.props.index] === "BarDrought") {
       return (
         <Bar
-          height={"225"}
-          width={"225"}
+          height={225}
+          width={225}
           data={this.state.dataDrought}
           options={options}
         />
@@ -118,8 +118,8 @@ class Chart2 extends Component {
     } else if (this.props.graphs[this.props.index] === "BarEarthquake") {
       return (
         <Bar
-          height={"225"}
-          width={"225"}
+          height={225}
+          width={225}
           data={this.state.dataEarthquake}
           options={options}
         />
@@ -127,8 +127,8 @@ class Chart2 extends Component {
     } else if (this.props.graphs[this.props.index] === "BarFire") {
       return (
         <Bar
-          height={"225"}
-          width={"225"}
+          height={225}
+          width={225}
           data={this.state.dataFire}
           options={options}
         />
@@ -136,8 +136,8 @@ class Chart2 extends Component {
     } else if (this.props.graphs[this.props.index] === "BarFlood") {
       return (
         <Bar
-          height={"225"}
-          width={"225"}
+          height={225}
+          width={225}
           data={this.state.dataFlood}
           options={options}
         />
@@ -145,8 +145,8 @@ class Chart2 extends Component {
     } else if (this.props.graphs[this.props.index] === "BarHeat") {
       return (
         <Bar
-          height={"225"}
-          width={"225"}
+          height={225}
+          width={225}
           data={this.state.dataHeat}
           options={options}
         />
@@ -159,8 +159,8 @@ class Chart2 extends Component {
     ) {
       return (
         <Bar
-          height={"225"}
-          width={"225"}
+          height={225}
+          width={225}
           data={this.state.dataHurricane}
           options={options}
         />
@@ -168,8 +168,8 @@ class Chart2 extends Component {
     } else if (this.props.graphs[this.props.index] === "BarStorm") {
       return (
         <Bar
-          height={"225"}
-          width={"225"}
+          height={225}
+          width={225}
           data={this.state.dataStorm}
           options={options}
         />
@@ -177,8 +177,8 @@ class Chart2 extends Component {
     } else if (this.props.graphs[this.props.index] === "BarTornado") {
       return (
         <Bar
-          height={"225"}
-          width={"225"}
+          height={225}
+          width={225}
           data={this.state.dataTornado}
           options={options}
         />
@@ -186,8 +186,8 @@ class Chart2 extends Component {
     } else if (this.props.graphs[this.props.index] === "BarWinter") {
       return (
         <Bar
-          height={"225"}
-          width={"225"}
+          height={225}
+          width={225}
           data={this.state.dataWinter}
           options={options}
         />
