@@ -14,6 +14,9 @@ $break-mobile: 500px;
   height: 800px;
   @media screen and (max-width: $break-tablet) {
     max-width: 100%;
+    background-repeat: no-repeat;
+    height: 600px;
+    padding: 2% 0 0 0;
 }
 @media screen and (max-width: $break-mobile) {
     background-repeat: no-repeat;
@@ -36,9 +39,11 @@ $break-mobile: 500px;
   align-self: center;
   @media screen and (max-width: $break-tablet) {
     text-align: center;
+    padding: 0% 0 20% 0;
   }
   @media screen and (max-width: $break-mobile) {
       font-size: 50px;
+      padding: 0 0 50% 0;
   }
 }
 
@@ -77,15 +82,11 @@ $break-mobile: 500px;
 }
 
 .landingSearchBar {
-    margin: 25% 0 0 0 !important;
-    background: white !important;
+    display: none;
 }
 
 .landingSearchBox {
-    border-radius: 2px; 
-    width: 500px;
-    height: 40px;
-    // padding: 5% 0 15% 0;
+    display: none;
 }
 
 .marketingTitleBox {
@@ -100,7 +101,7 @@ $break-mobile: 500px;
         // margin: 2% 0 0 0;
     }
     @media screen and (max-width: $break-tablet) {
-
+        margin: 0 0 0 0;
     }
     @media screen and (max-width: $break-mobile) {
         display: none;
@@ -115,14 +116,14 @@ $break-mobile: 500px;
         flex-direction: row;
         justify-content: center;
         align-content: center;
-        margin: 1% 0 0 0;
+        margin: 5% 0 0 0;
         @media screen and (max-width: $break-tablet) {
             
         }
         @media screen and (max-width: $break-mobile) {
             display: flex;
             flex-direction: column;
-            margin: 200px 0 0 15%;
+            margin: 100px 0 0 15%;
         }
     
     
@@ -141,7 +142,6 @@ $break-mobile: 500px;
                 height: 75%;
             }
             @media screen and (max-width: $break-mobile) {
-                margin: 200px 0 0 0;
 
             }
             
@@ -164,7 +164,7 @@ $break-mobile: 500px;
     
             .img1 {
                 border-radius: 12px;
-                background-image: url('../assets/map1.png');
+                background-image: url('../assets/floodRisk.png');
                 background-size: cover;
                 width: 100%;
                 height: 100%;
@@ -177,12 +177,11 @@ $break-mobile: 500px;
             }
             .img2 {
                 border-radius: 12px;
-                background-image: url('../assets/map2.png');
+                background-image: url('../assets/Damages.png');
                 background-size: cover;
                 width: 100%;
                 height: 100%;
                 @media screen and (max-width: $break-tablet) {
-                    margin: 20px 0 0 0;
                 }
                 @media screen and (max-width: $break-mobile) {
 
@@ -190,7 +189,7 @@ $break-mobile: 500px;
             }
             .img3 {
                 border-radius: 12px;
-                background-image: url('../assets/map3.png');
+                background-image: url('../assets/Deaths.png');
                 background-size: cover;
                 width: 100%;
                 height: 100%;
@@ -209,24 +208,33 @@ $break-mobile: 500px;
         
         .textBox {
             width: 100%;
-            height: 225px;
+            height: auto;
             margin: 2% 0 0 0;
             display: flex;
             justify-content: center;
+            flex-direction: column;
             text-align: center;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             @media screen and (max-width: $break-tablet) {
             }
             @media screen and (max-width: $break-mobile) {
             }
+            .infoTitle {
+                font-weight: bold;
+                margin: 2% 0 3% 0;
+            }
         }
         .btnBox {
-            width: 100%;
+            width: 100px;
+            height: auto;
             display: flex;
             justify-content: center;
-            padding: 10px 0 0 0;
+            text-align: center;
+            padding: 2% 0 5% 38%;
+            margin: 0 0% 0 0;
             @media screen and (max-width: $break-tablet) {
-                margin: 30px 0 0 0;
+                margin: 20px 5% 0 0;
+                padding: 0 0 0 28%;
             }
             @media screen and (max-width: $break-mobile) {
                 // margin: 0% 0 0 0;
@@ -238,11 +246,13 @@ $break-mobile: 500px;
                 border: 1px lightgray solid;
                 border-radius: 8px;
                 height: 50px;
+                width: 100px;
+                text-align: center;
                 :hover {
                     background-color: lightblue;
                 }
                 @media screen and (max-width: $break-tablet) {
-                    margin: 30px 0 0 0;
+                    // margin: 30px 0 0 0;
                 }
                 @media screen and (max-width: $break-mobile) {
                     // margin: 0 0 30% 0;
