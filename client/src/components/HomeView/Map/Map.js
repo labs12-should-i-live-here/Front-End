@@ -47,6 +47,22 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+const MapOverlay = styled.div`
+  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  background-color: #f0ead6;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.10);
+  border-radius: 5px;
+  position: absolute;
+  top: 100px;
+  right: 30px;
+  font-weight: bold;
+  z-index: 1;
+  width: 25%;
+  height: 100px;
+  padding: 10px;
+  display: block;
+`;
+
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 class Map extends Component {
@@ -71,7 +87,21 @@ class Map extends Component {
     });
   };
 
-  render() {
+  render(
+
+    
+  ) {
+
+
+    const { zoom, minZoom } = this.state;
+    const { longitude, latitude } = this.state.coordinates;
+    const map = new mapboxgl.Map({
+      container: this.mapContainer,
+      style: this.state.style,
+      center: [longitude, latitude],
+      zoom,
+      minZoom
+    });
     return (
       <div id="map" ref={el => (this.mapContainer = el)} className="map">
         <div id="menu-a">Map Layers</div>
@@ -84,6 +114,7 @@ class Map extends Component {
             <a href="https://loving-brown-ae4f7d.netlify.com">Browse</a>
           </Button>
         </CompareNav>
+        <MapOverlay> Amina kodugumunun County'si</MapOverlay> 
 
         {/* {( this.state.pins.length < 2) ? 
         (<div><Button id='compare' style={{display: 'none'}}  >{(this.state.toggler % 2 === 0) ? 'Compare' : 'Return'}</Button>
@@ -114,24 +145,16 @@ class Map extends Component {
 
   initMap = () => {
     // create map with state values
-    const { zoom, minZoom } = this.state;
-    const { longitude, latitude } = this.state.coordinates;
-    const map = new mapboxgl.Map({
-      container: this.mapContainer,
-      style: this.state.style,
-      center: [longitude, latitude],
-      zoom,
-      minZoom
-    });
+    
 
     //connect to menu-b to test it
 
     // load layers
     map.on("load", () => {
-      // map.addSource("counties", {
-      //   type: "vector",
-      //   url: "mapbox://mapbox.82pkq93d"
-      // });
+      map.addSource("counties", {
+        type: "vector",
+        url: "mapbox://mapbox.82pkq93d"
+      });
 
       map.addSource("totalrisk", {
         type: "vector",
