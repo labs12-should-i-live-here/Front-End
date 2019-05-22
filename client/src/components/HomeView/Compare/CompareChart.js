@@ -10,6 +10,11 @@ const options = {
           display: true,
           labelString: "Risk Scale",
           fontSize: 20
+        },
+        ticks: {
+          min: 0,
+          max: 5,
+          stepSize: 1
         }
       }
     ],
@@ -33,21 +38,24 @@ class CompareChart extends Component {
   };
   componentDidMount() {
     if (this.props.riskData[1]) {
-      console.log(this.props.riskData[0]);
-      console.log(this.props.riskData[1]);
-
       this.setState({
         compareData: {
+          labels: [
+            `${this.props.pins[0].COUNTY}, ${
+              this.props.riskData[0].risk.categorylabel
+            }`,
+            `${this.props.pins[1].COUNTY}, ${
+              this.props.riskData[1].risk.categorylabel
+            }`
+          ],
           datasets: [
             {
-              label: this.props.riskData[0].fipscode,
-              data: [this.props.riskData[0].risk.category],
-              backgroundColor: "red"
-            },
-            {
-              label: this.props.riskData[1].fipscode,
-              data: [this.props.riskData[1].risk.category],
-              backgroundColor: "orange"
+              label: ["Total Risk"],
+              data: [
+                this.props.riskData[0].risk.category,
+                this.props.riskData[1].risk.category
+              ],
+              backgroundColor: ["blue", "blue"]
             }
           ]
         }
@@ -66,8 +74,9 @@ class CompareChart extends Component {
   }
 }
 
-const mapStateToProps = ({ riskData }) => ({
-  riskData
+const mapStateToProps = ({ riskData, pins }) => ({
+  riskData,
+  pins
 });
 
 export default connect(mapStateToProps)(CompareChart);
