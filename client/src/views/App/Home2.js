@@ -267,7 +267,7 @@ class Home2 extends Component {
               zIndex: 1000,
             }
           }}
-        />
+        />  {/* End reactjoyride     */}
         </div>
 
           
