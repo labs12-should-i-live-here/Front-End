@@ -1,7 +1,30 @@
 import React, { Component } from "react";
 import { Bar } from "react-chartjs-2";
+import { connect } from "react-redux";
 
-export default class CompareChart extends Component {
+const options = {
+  scales: {
+    yAxes: [
+      {
+        scaleLabel: {
+          display: true,
+          labelString: "Risk Scale",
+          fontSize: 20
+        }
+      }
+    ],
+    xAxes: [
+      {
+        scaleLabel: {
+          display: true,
+          labelString: "Counties",
+          fontSize: 20
+        }
+      }
+    ]
+  }
+};
+class CompareChart extends Component {
   state = {
     compareData: {
       labels: [],
@@ -15,7 +38,6 @@ export default class CompareChart extends Component {
 
       this.setState({
         compareData: {
-          labels: [1, 2, 3, 4],
           datasets: [
             {
               label: this.props.riskData[0].fipscode,
@@ -43,3 +65,9 @@ export default class CompareChart extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ riskData }) => ({
+  riskData
+});
+
+export default connect(mapStateToProps)(CompareChart);

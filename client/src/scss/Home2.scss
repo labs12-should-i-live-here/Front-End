@@ -174,6 +174,7 @@
         background: #2eab6d;
       }
     }
+
     .right-bottom,
     .right-compare {
       background: rgb(235, 235, 235);
@@ -183,6 +184,13 @@
       margin-top: 1.5vh;
       min-height: 100px;
       background-color: #fff;
+
+      .chart {
+        .last-chart {
+          height: 100%;
+          width: 100%;
+        }
+      }
       header {
         a {
           background: rgba(0, 0, 0, 0.05);
@@ -203,13 +211,12 @@
         }
       }
       .locations {
-        height: 400px;
-
         .locations-top {
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          width: 100%;
         }
         p {
           color: rgb(87, 87, 87);
@@ -368,6 +375,10 @@
           border-radius: 4px;
         }
       }
+    }
+    .right-compare {
+      min-height: 300px;
+      padding: 5px;
     }
     .footer {
       height: 12em;

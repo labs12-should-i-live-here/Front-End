@@ -11,28 +11,6 @@ const CompareGreen = styled(Compare)`
   height: 45px;
   width: 45px;
 `;
-const options = {
-  scales: {
-    yAxes: [
-      {
-        scaleLabel: {
-          display: true,
-          labelString: "Number of events",
-          fontSize: 20
-        }
-      }
-    ],
-    xAxes: [
-      {
-        scaleLabel: {
-          display: true,
-          labelString: "Year",
-          fontSize: 20
-        }
-      }
-    ]
-  }
-};
 
 class Compare3 extends Component {
   //pulsing icon when addresses on store, change ket to uuid
@@ -54,9 +32,11 @@ class Compare3 extends Component {
         </header>
 
         <div className="main-compare-card locations">
-          <div className="locations-top">
+          <div className="locations-top chart">
             {this.props.riskData[1] ? (
-              <CompareChart />
+              <div className="last-chart">
+                <CompareChart />
+              </div>
             ) : (
               <>
                 <CompareGreen /> <p>Please add two locations to compare.</p>
