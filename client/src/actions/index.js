@@ -182,3 +182,27 @@ export const setLoginVars = clientInformation => dispatch => {
 
   wait();
 };
+
+export const FETCH_RISK_DATA_START = "FETCH_RISK_DATA_START";
+export const FETCH_RISK_DATA_SUCCESS = "FETCH_RISK_DATA_SUCCESS";
+export const FETCH_RISK_DATA_FAILURE = "FETCH_RISK_DATA_FAILURE";
+
+export const fetchRiskData = fipsCode => dispatch => {
+  dispatch({ type: FETCH_RISK_DATA_START });
+  const URL = "https://d2drg1tc2gs4lr.cloudfront.net/riskiness";
+  axios
+    .post(URL, fipsCode)
+    .then(
+      res => console.log(res)
+      // dispatch({
+      //   type: FETCH_RISK_DATA_SUCCESS,
+      //   payload: res.data
+      // })
+    )
+    .catch(error => {
+      dispatch({
+        type: FETCH_RISK_DATA_FAILURE,
+        payload: error.response
+      });
+    });
+};

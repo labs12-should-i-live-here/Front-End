@@ -2,15 +2,42 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { Compare } from "styled-icons/material/Compare";
+import { Bar } from "react-chartjs-2";
 
 const CompareGreen = styled(Compare)`
   color: #2eab6d88;
   height: 45px;
   width: 45px;
 `;
+const options = {
+  scales: {
+    yAxes: [
+      {
+        scaleLabel: {
+          display: true,
+          labelString: "Number of events",
+          fontSize: 20
+        }
+      }
+    ],
+    xAxes: [
+      {
+        scaleLabel: {
+          display: true,
+          labelString: "Year",
+          fontSize: 20
+        }
+      }
+    ]
+  }
+};
 
 class Compare3 extends Component {
   //pulsing icon when addresses on store, change ket to uuid
+  state = {
+    locationA: "",
+    locationB: ""
+  };
 
   tour = () => {
     console.log("tour of counties to be implemented on this click!");
@@ -20,6 +47,10 @@ class Compare3 extends Component {
     console.log("index from ", index);
     this.props.changePinIndex(index);
   };
+
+  // componentDidMount() {
+  //   const
+  // }
 
   render() {
     return (
@@ -31,7 +62,13 @@ class Compare3 extends Component {
         <div className="main-compare-card locations">
           <div className="locations-top">
             {this.props.coordinatePredictions[1] ? (
-              <p>comparisons comming soon!</p>
+              // <Bar
+              //   height={"225"}
+              //   width={"225"}
+              //   data={this.props}
+              //   options={options}
+              // />
+              <p>asdf</p>
             ) : (
               <>
                 <CompareGreen /> <p>Please add two locations to compare.</p>

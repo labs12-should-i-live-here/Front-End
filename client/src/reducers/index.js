@@ -25,7 +25,10 @@ import {
   CHANGE_TIME_MODE,
   SET_DATA_START,
   SET_DATA,
-  SET_DATA_SUCCESS
+  SET_DATA_SUCCESS,
+  FETCH_RISK_DATA_START,
+  FETCH_RISK_DATA_SUCCESS,
+  FETCH_RISK_DATA_FAILURE
 } from "../actions/index";
 
 const initialState = {
@@ -56,7 +59,9 @@ const initialState = {
     userPic: localStorage.getItem("userPic"),
     name: localStorage.getItem("Name")
   },
-  fetchingInfo: true
+  fetchingInfo: true,
+  fetchingRiskData: false,
+  riskData: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -215,6 +220,24 @@ const reducer = (state = initialState, action) => {
           userPic: localStorage.getItem("userPic"),
           name: localStorage.getItem("Name")
         }
+      };
+    case FETCH_RISK_DATA_START:
+      return {
+        ...state,
+        fetchingRiskData: true
+      };
+    case FETCH_RISK_DATA_SUCCESS:
+      return {
+        ...state,
+        fetchingRiskData: false,
+        riskData: action.payload
+      };
+    case FETCH_RISK_DATA_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        errorStatusCode: action.payload,
+        fetchingRiskData: false
       };
     default:
       return state;
