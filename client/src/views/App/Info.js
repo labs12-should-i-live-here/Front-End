@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import NavBarB from "../../components/Shared/NavbarB.js";
-import Search from "../../components/LandingSearch/Search.js";
+// import Search from "../../components/LandingSearch/Search.js";
 import Map from "../../components/HomeView/Map/Map.js";
 
 

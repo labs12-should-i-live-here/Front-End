@@ -115,10 +115,10 @@ class Charts extends Component {
 
         <div className="chart">
           {this.props.fetchingPredictionData ? (
-            <p className="loader">
+            <div className="loader">
               <Loader type="Oval" color="#2e64ab" height="40" width="40" />
               Fetching predictions for next 20 years
-            </p>
+            </div>
           ) : this.props.coordinatePredictions[0] ? (
             <>
               <h3>

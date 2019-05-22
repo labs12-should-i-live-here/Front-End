@@ -51,13 +51,13 @@ export default class Footer extends Component {
       <>
         <Inform>
           <Title>𝕿𝖎𝖛𝖊 𝕳𝖆𝖋𝖊</Title>
-          <p>
+          <div>
             {" "}
-            The Lie Safe Team has built this interactive website to bring
+            The Live Safe Team has built this interactive website to bring
             together relevant information about disaster risks in a particular
             area, to inform the buying and renting decisions of potential
             homeowners.
-          </p>
+          </div>
           <br />
 
           <h6> • Data Sources:</h6>
@@ -81,8 +81,8 @@ export default class Footer extends Component {
           <NavLink exact to="/info">
             Info
           </NavLink>
-          <div>&copy; LiveSafe</div>
-          sitemap
+          {/* <div>&copy; LiveSafe</div> */}
+          {/* sitemap */}
           <GitLogo href="https://github.com/labs12-should-i-live-here/Front-End">
             <IoLogoGithub />
           </GitLogo>

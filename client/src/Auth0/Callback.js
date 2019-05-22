@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import loading from "./loading.svg";
+// import loading from "./loading.svg";
 import Loader from "react-loader-spinner";
 
 class Callback extends Component {
