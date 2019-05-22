@@ -23,6 +23,21 @@ const InfoDark = styled(Info)`
   }
 `;
 
+const DisabledLeft = styled(NavigateBefore)`
+  color: grey;
+  height: 30px;
+  width: 30px;
+  opacity: 0.4;
+  border-radius: 6px;
+`;
+const DisabledRight = styled(NavigateNext)`
+  color: grey;
+  height: 30px;
+  width: 30px;
+  opacity: 0.4;
+  border-radius: 6px;
+`;
+
 const BlackLeft = styled(NavigateBefore)`
   color: black;
   height: 30px;
@@ -65,28 +80,34 @@ class Charts extends Component {
       "DrySpellsBar",
       "ColdBar"
     ],
-    index: 0
+    index: 0,
+    leftDisable: true,
+    rightDisable: false
   };
 
   leftClick = () => {
+    console.log(this.state.index);
     if (this.state.index === 0) {
-      this.setState({ index: this.state.graphs.length - 1 });
+      this.setState({ leftDisable: true });
     } else {
       this.setState(prevState => {
         return {
-          index: prevState.index - 1
+          index: prevState.index - 1,
+          rightDisable: false
         };
       });
     }
   };
 
   rightClick = () => {
+    console.log(this.state.index);
     if (this.state.index === this.state.graphs.length - 1) {
-      this.setState({ index: 0 });
+      this.setState({ rightDisable: true });
     } else {
       this.setState(prevState => {
         return {
-          index: prevState.index + 1
+          index: prevState.index + 1,
+          leftDisable: false
         };
       });
     }
@@ -107,18 +128,26 @@ class Charts extends Component {
 
           <div className="toggle">
             <div>
-              <BlackLeft onClick={this.leftClick} />
-              <BlackRight onClick={this.rightClick} />
+              {this.state.leftDisable ? (
+                <DisabledLeft />
+              ) : (
+                <BlackLeft onClick={this.leftClick} />
+              )}
+              {this.state.rightDisable ? (
+                <DisabledRight />
+              ) : (
+                <BlackRight onClick={this.rightClick} />
+              )}
             </div>
           </div>
         </header>
 
         <div className="chart">
           {this.props.fetchingPredictionData ? (
-            <div className="loader">
+            <p className="loader">
               <Loader type="Oval" color="#2e64ab" height="40" width="40" />
               Fetching predictions for next 20 years
-            </div>
+            </p>
           ) : this.props.coordinatePredictions[0] ? (
             <>
               <h3>

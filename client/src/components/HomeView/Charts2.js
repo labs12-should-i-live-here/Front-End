@@ -91,7 +91,7 @@ class Charts extends Component {
 
   leftClick = () => {
     console.log(this.state.index);
-    if (this.state.index === 0 || this.state.index === 1) {
+    if (this.state.index === 0) {
       this.setState({ leftDisable: true });
     } else {
       this.setState(prevState => {
