@@ -49,6 +49,21 @@ const BlackRight = styled(NavigateNext)`
   margin-left: 3px;
 `;
 
+const DisabledLeft = styled(NavigateBefore)`
+  color: grey;
+  height: 30px;
+  width: 30px;
+  opacity: 0.4;
+  border-radius: 6px;
+`;
+const DisabledRight = styled(NavigateNext)`
+  color: grey;
+  height: 30px;
+  width: 30px;
+  opacity: 0.4;
+  border-radius: 6px;
+`;
+
 const BarChartYellow = styled(BarChart)`
   color: rgba(217, 49, 37, 0.61);
   height: 50px;
@@ -69,17 +84,20 @@ class Charts extends Component {
       "BarTornado",
       "BarWinter"
     ],
-    index: 0
+    index: 0,
+    leftDisable: true,
+    rightDisable: false
   };
 
   leftClick = () => {
     console.log(this.state.index);
-    if (this.state.index === 0) {
-      this.setState({ index: this.state.graphs.length - 1 });
+    if (this.state.index === 0 || this.state.index === 1) {
+      this.setState({ leftDisable: true });
     } else {
       this.setState(prevState => {
         return {
-          index: prevState.index - 1
+          index: prevState.index - 1,
+          rightDisable: false
         };
       });
     }
@@ -88,11 +106,12 @@ class Charts extends Component {
   rightClick = () => {
     console.log(this.state.index);
     if (this.state.index === this.state.graphs.length - 1) {
-      this.setState({ index: 0 });
+      this.setState({ rightDisable: true });
     } else {
       this.setState(prevState => {
         return {
-          index: prevState.index + 1
+          index: prevState.index + 1,
+          leftDisable: false
         };
       });
     }
@@ -113,8 +132,16 @@ class Charts extends Component {
 
           <div className="toggle">
             <div>
-              <BlackLeft onClick={this.leftClick} />
-              <BlackRight onClick={this.rightClick} />
+              {this.state.leftDisable ? (
+                <DisabledLeft />
+              ) : (
+                <BlackLeft onClick={this.leftClick} />
+              )}
+              {this.state.rightDisable ? (
+                <DisabledRight />
+              ) : (
+                <BlackRight onClick={this.rightClick} />
+              )}
             </div>
           </div>
         </header>
