@@ -44,7 +44,7 @@ class App extends Component {
               localStorage.getItem("isLoggedIn") ? <Home2 /> : <HomeNotAuthed />
             }
           />
-          {/* <Route exact path="/" component={Home2} /> */}
+          {<Route exact path="/" component={Home2} /> }
           <Route exact path="/pricing" component={Pricing} />
           <Route path="/home" component={Home2} />
           <Route path="/landing" component={Landing} />
