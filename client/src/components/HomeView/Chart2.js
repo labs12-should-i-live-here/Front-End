@@ -55,7 +55,7 @@ class Chart2 extends Component {
           {
             scaleLabel: {
               display: true,
-              labelString: "Number of events",
+              labelString: "Number of Events",
               fontSize: 20
             }
           }
@@ -197,47 +197,52 @@ class Chart2 extends Component {
 
   componentDidMount() {
     // Retrieving historical data from store after the request is successfull
-    if (this.props.fipsCodePredictions.count) {
-      const drought = Object.values(this.props.fipsCodePredictions.history).map(
-        val => val.drought
-      );
+    if (this.props.fipsCodePredictions[0].count) {
+      const drought = Object.values(
+        this.props.fipsCodePredictions[this.props.selectedPinIndex].history
+      ).map(val => val.drought);
 
       const earthquake = Object.values(
-        this.props.fipsCodePredictions.history
+        this.props.fipsCodePredictions[this.props.selectedPinIndex].history
       ).map(val => val.earthquake);
 
-      const fire = Object.values(this.props.fipsCodePredictions.history).map(
-        val => val.fire
-      );
+      const fire = Object.values(
+        this.props.fipsCodePredictions[this.props.selectedPinIndex].history
+      ).map(val => val.fire);
 
-      const flood = Object.values(this.props.fipsCodePredictions.history).map(
-        val => val.flood
-      );
+      const flood = Object.values(
+        this.props.fipsCodePredictions[this.props.selectedPinIndex].history
+      ).map(val => val.flood);
 
-      const heat = Object.values(this.props.fipsCodePredictions.history).map(
-        val => val.heat
-      );
+      const heat = Object.values(
+        this.props.fipsCodePredictions[this.props.selectedPinIndex].history
+      ).map(val => val.heat);
 
       const hurricane = Object.values(
-        this.props.fipsCodePredictions.history
+        this.props.fipsCodePredictions[this.props.selectedPinIndex].history
       ).map(val => val.hurricane);
 
-      const storm = Object.values(this.props.fipsCodePredictions.history).map(
-        val => val.storm
-      );
+      const storm = Object.values(
+        this.props.fipsCodePredictions[this.props.selectedPinIndex].history
+      ).map(val => val.storm);
 
-      const tornado = Object.values(this.props.fipsCodePredictions.history).map(
-        val => val.tornado
-      );
+      const tornado = Object.values(
+        this.props.fipsCodePredictions[this.props.selectedPinIndex].history
+      ).map(val => val.tornado);
 
       const winterweather = Object.values(
-        this.props.fipsCodePredictions.history
+        this.props.fipsCodePredictions[this.props.selectedPinIndex].history
       ).map(val => val.winterweather);
 
       // setting the retrieved data to state & therefore view
       this.setState({
         dataAll: {
-          labels: [...Object.keys(this.props.fipsCodePredictions.history)],
+          labels: [
+            ...Object.keys(
+              this.props.fipsCodePredictions[this.props.selectedPinIndex]
+                .history
+            )
+          ],
           datasets: [
             {
               label: "Drought",
@@ -287,7 +292,12 @@ class Chart2 extends Component {
           ]
         },
         dataDrought: {
-          labels: [...Object.keys(this.props.fipsCodePredictions.history)],
+          labels: [
+            ...Object.keys(
+              this.props.fipsCodePredictions[this.props.selectedPinIndex]
+                .history
+            )
+          ],
           datasets: [
             {
               label: "Drought",
@@ -297,7 +307,12 @@ class Chart2 extends Component {
           ]
         },
         dataEarthquake: {
-          labels: [...Object.keys(this.props.fipsCodePredictions.history)],
+          labels: [
+            ...Object.keys(
+              this.props.fipsCodePredictions[this.props.selectedPinIndex]
+                .history
+            )
+          ],
           datasets: [
             {
               label: "Earthquake",
@@ -307,7 +322,12 @@ class Chart2 extends Component {
           ]
         },
         dataFire: {
-          labels: [...Object.keys(this.props.fipsCodePredictions.history)],
+          labels: [
+            ...Object.keys(
+              this.props.fipsCodePredictions[this.props.selectedPinIndex]
+                .history
+            )
+          ],
           datasets: [
             {
               label: "Fire",
@@ -317,7 +337,12 @@ class Chart2 extends Component {
           ]
         },
         dataFlood: {
-          labels: [...Object.keys(this.props.fipsCodePredictions.history)],
+          labels: [
+            ...Object.keys(
+              this.props.fipsCodePredictions[this.props.selectedPinIndex]
+                .history
+            )
+          ],
           datasets: [
             {
               label: "Flood",
@@ -327,7 +352,12 @@ class Chart2 extends Component {
           ]
         },
         dataHeat: {
-          labels: [...Object.keys(this.props.fipsCodePredictions.history)],
+          labels: [
+            ...Object.keys(
+              this.props.fipsCodePredictions[this.props.selectedPinIndex]
+                .history
+            )
+          ],
           datasets: [
             {
               label: "Heat",
@@ -337,7 +367,12 @@ class Chart2 extends Component {
           ]
         },
         dataHurricane: {
-          labels: [...Object.keys(this.props.fipsCodePredictions.history)],
+          labels: [
+            ...Object.keys(
+              this.props.fipsCodePredictions[this.props.selectedPinIndex]
+                .history
+            )
+          ],
           datasets: [
             {
               label: "Hurricane",
@@ -347,7 +382,12 @@ class Chart2 extends Component {
           ]
         },
         dataStorm: {
-          labels: [...Object.keys(this.props.fipsCodePredictions.history)],
+          labels: [
+            ...Object.keys(
+              this.props.fipsCodePredictions[this.props.selectedPinIndex]
+                .history
+            )
+          ],
           datasets: [
             {
               label: "Storm",
@@ -357,7 +397,12 @@ class Chart2 extends Component {
           ]
         },
         dataTornado: {
-          labels: [...Object.keys(this.props.fipsCodePredictions.history)],
+          labels: [
+            ...Object.keys(
+              this.props.fipsCodePredictions[this.props.selectedPinIndex]
+                .history
+            )
+          ],
           datasets: [
             {
               label: "Tornado",
@@ -367,7 +412,12 @@ class Chart2 extends Component {
           ]
         },
         dataWinter: {
-          labels: [...Object.keys(this.props.fipsCodePredictions.history)],
+          labels: [
+            ...Object.keys(
+              this.props.fipsCodePredictions[this.props.selectedPinIndex]
+                .history
+            )
+          ],
           datasets: [
             {
               label: "Winter Weather",

@@ -34,7 +34,7 @@ import {
 const initialState = {
   fetchingPredictionData: false,
   fetchingHistoricalData: false,
-  fipsCodePredictions: {},
+  fipsCodePredictions: [],
   error: "",
   errorStatusCode: null,
   coordinatePredictions: [],
@@ -94,7 +94,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingHistoricalData: false,
-        fipsCodePredictions: action.payload
+        fipsCodePredictions: [...state.fipsCodePredictions, action.payload]
       };
     case FETCH_HISTORICAL_DATA_FAILURE:
       return {

@@ -124,7 +124,7 @@ class Charts extends Component {
             <p className="loader">
               <Loader type="Oval" color="#2e64ab" height="40" width="40" />
             </p>
-          ) : this.props.fipsCodePredictions.count ? (
+          ) : this.props.fipsCodePredictions[0] ? (
             <>
               <h3>
                 Past Extreme Events for{" "}

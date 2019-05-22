@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 import { Compare } from "styled-icons/material/Compare";
 import { Bar } from "react-chartjs-2";
+import { fetchRiskData } from "../../../actions";
 
 const CompareGreen = styled(Compare)`
   color: #2eab6d88;
@@ -48,8 +49,8 @@ class Compare3 extends Component {
     this.props.changePinIndex(index);
   };
 
-  // componentDidMount() {
-  //   const
+  // componentDidUpdate() {
+
   // }
 
   render() {
@@ -61,14 +62,14 @@ class Compare3 extends Component {
 
         <div className="main-compare-card locations">
           <div className="locations-top">
-            {this.props.coordinatePredictions[1] ? (
+            {this.props.riskData[1] ? (
               // <Bar
               //   height={"225"}
               //   width={"225"}
               //   data={this.props}
               //   options={options}
               // />
-              <p>asdf</p>
+              <p>{this.props.riskData}</p>
             ) : (
               <>
                 <CompareGreen /> <p>Please add two locations to compare.</p>
@@ -84,12 +85,19 @@ const mapStateToProps = ({
   fetchingPredictionData,
   coordinatePredictions,
   fipsCodePredictions,
-  timeMode
+  timeMode,
+  fetchingRiskData,
+  riskData
 }) => ({
   fetchingPredictionData,
   coordinatePredictions,
   fipsCodePredictions,
-  timeMode
+  timeMode,
+  fetchingRiskData,
+  riskData
 });
 
-export default connect(mapStateToProps)(Compare3);
+export default connect(
+  mapStateToProps,
+  { fetchRiskData }
+)(Compare3);
