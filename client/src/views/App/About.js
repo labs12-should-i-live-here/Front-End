@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import NavBarB from "../../components/Shared/NavbarB.js";
-// import Search from "../../components/LandingSearch/Search.js";
+import Component1 from "../../components/AboutView/Component1.js"; //spring styling content
+import Component2 from "../../components/AboutView/Component2.js"; //spring styling content
 import Map from "../../components/HomeView/Map/Map.js";
-import Component1 from "../../components/AboutView/Component1.js";
-import Component2 from "../../components/AboutView/Component2.js";
+import NavBarB from "../../components/Shared/NavbarB.js";
 
 class About extends Component {
   render() {
@@ -30,4 +29,3 @@ class About extends Component {
 
 export default About;
 
-//lol
