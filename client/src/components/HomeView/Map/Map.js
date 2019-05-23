@@ -853,7 +853,7 @@ class Map extends Component {
       //   .addTo(map);
       console.log('county information:    ', e.features[0])
       const filter = ["in", "FIPS", e.features[0].properties];
-      map.setFilter("Counties Highlighted", filter);
+      // map.setFilter("Counties Highlighted", filter);
 
       let feature = e.features[0];
 
@@ -915,7 +915,7 @@ class Map extends Component {
     map.on('mouseleave', 'countys', function() {
       map.getCanvas().style.cursor = '';
       popupNoClose.remove();
-      map.setFilter('counties-highlighted', ['in', 'COUNTY', '']);
+      // map.setFilter('counties-highlighted', ['in', 'COUNTY', '']);
       overlay.style.display = 'none';
       chart.style.display = 'none';
       chartTitle.style.display = 'none';
