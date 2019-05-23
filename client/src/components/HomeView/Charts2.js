@@ -12,7 +12,7 @@ import "../../scss/Home2.scss";
 import Chart2 from "./Chart2.js";
 
 const InfoDark = styled(Info)`
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.555);
   height: 17.5px;
   width: 17.5px;
   padding: 3px;
@@ -20,7 +20,7 @@ const InfoDark = styled(Info)`
   border-radius: 20%;
   :hover {
     cursor: pointer;
-    background: rgba(0, 0, 0, 0.05);
+    color: rgba(255, 255, 255, 1);
   }
 `;
 
@@ -66,7 +66,7 @@ const DisabledRight = styled(NavigateNext)`
 `;
 
 const BarChartYellow = styled(BarChart)`
-  color: rgba(217, 49, 37, 0.61);
+  color: #2e64ab9c;
   height: 50px;
   width: 50px;
 `;

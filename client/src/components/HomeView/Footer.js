@@ -50,13 +50,10 @@ export default class Footer extends Component {
     return (
       <>
         <Inform>
-          <Title>𝕿𝖎𝖛𝖊 𝕳𝖆𝖋𝖊</Title>
+          <Title>LiveSafe</Title>
           <div>
-            {" "}
-            The Live Safe Team has built this interactive website to bring
-            together relevant information about disaster risks in a particular
-            area, to inform the buying and renting decisions of potential
-            homeowners.
+            This tool helps renters and home buyers decide whether or not a
+            location is risky to live at compared to surrounding areas.
           </div>
           <br />
 
@@ -65,13 +62,13 @@ export default class Footer extends Component {
             <a href="https://www.ncdc.noaa.gov/stormevents/ftp.jsp">
               Storm Events
             </a>{" "}
-            ♘ <a href="https://climate.azavea.com/">Climate Data</a> ♘{" "}
-            <a href="https://github.com/usgs/libcomcat">API</a> ♘ <br />
+            <a href="https://climate.azavea.com/">Climate Data</a>{" "}
+            <a href="https://github.com/usgs/libcomcat">API</a> <br />
             <a href="https://www.fema.gov/media-library/assets/documents/7877">
               {" "}
               FEMA Disaster Guide
             </a>{" "}
-            ♘ <a href="https://www.ready.gov/earthquakes">Earthquake Prep</a>
+            <a href="https://www.ready.gov/earthquakes">Earthquake Prep</a>
           </Source>
         </Inform>
         <Foot>
@@ -83,12 +80,9 @@ export default class Footer extends Component {
           </NavLink>
           {/* <div>&copy; LiveSafe</div> */}
           {/* sitemap */}
-          <GitLogo href="https://github.com/labs12-should-i-live-here/Front-End">
+          <GitLogo href="https://github.com/labs12-should-i-live-here">
             <IoLogoGithub />
           </GitLogo>
-          <a href="https://rebellion.earth/">
-            <I src={icon} />
-          </a>
         </Foot>
       </>
     );
