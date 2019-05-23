@@ -11,19 +11,21 @@
   font-family: "Rubik", sans-serif;
   margin: 0 auto;
   margin-top: 60px;
-  @media (max-width: 800px) {
+
+  @media (max-width: 1000px) {
     flex-direction: column;
     width: 100%;
     margin: 0;
     height: 100vh;
+    margin-top: 55px;
   }
   .left-pane {
     padding: 1vh;
     height: 90vh;
     width: 67.5%;
-    @media (max-width: 800px) {
+    @media (max-width: 1000px) {
       width: 100%;
-      height: 60vh;
+      height: 70vh;
       padding: 0;
     }
   }
@@ -31,30 +33,36 @@
     overflow-y: scroll;
     width: 32.5%;
     height: 92.9vh;
-    padding-right: 3px;
+    padding: 0 3px;
     // padding-left: 3px;
     // border-left: 1px solid rgba(128, 128, 128, 0.479);
-
-    @media (max-width: 800px) {
-      margin-top: 5px;
+    background: #ebebeb;
+    button {
+      border: none;
+      background: #fff;
+    }
+    @media (max-width: 1000px) {
       width: 100%;
       border-left: none;
       overflow: visible;
     }
     header {
+      button {
+        padding: 1px;
+      }
       display: flex;
       justify-content: space-between;
       height: 30px;
-      border-bottom: 1px solid black;
+      border-bottom: 2px solid rgb(83, 83, 83);
       align-items: center;
       padding: 5px;
       padding-left: 0;
       padding-left: 2px;
       border-radius: 6px 6px 0 0;
-      background: #ffffffb9;
+      background: #2e64ab;
       font-size: 18px;
       h2 {
-        background: #2e64ab;
+        background: rgb(217, 49, 37);
         padding: 5px 10px;
         text-align: center;
         border-radius: 6px;
@@ -65,12 +73,16 @@
       }
       .chart-title {
         display: flex;
+        align-items: center;
       }
 
       .toggle {
         display: flex;
         align-items: center;
         align-content: center;
+        button {
+          outline: none;
+        }
         p {
           font-size: 13px;
           padding: 8px;
@@ -103,8 +115,9 @@
       box-shadow: 0px 0px 3px 2px rgb(235, 235, 235);
       border-radius: 6px;
       margin: 5px;
-      margin-top: 1vh;
+      margin-top: 10px;
       min-height: 400px;
+      background: #fff;
 
       h2 {
         background: rgb(217, 49, 37);
@@ -161,17 +174,18 @@
       }
     }
     .right-top {
-      margin-top: 1.5vh;
+      margin-top: 10px;
     }
     .right-middle {
-      margin-top: 1.5vh;
+      margin-top: 10px;
+      margin-bottom: 0;
       h2 {
         background: rgb(217, 49, 37);
       }
     }
     .right-compare {
       h2 {
-        background: #2eab6d;
+        background: rgb(217, 49, 37);
       }
     }
 
@@ -184,6 +198,7 @@
       margin-top: 1.5vh;
       min-height: 100px;
       background-color: #fff;
+      margin-top: 10px;
 
       .chart {
         .last-chart {
@@ -217,6 +232,7 @@
           justify-content: center;
           align-items: center;
           width: 100%;
+          margin-top: 40px;
         }
         p {
           color: rgb(87, 87, 87);
@@ -378,17 +394,15 @@
     }
     .right-compare {
       min-height: 300px;
-      padding: 5px;
     }
     .footer {
-      height: 12em;
-      height: 10em;
-      margin: 1.5vh 5px 5px 5px;
+      margin-top: 10px;
       padding: 5px;
       background-color: rgb(25, 25, 25);
-      border-radius: 6px;
-      background-color: rgb(179, 179, 179);
-      @media (max-width: 800px) {
+      border-radius: 0 0 6px 6px;
+      background-color: rgba(74, 122, 255, 0.842);
+      border-top: 2px solid #000;
+      @media (max-width: 1000px) {
         margin: 1.5vh 0 0 0;
         height: 16em;
       }

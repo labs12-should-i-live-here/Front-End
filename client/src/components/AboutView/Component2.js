@@ -33,18 +33,27 @@ export class Component2 extends Component {
 
                     <div style={c2linkStyle}>
                       <p />
-                      <a href="https://hamzaelk.com" target="_blank" rel="noopener noreferrer">
+                      <a
+                        href="https://hamzaelk.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         Portfolio
                       </a>
                       <br />
                       <a
                         href="https://www.linkedin.com/in/hamza-elkhoudiri-a606aa162/"
-                        target="_blank" rel="noopener noreferrer"
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         Linkedin
                       </a>
                       <br />
-                      <a href="https://github.com/elkhoudh" target="_blank" rel="noopener noreferrer">
+                      <a
+                        href="https://github.com/elkhoudh"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         GitHub
                       </a>
                     </div>
@@ -69,7 +78,13 @@ export class Component2 extends Component {
                     <div className="tabs-item-description" />
 
                     <div style={c2linkStyle}>
-                      <a href="https://github.com/KimDuclos" target="_blank" rel="noopener noreferrer">GitHub</a>
+                      <a
+                        href="https://github.com/KimDuclos"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        GitHub
+                      </a>
                     </div>
                   </div>
 
@@ -94,7 +109,8 @@ export class Component2 extends Component {
                     <div style={c2linkStyle}>
                       <a
                         href="https://twitter.com/Third3y3Club"
-                        target="_blank" rel="noopener noreferrer"
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         Twitter
                       </a>
@@ -121,20 +137,26 @@ export class Component2 extends Component {
                       <p />
                     </div>
                     <div style={c2linkStyle}>
-                    <a
+                      <a
                         href="https://www.linkedin.com/in/shreyasjothish/"
-                        target="_blank" rel="noopener noreferrer"
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         Linkedin
                       </a>
                       <br />
-                      <a href="https://twitter.com/ShreyasJothish" target="_blank" rel="noopener noreferrer">
+                      <a
+                        href="https://twitter.com/ShreyasJothish"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         Twitter
                       </a>
                       <br />
                       <a
                         href="https://github.com/ShreyasJothish"
-                        target="_blank" rel="noopener noreferrer"
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         GitHub
                       </a>
@@ -162,14 +184,16 @@ export class Component2 extends Component {
                     <div style={c2linkStyle}>
                       <a
                         href="https://www.linkedin.com/in/manjula-mishra/"
-                        target="_blank" rel="noopener noreferrer"
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         Linkedin
                       </a>
                       <br />
                       <a
                         href="https://github.com/manjulamishra"
-                        target="_blank" rel="noopener noreferrer"
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         GitHub
                       </a>
@@ -197,18 +221,24 @@ export class Component2 extends Component {
                     <div style={c2linkStyle}>
                       <a
                         href="https://www.linkedin.com/in/danielmartinalarcon/"
-                        target="_blank" rel="noopener noreferrer"
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         Linkedin
                       </a>
                       <br />
-                      <a href="https://www.martinalarcon.org/" target="_blank" rel="noopener noreferrer">
+                      <a
+                        href="https://www.martinalarcon.org/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         Portfolio
                       </a>
                       <br />
                       <a
                         href="https://github.com/DanielMartinAlarcon"
-                        target="_blank" rel="noopener noreferrer"
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         GitHub
                       </a>
@@ -235,7 +265,8 @@ export class Component2 extends Component {
                     <div style={c2linkStyle}>
                       <a
                         href="https://github.com/ArthurLeonard"
-                        target="_blank" rel="noopener noreferrer"
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         GitHub
                       </a>
@@ -260,7 +291,11 @@ export class Component2 extends Component {
                     <div className="tabs-item-description" />
 
                     <div style={c2linkStyle}>
-                      <a href="https://github.com/brilles" target="_blank" rel="noopener noreferrer">
+                      <a
+                        href="https://github.com/brilles"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         GitHub
                       </a>
                     </div>
@@ -293,11 +328,19 @@ export class Component2 extends Component {
                     </div>
 
                     <div style={c2linkStyle}>
-                      <a href="https://github.com/larynab" target="_blank" rel="noopener noreferrer">
+                      <a
+                        href="https://github.com/larynab"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         Github
                       </a>
                       <br />
-                      <a href="https://www.linkedin.com/in/laryna-billinghurst/" target="_blank" rel="noopener noreferrer">
+                      <a
+                        href="https://www.linkedin.com/in/laryna-billinghurst/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         Linkedin
                       </a>
                     </div>
@@ -330,7 +373,7 @@ const c2teamStyle = {
 };
 const c2memberStyle = {
   padding: "1.5rem"
-}
+};
 const c2iStyle = {
   borderRadius: "200px",
   height: "250px",

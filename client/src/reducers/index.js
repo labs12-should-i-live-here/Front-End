@@ -57,7 +57,8 @@ const initialState = {
   timeMode: false,
   client: {
     userPic: localStorage.getItem("userPic"),
-    name: localStorage.getItem("Name")
+    name: localStorage.getItem("Name"),
+    isPremium: false
   },
   fetchingInfo: true,
   fetchingRiskData: false,

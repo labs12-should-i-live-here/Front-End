@@ -38,7 +38,12 @@ export class Component1 extends Component {
 
               <button style={btn} onClick={this.props.toggleA}>Toggle Our Team</button>
               <article style={articleStyle}>
-                  Through the selection process, we chose a big project to tackle. Each of us come from different backgrounds and education. Through hard work and determination we were able to lead eachother to a finished product. We are proud of the work put into this project, and your continue use as a user fulfill our purpose as developers and data scientists.
+                Through the selection process, we chose a big project to tackle.
+                Each of us come from different backgrounds and education.
+                Through hard work and determination we were able to lead
+                eachother to a finished product. We are proud of the work put
+                into this project, and your continue use as a user fulfill our
+                purpose as developers and data scientists.
               </article>
               
 
