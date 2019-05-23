@@ -22,7 +22,6 @@ import history from "./Auth0/History";
 import { connect } from "react-redux";
 import { setLoginVars } from "./actions";
 
-
 const auth = new Auth();
 
 class App extends Component {
@@ -34,6 +33,10 @@ class App extends Component {
 
   componentWillMount() {
     this.props.setLoginVars();
+    console.log(
+      "%c👋 Find the repo here: https://github.com/labs12-should-i-live-here",
+      "font-size: 15px; color: #000; background: #fff; margin: 20px;"
+    );
   }
   render() {
     return (

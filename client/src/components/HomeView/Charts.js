@@ -128,15 +128,25 @@ class Charts extends Component {
 
           <div className="toggle">
             <div>
-              {this.state.leftDisable ? (
-                <DisabledLeft />
+              {this.props.coordinatePredictions[0] ? (
+                <>
+                  <button>
+                    {this.state.leftDisable ? (
+                      <DisabledLeft />
+                    ) : (
+                      <BlackLeft onClick={this.leftClick} />
+                    )}
+                  </button>
+                  <button>
+                    {this.state.rightDisable ? (
+                      <DisabledRight />
+                    ) : (
+                      <BlackRight onClick={this.rightClick} />
+                    )}
+                  </button>
+                </>
               ) : (
-                <BlackLeft onClick={this.leftClick} />
-              )}
-              {this.state.rightDisable ? (
-                <DisabledRight />
-              ) : (
-                <BlackRight onClick={this.rightClick} />
+                ""
               )}
             </div>
           </div>

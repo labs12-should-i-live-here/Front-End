@@ -11,6 +11,7 @@
   font-family: "Rubik", sans-serif;
   margin: 0 auto;
   margin-top: 60px;
+
   @media (max-width: 800px) {
     flex-direction: column;
     width: 100%;
@@ -34,7 +35,10 @@
     padding-right: 3px;
     // padding-left: 3px;
     // border-left: 1px solid rgba(128, 128, 128, 0.479);
-
+    button {
+      border: none;
+      background: #fff;
+    }
     @media (max-width: 800px) {
       margin-top: 5px;
       width: 100%;
