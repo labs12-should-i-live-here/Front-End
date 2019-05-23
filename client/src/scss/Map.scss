@@ -23,17 +23,26 @@
 }
 
 #menu-a {
+  h2 {
+    font-weight: bold;
+    font-size: 15px;
+    background: #2e64ab;
+    color: white;
+    border-radius: 4px 4px 0 0;
+    padding: 5px;
+  }
   background: #fff;
   position: absolute;
   z-index: 1;
   top: 10px;
   left: 10px;
-  width: 130px;
-  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
   border-radius: 9px;
   text-align: center;
-  box-shadow: 5px 5px 5px -3px rgba(0, 0, 0, 0.75);
-  border: 1px solid black;
+  display: flex;
+  flex-flow: column wrap;
+  width: 100px;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+
   // @media (max-width: 800px) {
   //   top: 82%;
   //   bottom: 10px;
@@ -42,15 +51,22 @@
   //   width: 50%;
   //   flex-direction: column;
   // }
+
   a {
-    font-weight: bolder;
-    border: 1px solid black;
+    width: 100px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    background: #fff;
     font-size: 12px;
     text-decoration: none;
     color: rgba(0, 0, 0, 0.75);
-    display: block;
-    padding: 3px;
+    padding: 2px;
     text-align: center;
+    border-top: 1px solid grey;
+    line-height: 1.3;
   }
   a:first-child {
     border-radius: 4px 4px 0 0;
@@ -59,11 +75,11 @@
     border-radius: 0 0 4px 4px;
   }
   a:hover {
-    background: rgb(0, 132, 255);
+    background: #f24236;
     color: white;
   }
   .active {
-    background: rgb(0, 132, 255);
+    background: #f24236;
     color: white;
   }
 }
