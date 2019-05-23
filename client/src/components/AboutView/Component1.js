@@ -1,7 +1,8 @@
-import React from "react";
+import React, { Component } from "react";
 import { Spring } from "react-spring/renderprops";
 
-export default function Component1() {
+export class Component1 extends Component {
+  render() {
   return (
     <Spring
       from={{ opacity: 0, marginTop: -500 }}
@@ -35,7 +36,7 @@ export default function Component1() {
                 the right zipcode.
               </article>
 
-              <h2 style={hStyle}>Our Team</h2>
+              <button style={btn} onClick={this.props.toggleA}>Toggle Our Team</button>
               <article style={articleStyle}>
                 Through the selection process, we chose a big project to tackle.
                 Each of us come from different backgrounds and education.
@@ -44,12 +45,18 @@ export default function Component1() {
                 into this project, and your continue use as a user fulfill our
                 purpose as developers and data scientists.
               </article>
+              
+
+              <button style={btn} onClick={this.props.toggleB}>Toggle Info</button>
+              <article style={articleStyle}>All the information used for this application is captured into documentation.</article>
+              
             </div>
           </div>
         </div>
       )}
     </Spring>
   );
+}
 }
 
 const c1Style = {
@@ -60,8 +67,19 @@ const c1Style = {
   fontSize: "1.2em"
 };
 const hStyle = {
-  paddingBottom: "1.5rem"
-};
+    paddingBottom: "1.5rem",
+    fontWeight: "bold"
+  };
 const articleStyle = {
-  paddingBottom: "1.5rem"
+    paddingBottom: "1.5rem"
+}
+const btn = {
+  background: "#333",
+  color: "#fff",
+  padding: "1rem 2rem",
+  border: "none",
+  textTransform: "uppercase",
+  margin: "15px 0"
 };
+
+export default Component1;
