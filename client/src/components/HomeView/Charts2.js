@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Loader from "react-loader-spinner";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { BarChart } from "styled-icons/boxicons-regular/BarChart";
 import { NavigateBefore } from "styled-icons/material/NavigateBefore";
@@ -127,7 +128,9 @@ class Charts extends Component {
         <header>
           <div className="chart-title">
             <h2>Past Events</h2>
-            <InfoDark />
+            <Link exact to="/info">
+              <InfoDark />
+            </Link>
           </div>
 
           <div className="toggle">

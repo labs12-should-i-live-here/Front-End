@@ -107,7 +107,7 @@ class Map extends Component {
           </Button>
         </CompareNav>
         <div id="map-overlay" className="map-overlay" />
-        <div id="chart-title" className="chart-title">
+        <div id="chart-title" className="chart-title2">
           Total Risk
         </div>
         <canvas id="map-chart" className="map-chart">
