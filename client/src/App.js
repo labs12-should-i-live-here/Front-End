@@ -55,7 +55,7 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <Route path="/profile" component={Profile3} /> {/* NEW! */}
           <Route path="/logout" component={Logout} />
-          <Route path="/compare" component={Compare} />
+          {/* <Route path="/compare" component={Compare} /> */}
           <Route path="/about" component={About} />
           {/* <Route path="/Email" componet={Email} />  --> potential UI for mass email via SendGrid */}
           <Route
