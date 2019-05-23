@@ -37,8 +37,14 @@
   height: 100px;
   /* padding: 10px; */
   display: none;
+  padding: 0 0 10% 0;
 }
 
+@media only screen and (max-width: 800px) {
+  .map-chart {
+    top: 47%;
+  }
+}
 
 .chart-title2 {
   position: absolute;
@@ -53,8 +59,22 @@
   display: none;
 }
 
-#chart-title {
+/* #chart-title {
   margin: 50% 2.5% 3% 0;
+} */
+
+@media only screen and (max-width: 800px) {
+  #chart-title {
+    bottom: 53%;
+    right: 4.5%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  #chart-title {
+    bottom: 53%;
+    right: 13%;
+  }
 }
 
 h1 {
