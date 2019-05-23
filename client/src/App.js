@@ -12,7 +12,6 @@ import Home2 from "./views/App/Home2.js";
 // import Email from "./components/SendGrid/Email";
 //stripe
 import HomeNotAuthed from "./views/App/HomeNotAuthed.js";
-import Info from "./views/App/Info.js";
 import Landing from "./views/App/Landing";
 import Login from "./views/App/Login.js";
 import Logout from "./views/App/Logout.js";
@@ -56,7 +55,7 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <Route path="/profile" component={Profile3} /> {/* NEW! */}
           <Route path="/logout" component={Logout} />
-          <Route path="/info" component={Info} />
+          {/* <Route path="/compare" component={Compare} /> */}
           <Route path="/about" component={About} />
           {/* <Route path="/Email" componet={Email} />  --> potential UI for mass email via SendGrid */}
           <Route

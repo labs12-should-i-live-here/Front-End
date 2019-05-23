@@ -2,14 +2,10 @@ import React, { Component } from "react";
 import NavBarB from "../../components/Shared/NavbarB.js";
 import Map from "../../components/HomeView/Map/Map.js";
 
-class About extends Component {
+class Info extends Component {
   render() {
     return (
       <div>
-        <NavBarB />
-        <div style={{ display: "none" }}>
-          <Map />
-        </div>
         <div style={iStyle}>
           <section style={isectionStyle}>
             <h1 style={ih1Style}>FEMA Disasters</h1>
@@ -238,7 +234,7 @@ class About extends Component {
               <table style={itableStyle}>
                 <tbody>
                   <tr style={itrStyle}>
-                    <th>Displayed category</th>
+                    <th>Category</th>
                     <th>NOAA extreme weather event categories</th>
                   </tr>
 
@@ -351,7 +347,6 @@ class About extends Component {
 }
 const iStyle = {
   background: "floralwhite",
-  marginTop: "50px",
   color: "black",
   padding: "1.5rem",
   justifyContent: "center",
@@ -383,4 +378,4 @@ const istrongStyle = {
 const itrStyle = {
   marginTop: "10px"
 };
-export default About;
+export default Info;
