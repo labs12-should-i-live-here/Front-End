@@ -12,7 +12,6 @@
        
 //               </div>
 
-<<<<<<< HEAD
 //               <footer />
 //             </div>
 //           </div>
@@ -23,8 +22,3 @@
 // }
 
 // export default About;
-=======
-export default About;
-
-//lol
->>>>>>> 04a9949eea7bb76bb868d92ad117f7e545c7c408

@@ -182,7 +182,7 @@ export default function Pricing() {
             <div className="label-2">$2 / month</div>
             <div className="label-2">
               Unlimited
-              <Link to="/register" className="animated tada">
+              <Link to="/login" className="animated tada">
                 Join now
               </Link>
             </div>

@@ -107,12 +107,12 @@ class Compare3 extends Component {
         <div className="main-compare-card">
           <div className="top">
             {this.props.fetchingHistoricalData ? (
-              <p className="loader">
+              <div className="loader">
                 <Loader type="Oval" color="#2e64ab" height="40" width="40" />
-              </p>
+              </div>
             ) : this.props.pins[0] ? (
               this.props.pinAddresses.map((pin, index) => (
-                <p
+                <div
                   className="card animated bounceInRight"
                   onClick={() => this.sendPinIndex(index)}
                   key={index}
@@ -171,7 +171,7 @@ class Compare3 extends Component {
                       </details>
                     </>
                   }
-                </p>
+                </div>
               ))
             ) : (
               <div className="middle">

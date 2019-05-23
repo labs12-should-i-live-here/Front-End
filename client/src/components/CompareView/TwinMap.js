@@ -129,18 +129,19 @@ class Map extends Component {
           if (visibility === undefined) {
             map.setLayoutProperty(clickedLayer, "visibility", "none");
             this.className = "";
+            
           } else if (visibility === "visible") {
             map.setLayoutProperty(clickedLayer, "visibility", "none");
             this.className = "";
           } else {
             this.className = "active";
             map.setLayoutProperty(clickedLayer, "visibility", "visible");
-          }
+          } 
         };
 
         const layers = document.getElementById("menu");
         layers.appendChild(link);
-      });
+      });;
     });
 
     // add map controls

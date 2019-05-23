@@ -116,7 +116,7 @@ class NavbarB extends Component {
                 <WhiteSearch />
               </button>
             </form> */}
-            <div id="geocoder" class="geocoder" />
+            <div id="geocoder" className="geocoder" />
           </div>
           {localStorage.getItem("isLoggedIn") ? (
             <div className="right">
