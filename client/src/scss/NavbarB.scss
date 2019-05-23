@@ -10,7 +10,7 @@
   position: fixed;
   top: 0;
   z-index: 10;
-  @media (max-width: 800px) {
+  @media (max-width: 1000px) {
     height: 54px;
   }
   .notauth {
@@ -33,8 +33,10 @@
     box-shadow: none;
     background: #f1f4f3;
     margin-right: 0;
+    height: 45px;
     @media (min-width: 640px) {
       max-width: 98.5%;
+      height: 100%;
     }
     :focus {
       background: #f0f0f0;
@@ -85,7 +87,7 @@
     .center {
       width: 40%;
       display: flex;
-      @media (max-width: 800px) {
+      @media (max-width: 1000px) {
         width: 60%;
       }
     }
@@ -128,7 +130,7 @@
       align-items: center;
       min-width: 250px;
       justify-content: flex-end;
-      @media (max-width: 800px) {
+      @media (max-width: 1000px) {
         display: none;
       }
 
