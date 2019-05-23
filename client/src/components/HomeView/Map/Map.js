@@ -12,7 +12,10 @@ import "../../../scss/Map.scss";
 import axios from "axios";
 import styled from "styled-components";
 import { Pulse } from "styled-icons/boxicons-regular/Pulse";
+import Chart from "chart.js";
 import counties from "./counties2.json";
+import { totalDamage }from "./damages_by_county.js";
+import "./styles.css";
 
 const RedQuake = styled(Pulse)`
   color: red;
@@ -48,6 +51,22 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+const MapOverlay = styled.div`
+  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  background-color: #f0ead6;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.10);
+  border-radius: 5px;
+  position: absolute;
+  top: 100px;
+  right: 30px;
+  font-weight: bold;
+  z-index: 1;
+  width: 25%;
+  height: 100px;
+  padding: 10px;
+  display: block;
+`;
+
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 class Map extends Component {
@@ -73,6 +92,8 @@ class Map extends Component {
   };
 
   render() {
+
+    
     return (
       <div id="map" ref={el => (this.mapContainer = el)} className="map">
         <div id="menu-a">Map Layers</div>
@@ -85,6 +106,10 @@ class Map extends Component {
             <a href="https://loving-brown-ae4f7d.netlify.com">Browse</a>
           </Button>
         </CompareNav>
+        <div id='map-overlay' className ='map-overlay'></div>
+        <div id = 'chart-title' className = 'chart-title'>Total Risk</div>
+        <canvas id = 'map-chart' className = 'map-chart'>Total Risk</canvas>
+        {/* <MapOverlay> Amina kodugumunun County'si</MapOverlay>  */}
 
         {/* {( this.state.pins.length < 2) ? 
         (<div><Button id='compare' style={{display: 'none'}}  >{(this.state.toggler % 2 === 0) ? 'Compare' : 'Return'}</Button>
@@ -114,7 +139,7 @@ class Map extends Component {
   }
 
   initMap = () => {
-    // create map with state values
+    // create map with state values   // create map with state values
     const { zoom, minZoom } = this.state;
     const { longitude, latitude } = this.state.coordinates;
     const map = new mapboxgl.Map({
@@ -124,12 +149,15 @@ class Map extends Component {
       zoom,
       minZoom
     });
+    
 
     //connect to menu-b to test it
 
     // load layers
     map.on("load", () => {
-      // map.addSource("counties", {
+
+
+      // map.addSource("countys", {
       //   type: "vector",
       //   url: "mapbox://mapbox.82pkq93d"
       // });
@@ -138,6 +166,22 @@ class Map extends Component {
         type: "vector",
         url: "mapbox://livesafe.ctlgoa5o"
       });
+
+      map.addLayer ({
+        id: "countys",
+        type: "fill",
+        source: {
+          type: "vector",
+          url: "mapbox://mapbox.82pkq93d"
+        },
+        "source-layer": "original",
+        paint: {
+          "fill-outline-color": "rgb(255, 115, 0)",
+          "fill-color": "rgba(255, 115, 0, .1)",
+          "fill-opacity": 0.3
+        },
+       //filter: ["in", "FIPS", ""]
+      })
 
       map.addLayer({
         id: "Counties",
@@ -755,17 +799,127 @@ class Map extends Component {
     });
 
     map.doubleClickZoom.disable();
-
-    map.on("click,", "Counties", e => {
-      console.log(e.lngLat);
-      new mapboxgl.Popup()
-        .setLngLat(e.lngLat)
-        .setHTML(`${e.features[0].properties.NAME} County`)
-        .addTo(map);
-
-      const filter = ["in", "FIPS", e.features[0].properties.FIPS];
-      map.setFilter("Counties Highlighted", filter);
+    // Create a popup, but don't add it to the map yet.
+    var popupNoClose = new mapboxgl.Popup({
+      closeButton: false
     });
+
+
+    let overlay = document.getElementById('map-overlay');
+    let chart = document.getElementById('map-chart');
+    let chartTitle = document.getElementById('chart-title');
+
+    map.on("mousemove", "countys", e => {
+
+      map.getCanvas().style.cursor = 'pointer';
+
+
+      var data = {
+        labels: [
+            // "Total Risk",
+        ],
+        datasets: [
+            {
+                data: [300, 100],
+                backgroundColor: [
+                    "#FF6384",
+                    "#FFCE56"
+                ],
+                hoverBackgroundColor: [
+                    "#FF6384",
+                    "#FFCE56"
+                ]
+            }]
+    };
+    
+    // let ctx = document.getElementById("map-chart");
+    
+    // And for a doughnut chart
+    let myDoughnutChart = new Chart(chart, {
+        type: 'doughnut',
+        data: data,
+        options: {
+          responsive: false,
+          maintainAspectRatio: false,
+          rotation: 1 * Math.PI,
+          circumference: 1 * Math.PI,
+
+        }
+    });
+      // console.log(e.lngLat);
+      // new mapboxgl.Popup()
+      //   .setLngLat(e.lngLat)
+      //   .setHTML(`${e.features[0].properties.NAME} County`)
+      //   .addTo(map);
+      console.log('county information:    ', e.features[0])
+      const filter = ["in", "FIPS", e.features[0].properties];
+      map.setFilter("Counties Highlighted", filter);
+
+      let feature = e.features[0];
+
+   
+      // console.log(" Total Damage for county $", feature.properties.FIPS, totalDamage[0][feature.properties.FIPS])
+      // Render found features in an overlay.
+      overlay.innerHTML = '';    
+     
+      let title = document.createElement('h1');
+      title.textContent = `${feature.properties.COUNTY}`;
+
+      let population = document.createElement('div');
+      population.textContent = 'County Population : ' + feature.properties.population;
+      let income = document.createElement('div');
+      income.textContent = 'Median Income : $ ' + Object.values(feature.properties)[2];
+
+      const avgDamagePerPersonPerYear = 93;
+      const deathSum = 99;
+      const injurySum = 990;
+      
+      overlay.appendChild(title); 
+      
+      if (totalDamage[0][feature.properties.FIPS]) {
+        let countyDamage = Math.round(totalDamage[0][feature.properties.FIPS]);
+        let avg = countyDamage/feature.properties.population/23;
+       // let percentOfNationalAverage = Math.round(avg/avgDamagePerPersonPerYear);
+
+        let damage = document.createElement('p');
+        damage.textContent = "Total Damage : $ " + Math.round(totalDamage[0][feature.properties.FIPS]) + "\n Damage/person/year : $ " + Math.round(avg*10)/10;
+      
+        let damage2 = document.createElement('p')
+        damage2.textContent = "\n % of National Average: " + Math.round(avg/avgDamagePerPersonPerYear*100) + "%";
+      
+        let deaths = document.createElement('p')
+        deaths.textContent = "Deaths caused by disasters: " + Math.round(totalDamage[1][feature.properties.FIPS]);
+
+        let injuries = document.createElement('p')
+        injuries.textContent = "Injuries caused by disasters: " + Math.round(totalDamage[2][feature.properties.FIPS]);
+        overlay.appendChild(damage);
+        overlay.appendChild(damage2);
+        overlay.appendChild(deaths);
+        overlay.appendChild(injuries);
+      } //end if
+        
+      overlay.appendChild(population);
+      overlay.appendChild(income);
+      overlay.style.display = 'block';
+      chart.style.display = 'block';
+      chartTitle.style.display = 'block';
+      // // Add features that share the same county name to the highlighted layer.
+      // map.setFilter('counties-highlighted', ['in', 'COUNTY', feature.properties.COUNTY]);
+
+      // Display a popup with the name of the county
+      popupNoClose.setLngLat(e.lngLat)
+          .setText(`${feature.properties.COUNTY}`)
+          .addTo(map);
+    });
+
+    map.on('mouseleave', 'countys', function() {
+      map.getCanvas().style.cursor = '';
+      popupNoClose.remove();
+      map.setFilter('counties-highlighted', ['in', 'COUNTY', '']);
+      overlay.style.display = 'none';
+      chart.style.display = 'none';
+      chartTitle.style.display = 'none';
+  });
 
     map.on("dblclick", "Counties", e => {
       const userId = this.props.userId;
