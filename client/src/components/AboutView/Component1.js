@@ -56,7 +56,8 @@ const c1Style = {
   background: "steelblue",
   marginTop: "50px",
   color: "white",
-  padding: "1.5rem"
+  padding: "1.5rem",
+  fontSize: "1.2em"
 };
 const hStyle = {
   paddingBottom: "1.5rem"

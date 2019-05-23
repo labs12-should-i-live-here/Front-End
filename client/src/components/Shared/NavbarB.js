@@ -101,12 +101,12 @@ class NavbarB extends Component {
       <div className={"navbarb " + (darkmode ? "dark" : "light")}>
         <div className="nav">
           <div className="left">
-            <Link exact to="/">
+            <NavLink exact to="/">
               <RedHome />
-            </Link>
-            <Link exact to="/">
+            </NavLink>
+            <NavLink exact to="/">
               LiveSafe
-            </Link>
+            </NavLink>
           </div>
           <div className="center">
             {/* <form>
