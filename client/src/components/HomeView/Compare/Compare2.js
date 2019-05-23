@@ -8,6 +8,8 @@ import { PlayCircle } from "styled-icons/boxicons-regular/PlayCircle";
 import { BuildingHouse } from "styled-icons/boxicons-solid/BuildingHouse";
 import { MapMarkerAlt } from "styled-icons/fa-solid/MapMarkerAlt";
 import { changePinIndex } from "../../../actions";
+import { Notepad } from "styled-icons/boxicons-regular/Notepad";
+import { Save } from "styled-icons/boxicons-regular/Save";
 
 const PlayGreen = styled(PlayCircle)`
   color: black;
@@ -20,6 +22,27 @@ const PlayGreen = styled(PlayCircle)`
   }
   cursor: pointer;
   margin-right: 8px;
+`;
+
+const Saved = styled(Save)`
+  color: gray;
+  height: 20px;
+  width: 20px;
+  margin-left: 5px;
+`;
+
+const Notes = styled(Notepad)`
+  color: gray;
+  height: 20px;
+  width: 20px;
+  margin-left: 5px;
+`;
+
+const Home = styled(BuildingHouse)`
+  color: gray;
+  height: 20px;
+  width: 20px;
+  margin-left: 5px;
 `;
 
 const DotsBlack = styled(DotsVerticalRounded)`
@@ -44,14 +67,6 @@ const PlayGreenDisabled = styled(PlayCircle)`
   border-radius: 6px;
 `;
 
-const HomeRed = styled(BuildingHouse)`
-  color: red;
-  height: 16px;
-  width: 16px;
-  margin-right: 8px;
-  border-radius: 6px;
-`;
-
 const MapPinGreen = styled(MapMarkerAlt)`
   color: #2e64ab9c;
   height: 45px;
@@ -70,6 +85,9 @@ const MapPinGreenSmall = styled(MapMarkerAlt)`
 
 class Compare3 extends Component {
   //pulsing icon when addresses on store, change ket to uuid
+  state = {
+    notes: false
+  };
   tour = () => {
     console.log("tour of counties to be implemented on this click!");
   };
@@ -89,12 +107,12 @@ class Compare3 extends Component {
         <div className="main-compare-card">
           <div className="top">
             {this.props.fetchingHistoricalData ? (
-              <p className="loader">
+              <div className="loader">
                 <Loader type="Oval" color="#2e64ab" height="40" width="40" />
-              </p>
+              </div>
             ) : this.props.pins[0] ? (
               this.props.pinAddresses.map((pin, index) => (
-                <p
+                <div
                   className="card animated bounceInRight"
                   onClick={() => this.sendPinIndex(index)}
                   key={index}
@@ -112,10 +130,35 @@ class Compare3 extends Component {
                         {localStorage.getItem("isLoggedIn") ? (
                           <div>
                             <form>
-                              <h4>Unsaved</h4>
-                              <button>Save</button>
-                              <h4>Not home</h4>
-                              <button>Set Home</button>
+                              <div className="options">
+                                <h4>
+                                  Unsaved <Saved />
+                                </h4>
+                                <button>Save</button>
+                                <h4>
+                                  Not home <Home />
+                                </h4>
+                                <button>Set Home</button>
+                              </div>
+
+                              <div className="notes">
+                                <h4>
+                                  Notes <Notes />
+                                </h4>
+                                {this.state.notes ? (
+                                  <p>some note</p>
+                                ) : (
+                                  <p>No notes</p>
+                                )}
+                                <div>
+                                  <input
+                                    type="text"
+                                    name="note"
+                                    placeholder="Add a note"
+                                  />
+                                  <button>Submit</button>
+                                </div>
+                              </div>
                             </form>
                           </div>
                         ) : (
@@ -128,7 +171,7 @@ class Compare3 extends Component {
                       </details>
                     </>
                   }
-                </p>
+                </div>
               ))
             ) : (
               <div className="middle">

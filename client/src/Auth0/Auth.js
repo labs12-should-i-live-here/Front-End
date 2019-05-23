@@ -2,8 +2,8 @@ import auth0 from "auth0-js";
 import history from "./History";
 // import { AUTH_CONFIG } from "./auth0-variables";
 import axios from "axios";
-import { connect } from "react-redux";
-import { setLoginVars } from "../actions";
+// import { connect } from "react-redux";
+// import { setLoginVars } from "../actions";
 
 // // ...
 // class Ping extends Component {
@@ -61,7 +61,6 @@ export default class Auth {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         // this.props.setLoginVars(authResult.idTokenPayload);
-        console.log(authResult.idTokenPayload);
         //   this.auth0.client.getUserCountry(authResult.accessToken, function(err, country) {
         //     // This method will make a request to the /userinfo endpoint
         //     // and return the user object, which contains the user's information,

@@ -66,8 +66,8 @@ class Chart extends Component {
     if (this.props.graphs[this.props.index] === "Bar") {
       return (
         <Bar
-          height={"225"}
-          width={"225"}
+          height={225}
+          width={225}
           data={this.state.data}
           options={options2}
         />
@@ -75,8 +75,8 @@ class Chart extends Component {
     } else if (this.props.graphs[this.props.index] === "HeatBar") {
       return (
         <Bar
-          height={"225"}
-          width={"225"}
+          height={225}
+          width={225}
           data={this.state.dataHeat}
           options={options}
         />
@@ -84,8 +84,8 @@ class Chart extends Component {
     } else if (this.props.graphs[this.props.index] === "RainBar") {
       return (
         <Bar
-          height={"225"}
-          width={"225"}
+          height={225}
+          width={225}
           data={this.state.dataRain}
           options={options}
         />
@@ -93,8 +93,8 @@ class Chart extends Component {
     } else if (this.props.graphs[this.props.index] === "HeatWaveBar") {
       return (
         <Bar
-          height={"225"}
-          width={"225"}
+          height={225}
+          width={225}
           data={this.state.dataHeatWave}
           options={options}
         />
@@ -102,8 +102,8 @@ class Chart extends Component {
     } else if (this.props.graphs[this.props.index] === "DrySpellsBar") {
       return (
         <Bar
-          height={"225"}
-          width={"225"}
+          height={225}
+          width={225}
           data={this.state.dataDrySpells}
           options={options}
         />
@@ -111,8 +111,8 @@ class Chart extends Component {
     } else if (this.props.graphs[this.props.index] === "ColdBar") {
       return (
         <Bar
-          height={"225"}
-          width={"225"}
+          height={225}
+          width={225}
           data={this.state.dataCold}
           options={options}
         />

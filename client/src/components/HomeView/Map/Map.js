@@ -5,7 +5,8 @@ import { connect } from "react-redux";
 import {
   fetchPredictionData,
   fetchHistoricalData,
-  savePin
+  savePin,
+  fetchRiskData
 } from "../../../actions";
 import "../../../scss/Map.scss";
 import axios from "axios";
@@ -222,19 +223,21 @@ class Map extends Component {
           "line-cap": "round"
         },
         paint: {
-          "line-color": [ "interpolate",
-          ["linear"],
-          ["get", "pga"],
-          0.5,
-          "hsl(245, 96%, 47%)",
-          1.25,
-          "hsl(120, 100%, 54%)",
-          2,
-          "hsl(64, 100%, 40%)",
-          10.5,
-          "hsl(35, 100%, 40%)",
-          54.5,
-          "hsl(0, 100%, 40%)"],
+          "line-color": [
+            "interpolate",
+            ["linear"],
+            ["get", "pga"],
+            0.5,
+            "hsl(245, 96%, 47%)",
+            1.25,
+            "hsl(120, 100%, 54%)",
+            2,
+            "hsl(64, 100%, 40%)",
+            10.5,
+            "hsl(35, 100%, 40%)",
+            54.5,
+            "hsl(0, 100%, 40%)"
+          ],
           "line-width": 1
         }
       });
@@ -395,44 +398,44 @@ class Map extends Component {
         }
       });
 
-      // map.addLayer({
-      //   id: "Major Storm Events",
-      //   type: "heatmap",
-      //   source: {
-      //     type: "vector",
-      //     url: "mapbox://livesafe.dnwen5g1"
-      //   },
-      //   "source-layer": "storms-91hh4e",
-      //   paint: {
-      //     "heatmap-intensity": [
-      //       "interpolate",
-      //       ["linear"],
-      //       ["zoom"],
-      //       0,
-      //       1,
-      //       9,
-      //       3
-      //     ],
-      //     "heatmap-color": [
-      //       "interpolate",
-      //       ["linear"],
-      //       ["heatmap-density"],
-      //       0,
-      //       "rgba(33,102,172,0)",
-      //       0.1,
-      //       "rgb(103,169,207)",
-      //       0.2,
-      //       "rgb(209,229,240)",
-      //       0.4,
-      //       "#fbec57",
-      //       0.8,
-      //       "#fbc457",
-      //       1,
-      //       "#fb5757"
-      //     ],
-      //     "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 0, 2, 9, 5]
-      //   }
-      // });
+      map.addLayer({
+        id: "Major Storm Events",
+        type: "heatmap",
+        source: {
+          type: "vector",
+          url: "mapbox://livesafe.dnwen5g1"
+        },
+        "source-layer": "storms-91hh4e",
+        paint: {
+          "heatmap-intensity": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            0,
+            1,
+            9,
+            3
+          ],
+          "heatmap-color": [
+            "interpolate",
+            ["linear"],
+            ["heatmap-density"],
+            0,
+            "rgba(33,102,172,0)",
+            0.1,
+            "rgb(103,169,207)",
+            0.2,
+            "rgb(209,229,240)",
+            0.4,
+            "#fbec57",
+            0.8,
+            "#fbc457",
+            1,
+            "#fb5757"
+          ],
+          "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 0, 2, 9, 5]
+        }
+      });
 
       map.addLayer({
         id: "Hurricane Risk",
@@ -585,8 +588,10 @@ class Map extends Component {
             "interpolate",
             ["linear"],
             ["get", "Storm"],
-            0,"rgba(48, 253, 203,0.5)",
-            4,"rgba(72,253,48,0.5)",
+            0,
+            "rgba(48, 253, 203,0.5)",
+            4,
+            "rgba(72,253,48,0.5)",
             5,
             "rgba(250, 253, 48,0.5)",
             8.19478163844336,
@@ -939,10 +944,15 @@ class Map extends Component {
         endyear: 2019
       });
 
+      this.props.fetchRiskData({
+        fipscode: e.features[0].properties.FIPS
+      });
+
       this.props.fetchPredictionData({
         latitude: pin.LATITUDE,
         longitude: pin.LONGITUDE
       });
+
       console.log("Predictions are ", this.props.coordinatePredictions);
 
       const URL = `https://api.mapbox.com/geocoding/v5/mapbox.places/${
@@ -1296,7 +1306,8 @@ const mapStateToProps = ({
   userId,
   fetchingAddress,
   pinAddresses,
-  dark
+  dark,
+  fipsCodePredictions
 }) => ({
   fetchingPredictionData,
   coordinatePredictions,
@@ -1307,10 +1318,11 @@ const mapStateToProps = ({
   userId,
   fetchingAddress,
   pinAddresses,
-  dark
+  dark,
+  fipsCodePredictions
 });
 
 export default connect(
   mapStateToProps,
-  { fetchPredictionData, fetchHistoricalData, savePin }
+  { fetchPredictionData, fetchHistoricalData, savePin, fetchRiskData }
 )(Map);

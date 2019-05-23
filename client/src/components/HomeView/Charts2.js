@@ -9,7 +9,7 @@ import { Info } from "styled-icons/octicons/Info";
 import { changeTimeMode } from "../../actions";
 import "../../scss/Home2.scss";
 import Chart2 from "./Chart2.js";
-
+import { fetchRiskData } from "../../actions";
 const InfoDark = styled(Info)`
   color: rgba(0, 0, 0, 0.5);
   height: 17.5px;
@@ -73,6 +73,7 @@ class Charts extends Component {
   };
 
   leftClick = () => {
+    console.log(this.state.index);
     if (this.state.index === 0) {
       this.setState({ index: this.state.graphs.length - 1 });
     } else {
@@ -85,6 +86,7 @@ class Charts extends Component {
   };
 
   rightClick = () => {
+    console.log(this.state.index);
     if (this.state.index === this.state.graphs.length - 1) {
       this.setState({ index: 0 });
     } else {
@@ -119,10 +121,10 @@ class Charts extends Component {
 
         <div className="chart">
           {this.props.fetchingHistoricalData ? (
-            <p className="loader">
+            <div className="loader">
               <Loader type="Oval" color="#2e64ab" height="40" width="40" />
-            </p>
-          ) : this.props.fipsCodePredictions.count ? (
+            </div>
+          ) : this.props.fipsCodePredictions[0] ? (
             <>
               <h3>
                 Past Extreme Events for{" "}
@@ -169,5 +171,5 @@ const mapStateToProps = ({
 
 export default connect(
   mapStateToProps,
-  { changeTimeMode }
+  { changeTimeMode, fetchRiskData }
 )(Charts);

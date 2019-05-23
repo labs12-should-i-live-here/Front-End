@@ -85,7 +85,7 @@ class NavbarB extends Component {
                 <WhiteSearch />
               </button>
             </form> */}
-            <div id="geocoder" class="geocoder" />
+            <div id="geocoder" className="geocoder" />
           </div>
           <div className="right notauth">
             <NavLink exact to="/login" activeClassName="activeA">
@@ -98,8 +98,11 @@ class NavbarB extends Component {
 
             <NavLink exact to="/about" activeClassName="activeA">
               About
-              </NavLink>
+            </NavLink>
 
+            <NavLink exact to="/info" activeClassName="activeA">
+              Info
+            </NavLink>
             <NavLink exact to="/pricing" activeClassName="activeA">
               Pricing
             </NavLink>
@@ -124,3 +127,4 @@ export default connect(
   mapStateToProps,
   { flipMode }
 )(NavbarB);
+//pr
