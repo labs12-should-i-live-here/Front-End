@@ -4,6 +4,8 @@ import Search from "../../components/LandingSearch/Search.js";
 // import Footer from '../../components/HomeView/Footer';
 import "../../scss/Landing.scss";
 import Map from "../../components/HomeView/Map/Map.js";
+import NavBarAuthed from '../../components/Shared/NavbarAuthed';
+import NavBarLanding from '../../components/Shared/NavBarLanding.js';
 // import Suggestions from '../../components/LandingSearch/Suggestions.js';
 // const { API_KEY } = process.env
 // const API_URL = 'http://api.musicgraph.com/api/v2/artist/suggest'
@@ -11,6 +13,7 @@ import Map from "../../components/HomeView/Map/Map.js";
 class Landing extends Component {
 render() {
 return (
+    <div>
     <div>
         <NavBarB />
 
@@ -21,7 +24,9 @@ return (
                     Know the risk before you decide
                     <div className="subtagline">We'll help you find a safe home</div>
                         <a href="#learnMore"><button className="topBtn">Learn More</button></a>
-                            <div id="geocoder" className="landingSearchBar" />
+                            <div id="geocoder" className="landingSearchBar">
+
+                            </div>
                     </div>
                 </div>
             </div>
@@ -87,8 +92,9 @@ return (
 
         <div style={{ display: "none" }}>
             <Map />
+        </div>    
         </div>
-    );
+        ); 
 }
 }
 export default Landing;

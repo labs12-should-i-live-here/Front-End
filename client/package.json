@@ -2,6 +2,7 @@
   "name": "client",
   "version": "0.5.0",
   "private": true,
+  "author": "Taylor Blount, Brian Illes, Kim Duclos, Arthur Leonard, Laryna Billinghurst",
   "dependencies": {
     "@mapbox/mapbox-gl-geocoder": "^4.1.2",
     "@material-ui/core": "^3.9.3",
@@ -39,6 +40,7 @@
     "react-chartjs-2": "^2.7.6",
     "react-dom": "^16.8.6",
     "react-icons": "^3.7.0",
+    "react-joyride": "^2.0.5",
     "react-loader-spinner": "^2.3.0",
     "react-map-gl": "^4.1.2",
     "react-plotlyjs": "^0.4.4",
