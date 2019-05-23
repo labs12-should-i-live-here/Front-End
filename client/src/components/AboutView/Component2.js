@@ -324,7 +324,7 @@ const c2teamStyle = {
   display: "flex",
   flexWrap: "wrap",
   flexDirection: "row",
-  justifyContent: "space-around",
+  justifyContent: "center",
   padding: "1.5rem",
   alignItems: "center"
 };
