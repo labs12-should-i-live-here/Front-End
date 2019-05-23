@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Loader from "react-loader-spinner";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { BarChart } from "styled-icons/boxicons-regular/BarChart";
 import { NavigateBefore } from "styled-icons/material/NavigateBefore";
@@ -11,7 +12,7 @@ import "../../scss/Home2.scss";
 import Chart from "./Chart.js";
 
 const InfoDark = styled(Info)`
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.7);
   height: 17.5px;
   width: 17.5px;
   padding: 3px;
@@ -19,8 +20,23 @@ const InfoDark = styled(Info)`
   border-radius: 20%;
   :hover {
     cursor: pointer;
-    background: rgba(0, 0, 0, 0.05);
+    color: rgba(255, 255, 255, 1);
   }
+`;
+
+const DisabledLeft = styled(NavigateBefore)`
+  color: grey;
+  height: 30px;
+  width: 30px;
+  opacity: 0.4;
+  border-radius: 6px;
+`;
+const DisabledRight = styled(NavigateNext)`
+  color: grey;
+  height: 30px;
+  width: 30px;
+  opacity: 0.4;
+  border-radius: 6px;
 `;
 
 const BlackLeft = styled(NavigateBefore)`
@@ -50,7 +66,7 @@ const BlackRight = styled(NavigateNext)`
 `;
 
 const BarChartYellow = styled(BarChart)`
-  color: rgba(217, 49, 37, 0.61);
+  color: #2e64ab9c;
   height: 50px;
   width: 50px;
 `;
@@ -65,28 +81,34 @@ class Charts extends Component {
       "DrySpellsBar",
       "ColdBar"
     ],
-    index: 0
+    index: 0,
+    leftDisable: true,
+    rightDisable: false
   };
 
   leftClick = () => {
+    console.log(this.state.index);
     if (this.state.index === 0) {
-      this.setState({ index: this.state.graphs.length - 1 });
+      this.setState({ leftDisable: true });
     } else {
       this.setState(prevState => {
         return {
-          index: prevState.index - 1
+          index: prevState.index - 1,
+          rightDisable: false
         };
       });
     }
   };
 
   rightClick = () => {
+    console.log(this.state.index);
     if (this.state.index === this.state.graphs.length - 1) {
-      this.setState({ index: 0 });
+      this.setState({ rightDisable: true });
     } else {
       this.setState(prevState => {
         return {
-          index: prevState.index + 1
+          index: prevState.index + 1,
+          leftDisable: false
         };
       });
     }
@@ -102,23 +124,43 @@ class Charts extends Component {
         <header>
           <div className="chart-title">
             <h2>Predicted Events</h2>
-            <InfoDark />
+            <Link exact to="/info">
+              <InfoDark />
+            </Link>
           </div>
 
           <div className="toggle">
             <div>
-              <BlackLeft onClick={this.leftClick} />
-              <BlackRight onClick={this.rightClick} />
+              {this.props.coordinatePredictions[0] ? (
+                <>
+                  <button>
+                    {this.state.leftDisable ? (
+                      <DisabledLeft />
+                    ) : (
+                      <BlackLeft onClick={this.leftClick} />
+                    )}
+                  </button>
+                  <button>
+                    {this.state.rightDisable ? (
+                      <DisabledRight />
+                    ) : (
+                      <BlackRight onClick={this.rightClick} />
+                    )}
+                  </button>
+                </>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </header>
 
         <div className="chart">
           {this.props.fetchingPredictionData ? (
-            <div className="loader">
+            <p className="loader">
               <Loader type="Oval" color="#2e64ab" height="40" width="40" />
               Fetching predictions for next 20 years
-            </div>
+            </p>
           ) : this.props.coordinatePredictions[0] ? (
             <>
               <h3>

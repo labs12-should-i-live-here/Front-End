@@ -7,7 +7,7 @@ import { fetchRiskData } from "../../../actions";
 import CompareChart from "./CompareChart.js";
 
 const CompareGreen = styled(Compare)`
-  color: #2eab6d88;
+  color: #2e64ab9c;
   height: 45px;
   width: 45px;
 `;

@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// Todo: Displaying prediction data on the plotly.
 export const FETCH_PREDICTION_DATA_START = "FETCH_PREDICTION_DATA_START";
 export const FETCH_PREDICTION_DATA_SUCCESS = "FETCH_PREDICTION_DATA_SUCCESS";
 export const FETCH_PREDICTION_DATA_FAILURE = "FETCH_PREDICTION_DATA_FAILURE";
@@ -9,9 +8,6 @@ export const fetchPredictionData = coordinates => dispatch => {
   dispatch({ type: FETCH_PREDICTION_DATA_START });
   const URL = "https://d2drg1tc2gs4lr.cloudfront.net/allpredictions";
 
-  //http://flask-env.ye8czngppq.us-east-2.elasticbeanstalk.com/allpredictions
-  // http://flask-env.ye8czngppq.us-east-2.elasticbeanstalk.com/prediction
-
   let { latitude, longitude } = coordinates;
 
   let request = {
@@ -19,13 +15,6 @@ export const fetchPredictionData = coordinates => dispatch => {
     longitude: longitude,
     years: 20
   };
-
-  // let request = {
-  //   latitude: 40.764444,
-  //   longitude: -74.083562,
-  //   years: 20,
-  //   indicator: "heat_wave_incidents"
-  // };
 
   axios
     .post(URL, request)
@@ -63,7 +52,6 @@ export const fetchRiskData = fipsCode => dispatch => {
     });
 };
 
-// Todo: Displaying historical data on the plotly.
 export const FETCH_HISTORICAL_DATA_START = "FETCH_HISTORICAL_DATA_START";
 export const FETCH_HISTORICAL_DATA_SUCCESS = "FETCH_HISTORICAL_DATA_SUCCESS";
 export const FETCH_HISTORICAL_DATA_FAILURE = "FETCH_HISTORICAL_DATA_FAILURE";
@@ -87,7 +75,6 @@ export const fetchHistoricalData = fipsCodeAndYearRange => dispatch => {
     });
 };
 
-// Get Users
 export const GET_USERS_SUCCESS = "GET_USERS_SUCCESS";
 export const GET_USERS_FAILURE = "GET_USERS_FAILURE";
 
@@ -98,7 +85,6 @@ export const getUsers = () => dispatch => {
     .catch(err => dispatch({ type: GET_USERS_FAILURE, payload: err }));
 };
 
-// Todo: integrate this in UI
 export const ADD_PIN_START = "ADD_PIN_START";
 export const ADD_PIN_SUCCESS = "ADD_PIN_SUCCESS";
 export const ADD_PIN_FAILURE = "ADD_PIN_FAILURE";
@@ -113,7 +99,6 @@ export const savePin = pin => dispatch => {
     .catch(error => console.log(error));
 };
 
-// Todo: integrate this in UI
 export const FETCH_PINS_START = "FETCH_PINS_START";
 export const FETCH_PINS_SUCCESS = "FETCH_PINS_SUCCESS";
 export const FETCH_PINS_FAILURE = "FETCH_PINS_FAILURE";
@@ -127,7 +112,6 @@ export const getPins = pin => dispatch => {
     .catch(error => console.log(error));
 };
 
-// Todo: integrate this in UI
 export const FETCH_PIN_START = "FETCH_PIN_START";
 export const FETCH_PIN_SUCCESS = "FETCH_PIN_SUCCESS";
 export const FETCH_PIN_FAILURE = "FETCH_PIN_FAILURE";
@@ -141,7 +125,6 @@ export const getPin = pin => dispatch => {
     .catch(error => console.log(error));
 };
 
-// Todo: integrate this in UI
 export const UPDATE_PINS_START = "UPDATE_PINS_START";
 export const UPDATE_PINS_SUCCESS = "UPDATE_PINS_SUCCESS";
 export const UPDATE_PINS_FAILURE = "UPDATE_PINS_FAILURE";
@@ -155,7 +138,6 @@ export const updatePins = pin => dispatch => {
     .catch(error => console.log(error));
 };
 
-// Todo: integrate this in UI
 export const DELETE_PIN_START = "DELETE_PIN_START";
 export const DELETE_PIN_SUCCESS = "DELETE_PIN_START";
 export const DELETE_PIN_FAILURE = "DELETE_PIN_FAILURE";
@@ -166,10 +148,9 @@ export const deletePin = pin => dispatch => {
   axios
     .delete(URL)
     .then(res => console.log(res))
-    .catch(error => console.log(error)); //! need to replace ID
+    .catch(error => console.log(error));
 };
 
-// Darkmode
 export const FLIP_MODE = "FLIP_MODE";
 
 export const flipMode = () => dispatch => {
@@ -178,7 +159,6 @@ export const flipMode = () => dispatch => {
 
 export const CHANGE_SELECTED_PIN_INDEX = "CHANGE_SELECTED_PIN_INDEX";
 
-// pin selected
 export const changePinIndex = index => dispatch => {
   console.log(index);
   dispatch({ type: CHANGE_SELECTED_PIN_INDEX, payload: index });
@@ -190,7 +170,6 @@ export const changeTimeMode = () => dispatch => {
   dispatch({ type: CHANGE_TIME_MODE });
 };
 
-//Set client Info
 export const SET_DATA = "SET_DATA";
 export const SET_DATA_START = "SET_DATA_START";
 export const SET_DATA_SUCCESS = "SET_DATA_SUCCESS";
