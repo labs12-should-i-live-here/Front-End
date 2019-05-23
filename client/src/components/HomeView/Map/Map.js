@@ -14,7 +14,7 @@ import styled from "styled-components";
 import { Pulse } from "styled-icons/boxicons-regular/Pulse";
 import Chart from "chart.js";
 import counties from "./counties2.json";
-import { totalDamage }from "./damages_by_county.js";
+import { totalDamage } from "./damages_by_county.js";
 import "./styles.css";
 
 const RedQuake = styled(Pulse)`
@@ -52,9 +52,9 @@ const Button = styled.button`
 `;
 
 const MapOverlay = styled.div`
-  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font: 12px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
   background-color: #f0ead6;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.10);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   position: absolute;
   top: 100px;
@@ -92,11 +92,11 @@ class Map extends Component {
   };
 
   render() {
-
-    
     return (
       <div id="map" ref={el => (this.mapContainer = el)} className="map">
-        <div id="menu-a">Map Layers</div>
+        <div id="menu-a">
+          <h2>Layers</h2>
+        </div>
         <pre id="features" />
         <CompareNav>
           <Button id="compare">
@@ -106,9 +106,13 @@ class Map extends Component {
             <a href="https://loving-brown-ae4f7d.netlify.com">Browse</a>
           </Button>
         </CompareNav>
-        <div id='map-overlay' className ='map-overlay'></div>
-        <div id = 'chart-title' className = 'chart-title'>Total Risk</div>
-        <canvas id = 'map-chart' className = 'map-chart'>Total Risk</canvas>
+        <div id="map-overlay" className="map-overlay" />
+        <div id="chart-title" className="chart-title2">
+          Total Risk
+        </div>
+        <canvas id="map-chart" className="map-chart">
+          Total Risk
+        </canvas>
         {/* <MapOverlay> Amina kodugumunun County'si</MapOverlay>  */}
 
         {/* {( this.state.pins.length < 2) ? 
@@ -149,14 +153,11 @@ class Map extends Component {
       zoom,
       minZoom
     });
-    
 
     //connect to menu-b to test it
 
     // load layers
     map.on("load", () => {
-
-
       // map.addSource("countys", {
       //   type: "vector",
       //   url: "mapbox://mapbox.82pkq93d"
@@ -167,7 +168,7 @@ class Map extends Component {
         url: "mapbox://livesafe.ctlgoa5o"
       });
 
-      map.addLayer ({
+      map.addLayer({
         id: "countys",
         type: "fill",
         source: {
@@ -179,9 +180,9 @@ class Map extends Component {
           "fill-outline-color": "rgb(255, 115, 0)",
           "fill-color": "rgba(255, 115, 0, .1)",
           "fill-opacity": 0.3
-        },
-       //filter: ["in", "FIPS", ""]
-      })
+        }
+        //filter: ["in", "FIPS", ""]
+      });
 
       map.addLayer({
         id: "Counties",
@@ -204,8 +205,8 @@ class Map extends Component {
           data: counties
         },
         paint: {
-          "fill-outline-color": "rgb(255, 115, 0)",
-          "fill-color": "rgba(255, 115, 0, .1)"
+          "fill-outline-color": "rgba(255, 115, 0, .5)",
+          "fill-color": "rgba(255, 115, 0, .5)"
         },
         filter: ["in", "FIPS", ""]
       });
@@ -804,122 +805,126 @@ class Map extends Component {
       closeButton: false
     });
 
-
-    let overlay = document.getElementById('map-overlay');
-    let chart = document.getElementById('map-chart');
-    let chartTitle = document.getElementById('chart-title');
+    let overlay = document.getElementById("map-overlay");
+    let chart = document.getElementById("map-chart");
+    let chartTitle = document.getElementById("chart-title");
 
     map.on("mousemove", "countys", e => {
-
-      map.getCanvas().style.cursor = 'pointer';
-
+      map.getCanvas().style.cursor = "pointer";
 
       var data = {
         labels: [
-            // "Total Risk",
+          // "Total Risk",
         ],
         datasets: [
-            {
-                data: [300, 100],
-                backgroundColor: [
-                    "#FF6384",
-                    "#FFCE56"
-                ],
-                hoverBackgroundColor: [
-                    "#FF6384",
-                    "#FFCE56"
-                ]
-            }]
-    };
-    
-    // let ctx = document.getElementById("map-chart");
-    
-    // And for a doughnut chart
-    let myDoughnutChart = new Chart(chart, {
-        type: 'doughnut',
+          {
+            data: [300, 100],
+            backgroundColor: ["#FF6384", "#FFCE56"],
+            hoverBackgroundColor: ["#FF6384", "#FFCE56"]
+          }
+        ]
+      };
+
+      // let ctx = document.getElementById("map-chart");
+
+      // And for a doughnut chart
+      let myDoughnutChart = new Chart(chart, {
+        type: "doughnut",
         data: data,
         options: {
           responsive: false,
           maintainAspectRatio: false,
           rotation: 1 * Math.PI,
-          circumference: 1 * Math.PI,
-
+          circumference: 1 * Math.PI
         }
-    });
+      });
       // console.log(e.lngLat);
       // new mapboxgl.Popup()
       //   .setLngLat(e.lngLat)
       //   .setHTML(`${e.features[0].properties.NAME} County`)
       //   .addTo(map);
-      console.log('county information:    ', e.features[0])
+      console.log("county information:    ", e.features[0]);
       const filter = ["in", "FIPS", e.features[0].properties];
       // map.setFilter("Counties Highlighted", filter);
 
       let feature = e.features[0];
 
-   
       // console.log(" Total Damage for county $", feature.properties.FIPS, totalDamage[0][feature.properties.FIPS])
       // Render found features in an overlay.
-      overlay.innerHTML = '';    
-     
-      let title = document.createElement('h1');
+      overlay.innerHTML = "";
+
+      let title = document.createElement("h1");
       title.textContent = `${feature.properties.COUNTY}`;
 
-      let population = document.createElement('div');
-      population.textContent = 'County Population : ' + feature.properties.population;
-      let income = document.createElement('div');
-      income.textContent = 'Median Income : $ ' + Object.values(feature.properties)[2];
+      let population = document.createElement("div");
+      population.textContent =
+        "County Population : " + feature.properties.population;
+      let income = document.createElement("div");
+      income.textContent =
+        "Median Income : $ " + Object.values(feature.properties)[2];
 
       const avgDamagePerPersonPerYear = 93;
       const deathSum = 99;
       const injurySum = 990;
-      
-      overlay.appendChild(title); 
-      
+
+      overlay.appendChild(title);
+
       if (totalDamage[0][feature.properties.FIPS]) {
         let countyDamage = Math.round(totalDamage[0][feature.properties.FIPS]);
-        let avg = countyDamage/feature.properties.population/23;
-       // let percentOfNationalAverage = Math.round(avg/avgDamagePerPersonPerYear);
+        let avg = countyDamage / feature.properties.population / 23;
+        // let percentOfNationalAverage = Math.round(avg/avgDamagePerPersonPerYear);
 
-        let damage = document.createElement('p');
-        damage.textContent = "Total Damage : $ " + Math.round(totalDamage[0][feature.properties.FIPS]) + "\n Damage/person/year : $ " + Math.round(avg*10)/10;
-      
-        let damage2 = document.createElement('p')
-        damage2.textContent = "\n % of National Average: " + Math.round(avg/avgDamagePerPersonPerYear*100) + "%";
-      
-        let deaths = document.createElement('p')
-        deaths.textContent = "Deaths caused by disasters: " + Math.round(totalDamage[1][feature.properties.FIPS]);
+        let damage = document.createElement("p");
+        damage.textContent =
+          "Total Damage : $ " +
+          Math.round(totalDamage[0][feature.properties.FIPS]) +
+          "\n Damage/person/year : $ " +
+          Math.round(avg * 10) / 10;
 
-        let injuries = document.createElement('p')
-        injuries.textContent = "Injuries caused by disasters: " + Math.round(totalDamage[2][feature.properties.FIPS]);
+        let damage2 = document.createElement("p");
+        damage2.textContent =
+          "\n % of National Average: " +
+          Math.round((avg / avgDamagePerPersonPerYear) * 100) +
+          "%";
+
+        let deaths = document.createElement("p");
+        deaths.textContent =
+          "Deaths caused by disasters: " +
+          Math.round(totalDamage[1][feature.properties.FIPS]);
+
+        let injuries = document.createElement("p");
+        injuries.textContent =
+          "Injuries caused by disasters: " +
+          Math.round(totalDamage[2][feature.properties.FIPS]);
         overlay.appendChild(damage);
         overlay.appendChild(damage2);
         overlay.appendChild(deaths);
         overlay.appendChild(injuries);
       } //end if
-        
+
       overlay.appendChild(population);
       overlay.appendChild(income);
-      overlay.style.display = 'block';
-      chart.style.display = 'block';
-      chartTitle.style.display = 'block';
+      overlay.style.display = "block";
+      chart.style.display = "block";
+      chartTitle.style.display = "block";
       // // Add features that share the same county name to the highlighted layer.
       // map.setFilter('counties-highlighted', ['in', 'COUNTY', feature.properties.COUNTY]);
 
       // Display a popup with the name of the county
-      popupNoClose.setLngLat(e.lngLat)
-          .setText(`${feature.properties.COUNTY}`)
-          .addTo(map);
+      popupNoClose
+        .setLngLat(e.lngLat)
+        .setText(`${feature.properties.COUNTY}`)
+        .addTo(map);
     });
 
-    map.on('mouseleave', 'countys', function() {
-      map.getCanvas().style.cursor = '';
+    map.on("mouseleave", "countys", function() {
+      map.getCanvas().style.cursor = "";
       popupNoClose.remove();
       // map.setFilter('counties-highlighted', ['in', 'COUNTY', '']);
-      overlay.style.display = 'none';
-      chart.style.display = 'none';
-      chartTitle.style.display = 'none';
-  });
+      overlay.style.display = "none";
+      chart.style.display = "none";
+      chartTitle.style.display = "none";
+    });
 
     map.on("dblclick", "Counties", e => {
       const userId = this.props.userId;

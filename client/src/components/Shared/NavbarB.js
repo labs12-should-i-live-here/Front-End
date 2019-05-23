@@ -38,7 +38,6 @@ const RedHome = styled(Home)`
   height: 35px;
   width: 35px;
   padding: 2px;
-  padding-left: 10px;
   border-radius: 50%;
   background-color: white;
 `;

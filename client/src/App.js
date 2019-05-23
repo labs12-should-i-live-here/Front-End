@@ -1,27 +1,25 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Route, Router } from "react-router-dom";
-import "./scss/App.scss";
-import Home2 from "./views/App/Home2.js";
-import Profile3 from "./views/App/Profile3";
-import SignUp from "./views/App/SignUp.js";
-import Login from "./views/App/Login.js";
-import Logout from "./views/App/Logout.js";
-import Compare from "./views/App/Compare.js";
-import Landing from "./views/App/Landing";
-import Pricing from "./views/App/Pricing.js";
-import About from "./views/App/About.js";
-import Info from "./views/App/Info.js";
-// import Email from "./components/SendGrid/Email";
-//stripe
-import HomeNotAuthed from "./views/App/HomeNotAuthed.js";
-import StripePayment from "./components/StripePayments/StripePayment";
-import { UnpaidPrime } from "./views/App/UnpaidPrime";
+import { setLoginVars } from "./actions";
 import Auth from "./Auth0/Auth.js";
 import Callback from "./Auth0/Callback.js";
 import history from "./Auth0/History";
-import { connect } from "react-redux";
-import { setLoginVars } from "./actions";
-
+import StripePayment from "./components/StripePayments/StripePayment";
+import "./scss/App.scss";
+import About from "./views/App/About.js";
+import Home2 from "./views/App/Home2.js";
+// import Email from "./components/SendGrid/Email";
+//stripe
+import HomeNotAuthed from "./views/App/HomeNotAuthed.js";
+import Info from "./views/App/Info.js";
+import Landing from "./views/App/Landing";
+import Login from "./views/App/Login.js";
+import Logout from "./views/App/Logout.js";
+import Pricing from "./views/App/Pricing.js";
+import Profile3 from "./views/App/Profile3";
+import SignUp from "./views/App/SignUp.js";
+import { UnpaidPrime } from "./views/App/UnpaidPrime";
 
 const auth = new Auth();
 
@@ -34,6 +32,10 @@ class App extends Component {
 
   componentWillMount() {
     this.props.setLoginVars();
+    console.log(
+      "%c👋 Hey there! You can find the repo here: https://github.com/labs12-should-i-live-here",
+      "font-size: 15px; color: #000; background: #fff; margin: 20px;"
+    );
   }
   render() {
     return (
@@ -54,7 +56,6 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <Route path="/profile" component={Profile3} /> {/* NEW! */}
           <Route path="/logout" component={Logout} />
-          <Route path="/compare" component={Compare} />
           <Route path="/info" component={Info} />
           <Route path="/about" component={About} />
           {/* <Route path="/Email" componet={Email} />  --> potential UI for mass email via SendGrid */}
