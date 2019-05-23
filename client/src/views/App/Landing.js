@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import NavBarB from '../../components/Shared/NavbarB.js';
-import Search from '../../components/LandingSearch/Search.js';
+import React, { Component } from "react";
+import NavBarB from "../../components/Shared/NavbarB.js";
+import Search from "../../components/LandingSearch/Search.js";
 // import Footer from '../../components/HomeView/Footer';
-import '../../scss/Landing.scss';
+import "../../scss/Landing.scss";
 import Map from "../../components/HomeView/Map/Map.js";
 import NavBarAuthed from '../../components/Shared/NavbarAuthed';
 import NavBarLanding from '../../components/Shared/NavBarLanding.js';
@@ -10,82 +10,91 @@ import NavBarLanding from '../../components/Shared/NavBarLanding.js';
 // const { API_KEY } = process.env
 // const API_URL = 'http://api.musicgraph.com/api/v2/artist/suggest'
 
-
-
 class Landing extends Component {
-    render() {
-        return (
-            <div>
-                <NavBarAuthed />
-                <div className='landingPage'>
-                    <div className='taglineSearch'>
-                        <div className='tagline'>
-                            Know the risk before you decide
-                            <div className='subtagline'>
-                                We'll help you find a safe home
-                            </div>
+render() {
+return (
+    <div>
+    <div>
+        <NavBarB />
 
-                            <a href="/home"><button className='topBtn'>Learn More</button></a>
-                            <div id="geocoder" className='landingSearchBar'></div>
-                        </div>
+        {/* top content */}
+        <div className="landingPage">
+            <div className="taglineSearch">
+                <div className="tagline">
+                    Know the risk before you decide
+                    <div className="subtagline">We'll help you find a safe home</div>
+                        <a href="#learnMore"><button className="topBtn">Learn More</button></a>
+                            <div id="geocoder" className="landingSearchBar">
 
+                            </div>
                     </div>
-                    {/* <Suggestions /> */}
-                </div>
-                <div id="learnMore" className="marketingTitleBox">
-                    <div className="infoTitle">
-                        You'll never have to live in fear.
-                    </div>
-
-                </div>
-                <div className="infoBoxes">
-
-                <div className="infoBox">
-                        <div className="infoImage">
-                            <div className='img1'>
-                            </div>
-                        </div>
-                        <div className="textBox">
-                            <div className='infoTitle'>Risk Data</div>
-                            <div className='infoContent'>Learn the weather risks in your area.</div>
-                            </div>
-                        <div className='btnBox'>
-                            <button className='btn'>Risks</button>
-                        </div>
-                    </div>
-                    <div className="infoBox">
-                        <div className="infoImage">
-                            <div className='img2'>
-                            </div>
-                        </div>
-                        <div className="textBox">
-                            <div className='infoTitle'>Damage Reports</div>
-                            <div className='infoContent'>Discover weather related damage near you.</div>
-                            </div>
-                        <div className='btnBox'>
-                            <button className='btn'>Damage</button>
-                        </div>
-                    </div>
-                    <div className="infoBox">
-                        <div className="infoImage">
-                            <div className='img3'>
-                            </div>
-                        </div>
-                        <div className="textBox">
-                            <div className='infoTitle'>Death Stats</div>
-                            <div className='infoContent'>Know about dangerous conditions before moving.</div>
-                            </div>
-                        <div className='btnBox'>
-                            <button className='btn'>Deaths</button>
-                        </div>
-                    </div>
-                <div style={{ display: "none" }}>
-                    <Map />
                 </div>
             </div>
         </div>
-        )
-    }
-}
 
+        // bottom content
+        // bottom main title
+        <div id="learnMore" className="marketingTitleBox">
+            <div className="infoTitle">You'll never have to live in fear.</div>
+        </div>
+
+        // box around 3 info boxes
+        <div className="infoBoxes">
+
+            {/* first info box */}
+            <div className="infoBox">
+                <div className="infoImage">
+                    <div className="img2" />
+                </div>
+                <div className="textBox">
+                    <div className="infoBoxTitle">Risk Data</div>
+                        <div className="infoBoxContent">
+                            Learn about the weather risks around you.
+                        </div>
+                    </div>
+                <div className="btnBox">
+                    <button className="btn">Damage</button>
+                </div>
+            </div>
+                
+            {/* second info box */}
+            <div className="infoBox">
+                <div className="infoImage">
+                    <div className="img2" />
+                </div>
+                <div className="textBox">
+                    <div className="infoBoxTitle">Damage Data</div>
+                        <div className="infoBoxContent">
+                            Get to know the property damage stats near you.
+                        </div>
+                    </div>
+                <div className="btnBox">
+                    <button className="btn">Damage</button>
+                </div>
+            </div>
+
+            {/* second info box */}
+            <div className="infoBox">
+                <div className="infoImage">
+                    <div className="img3" />
+                </div>
+                <div className="textBox">
+                    <div className="infoBoxTitle">Death Reports</div>
+                        <div className="infoBoxContent">
+                            Learn about weather-related deaths near your home.
+                        </div>
+                    </div>
+                <div className="btnBox">
+                    <button className="btn">Death</button>
+                </div>
+            </div>
+        </div>
+
+        <div style={{ display: "none" }}>
+            <Map />
+        </div>    
+        </div>
+        ); 
+}
+}
 export default Landing;
