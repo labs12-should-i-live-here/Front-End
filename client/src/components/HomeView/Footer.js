@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import { IoLogoGithub } from "react-icons/io";
-import icon from "../../assets/icon.svg";
 import { NavLink } from "react-router-dom";
+import styled from "styled-components";
+import icon from "../../assets/icon.svg";
 
 var Inform = styled.div`
   margin-top: 5px;

@@ -37,7 +37,12 @@ export default function Component1() {
 
               <h2 style={hStyle}>Our Team</h2>
               <article style={articleStyle}>
-                  Through the selection process, we chose a big project to tackle. Each of us come from different backgrounds and education. Through hard work and determination we were able to lead eachother to a finished product. We are proud of the work put into this project, and your continue use as a user fulfill our purpose as developers and data scientists.
+                Through the selection process, we chose a big project to tackle.
+                Each of us come from different backgrounds and education.
+                Through hard work and determination we were able to lead
+                eachother to a finished product. We are proud of the work put
+                into this project, and your continue use as a user fulfill our
+                purpose as developers and data scientists.
               </article>
             </div>
           </div>
@@ -54,8 +59,8 @@ const c1Style = {
   padding: "1.5rem"
 };
 const hStyle = {
-    paddingBottom: "1.5rem"
-  };
+  paddingBottom: "1.5rem"
+};
 const articleStyle = {
-    paddingBottom: "1.5rem"
-}
+  paddingBottom: "1.5rem"
+};

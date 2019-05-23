@@ -6,10 +6,10 @@ import { BarChart } from "styled-icons/boxicons-regular/BarChart";
 import { NavigateBefore } from "styled-icons/material/NavigateBefore";
 import { NavigateNext } from "styled-icons/material/NavigateNext";
 import { Info } from "styled-icons/octicons/Info";
-import { changeTimeMode } from "../../actions";
+import { changeTimeMode, fetchRiskData } from "../../actions";
 import "../../scss/Home2.scss";
 import Chart2 from "./Chart2.js";
-import { fetchRiskData } from "../../actions";
+
 const InfoDark = styled(Info)`
   color: rgba(0, 0, 0, 0.5);
   height: 17.5px;
