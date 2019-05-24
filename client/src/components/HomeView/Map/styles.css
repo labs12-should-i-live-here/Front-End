@@ -40,7 +40,8 @@
 
 @media only screen and (max-width: 800px) {
   .map-chart {
-    top: 47%;
+    top: 40%;
+    right: 22px;
   }
 }
 
@@ -64,8 +65,8 @@
 
 @media only screen and (max-width: 800px) {
   #chart-title {
-    bottom: 53%;
-    right: 4.5%;
+    bottom: 60%;
+    right: 8%;
   }
 }
 
