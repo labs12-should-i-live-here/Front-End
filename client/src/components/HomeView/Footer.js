@@ -75,9 +75,6 @@ export default class Footer extends Component {
           <NavLink exact to="/about">
             About
           </NavLink>
-          <NavLink exact to="/info">
-            Info
-          </NavLink>
           {/* <div>&copy; LiveSafe</div> */}
           {/* sitemap */}
           <GitLogo href="https://github.com/labs12-should-i-live-here">
