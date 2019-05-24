@@ -12,6 +12,8 @@ import Auth from "../../Auth0/Auth.js";
 import ReactJoyRide, { STATUS } from 'react-joyride';
 import { setLoginVars } from "../../actions";
 
+import "./styles.css";
+
 const auth = new Auth();
 
 class Home2 extends Component {
@@ -24,9 +26,9 @@ class Home2 extends Component {
         {
           title: 'Welcome to the LiveSafe app!',
           content: (
-                <div>
+                <div className = 'welcome'>
                   {/* <h1>Welcome to the LiveSafe app!</h1><br /> */}<br />
-                  <h1>Please take a quick tour of our site. You may skip the tour any time.</h1><br />
+                  <h1>Please take a quick tour of our site. You may exit the tour at any time.</h1><br />
                   <h3>Press next to begin</h3>
                 </div>
               ),
@@ -72,7 +74,7 @@ class Home2 extends Component {
           placement: 'left'
         },
         {
-          title: (<h1><u>Double clicking</u> on the desired location will load Natural Disaster data for that location.</h1>),
+          title: (<h1><strong>Double clicking</strong> on the desired location will load Natural Disaster data for that location.</h1>),
           content: (
             <div>
               <br />
@@ -118,15 +120,15 @@ class Home2 extends Component {
           placement: 'left'
         },
         {
-          title: (<h1>Compare risk levels for <u>two or more counties</u> side by side (Please consider a one time payment to compare more than two counties).</h1>),
+          title: (<h1>Compare risk levels for <strong>two or more counties</strong> side by side (Please consider a one time payment to compare more than two counties).</h1>),
           content: (
             <div>
               <br />
-              <h1>That is, ahem, if <img src="https://i.ibb.co/fHD5qqK/Screenshot-from-2019-05-21-15-19-34.png" alt="Screenshot-from-2019-05-21-15-19-34" /> finishes with the graphs.</h1>
+              {/* <h1>That is, ahem, if <img src="https://i.ibb.co/fHD5qqK/Screenshot-from-2019-05-21-15-19-34.png" alt="Screenshot-from-2019-05-21-15-19-34" /> finishes with the graphs.</h1>
               {/* <img src="https://i.ibb.co/ZSGryz2/Screenshot-from-2019-05-21-14-10-19.png" alt="County Layers" border="0" />              <h1>  Counties will display a color coded layer for that disaster type which represents relative risk.</h1>  */}
               {/* <br /> */}
               <br />
-              <h1> You may be wondering how to make a payment. The link is well hidden.  Let him that hath understanding find that link.</h1>
+              {/*<h1> You may be wondering how to make a payment. The link is well hidden.  Let him that hath understanding find that link.</h1> */}
               <br />
               <h1>You may need to scroll down to see this section.</h1>
                                 
@@ -139,7 +141,7 @@ class Home2 extends Component {
           title: (<h1> Press this button to begin a tour of the selected counties.</h1>),
           content: (
             <div>
-              <h1> The color of the layer represents the relative <u>TOTAL RISK</u> of the underlying county based on <u>all natural disaster categories</u>.  </h1>
+              <h1> The color of the layer represents the relative <strong>TOTAL RISK</strong> of the underlying county based on <u>all natural disaster categories</u>.  </h1>
               <br />
               <img src="https://i.ibb.co/tCWhdP3/Screenshot-from-2019-05-21-15-45-29.png" alt="Compare tour" border="0" />
               <br />
@@ -154,7 +156,7 @@ class Home2 extends Component {
           title: (<h1> You may view two locations side by side by clicking this button.</h1>),
           content: (
             <div>
-              <h1> The color of the layer represents the relative <u>TOTAL RISK</u> of the underlying county based on <u>all natural disaster categories</u>.  </h1>
+              {/* <h1> The color of the layer represents the relative <strong>TOTAL RISK</strong> of the underlying county based on <u>all natural disaster categories</u>.  </h1> */}
               <br />
               <br />
               <img src="https://i.ibb.co/G945MDy/Screenshot-from-2019-05-21-15-50-58.png" alt="Browse mode" border="0" />             <br />
