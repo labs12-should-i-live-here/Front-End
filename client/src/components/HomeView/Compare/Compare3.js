@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { Compare } from "styled-icons/material/Compare";
-
 import { fetchRiskData } from "../../../actions";
 import CompareChart from "./CompareChart.js";
 
@@ -10,6 +9,7 @@ const CompareGreen = styled(Compare)`
   color: #2e64ab9c;
   height: 45px;
   width: 45px;
+  padding-bottom: 5px;
 `;
 
 class Compare3 extends Component {
@@ -38,9 +38,9 @@ class Compare3 extends Component {
                 <CompareChart />
               </div>
             ) : (
-              <>
+              <div className="before-chart">
                 <CompareGreen /> <p>Please add two locations to compare.</p>
-              </>
+              </div>
             )}
           </div>
         </div>

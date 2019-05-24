@@ -24,6 +24,18 @@
     }
   }
 
+  .links {
+    a {
+      text-decoration: none;
+      color: #000;
+      margin: 0 10px;
+      font-weight: bold;
+    }
+    a:hover {
+      border-bottom: 2px solid #f24236;
+    }
+  }
+
   .mapboxgl-ctrl-geocoder .suggestions {
     z-index: 2;
   }

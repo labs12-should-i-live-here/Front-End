@@ -24,45 +24,42 @@ const InfoDark = styled(Info)`
   }
 `;
 
+const BlackLeft = styled(NavigateBefore)`
+  color: #fff;
+  height: 30px;
+  width: 30px;
+  border-radius: 6px;
+  opacity: 0.8;
+  :hover {
+    opacity: 1;
+  }
+  cursor: pointer;
+`;
+const BlackRight = styled(NavigateNext)`
+  color: #fff;
+  height: 30px;
+  width: 30px;
+  border-radius: 6px;
+  opacity: 0.8;
+  :hover {
+    opacity: 1;
+  }
+  cursor: pointer;
+`;
+
 const DisabledLeft = styled(NavigateBefore)`
-  color: grey;
+  color: #fff;
   height: 30px;
   width: 30px;
   opacity: 0.4;
   border-radius: 6px;
 `;
 const DisabledRight = styled(NavigateNext)`
-  color: grey;
+  color: #fff;
   height: 30px;
   width: 30px;
   opacity: 0.4;
   border-radius: 6px;
-`;
-
-const BlackLeft = styled(NavigateBefore)`
-  color: black;
-  height: 30px;
-  width: 30px;
-  border-radius: 6px;
-  opacity: 0.7;
-  :hover {
-    opacity: 1;
-  }
-  cursor: pointer;
-  background: rgba(0, 0, 0, 0.05);
-`;
-const BlackRight = styled(NavigateNext)`
-  color: black;
-  height: 30px;
-  width: 30px;
-  border-radius: 6px;
-  opacity: 0.7;
-  :hover {
-    opacity: 1;
-  }
-  cursor: pointer;
-  background: rgba(0, 0, 0, 0.05);
-  margin-left: 3px;
 `;
 
 const BarChartYellow = styled(BarChart)`
@@ -124,7 +121,7 @@ class Charts extends Component {
         <header>
           <div className="chart-title">
             <h2>Predicted Events</h2>
-            <Link exact to="/info">
+            <Link exact to="/about">
               <InfoDark />
             </Link>
           </div>

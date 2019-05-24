@@ -1,9 +1,10 @@
 import React, { useReducer } from "react";
 import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
-import connect from 'react-redux';
+import { connect } from "react-redux";
+import { updateStripe } from "../../actions";
 
-export default class StripeButton extends React.Component {
+class StripeButton extends React.Component {
   constructor(props) {
     super(props);
 
@@ -20,21 +21,29 @@ export default class StripeButton extends React.Component {
     //http://localhost:4200/payment
     //make sure URL is changed!!
 
-    axios
-      .post("https://labs12.herokuapp.com/payment", { stripeToken: token.id })
-      .then(response => {
-        console.log(response.data);
-      })
-      .catch(error => {
-        console.log("Payment Pending", error);
-      });
-
-
+    // axios
+    //   .post("https://labs12.herokuapp.com/payment", { stripeToken: token.id })
+    //   .then(response => {
+    //     console.log(response.data);
+    //   })
+    //   .catch(error => {
+    //     console.log("Payment Pending", error);
+    //   });
 
     axios
-      .put("https://labs12.herokuapp.com/register", { user: user.id})
+      .put(
+        `https://labs12.herokuapp.com/register/${localStorage.getItem(
+          "userId"
+        )}`,
+        {
+          premium_member: "true"
+        }
+      )
       .then(response => {
-        console.log(response.data);
+        // alert("payment success");
+        console.log("update before");
+        this.props.updateStripe();
+        console.log("update after");
       })
       .catch(error => {
         console.log("Payment Pending", error);
@@ -66,3 +75,11 @@ export default class StripeButton extends React.Component {
 
 // if true
 // user.stripeid true
+const mapStateToProps = ({ client }) => ({
+  client
+});
+
+export default connect(
+  mapStateToProps,
+  { updateStripe }
+)(StripeButton);
