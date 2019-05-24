@@ -125,7 +125,7 @@ class Charts extends Component {
         <header>
           <div className="chart-title">
             <h2>Past Events</h2>
-            <Link exact to="/info">
+            <Link exact to="/about">
               <InfoDark />
             </Link>
           </div>
