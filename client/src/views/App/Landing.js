@@ -32,13 +32,11 @@ return (
             </div>
         </div>
 
-        // bottom content
-        // bottom main title
+       
         <div id="learnMore" className="marketingTitleBox">
             <div className="infoTitle">You'll never have to live in fear.</div>
         </div>
 
-        // box around 3 info boxes
         <div className="infoBoxes">
 
             {/* first info box */}
