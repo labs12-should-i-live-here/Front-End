@@ -45,6 +45,13 @@
   }
 }
 
+@media only screen and (max-width: 500px) {
+  .map-chart {
+    top: 55%;
+    right: 13%;
+  }
+}
+
 .chart-title2 {
   position: absolute;
   width: 18%;
@@ -72,7 +79,7 @@
 
 @media only screen and (max-width: 500px) {
   #chart-title {
-    bottom: 53%;
+    bottom: 45%;
     right: 13%;
   }
 }
