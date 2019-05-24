@@ -281,6 +281,7 @@
             background: rgba(0, 0, 0, 0.05);
             padding: 5px 10px;
             width: 100%;
+            background: grey;
 
             form {
               border-top: 1px solid rgb(99, 99, 99);
@@ -368,6 +369,7 @@
             align-items: center;
             .card-left {
               // width: 65px;
+
               width: 30px;
               .loggedin {
                 background: red;

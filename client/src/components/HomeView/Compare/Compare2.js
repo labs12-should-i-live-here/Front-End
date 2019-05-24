@@ -82,15 +82,15 @@ class Compare3 extends Component {
                 >
                   {
                     <>
-                      <details>
-                        <summary>
-                          <div className="card-left animated bounceInRight">
-                            <MapPinGreenSmall />
-                            {/* <HomeRed /> */}
-                          </div>
-                          {pin} ({this.props.pins[index].COUNTY} county)
-                        </summary>
-                        {localStorage.getItem("isLoggedIn") ? (
+                      {/* <details> */}
+                      <div className="card-left animated bounceInRight">
+                        <MapPinGreenSmall />
+                        {/* <HomeRed /> */}
+                      </div>
+                      <p>
+                        {pin} ({this.props.pins[index].COUNTY} county)
+                      </p>
+                      {/* {localStorage.getItem("isLoggedIn") ? (
                           <div>
                             <form>
                               <div className="options">
@@ -130,8 +130,8 @@ class Compare3 extends Component {
 
                         {/* <div className="card-right">
                           <DotsBlack />
-                        </div> */}
-                      </details>
+                        </div> */}{" "}
+                      {/* */}
                     </>
                   }
                 </div>
