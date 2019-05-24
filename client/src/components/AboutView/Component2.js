@@ -359,7 +359,7 @@ const c2mainStyle = {
   width: "100%"
 };
 const c2Style = {
-  background: "slateblue",
+  background: "darkslateblue",
   color: "white",
   padding: "1.5rem"
 };
