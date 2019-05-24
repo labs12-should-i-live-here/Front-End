@@ -65,8 +65,8 @@ class CompareChart extends Component {
   render() {
     return (
       <Bar
-        height={"225"}
-        width={"225"}
+        height={225}
+        width={225}
         data={this.state.compareData}
         options={options}
       />
