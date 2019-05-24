@@ -119,6 +119,10 @@ class Charts extends Component {
     this.props.changeTimeMode();
   };
 
+  componentDidUpdate() {
+    console.log("updated");
+  }
+
   render() {
     return (
       <>

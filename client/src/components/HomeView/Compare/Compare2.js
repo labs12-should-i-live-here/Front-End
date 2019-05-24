@@ -56,8 +56,8 @@ class Compare3 extends Component {
   };
 
   sendPinIndex = index => {
-    console.log("index from ", index);
     this.props.changePinIndex(index);
+    this.setState({ notes: true });
   };
 
   render() {
@@ -77,7 +77,7 @@ class Compare3 extends Component {
               this.props.pinAddresses.map((pin, index) => (
                 <div
                   className="card animated bounceInRight"
-                  onClick={() => this.sendPinIndex(index)}
+                  // onClick={() => this.sendPinIndex(index)}
                   key={index}
                 >
                   {
