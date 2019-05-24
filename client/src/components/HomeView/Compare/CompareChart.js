@@ -34,33 +34,48 @@ class CompareChart extends Component {
     compareData: {
       labels: [],
       datasets: []
-    }
+    },
+    index: 0
   };
-  componentDidMount() {
+  componentDidUpdate() {
+    if (this.props.pins.length !== this.state.index) {
+      this.setData();
+      this.setState(prevState => {
+        return {
+          index: prevState.index + 1
+        };
+      });
+    }
+  }
+  setData = () => {
     if (this.props.riskData[1]) {
       this.setState({
         compareData: {
           labels: [
-            `${this.props.pins[0].COUNTY}, ${
-              this.props.riskData[0].risk.categorylabel
+            `${this.props.pins[this.props.pins.length - 2].COUNTY}, ${
+              this.props.riskData[this.props.pins.length - 2].risk.categorylabel
             }`,
-            `${this.props.pins[1].COUNTY}, ${
-              this.props.riskData[1].risk.categorylabel
+            `${this.props.pins[this.props.pins.length - 1].COUNTY}, ${
+              this.props.riskData[this.props.pins.length - 1].risk.categorylabel
             }`
           ],
           datasets: [
             {
               label: ["Total Risk"],
               data: [
-                this.props.riskData[0].risk.category,
-                this.props.riskData[1].risk.category
+                this.props.riskData[this.props.pins.length - 2].risk.category,
+                this.props.riskData[this.props.pins.length - 1].risk.category
               ],
-              backgroundColor: ["blue", "blue"]
+              backgroundColor: ["rgb(217, 49, 37)", "rgb(217, 49, 37)"]
             }
           ]
         }
       });
     }
+  };
+
+  componentDidMount() {
+    this.setData();
   }
   render() {
     return (
