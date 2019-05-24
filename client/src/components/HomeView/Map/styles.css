@@ -4,23 +4,25 @@
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;
   color: #353839;
-  font-family: sans-serif;
-  font-size: 14px;
+  font-family: "Rubik", sans-serif;
+  /* font-family: sans-serif; */
+  font-size: 1.1rem;
   font-style: normal;
-  /* font-variant: small-caps; */
-  /* font-weight: 900; */
-  line-height: 14px;
+    font-variant: small-caps;
+  font-weight: 900;
+  line-height: 1.8rem;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   position: absolute;
-  bottom: 80px;
-  right: 10px;
-  width: 200px;
-  height: auto;
-  padding: 5% 2% 2% 2%;
+  bottom: 1%;
+  right: 2%;
+  width: 28%;
+  height: 37%;
+  padding: 5% 2% 2% 5%;
   display: none;
   z-index: 1;
   word-wrap: break-word;
+  font-family: Yellowtail;
 }
 
 .map-chart {
@@ -29,30 +31,61 @@
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   position: absolute;
-  top: 55%;
-  right: 40px;
+  top: 25%;
+  right: 5%;
   font-weight: bold;
   z-index: 2;
   width: 18%;
-  height: 100px;
+  height: 10%;
   /* padding: 10px; */
   display: none;
   padding: 0 0 10% 0;
 }
 
+.chart-title {
+  display: none;
+}
+.map-overlay h1 {
+    font-family: Yellowtail;
+    font-size: 1.4rem;
+    font-style: italic;
+    font-weight: 700;
+    line-height: 2rem;
+    /* color: white; */
+    text-decoration: underline;
+    margin-bottom: 1rem;
+  }
+
 @media only screen and (max-width: 800px) {
   .map-chart {
-    top: 47%;
+    top: 37%;
+    width: 20%;
+    height: 12;
+  }
+  .map-overlay {
+      bottom: 2%;
+      overflow: hidden;
+      font-size: .9rem;
+      font-weight: 400;
+      width: 23%;
+  }
+  .map-overlay h1 {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: .3rem;
+  }
+  .chart-title2 {
+      font-size: .6rem;
   }
 }
 
 .chart-title2 {
   position: absolute;
   width: 18%;
-  bottom: 42%;
+  top: 22%;
   color: #353839;
-  right: 0.5%;
-  font-size: 20px;
+  right: 5%;
+  font-size: 2rem;
   text-align: center;
   font-weight: bold;
   z-index: 3;
@@ -64,26 +97,22 @@
 } */
 
 @media only screen and (max-width: 800px) {
-  #chart-title {
-    bottom: 53%;
+  .chart-title2 {
+    top: 33%;
     right: 4.5%;
+    font-size: 1.3rem;
   }
 }
 
 @media only screen and (max-width: 500px) {
-  #chart-title {
-    bottom: 53%;
+  .chart-title2 {
+    top: 33%;
     right: 13%;
+    font-size: 1rem;
+  }
+  .map-overlay {
+     opacity: 0; 
   }
 }
 
-h1 {
-  font-family: Yellowtail;
-  font-size: 26px;
-  font-style: italic;
-  font-weight: 700;
-  line-height: 32px;
-  /* color: white; */
-  text-decoration: underline;
-  margin-bottom: 40px;
-}
+

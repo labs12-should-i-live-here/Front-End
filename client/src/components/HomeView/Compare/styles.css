@@ -1,0 +1,25 @@
+.gauges {
+    display: flex;
+    justify-content: space-evenly;
+    height: 150px;
+    width: 100%;
+    /* border: 1px solid black; */
+}
+
+.doughnut {
+    width: 40%;
+    height: 130px;
+    /* border: 1px solid pink; */
+
+}
+
+.donut_title {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    
+}
+
+.title {
+    font-size: 1rem;
+}
