@@ -618,7 +618,7 @@ class Map extends Component {
       });
 
       map.addLayer({
-        id: "Damages caused by disasters",
+        id: "Disaster Damages",
         type: "fill",
         source: {
           type: "vector",
@@ -643,7 +643,7 @@ class Map extends Component {
       });
 
       map.addLayer({
-        id: "Deaths caused by disasters",
+        id: "Disaster Deaths",
         type: "fill",
         source: {
           type: "vector",
@@ -698,8 +698,8 @@ class Map extends Component {
         "Heat Wave Risk",
         "Winter Weather Risk",
         "Tornado Risk",
-        "Damages caused by disasters",
-        "Deaths caused by disasters"
+        "Disaster Damages",
+        "Disaster Deaths"
       ];
       // const toggleableLayers = ["Quakes"];
 
@@ -727,16 +727,8 @@ class Map extends Component {
         map.setLayoutProperty("Tornado Risk", "visibility", "none");
         map.setLayoutProperty("Major Storm Risk", "visibility", "none");
         map.setLayoutProperty("Flood Risk", "visibility", "none");
-        map.setLayoutProperty(
-          "Damages caused by disasters",
-          "visibility",
-          "none"
-        );
-        map.setLayoutProperty(
-          "Deaths caused by disasters",
-          "visibility",
-          "none"
-        );
+        map.setLayoutProperty("Disaster Damages", "visibility", "none");
+        map.setLayoutProperty("Disaster Deaths", "visibility", "none");
 
         link.onclick = function(e) {
           // toggle layer
