@@ -1,6 +1,6 @@
 .map-overlay {
   /* font: 16px 'Helvetica Neue', Arial, Helvetica, sans-serif; */
-  background-image: url("http://www.clker.com/cliparts/D/m/V/S/V/o/yellow-post-it-md.png");
+  background-image: url("https://www.clker.com/cliparts/D/m/V/S/V/o/yellow-post-it-md.png");
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;
   color: #353839;
@@ -42,6 +42,9 @@
   padding: 0 0 10% 0;
 }
 
+.chart-title {
+  display: none;
+}
 .map-overlay h1 {
     font-family: Yellowtail;
     font-size: 1.4rem;
@@ -71,12 +74,12 @@
       font-weight: bold;
       margin-bottom: .3rem;
   }
-  .chart-title {
+  .chart-title2 {
       font-size: .6rem;
   }
 }
 
-.chart-title {
+.chart-title2 {
   position: absolute;
   width: 18%;
   top: 22%;
@@ -94,7 +97,7 @@
 } */
 
 @media only screen and (max-width: 800px) {
-  .chart-title {
+  .chart-title2 {
     top: 33%;
     right: 4.5%;
     font-size: 1.3rem;
@@ -102,7 +105,7 @@
 }
 
 @media only screen and (max-width: 500px) {
-  .chart-title {
+  .chart-title2 {
     top: 33%;
     right: 13%;
     font-size: 1rem;

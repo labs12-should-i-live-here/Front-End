@@ -110,12 +110,6 @@ export default function Pricing() {
           <div className="label">
             <p>
               <Arrow />
-              Home location
-            </p>
-          </div>
-          <div className="label">
-            <p>
-              <Arrow />
               Prediction Updates
             </p>
           </div>
@@ -140,9 +134,6 @@ export default function Pricing() {
             <div className="label-2">0</div>
             <div className="label-2">
               <BlackDelete />
-            </div>
-            <div className="label-2">
-              <BlackCheck />
             </div>
           </div>
           <div className="free">
@@ -171,9 +162,6 @@ export default function Pricing() {
             <div className="label-2">
               <BlackCheck />
             </div>
-            <div className="label-2">
-              <BlackCheck />
-            </div>
           </div>
           <div className="pro">
             <h2>
@@ -182,7 +170,7 @@ export default function Pricing() {
             <div className="label-2">$2 / month</div>
             <div className="label-2">
               Unlimited
-              <Link to="/login" className="animated tada">
+              <Link to="/profile" className="animated tada">
                 Join now
               </Link>
             </div>
@@ -195,9 +183,6 @@ export default function Pricing() {
               <BlackCheck />
             </div>
             <div className="label-2">Unlimited</div>
-            <div className="label-2">
-              <BlackCheck />
-            </div>
             <div className="label-2">
               <BlackCheck />
             </div>

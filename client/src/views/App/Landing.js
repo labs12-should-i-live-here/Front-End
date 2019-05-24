@@ -23,7 +23,7 @@ return (
                 <div className="tagline">
                     Know the risk before you decide
                     <div className="subtagline">We'll help you find a safe home</div>
-                        <a href="#learnMore"><button className="topBtn">Learn More</button></a>
+                        <a href="https://livesafe.netlify.com"><button className="topBtn">Learn More</button></a>
                             <div id="geocoder" className="landingSearchBar">
 
                             </div>
@@ -32,13 +32,11 @@ return (
             </div>
         </div>
 
-        // bottom content
-        // bottom main title
+        
         <div id="learnMore" className="marketingTitleBox">
             <div className="infoTitle">You'll never have to live in fear.</div>
         </div>
 
-        // box around 3 info boxes
         <div className="infoBoxes">
 
             {/* first info box */}

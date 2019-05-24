@@ -119,17 +119,14 @@ class NavbarB extends Component {
           </div>
           {localStorage.getItem("isLoggedIn") ? (
             <div className="right">
-              {/* <NavLink exact to="/pricing" activeClassName="activeA">
-              Pro
-            </NavLink> */}
-
-              {/* <NavLink exact to="/about"> About </NavLink> */}
-              {/* <a
-              href="https://labs12-should-i-live-here.github.io/about/"
-              target="_blank"
-            >
-              About
-            </a> */}
+              <div className="links">
+                <NavLink exact to="/pricing" activeClassName="activeA">
+                  Pro
+                </NavLink>
+                <NavLink exact to="/about" activeClassName="activeA">
+                  About
+                </NavLink>
+              </div>
 
               <button
                 onMouseEnter={this.enter}
@@ -150,9 +147,9 @@ class NavbarB extends Component {
                     <NavLink className="profile" exact to="/profile">
                       <User />
                     </NavLink>
-                    <span onClick={this.mode}>
+                    {/* <span onClick={this.mode}>
                       {darkmode ? <MoonDarkA /> : <MoonLightA />}
-                    </span>
+                    </span> */}
                   </>
                 ) : (
                   ""

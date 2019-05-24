@@ -99,16 +99,16 @@ class NavbarB extends Component {
             <NavLink exact to="/about" activeClassName="activeA">
               About
             </NavLink>
-            
+
             <NavLink exact to="/pricing" activeClassName="activeA">
               Pricing
             </NavLink>
-
+            {/* 
             <span onClick={this.mode}>
               <button className="icons">
                 {darkmode ? <MoonDarkA /> : <MoonLightA />}
               </button>
-            </span>
+            </span> */}
           </div>
         </div>
       </div>

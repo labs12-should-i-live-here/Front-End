@@ -9,12 +9,11 @@ import Info from "./Info.js";
 class About extends Component {
   state = {
     showTeam: false,
-    showInfo: false
+    // showInfo: false
   };
 
   toggleA = e => this.setState({ showTeam: !this.state.showTeam });
-  toggleB = e => this.setState({ showInfo: !this.state.showInfo });
-  // ,{showInfo: !this.state.showInfo})
+  // toggleB = e => this.setState({ showInfo: !this.state.showInfo });
 
   render() {
     return (
@@ -23,7 +22,7 @@ class About extends Component {
         <div style={{ display: "none" }}>
           <Map />
         </div>
-        <div className="container">
+        <div style={aboutdivStyle}>
           <Component1 toggleA={this.toggleA} toggleB={this.toggleB}/>
           <Transition
           native
@@ -41,7 +40,8 @@ class About extends Component {
             ))
           }
         </Transition>
-        <Transition
+        <Info />
+        {/* <Transition
           native
           items={this.state.showInfo}
           from={{ opacity: 0 }}
@@ -56,12 +56,18 @@ class About extends Component {
               </animated.div>
             ))
           }
-        </Transition>
+        </Transition> */}
         </div>
       </div>
     );
   }
 }
+
+const aboutdivStyle = {
+fontFamily: "Rubik, sans-serif",
+
+}
+
 
 export default About;
 //pr

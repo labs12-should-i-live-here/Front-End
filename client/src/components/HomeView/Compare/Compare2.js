@@ -3,26 +3,11 @@ import React, { Component } from "react";
 import Loader from "react-loader-spinner";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { DotsVerticalRounded } from "styled-icons/boxicons-regular/DotsVerticalRounded";
-import { PlayCircle } from "styled-icons/boxicons-regular/PlayCircle";
+import { Notepad } from "styled-icons/boxicons-regular/Notepad";
+import { Save } from "styled-icons/boxicons-regular/Save";
 import { BuildingHouse } from "styled-icons/boxicons-solid/BuildingHouse";
 import { MapMarkerAlt } from "styled-icons/fa-solid/MapMarkerAlt";
 import { changePinIndex } from "../../../actions";
-import { Notepad } from "styled-icons/boxicons-regular/Notepad";
-import { Save } from "styled-icons/boxicons-regular/Save";
-
-const PlayGreen = styled(PlayCircle)`
-  color: black;
-  height: 35px;
-  width: 35px;
-  border-radius: 6px;
-  opacity: 0.7;
-  :hover {
-    opacity: 1;
-  }
-  cursor: pointer;
-  margin-right: 8px;
-`;
 
 const Saved = styled(Save)`
   color: gray;
@@ -43,28 +28,6 @@ const Home = styled(BuildingHouse)`
   height: 20px;
   width: 20px;
   margin-left: 5px;
-`;
-
-const DotsBlack = styled(DotsVerticalRounded)`
-  color: black;
-  height: 18px;
-  width: 18px;
-  border-radius: 6px;
-  opacity: 0.7;
-  :hover {
-    opacity: 1;
-    background: rgba(0, 0, 0, 0.05);
-  }
-  cursor: pointer;
-  margin-right: 8px;
-`;
-
-const PlayGreenDisabled = styled(PlayCircle)`
-  color: black;
-  height: 35px;
-  width: 35px;
-  margin-right: 8px;
-  border-radius: 6px;
 `;
 
 const MapPinGreen = styled(MapMarkerAlt)`
@@ -93,8 +56,8 @@ class Compare3 extends Component {
   };
 
   sendPinIndex = index => {
-    console.log("index from ", index);
     this.props.changePinIndex(index);
+    this.setState({ notes: true });
   };
 
   render() {
@@ -114,20 +77,20 @@ class Compare3 extends Component {
               this.props.pinAddresses.map((pin, index) => (
                 <div
                   className="card animated bounceInRight"
-                  onClick={() => this.sendPinIndex(index)}
+                  // onClick={() => this.sendPinIndex(index)}
                   key={index}
                 >
                   {
                     <>
-                      <details>
-                        <summary>
-                          <div className="card-left animated bounceInRight">
-                            <MapPinGreenSmall />
-                            {/* <HomeRed /> */}
-                          </div>
-                          {pin} ({this.props.pins[index].COUNTY} county)
-                        </summary>
-                        {localStorage.getItem("isLoggedIn") ? (
+                      {/* <details> */}
+                      <div className="card-left animated bounceInRight">
+                        <MapPinGreenSmall />
+                        {/* <HomeRed /> */}
+                      </div>
+                      <p>
+                        {pin} ({this.props.pins[index].COUNTY} county)
+                      </p>
+                      {/* {localStorage.getItem("isLoggedIn") ? (
                           <div>
                             <form>
                               <div className="options">
@@ -167,8 +130,8 @@ class Compare3 extends Component {
 
                         {/* <div className="card-right">
                           <DotsBlack />
-                        </div> */}
-                      </details>
+                        </div> */}{" "}
+                      {/* */}
                     </>
                   }
                 </div>

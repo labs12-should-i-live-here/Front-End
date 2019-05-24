@@ -28,7 +28,8 @@ import {
   SET_DATA_SUCCESS,
   FETCH_RISK_DATA_START,
   FETCH_RISK_DATA_SUCCESS,
-  FETCH_RISK_DATA_FAILURE
+  FETCH_RISK_DATA_FAILURE,
+  STRIPE_UPDATE
 } from "../actions/index";
 
 const initialState = {
@@ -56,9 +57,11 @@ const initialState = {
   selectedData: [],
   timeMode: false,
   client: {
-    userPic: localStorage.getItem("userPic"),
-    name: localStorage.getItem("Name"),
-    isPremium: false
+    client: {
+      userPic: localStorage.getItem("userPic"),
+      name: localStorage.getItem("Name"),
+      isPremium: false
+    }
   },
   fetchingInfo: true,
   fetchingRiskData: false,
@@ -219,7 +222,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         client: {
           userPic: localStorage.getItem("userPic"),
-          name: localStorage.getItem("Name")
+          name: localStorage.getItem("Name"),
+          isPremium: false
         }
       };
     case FETCH_RISK_DATA_START:
@@ -239,6 +243,15 @@ const reducer = (state = initialState, action) => {
         error: action.payload,
         errorStatusCode: action.payload,
         fetchingRiskData: false
+      };
+    case STRIPE_UPDATE:
+      return {
+        ...state,
+        client: {
+          userPic: localStorage.getItem("userPic"),
+          name: localStorage.getItem("Name"),
+          isPremium: true
+        }
       };
     default:
       return state;

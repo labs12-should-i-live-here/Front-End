@@ -1,73 +1,65 @@
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
+import axios from "axios";
+import Chart from "chart.js";
 import mapboxgl from "mapbox-gl";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
-  fetchPredictionData,
   fetchHistoricalData,
-  savePin,
-  fetchRiskData
+  fetchPredictionData,
+  fetchRiskData,
+  savePin
 } from "../../../actions";
 import "../../../scss/Map.scss";
-import axios from "axios";
-import styled from "styled-components";
-import { Pulse } from "styled-icons/boxicons-regular/Pulse";
-import Chart from "chart.js";
 import counties from "./counties2.json";
 import { totalDamage } from "./damages_by_county.js";
 import { danger_bins } from "./danger_bins.js";
 
 import "./styles.css";
 
-const RedQuake = styled(Pulse)`
-  color: red;
-  height: 35px;
-  width: 35px;
-`;
+// const CompareNav = styled.div`
+//   width: 100%;
+//   height: 40px;
+//   position: absolute;
+//   z-index: 1;
+//   opacity: 1;
+//   display: flex;
 
-const CompareNav = styled.div`
-  width: 100%;
-  height: 40px;
-  position: absolute;
-  z-index: 1;
-  opacity: 1;
-  display: flex;
+//   align-items: center;
+// `;
 
-  align-items: center;
-`;
+// const Button = styled.button`
+//   display: block;
+//   margin: 0px auto;
+//   width: 20%;
+//   height: 100%;
+//   padding: 10px;
 
-const Button = styled.button`
-  display: block;
-  margin: 0px auto;
-  width: 20%;
-  height: 100%;
-  padding: 10px;
+//   border: none;
+//   border-radius: 3px;
+//   font-size: 12px;
+//   text-align: center;
+//   color: #fff;
+//   background: #e66;
+//   opacity: 0.75;
+//   cursor: pointer;
+// `;
 
-  border: none;
-  border-radius: 3px;
-  font-size: 12px;
-  text-align: center;
-  color: #fff;
-  background: #e66;
-  opacity: 0.75;
-  cursor: pointer;
-`;
-
-const MapOverlay = styled.div`
-  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  background-color: #f0ead6;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.10);
-  border-radius: 5px;
-  position: absolute;
-  top: 100px;
-  right: 30px;
-  font-weight: bold;
-  z-index: 1;
-  width: 25%;
-  height: 100px;
-  padding: 10px;
-  display: block;
-`;
+// const MapOverlay = styled.div`
+//   font: 12px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
+//   background-color: #f0ead6;
+//   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+//   border-radius: 5px;
+//   position: absolute;
+//   top: 100px;
+//   right: 30px;
+//   font-weight: bold;
+//   z-index: 1;
+//   width: 25%;
+//   height: 100px;
+//   padding: 10px;
+//   display: block;
+// `;
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
@@ -98,19 +90,26 @@ class Map extends Component {
     
     return (
       <div id="map" ref={el => (this.mapContainer = el)} className="map">
-        <div id="menu-a">Map Layers</div>
-        <pre id="features" />
-        <CompareNav>
-          <Button id="compare">
+        <div id="menu-a">
+          <h2>Layers</h2>
+        </div>
+        <div className="controls">
+          <h2>Controls</h2>
+          <button id="compare">
             {this.state.toggler ? "Compare" : "Return"}
-          </Button>
-          <Button id="browse">
-            <a href="https://loving-brown-ae4f7d.netlify.com">Browse</a>
-          </Button>
-        </CompareNav>
-        <div id='map-overlay' className ='map-overlay'></div>
-        <div id = 'chart-title' className = 'chart-title'>Total Risk</div>
-        <canvas id = 'map-chart' className = 'map-chart'></canvas>
+          </button>
+
+          <a href="https://loving-brown-ae4f7d.netlify.com">Browse</a>
+        </div>
+        <pre id="features" />
+
+        <div id="map-overlay" className="map-overlay" />
+        <div id="chart-title2" className="chart-title2">
+          Total Risk
+        </div>
+        <canvas id="map-chart" className="map-chart">
+        
+        </canvas>
         {/* <MapOverlay> Amina kodugumunun County'si</MapOverlay>  */}
 
         {/* {( this.state.pins.length < 2) ? 
@@ -532,7 +531,7 @@ class Map extends Component {
       });
 
       map.addLayer({
-        id: "Cold Snap Risk",
+        id: "Winter Weather Risk",
         type: "fill",
         source: {
           type: "vector",
@@ -626,7 +625,7 @@ class Map extends Component {
       });
 
       map.addLayer({
-        id: "Damages caused by disasters",
+        id: "Disaster Damages",
         type: "fill",
         source: {
           type: "vector",
@@ -651,7 +650,7 @@ class Map extends Component {
       });
 
       map.addLayer({
-        id: "Deaths caused by disasters",
+        id: "Disaster Deaths",
         type: "fill",
         source: {
           type: "vector",
@@ -704,10 +703,10 @@ class Map extends Component {
         "Hurricane Risk",
         "Fire Risk",
         "Heat Wave Risk",
-        "Cold Snap Risk",
+        "Winter Weather Risk",
         "Tornado Risk",
-        "Damages caused by disasters",
-        "Deaths caused by disasters"
+        "Disaster Damages",
+        "Disaster Deaths"
       ];
       // const toggleableLayers = ["Quakes"];
 
@@ -731,20 +730,12 @@ class Map extends Component {
         map.setLayoutProperty("Drought Risk", "visibility", "none");
         map.setLayoutProperty("Fire Risk", "visibility", "none");
         map.setLayoutProperty("Heat Wave Risk", "visibility", "none");
-        map.setLayoutProperty("Cold Snap Risk", "visibility", "none");
+        map.setLayoutProperty("Winter Weather Risk", "visibility", "none");
         map.setLayoutProperty("Tornado Risk", "visibility", "none");
         map.setLayoutProperty("Major Storm Risk", "visibility", "none");
         map.setLayoutProperty("Flood Risk", "visibility", "none");
-        map.setLayoutProperty(
-          "Damages caused by disasters",
-          "visibility",
-          "none"
-        );
-        map.setLayoutProperty(
-          "Deaths caused by disasters",
-          "visibility",
-          "none"
-        );
+        map.setLayoutProperty("Disaster Damages", "visibility", "none");
+        map.setLayoutProperty("Disaster Deaths", "visibility", "none");
 
         link.onclick = function(e) {
           // toggle layer
@@ -809,7 +800,7 @@ class Map extends Component {
 
     let overlay = document.getElementById('map-overlay');
     let chart = document.getElementById('map-chart');
-    let chartTitle = document.getElementById('chart-title');
+    let chartTitle = document.getElementById('chart-title2');
 
     map.on("click", "countys", e => {
 
@@ -847,12 +838,21 @@ class Map extends Component {
           responsive: false,
           maintainAspectRatio: false,
           rotation: 1 * Math.PI,
-          circumference: 1 * Math.PI,
-
+          circumference: 1 * Math.PI
         }
-    });
-   
-          // Render found features in an overlay.
+      });
+      // console.log(e.lngLat);
+      // new mapboxgl.Popup()
+      //   .setLngLat(e.lngLat)
+      //   .setHTML(`${e.features[0].properties.NAME} County`)
+      //   .addTo(map);
+
+      // const filter = ["in", "FIPS", e.features[0].properties];
+      // map.setFilter("Counties Highlighted", filter);
+
+      // let feature = e.features[0];
+
+               // Render found features in an overlay.
       overlay.innerHTML = '';    
      
       let title = document.createElement('h1');
@@ -953,8 +953,6 @@ class Map extends Component {
         longitude: pin.LONGITUDE
       });
 
-      console.log("Predictions are ", this.props.coordinatePredictions);
-
       const URL = `https://api.mapbox.com/geocoding/v5/mapbox.places/${
         pin.LONGITUDE
       },${pin.LATITUDE}.json?access_token=${
@@ -995,7 +993,6 @@ class Map extends Component {
         .catch(error => {
           console.log(error);
         });
-      console.log("Pins so far:  ", this.props.pins, this.props.pins.length);
       // TODO: add this area not supported for outside of US
     });
 
@@ -1040,16 +1037,14 @@ class Map extends Component {
     });
 
     let pins = this.props.pins;
-    console.log("pins from state : ", pins);
 
     document.getElementById("compare").addEventListener("click", function(e) {
       //const { pins } = this.state;
-      console.log("pins from inside event listener : ", pins);
 
       var features = map.queryRenderedFeatures(e.point, {
         layers: ["counties"]
       });
-      console.log("got back features = ", e);
+
       toggler++;
 
       let flyToLocations = [];
@@ -1071,10 +1066,10 @@ class Map extends Component {
             return t;
           }
         };
-        console.log("inside playback function for loop with camera = ", camera);
+
         flyToLocations.push(camera);
       }
-      console.log("fly to locations = ", flyToLocations);
+
       playback(0, flyToLocations);
     }); // end compare event listener
 
@@ -1202,8 +1197,6 @@ class Map extends Component {
         },
         "settlement-label"
       ); // Place polygon under these labels.
-
-      console.log("pins from inside playback function ", pins, pins.length);
 
       // map.addLayer({
       //   "id": "highlight",

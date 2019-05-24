@@ -14,6 +14,22 @@ export default class AccInfo extends Component {
   // componentDidMount() {
   //   this.props.getUsers();}
 
+  componentDidMount() {
+    axios
+      .get(
+        `https://labs12.herokuapp.com/register/${localStorage.getItem(
+          "userId"
+        )}`
+      )
+      .then(response => {
+        console.log(response);
+        this.props.updateStripe();
+      })
+      .catch(error => {
+        console.log("Payment Pending", error);
+      });
+  }
+
   render() {
     var user = "please hook up auth";
 

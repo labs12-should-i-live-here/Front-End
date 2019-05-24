@@ -184,3 +184,12 @@ export const setLoginVars = clientInformation => dispatch => {
 
   wait();
 };
+
+// !STRIPE
+
+export const STRIPE_UPDATE = "STRIPE_UPDATE";
+
+export const updateStripe = () => dispatch => {
+  console.log("action triggered");
+  dispatch({ type: STRIPE_UPDATE });
+};

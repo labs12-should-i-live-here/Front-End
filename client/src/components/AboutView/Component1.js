@@ -36,7 +36,7 @@ export class Component1 extends Component {
                 the right zipcode.
               </article>
 
-              <button style={btn} onClick={this.props.toggleA}>Toggle Our Team</button>
+              <h3 style={hStyle}>Our Team</h3>
               <article style={articleStyle}>
                 Through the selection process, we chose a big project to tackle.
                 Each of us come from different backgrounds and education.
@@ -44,11 +44,13 @@ export class Component1 extends Component {
                 eachother to a finished product. We are proud of the work put
                 into this project, and your continue use as a user fulfill our
                 purpose as developers and data scientists.
+                <br />
+                <button style={btn} onClick={this.props.toggleA}>Show/Hide Team</button>
               </article>
               
 
-              <button style={btn} onClick={this.props.toggleB}>Toggle Info</button>
-              <article style={articleStyle}>All the information used for this application is captured into documentation.</article>
+              <h3 style={hStyle}>Info</h3>
+              <article style={articleStyle}>All the information used for this application is captured into the following documentation below.</article>
               
             </div>
           </div>
@@ -68,10 +70,16 @@ const c1Style = {
 };
 const hStyle = {
     paddingBottom: "1.5rem",
-    fontWeight: "bold"
+    fontWeight: "bold",
+    width: "100%",
+    maxWidth: "600px",
+    margin: "0 auto"
   };
 const articleStyle = {
-    paddingBottom: "1.5rem"
+    paddingBottom: "1.5rem",
+    width: "100%",
+    maxWidth: "600px",
+    margin: "0 auto"
 }
 const btn = {
   background: "#333",
@@ -79,7 +87,8 @@ const btn = {
   padding: "1rem 2rem",
   border: "none",
   textTransform: "uppercase",
-  margin: "15px 0"
+  margin: "0 auto",
+  marginTop: "20px"
 };
 
 export default Component1;
