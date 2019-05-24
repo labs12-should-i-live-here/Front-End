@@ -1,6 +1,6 @@
 .map-overlay {
   /* font: 16px 'Helvetica Neue', Arial, Helvetica, sans-serif; */
-  background-image: url("http://www.clker.com/cliparts/D/m/V/S/V/o/yellow-post-it-md.png");
+  background-image: url("https://www.clker.com/cliparts/D/m/V/S/V/o/yellow-post-it-md.png");
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;
   color: #353839;
@@ -51,7 +51,7 @@
   width: 18%;
   bottom: 42%;
   color: #353839;
-  right: .5%;
+  right: 0.5%;
   font-size: 20px;
   text-align: center;
   font-weight: bold;

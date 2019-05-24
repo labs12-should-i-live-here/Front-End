@@ -1,27 +1,19 @@
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
+import axios from "axios";
+import Chart from "chart.js";
 import mapboxgl from "mapbox-gl";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
-  fetchPredictionData,
   fetchHistoricalData,
-  savePin,
-  fetchRiskData
+  fetchPredictionData,
+  fetchRiskData,
+  savePin
 } from "../../../actions";
 import "../../../scss/Map.scss";
-import axios from "axios";
-import styled from "styled-components";
-import { Pulse } from "styled-icons/boxicons-regular/Pulse";
-import Chart from "chart.js";
 import counties from "./counties2.json";
 import { totalDamage } from "./damages_by_county.js";
 import "./styles.css";
-
-const RedQuake = styled(Pulse)`
-  color: red;
-  height: 35px;
-  width: 35px;
-`;
 
 // const CompareNav = styled.div`
 //   width: 100%;
@@ -845,7 +837,7 @@ class Map extends Component {
       //   .setLngLat(e.lngLat)
       //   .setHTML(`${e.features[0].properties.NAME} County`)
       //   .addTo(map);
-      console.log("county information:    ", e.features[0]);
+
       const filter = ["in", "FIPS", e.features[0].properties];
       // map.setFilter("Counties Highlighted", filter);
 
@@ -960,8 +952,6 @@ class Map extends Component {
         longitude: pin.LONGITUDE
       });
 
-      console.log("Predictions are ", this.props.coordinatePredictions);
-
       const URL = `https://api.mapbox.com/geocoding/v5/mapbox.places/${
         pin.LONGITUDE
       },${pin.LATITUDE}.json?access_token=${
@@ -1002,7 +992,6 @@ class Map extends Component {
         .catch(error => {
           console.log(error);
         });
-      console.log("Pins so far:  ", this.props.pins, this.props.pins.length);
       // TODO: add this area not supported for outside of US
     });
 
@@ -1047,16 +1036,14 @@ class Map extends Component {
     });
 
     let pins = this.props.pins;
-    console.log("pins from state : ", pins);
 
     document.getElementById("compare").addEventListener("click", function(e) {
       //const { pins } = this.state;
-      console.log("pins from inside event listener : ", pins);
 
       var features = map.queryRenderedFeatures(e.point, {
         layers: ["counties"]
       });
-      console.log("got back features = ", e);
+
       toggler++;
 
       let flyToLocations = [];
@@ -1078,10 +1065,10 @@ class Map extends Component {
             return t;
           }
         };
-        console.log("inside playback function for loop with camera = ", camera);
+
         flyToLocations.push(camera);
       }
-      console.log("fly to locations = ", flyToLocations);
+
       playback(0, flyToLocations);
     }); // end compare event listener
 
@@ -1209,8 +1196,6 @@ class Map extends Component {
         },
         "settlement-label"
       ); // Place polygon under these labels.
-
-      console.log("pins from inside playback function ", pins, pins.length);
 
       // map.addLayer({
       //   "id": "highlight",

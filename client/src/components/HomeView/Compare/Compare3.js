@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { Compare } from "styled-icons/material/Compare";
-
 import { fetchRiskData } from "../../../actions";
 import CompareChart from "./CompareChart.js";
 
