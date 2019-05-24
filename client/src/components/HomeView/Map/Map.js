@@ -94,9 +94,8 @@ class Map extends Component {
           <button id="compare">
             {this.state.toggler ? "Compare" : "Return"}
           </button>
-          <button id="browse">
-            <a href="https://loving-brown-ae4f7d.netlify.com">Browse</a>
-          </button>
+
+          <a href="https://loving-brown-ae4f7d.netlify.com">Browse</a>
         </div>
         <pre id="features" />
 
