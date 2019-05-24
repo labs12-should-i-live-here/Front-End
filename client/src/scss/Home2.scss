@@ -4,7 +4,7 @@
   // -webkit-animation: Gradient 15s ease infinite;
   // -moz-animation: Gradient 15s ease infinite;
   // animation: Gradient 15s ease infinite;
-
+  background: #ebebeb;
   display: flex;
   justify-content: space-between;
   height: 92.9vh;
@@ -21,8 +21,9 @@
   }
   .left-pane {
     padding: 1vh;
-    height: 90vh;
+    height: 89vh;
     width: 67.5%;
+    background: #ebebeb;
     @media (max-width: 1000px) {
       width: 100%;
       height: 70vh;
@@ -82,6 +83,7 @@
         align-content: center;
         button {
           outline: none;
+          background: rgba(255, 255, 255, 0);
         }
         p {
           font-size: 13px;
@@ -232,7 +234,7 @@
           justify-content: center;
           align-items: center;
           width: 100%;
-          margin-top: 40px;
+          margin-top: 70px;
         }
         p {
           color: rgb(87, 87, 87);
@@ -249,8 +251,10 @@
         align-content: center;
         box-sizing: border-box;
         min-height: 100px;
+
         .top {
           width: 95%;
+          margin: 5px 0;
         }
         .middle {
           display: flex;
@@ -383,7 +387,7 @@
           padding: 5px;
         }
         .loader {
-          padding-top: 12%;
+          padding-top: 8%;
           padding-left: 45%;
         }
         .msg {

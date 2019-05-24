@@ -25,40 +25,37 @@ const InfoDark = styled(Info)`
 `;
 
 const BlackLeft = styled(NavigateBefore)`
-  color: black;
+  color: #fff;
   height: 30px;
   width: 30px;
   border-radius: 6px;
-  opacity: 0.7;
+  opacity: 0.8;
   :hover {
     opacity: 1;
   }
   cursor: pointer;
-  background: rgba(0, 0, 0, 0.05);
 `;
 const BlackRight = styled(NavigateNext)`
-  color: black;
+  color: #fff;
   height: 30px;
   width: 30px;
   border-radius: 6px;
-  opacity: 0.7;
+  opacity: 0.8;
   :hover {
     opacity: 1;
   }
   cursor: pointer;
-  background: rgba(0, 0, 0, 0.05);
-  margin-left: 3px;
 `;
 
 const DisabledLeft = styled(NavigateBefore)`
-  color: grey;
+  color: #fff;
   height: 30px;
   width: 30px;
   opacity: 0.4;
   border-radius: 6px;
 `;
 const DisabledRight = styled(NavigateNext)`
-  color: grey;
+  color: #fff;
   height: 30px;
   width: 30px;
   opacity: 0.4;

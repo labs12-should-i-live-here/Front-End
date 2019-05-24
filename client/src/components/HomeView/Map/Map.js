@@ -23,49 +23,49 @@ const RedQuake = styled(Pulse)`
   width: 35px;
 `;
 
-const CompareNav = styled.div`
-  width: 100%;
-  height: 40px;
-  position: absolute;
-  z-index: 1;
-  opacity: 1;
-  display: flex;
+// const CompareNav = styled.div`
+//   width: 100%;
+//   height: 40px;
+//   position: absolute;
+//   z-index: 1;
+//   opacity: 1;
+//   display: flex;
 
-  align-items: center;
-`;
+//   align-items: center;
+// `;
 
-const Button = styled.button`
-  display: block;
-  margin: 0px auto;
-  width: 20%;
-  height: 100%;
-  padding: 10px;
+// const Button = styled.button`
+//   display: block;
+//   margin: 0px auto;
+//   width: 20%;
+//   height: 100%;
+//   padding: 10px;
 
-  border: none;
-  border-radius: 3px;
-  font-size: 12px;
-  text-align: center;
-  color: #fff;
-  background: #e66;
-  opacity: 0.75;
-  cursor: pointer;
-`;
+//   border: none;
+//   border-radius: 3px;
+//   font-size: 12px;
+//   text-align: center;
+//   color: #fff;
+//   background: #e66;
+//   opacity: 0.75;
+//   cursor: pointer;
+// `;
 
-const MapOverlay = styled.div`
-  font: 12px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
-  background-color: #f0ead6;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  position: absolute;
-  top: 100px;
-  right: 30px;
-  font-weight: bold;
-  z-index: 1;
-  width: 25%;
-  height: 100px;
-  padding: 10px;
-  display: block;
-`;
+// const MapOverlay = styled.div`
+//   font: 12px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
+//   background-color: #f0ead6;
+//   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+//   border-radius: 5px;
+//   position: absolute;
+//   top: 100px;
+//   right: 30px;
+//   font-weight: bold;
+//   z-index: 1;
+//   width: 25%;
+//   height: 100px;
+//   padding: 10px;
+//   display: block;
+// `;
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
@@ -97,15 +97,17 @@ class Map extends Component {
         <div id="menu-a">
           <h2>Layers</h2>
         </div>
-        <pre id="features" />
-        <CompareNav>
-          <Button id="compare">
+        <div className="controls">
+          <h2>Controls</h2>
+          <button id="compare">
             {this.state.toggler ? "Compare" : "Return"}
-          </Button>
-          <Button id="browse">
+          </button>
+          <button id="browse">
             <a href="https://loving-brown-ae4f7d.netlify.com">Browse</a>
-          </Button>
-        </CompareNav>
+          </button>
+        </div>
+        <pre id="features" />
+
         <div id="map-overlay" className="map-overlay" />
         <div id="chart-title" className="chart-title2">
           Total Risk
@@ -531,7 +533,7 @@ class Map extends Component {
       });
 
       map.addLayer({
-        id: "Cold Snap Risk",
+        id: "Winter Weather Risk",
         type: "fill",
         source: {
           type: "vector",
@@ -703,7 +705,7 @@ class Map extends Component {
         "Hurricane Risk",
         "Fire Risk",
         "Heat Wave Risk",
-        "Cold Snap Risk",
+        "Winter Weather Risk",
         "Tornado Risk",
         "Damages caused by disasters",
         "Deaths caused by disasters"
@@ -730,7 +732,7 @@ class Map extends Component {
         map.setLayoutProperty("Drought Risk", "visibility", "none");
         map.setLayoutProperty("Fire Risk", "visibility", "none");
         map.setLayoutProperty("Heat Wave Risk", "visibility", "none");
-        map.setLayoutProperty("Cold Snap Risk", "visibility", "none");
+        map.setLayoutProperty("Winter Weather Risk", "visibility", "none");
         map.setLayoutProperty("Tornado Risk", "visibility", "none");
         map.setLayoutProperty("Major Storm Risk", "visibility", "none");
         map.setLayoutProperty("Flood Risk", "visibility", "none");
