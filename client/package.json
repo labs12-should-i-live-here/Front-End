@@ -22,7 +22,7 @@
     "chart.js": "^2.8.0",
     "cors": "^2.8.5",
     "curl": "^0.1.4",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "install": "^0.12.2",
     "mail-service": "^1.1.0",
     "mapbox-gl": "^0.54.0",
